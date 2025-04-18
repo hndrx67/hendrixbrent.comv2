@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hendrix Brent Fortu | Developer's Portfolio</title>
+    <style>
+        /* Base Styles */
+        :root {
+            --bg-dark: #0B0F10;
+            --bg-light: #f5f7fa;
+            --text-dark: #e0e5ec;
+            --text-light: #232830;
+            --accent-blue: #4ECDC4;
+            --accent-mint: #8DD9CC;
+            --card-dark: #12171a;
+            --card-light: #ffffff;
+            --transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] {
+            --bg: var(--bg-dark);
+            --text: var(--text-dark);
+            --card: var(--card-dark);
+        }
+
+        [data-theme="light"] {
+            --bg: var(--bg-light);
+            --text: var(--text-light);
+            --card: var(--card-light);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg, var(--bg-dark));
+            color: var(--text, var(--text-dark));
+            transition: var(--transition);
+            overflow-x: hidden;
+            line-height: 1.6;
+            font-weight: 400;
+            font-size: 16px;
+            letter-spacing: 0.02em;
+            position: relative;
+        }
+
+        @font-face {
+            font-family: 'IBM Plex Mono';
+            src: url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'IBM Plex Sans';
+            src: url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&display=swap');
+            font-display: swap;
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 0;
+            background: linear-gradient(to bottom, var(--accent-blue), var(--accent-mint));
+            z-index: 1000;
+            border-radius: 0 0 4px 0;
+            opacity: 0.8;
+        }
+
+        /* Header and Navigation */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background-color: rgba(11, 15, 16, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            padding: 1rem 1.5rem;
+            background-color: rgba(11, 15, 16, 0.98);
+        }
+
+        .logo {
+            font-family: 'IBM Plex Mono', monospace;
+            font-weight: 600;
+            font-size: 1.2rem;
+            letter-spacing: -0.5px;
+            color: var(--accent-blue);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            position: relative;
+            padding: 0.25rem 0;
+            transition: var(--transition);
+        }
+
+        nav a:hover {
+            color: var(--accent-blue);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(to right, var(--accent-blue), var(--accent-mint));
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hamburger Menu */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 24px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            height: 2px;
+            width: 100%;
+            background-color: var(--text);
+            transition: var(--transition);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 6rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            min-height: calc(100vh - 80px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-container {
+            position: relative;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 1s ease forwards;
+        }
+
+        .profile-picture {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid transparent;
+            background: linear-gradient(var(--bg), var(--bg)) padding-box,
+                        linear-gradient(to right, var(--accent-blue), var(--accent-mint)) border-box;
+            box-shadow: 0 0 25px rgba(78, 205, 196, 0.2);
+            position: relative;
+            z-index: 2;
+            filter: grayscale(20%);
+            transition: var(--transition);
+        }
+
+        .profile-picture:hover {
+            filter: grayscale(0%);
+            transform: scale(1.02);
+            box-shadow: 0 0 30px rgba(78, 205, 196, 0.35);
+        }
+
+        .profile-glow {
+            position: absolute;
+            width: 170px;
+            height: 170px;
+            background: radial-gradient(circle, rgba(78, 205, 196, 0.2) 0%, rgba(11, 15, 16, 0) 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 1;
+            animation: pulse 4s infinite ease-in-out;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 1s ease forwards 0.4s;
+        }
+
+        .hero h1 {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero h2 {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: var(--accent-blue);
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: typewriter 1.5s steps(40, end) forwards 1s;
+            white-space: nowrap;
+            overflow: hidden;
+            width: 0;
+            margin: 0 auto 1.5rem;
+        }
+
+        .hero p {
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        .hero-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .button {
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-mint));
+            color: #0B0F10;
+            font-family: 'IBM Plex Mono', monospace;
+            font-weight: 500;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            letter-spacing: 0.5px;
+            font-size: 0.9rem;
+            border: none;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            box-shadow: 0 5px 15px rgba(78, 205, 196, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .button:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.2),
+                transparent
+            );
+            transition: 0.5s;
+        }
+
+        .button:hover:before {
+            left: 100%;
+        }
+
+        .button.secondary {
+            background: transparent;
+            color: var(--text);
+            border: 1px solid var(--accent-blue);
+        }
+
+        .button.secondary:hover {
+            background: rgba(78, 205, 196, 0.1);
+        }
+
+        /* Section Styling */
+        section {
+            padding: 5rem 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            height: 4px;
+            width: 60px;
+            bottom: -10px;
+            left: 0;
+            background: linear-gradient(to right, var(--accent-blue), var(--accent-mint));
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 2rem;
+        }
+
+        .skill-tag {
+            background-color: rgba(78, 205, 196, 0.1);
+            color: var(--accent-blue);
+            padding: 0.5rem 1rem;
+            border-radius: 3px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .skill-tag:hover {
+            background-color: rgba(78, 205, 196, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 6px;
+            filter: grayscale(40%);
+            transition: var(--transition);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .about-image img:hover {
+            filter: grayscale(0%);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background-color: var(--card);
+            border-radius: 6px;
+            overflow: hidden;
+            transition: var(--transition);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            border-color: rgba(78, 205, 196, 0.3);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            filter: grayscale(30%);
+            transition: var(--transition);
+        }
+
+        .project-card:hover .project-image {
+            filter: grayscale(0%);
+        }
+
+        .project-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-title {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+
+        .project-description {
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tag {
+            background-color: rgba(78, 205, 196, 0.1);
+            color: var(--accent-blue);
+            padding: 0.3rem 0.8rem;
+            border-radius: 3px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.8rem;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-link {
+            color: var(--text);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.85rem;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: var(--transition);
+        }
+
+        .project-link:hover {
+            color: var(--accent-blue);
+        }
+
+        /* Blog Section */
+        .blog-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .blog-card {
+            background-color: var(--card);
+            border-radius: 6px;
+            overflow: hidden;
+            transition: var(--transition);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            border-color: rgba(78, 205, 196, 0.3);
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            filter: grayscale(30%);
+            transition: var(--transition);
+        }
+
+        .blog-card:hover .blog-image {
+            filter: grayscale(0%);
+        }
+
+        .blog-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-date {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--accent-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-title {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+
+        .blog-excerpt {
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+
+        .read-more {
+            color: var(--accent-blue);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.9rem;
+            text-decoration: none;
+            position: relative;
+            display: inline-block;
+            transition: var(--transition);
+        }
+
+        .read-more::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: linear-gradient(to right, var(--accent-blue), var(--accent-mint));
+            transition: width 0.3s ease;
+        }
+
+        .read-more:hover::after {
+            width: 100%;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .contact-icon {
+            color: var(--accent-blue);
+            font-size: 1.5rem;
+            margin-top: 0.2rem;
+        }
+
+        .contact-details h4 {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        .form-control {
+            padding: 0.8rem;
+            border-radius: 4px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text);
+            font-family: inherit;
+            transition: var(--transition);
+            resize: vertical;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 2px rgba(78, 205, 196, 0.2);
+        }
+
+        textarea.form-control {
+            min-height: 120px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-text {
+            font-size: 0.9rem;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        .theme-toggle:hover {
+            color: var(--accent-blue);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .social-link {
+            color: var(--text);
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            color: var(--accent-blue);
+            transform: translateY(-3px);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes typewriter {
+            to {
+                width: 24ch;
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                opacity: 0.5;
+                transform: translate(-50%, -50%) scale(0.95);
+            }
+            50% {
+                opacity: 0.7;
+                transform: translate(-50%, -50%) scale(1.05);
+            }
+            100% {
+                opacity: 0.5;
+                transform: translate(-50%, -50%) scale(0.95);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .about-container,
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .about-image {
+                order: -1;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero h2 {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            nav ul {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                width: 80%;
+                max-width: 300px;
+                height: calc(100vh - 70px);
+                flex-direction: column;
+                background-color: var(--bg);
+                border-left: 1px solid rgba(255, 255, 255, 0.05);
+                padding: 2rem;
+                transition: right 0.3s ease;
+                gap: 1.5rem;
+                z-index: 100;
+            }
+
+            nav ul.active {
+                right: 0;
+            }
+
+            .hero {
+                padding: 4rem 1.5rem;
+            }
+
+            .projects-grid,
+            .blog-container {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 1.5rem;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero h2 {
+                font-size: 1rem;
+            }
+
+            .profile-picture {
+                width: 120px;
+                height: 120px;
+            }
+
+            .section-title {
+                font-size: 1.6rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            section {
+                padding: 3rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body data-theme="dark">
+    <div class="scroll-indicator"></div>
+    
+    <header>
+        <div class="logo">HBF</div>
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="profile-container">
+            <div class="profile-glow"></div>
+            <img src="https://via.placeholder.com/150" alt="Profile" class="profile-picture" id="profile-img">
+        </div>
+        <div class="hero-content">
+            <h1>Hendrix Brent Fortu</h1>
+            <h2>Backend Web and Software Developer</h2>
+            <p>I craft elegant, user-centered web applications with clean code and pixel-perfect implementation. Specializing in modern JavaScript frameworks and scalable backend solutions.</p>
+            <div class="hero-links">
+                <a href="#contact" class="button">Get in Touch</a>
+                <a href="#projects" class="button secondary">View Projects</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-container">
+            <div class="about-text">
+                <p>I'm a software developer with 5+ years of experience building robust web applications and designing intuitive user interfaces. My journey in tech began with a passion for solving complex problems and creating meaningful digital experiences.</p>
+                <p>When I'm not coding, I enjoy photography, exploring new hiking trails, and contributing to open-source projects. I believe in continuous learning and sharing knowledge with the developer community.</p>
+                <div class="skills">
+                    <div class="skill-tag">JavaScript</div>
+                    <div class="skill-tag">React</div>
+                    <div class="skill-tag">Node.js</div>
+                    <div class="skill-tag">TypeScript</div>
+                    <div class="skill-tag">Python</div>
+                    <div class="skill-tag">GraphQL</div>
+                    <div class="skill-tag">AWS</div>
+                    <div class="skill-tag">Docker</div>
+                </div>
+            </div>
+            <div class="about-image">
+                <img src="https://via.placeholder.com/500x400" alt="About Me">
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects">
+        <h2 class="section-title">Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <img src="https://via.placeholder.com/600x400/4ECDC4/ffffff" alt="Project 1" class="project-image">
+                <div class="project-content">
+                    <h3 class="project-title">CloudSync Dashboard</h3>
+                    <p class="project-description">A real-time analytics dashboard for monitoring cloud infrastructure. Features responsive visualization components and a sophisticated alerting system.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">React</span>
+                        <span class="project-tag">D3.js</span>
+                        <span class="project-tag">Node.js</span>
+                        <span class="project-tag">WebSockets</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">Demo</a>
+                        <a href="#" class="project-link">GitHub</a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="https://via.placeholder.com/600x400/8DD9CC/ffffff" alt="Project 2" class="project-image">
+                <div class="project-content">
+                    <h3 class="project-title">Codex IDE Extension</h3>
+                    <p class="project-description">A VS Code extension that offers AI-powered code completion and refactoring suggestions. Integrates with popular version control systems.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">TypeScript</span>
+                        <span class="project-tag">VS Code API</span>
+                        <span class="project-tag">Python</span>
+                        <span class="project-tag">Machine Learning</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">Marketplace</a>
+                        <a href="#" class="project-link">GitHub</a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="https://via.placeholder.com/600x400/4ECDC4/ffffff" alt="Project 3" class="project-image">
+                <div class="project-content">
+                    <h3 class="project-title">MindfulTask</h3>
+                    <p class="project-description">A minimalist productivity app that combines task management with mindfulness techniques. Features elegant animations and offline capabilities.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">React Native</span>
+                        <span class="project-tag">Redux</span>
+                        <span class="project-tag">Firebase</span>
+                        <span class="project-tag">Animations</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">App Store</a>
+                        <a href="#" class="project-link">Case Study</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="blog" class="blog">
+        <h2 class="section-title">Developer Journal</h2>
+        <div class="blog-container">
+            <div class="blog-card">
+                <img src="https://via.placeholder.com/600x400/4ECDC4/ffffff" alt="Blog 1" class="blog-image">
+                <div class="blog-content">
+                    <div class="blog-date">April 10, 2025</div>
+                    <h3 class="blog-title">Building Accessible Web Applications</h3>
+                    <p class="blog-excerpt">Exploring best practices for creating truly inclusive web experiences that work for everyone, regardless of abilities or disabilities.</p>
+                    <a href="#" class="read-more">Read More</a>
+                </div>
+            </div>
+            <div class="blog-card">
+                <img src="https://via.placeholder.com/600x400/8DD9CC/ffffff" alt="Blog 2" class="blog-image">
+                <div class="blog-content">
+                    <div class="blog-date">March 22, 2025</div>
+                    <h3 class="blog-title">My Journey With TypeScript: Lessons Learned</h3>
+                    <p class="blog-excerpt">How TypeScript transformed my development workflow, and why I believe it's worth the initial learning curve for most JavaScript projects.</p>
+                    <a href="#" class="read-more">Read More</a>
+                </div>
+            </div>
+            <div class="blog-card">
+                <img src="https://via.placeholder.com/600x400/4ECDC4/ffffff" alt="Blog 3" class="blog-image">
+                <div class="blog-content">
+                    <div class="blog-date">February 15, 2025</div>
+                    <h3 class="blog-title">Performance Optimization Techniques</h3>
+                    <p class="blog-excerpt">Deep dive into practical strategies for improving website performance, from code splitting to image optimization and beyond.</p>
+                    <a href="#" class="read-more">Read More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">📧</div>
+                    <div class="contact-details">
+                        <h4>Email</h4>
+                        <p>hello@hendrixfortu.dev</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <div class="contact-details">
+                        <h4>Location</h4>
+                        <p>San Francisco, California</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">🔗</div>
+                    <div class="contact-details">
+                        <h4>Social</h4>
+                        <p>Connect with me on LinkedIn, GitHub, or Twitter</p>
+                    </div>
+                </div>
+            </div>
+            <form class="contact-form">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" class="form-control" required></textarea>
+                </div>
+                <button type="submit" class="button">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <p class="footer-text">© 2025 Hendrix Brent Fortu. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#" class="social-link">GitHub</a>
+                <a href="#" class="social-link">LinkedIn</a>
+                <a href="#" class="social-link">Twitter</a>
+            </div>
+            <button class="theme-toggle">Toggle Theme</button>
+        </div>
+    </footer>
+
+    <script>
+        // Handle scroll indicator
+        window.addEventListener('scroll', function() {
+            const scrollIndicator = document.querySelector('.scroll-indicator');
+            const scrollPosition = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollPosition / docHeight) * 100;
+            scrollIndicator.style.height = scrollPercent + '%';
+            
+            // Handle header styling on scroll
+            const header = document.querySelector('header');
+            if (scrollPosition > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Intersection Observer for section animations
+        const sections = document.querySelectorAll('section:not(.hero)');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        // Mobile menu toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const nav = document.querySelector('nav ul');
+
+        menuToggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            
+            // Change hamburger to X
+            const spans = menuToggle.querySelectorAll('span');
+            spans.forEach(span => span.classList.toggle('active'));
+        });
+
+        // Close mobile menu when clicking a link
+        const navLinks = document.querySelectorAll('nav a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+            });
+        });
+
+        // Theme toggle
+        const themeToggle = document.querySelector('.theme-toggle');
+        const body = document.body;
+
+        themeToggle.addEventListener('click', () => {
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.setAttribute('data-theme', 'light');
+                themeToggle.textContent = 'Dark Mode';
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                themeToggle.textContent = 'Light Mode';
+            }
+        });
+
+        // Use a placeholder for profile image
+        const profileImg = document.getElementById('profile-img');
+        profileImg.onerror = function() {
+            this.src = 'data:image/svg+xml;charset=UTF-8,%3csvg xmlns="http://www.w3.org/2000/svg" width="150" height="150" viewBox="0 0 150 150"%3e%3crect width="150" height="150" fill="%234ECDC4"/%3e%3ctext x="75" y="85" font-family="Arial" font-size="60" fill="%23FFFFFF" text-anchor="middle"%3eHBF%3c/text%3e%3c/svg%3e';
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hendrix Brent Fortu | Software Developer</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;700&display=swap">
+    <style>
+        :root {
+            --bg-color: #0D0F12;
+            --text-color: #E1E1E6;
+            --accent-blue: #00B2FF;
+            --accent-mint: #4ECCA3;
+            --accent-pink: #FF6B9E;
+            --card-bg: #161A20;
+            --border-color: #2A2F36;
+            --font-mono: 'JetBrains Mono', monospace;
+            --font-sans: 'Inter', sans-serif;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: var(--transition);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nav {
+            position: fixed;
+            top: 0;
+            right: 0;
+            padding: 20px;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: var(--transition);
+        }
+
+        .nav-item {
+            color: var(--text-color);
+            text-decoration: none;
+            font-family: var(--font-mono);
+            font-size: 14px;
+            position: relative;
+            padding: 0 5px;
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+
+        .nav-item:hover {
+            opacity: 1;
+        }
+
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-blue);
+            transition: var(--transition);
+        }
+
+        .nav-item:hover::after {
+            width: 100%;
+        }
+
+        .theme-toggle {
+            width: 40px;
+            height: 20px;
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            position: relative;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+        }
+
+        .theme-toggle::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background-color: var(--accent-blue);
+            transition: var(--transition);
+            box-shadow: 0 0 5px var(--accent-blue);
+        }
+
+        .theme-toggle.light::after {
+            transform: translateX(20px);
+            background-color: var(--accent-mint);
+            box-shadow: 0 0 5px var(--accent-mint);
+        }
+
+        .section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 60px 0;
+            position: relative;
+        }
+
+        .hero {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .greeting {
+            font-family: var(--font-mono);
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+            overflow: hidden;
+        }
+
+        .greeting::after {
+            content: '|';
+            position: absolute;
+            right: -10px;
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            from, to { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .subtitle {
+            font-family: var(--font-sans);
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            opacity: 0.7;
+            margin-bottom: 40px;
+            max-width: 600px;
+        }
+
+        .scroll-cue {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            opacity: 0.6;
+            cursor: pointer;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+            40% { transform: translateY(-20px) translateX(-50%); }
+            60% { transform: translateY(-10px) translateX(-50%); }
+        }
+
+        .scroll-cue svg {
+            width: 30px;
+            height: 30px;
+            fill: var(--text-color);
+        }
+
+        .about {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .about-title {
+            font-family: var(--font-mono);
+            font-size: clamp(1.75rem, 3vw, 2.25rem);
+            margin-bottom: 20px;
+            color: var(--accent-mint);
+        }
+
+        .about-content {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .profile-container {
+            flex: 1;
+            min-width: 280px;
+            max-width: 400px;
+            position: relative;
+            margin: 0 auto;
+        }
+
+        .profile-frame {
+            position: relative;
+            width: 100%;
+            padding-top: 110%; /* Aspect ratio for the image */
+            overflow: hidden;
+            border-radius: 2px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: var(--transition);
+            background-color: var(--card-bg);
+            border: 2px solid var(--border-color);
+        }
+
+        .profile-frame::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 95%, var(--accent-blue) 95%);
+            z-index: 1;
+            opacity: 0.5;
+        }
+
+        .profile-frame::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/png;base64,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');
+            opacity: 0.05;
+            z-index: 1;
+        }
+
+        .profile-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .profile-container:hover .profile-frame {
+            transform: perspective(1000px) rotateY(5deg) rotateX(2deg);
+            box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .profile-container:hover .profile-img {
+            filter: brightness(1.1);
+        }
+
+        .manga-corner {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            width: 30px;
+            height: 30px;
+            background: var(--accent-pink);
+            clip-path: polygon(100% 0, 0 0, 100% 100%);
+            z-index: 2;
+            opacity: 0.8;
+        }
+
+        .bio {
+            flex: 1;
+            min-width: 280px;
+            font-family: var(--font-sans);
+            font-size: 16px;
+            line-height: 1.8;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .bio.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .bio p {
+            margin-bottom: 15px;
+        }
+
+        .code-style {
+            font-family: var(--font-mono);
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+
+        .keyword {
+            color: var(--accent-blue);
+        }
+
+        .string {
+            color: var(--accent-pink);
+        }
+
+        .object {
+            color: var(--accent-mint);
+        }
+
+        .projects-title {
+            font-family: var(--font-mono);
+            font-size: clamp(1.75rem, 3vw, 2.25rem);
+            margin-bottom: 40px;
+            color: var(--accent-blue);
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            border-color: var(--accent-blue);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .project-content {
+            padding: 20px;
+        }
+
+        .project-title {
+            font-family: var(--font-mono);
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+
+        .project-desc {
+            font-size: 14px;
+            margin-bottom: 15px;
+            opacity: 0.8;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .tech-tag {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            padding: 3px 8px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 3px;
+            color: var(--accent-mint);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .project-link {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: var(--accent-blue);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: var(--transition);
+        }
+
+        .project-link:hover {
+            color: var(--accent-pink);
+        }
+
+        .blog-title {
+            font-family: var(--font-mono);
+            font-size: clamp(1.75rem, 3vw, 2.25rem);
+            margin-bottom: 40px;
+            color: var(--accent-pink);
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .blog-card {
+            background-color: var(--card-bg);
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+            padding: 25px;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            height: 250px;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border-color: var(--accent-pink);
+        }
+
+        .blog-date {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--accent-pink);
+            margin-bottom: 10px;
+            opacity: 0.8;
+        }
+
+        .blog-post-title {
+            font-family: var(--font-sans);
+            font-weight: 500;
+            font-size: 18px;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .blog-excerpt {
+            font-size: 14px;
+            opacity: 0.8;
+            margin-bottom: 15px;
+            flex-grow: 1;
+            line-height: 1.6;
+        }
+
+        .read-more {
+            align-self: flex-start;
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 5px 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 3px;
+            transition: var(--transition);
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .read-more:hover {
+            background-color: var(--accent-pink);
+            color: var(--bg-color);
+            border-color: var(--accent-pink);
+        }
+
+        .blog-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .blog-modal.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal-content {
+            background-color: var(--card-bg);
+            width: 90%;
+            max-width: 700px;
+            max-height: 80vh;
+            border-radius: 5px;
+            padding: 30px;
+            position: relative;
+            overflow-y: auto;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .blog-modal.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 24px;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .modal-close:hover {
+            color: var(--accent-pink);
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .modal-title {
+            font-family: var(--font-sans);
+            font-size: 24px;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .modal-date {
+            font-family: var(--font-mono);
+            font-size: 14px;
+            color: var(--accent-pink);
+            margin-bottom: 25px;
+            opacity: 0.8;
+        }
+
+        .modal-text {
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .modal-text p {
+            margin-bottom: 20px;
+        }
+
+        .contact-title {
+            font-family: var(--font-mono);
+            font-size: clamp(1.75rem, 3vw, 2.25rem);
+            margin-bottom: 20px;
+            color: var(--accent-mint);
+        }
+
+        .contact-subtitle {
+            font-size: 16px;
+            max-width: 600px;
+            margin-bottom: 50px;
+            opacity: 0.8;
+        }
+
+        .contact-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .contact-method {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 25px;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .contact-method:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-mint);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .method-icon {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--accent-mint);
+        }
+
+        .method-title {
+            font-family: var(--font-mono);
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .method-detail {
+            font-size: 15px;
+            opacity: 0.8;
+            margin-bottom: 15px;
+        }
+
+        .method-link {
+            display: inline-block;
+            color: var(--accent-mint);
+            font-family: var(--font-mono);
+            font-size: 14px;
+            text-decoration: none;
+            border-bottom: 1px dotted var(--accent-mint);
+            transition: var(--transition);
+        }
+
+        .method-link:hover {
+            color: var(--text-color);
+            border-color: var(--text-color);
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-family: var(--font-mono);
+            font-size: 14px;
+            margin-bottom: 8px;
+            color: var(--accent-mint);
+        }
+
+        .form-input, .form-textarea {
+            width: 100%;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 12px 15px;
+            font-family: var(--font-sans);
+            font-size: 15px;
+            color: var(--text-color);
+            transition: var(--transition);
+        }
+
+        .form-textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-input:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--accent-mint);
+            box-shadow: 0 0 0 2px rgba(78, 204, 163, 0.2);
+        }
+
+        .submit-btn {
+            background-color: var(--accent-mint);
+            color: var(--bg-color);
+            font-family: var(--font-mono);
+            font-size: 15px;
+            border: none;
+            border-radius: 4px;
+            padding: 12px 25px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .submit-btn:hover {
+            background-color: var(--accent-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 0;
+            opacity: 0.6;
+            font-family: var(--font-mono);
+            font-size: 13px;
+            border-top: 1px solid var(--border-color);
+            margin-top: 60px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            border-radius: 50%;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+        }
+
+        .social-link:hover {
+            color: var(--accent-mint);
+            transform: translateY(-3px);
+            border-color: var(--accent-mint);
+        }
+
+        @media (max-width: 768px) {
+            .about-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .profile-container {
+                width: 100%;
+                max-width: 300px;
+                margin: 0 auto 30px;
+            }
+            
+            .nav {
+                background-color: rgba(13, 15, 18, 0.8);
+                backdrop-filter: blur(10px);
+                width: 100%;
+                justify-content: flex-end;
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section {
+                padding: 40px 0;
+            }
+            
+            .greeting {
+                font-size: 1.5rem;
+            }
+            
+            .subtitle {
+                font-size: 0.9rem;
+            }
+            
+            .blog-grid, .project-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .project-card {
+                max-width: 100%;
+            }
+        }
+
+        /* For animations */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="nav">
+        <a href="#about" class="nav-item">About</a>
+        <a href="#projects" class="nav-item">Projects</a>
+        <a href="#blog" class="nav-item">Blog</a>
+        <a href="#contact" class="nav-item">Contact</a>
+        <div class="theme-toggle" id="themeToggle"></div>
+    </nav>
+
+    <section class="section hero" id="home">
+        <div class="container">
+            <h1 class="greeting" id="typingText"></h1>
+            <p class="subtitle">Software Developer with a passion for clean code, elegant design, and the perfect balance of functionality and aesthetics.</p>
+        </div>
+        <div class="scroll-cue" id="scrollCue">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+            </svg>
+        </div>
+    </section>
+
+    <section class="section about" id="about">
+        <div class="container">
+            <h2 class="about-title fade-up">About Me</h2>
+            <div class="about-content">
+                <div class="profile-container fade-up">
+                    <div class="profile-frame">
+                        <div class="manga-corner"></div>
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1080 1080' width='500' height='500'%3E%3Crect width='1080' height='1080' fill='%23161A20'/%3E%3Ccircle cx='540' cy='400' r='200' fill='%234ECCA3' opacity='0.2'/%3E%3Crect x='340' y='600' width='400' height='300' rx='20' fill='%2300B2FF' opacity='0.1'/%3E%3Cpath d='M540 800 L640 600 L440 600 Z' fill='%23FF6B9E' opacity='0.2'/%3E%3Ctext x='540' y='540' font-family='monospace' font-size='40' text-anchor='middle' fill='%23E1E1E6'%3EHendrix Brent Fortu%3C/text%3E%3C/svg%3E" alt="Hendrix Brent Fortu" class="profile-img">
+                    </div>
+                </div>
+                <div class="bio" id="bio">
+                    <p>Hi there! I'm <span class="code-style"><span class="keyword">const</span> devName = <span class="string">"Hendrix"</span></span>, a software developer based in Tokyo, Japan. With over 5 years of experience in full-stack development, I specialize in building elegant, efficient, and user-centered digital experiences.</p>
+                    
+                    <p>My tech journey began with a Computer Science degree, but my passion for coding started much earlier when I built my first website at 13. Today, I work with a variety of frameworks and languages, but I have a special affinity for <span class="code-style"><span class="object">React</span>.<span class="keyword">js</span></span>, <span class="code-style"><span class="object">Node</span>.<span class="keyword">js</span></span>, and lately <span class="code-style"><span class="object">TypeScript</span></span>.</p>
+                    
+                    <p>When I'm not coding, you might find me sketching anime characters, exploring local coffee shops, or contributing to open-source projects. I believe in writing clean, maintainable code and creating software that makes a positive impact.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section projects" id="projects">
+        <div class="container">
+            <h2 class="projects-title fade-up">Projects</h2>
+            <div class="project-grid">
+                <div class="project-card fade-up">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 500' width='800' height='500'%3E%3Crect width='800' height='500' fill='%23161A20'/%3E%3Ccircle cx='400' cy='250' r='150' fill='%2300B2FF' opacity='0.3'/%3E%3Ctext x='400' y='260' font-family='monospace' font-size='30' text-anchor='middle' fill='%23E1E1E6'%3ETaskify%3C/text%3E%3C/svg%3E" alt="Taskify Project" class="project-image">
+                    <div class="project-content">
+                        <h3 class="project-title">Taskify</h3>
+                        <p class="project-desc">A sleek task management application with drag-and-drop functionality, dark mode, and collaborative features.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">TypeScript</span>
+                            <span class="tech-tag">Firebase</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">Demo</a>
+                            <a href="#" class="project-link">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card fade-up">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 500' width='800' height='500'%3E%3Crect width='800' height='500' fill='%23161A20'/%3E%3Cpath d='M300 200 L500 200 L400 350 Z' fill='%234ECCA3' opacity='0.3'/%3E%3Ctext x='400' y='260' font-family='monospace' font-size='30' text-anchor='middle' fill='%23E1E1E6'%3EArtfolio%3C/text%3E%3C/svg%3E" alt="Artfolio Project" class="project-image">
+                    <div class="project-content">
+                        <h3 class="project-title">Artfolio</h3>
+                        <p class="project-desc">A minimalist portfolio platform for artists and designers with customizable layouts and integrated e-commerce.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Next.js</span>
+                            <span class="tech-tag">Tailwind CSS</span>
+                            <span class="tech-tag">Stripe API</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">Demo</a>
+                            <a href="#" class="project-link">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card fade-up">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 500' width='800' height='500'%3E%3Crect width='800' height='500' fill='%23161A20'/%3E%3Crect x='250' y='150' width='300' height='200' rx='20' fill='%23FF6B9E' opacity='0.3'/%3E%3Ctext x='400' y='260' font-family='monospace' font-size='30' text-anchor='middle' fill='%23E1E1E6'%3ECineVerse%3C/text%3E%3C/svg%3E" alt="CineVerse Project" class="project-image">
+                    <div class="project-content">
+                        <h3 class="project-title">CineVerse</h3>
+                        <p class="project-desc">A movie discovery app with personalized recommendations, watchlists, and social sharing capabilities.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Vue.js</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">MongoDB</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">Demo</a>
+                            <a href="#" class="project-link">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section blog" id="blog">
+        <div class="container">
+            <h2 class="blog-title fade-up">Latest Thoughts</h2>
+            <div class="blog-grid">
+                <div class="blog-card fade-up">
+                    <div class="blog-date">April 10, 2025</div>
+                    <h3 class="blog-post-title">The Future of Web Development: What's Coming in 2026</h3>
+                    <p class="blog-excerpt">Exploring upcoming trends in web development, from AI integration to new frameworks that will shape the industry...</p>
+                    <a href="#" class="read-more" data-post="1">Read More</a>
+                </div>
+                
+                <div class="blog-card fade-up">
+                    <div class="blog-date">March 22, 2025</div>
+                    <h3 class="blog-post-title">Clean Code Principles Every Developer Should Follow</h3>
+                    <p class="blog-excerpt">My personal approach to writing maintainable code and why it matters for long-term project success...</p>
+                    <a href="#" class="read-more" data-post="2">Read More</a>
+                </div>
+                
+                <div class="blog-card fade-up">
+                    <div class="blog-date">February 15, 2025</div>
+                    <h3 class="blog-post-title">Balancing Creativity and Functionality in UI Design</h3>
+                    <p class="blog-excerpt">How to create interfaces that are both visually appealing and highly functional without compromising either aspect...</p>
+                    <a href="#" class="read-more" data-post="3">Read More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="blog-modal" id="blogModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">×</button>
+            <h2 class="modal-title" id="modalTitle">Blog Post Title</h2>
+            <div class="modal-date" id="modalDate">April 10, 2025</div>
+            <div class="modal-text" id="modalText">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </div>
+        </div>
+    </div>
+
+    <section class="section contact" id="contact">
+        <div class="container">
+            <h2 class="contact-title fade-up">Get In Touch</h2>
+            <p class="contact-subtitle fade-up">Have a project in mind or just want to chat about technology? Feel free to reach out in any of the following ways.</p>
+            
+            <div class="contact-methods">
+                <div class="contact-method fade-up">
+                    <div class="method-icon">✉️</div>
+                    <h3 class="method-title">Email</h3>
+                    <p class="method-detail">For project inquiries and collaborations</p>
+                    <a href="mailto:hendrix@example.com" class="method-link">hendrix@example.com</a>
+                </div>
+                
+                <div class="contact-method fade-up">
+                    <div class="method-icon">💬</div>
+                    <h3 class="method-title">Social</h3>
+                    <p class="method-detail">Connect with me on social media</p>
+                    <a href="#" class="method-link">@hendrixfortu</a>
+                </div>
+                
+                <div class="contact-method fade-up">
+                    <div class="method-icon">🔄</div>
+                    <h3 class="method-title">Repository</h3>
+                    <p class="method-detail">Check out my open source work</p>
+                    <a href="#" class="method-link">github.com/hendrixfortu</a>
+                </div>
+            </div>
+            
+            <div class="contact-form fade-up">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" id="name" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" id="email" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message" class="form-label">Message</label>
+                        <textarea id="message" class="form-textarea" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2025 Hendrix Brent Fortu. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#" class="social-link">G</a>
+                <a href="#" class="social-link">L</a>
+                <a href="#" class="social-link">T</a>
+                <a href="#" class="social-link">I</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Typing effect for the greeting
+        const typingText = document.getElementById('typingText');
+        const text = "Hello, I'm Hendrix Fortu.";
+        let index = 0;
+        
+        function typeWriter() {
+            if (index < text.length) {
+                typingText.textContent += text.charAt(index);
+                index++;
+                setTimeout(typeWriter, 100);
+            }
+        }
+        
+        // Start typing when page loads
+        window.addEventListener('load', typeWriter);
+        
+        // Scroll cue click handler
+        document.getElementById('scrollCue').addEventListener('click', () => {
+            document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
+        });
+        
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            themeToggle.classList.toggle('light');
+            // In a real implementation, we would toggle light mode here
+            // For this example, we'll keep it in dark mode
+        });
+        
+        // Intersection Observer for fade-in animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        // Observe all fade-up elements
+        document.querySelectorAll('.fade-up').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Also observe the bio section
+        observer.observe(document.getElementById('bio'));
+        
+        // Blog Modal Functionality
+        const blogModal = document.getElementById('blogModal');
+        const modalClose = document.getElementById('modalClose');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalDate = document.getElementById('modalDate');
+        const modalText = document.getElementById('modalText');
+        
+        // Sample blog post data (in a real app, this would come from a database)
+        const blogPosts = [
+            {
+                id: 1,
+                title: "The Future of Web Development: What's Coming in 2026",
+                date: "April 10, 2025",
+                content: `
+                    <p>As we approach 2026, the web development landscape continues to evolve at an incredible pace. New technologies, frameworks, and methodologies are emerging that will fundamentally change how we build for the web.</p>
+                    
+                    <p>One of the most exciting trends is the deeper integration of AI into development workflows. No longer just a tool for generating code snippets, AI is becoming a collaborative partner in the entire development process. From design suggestions based on user data to predictive testing that anticipates problems before they occur, AI assistants are streamlining workflows in ways we couldn't have imagined just a few years ago.</p>
+                    
+                    <p>WebAssembly (WASM) is finally hitting its stride, allowing developers to run high-performance code in the browser regardless of language preference. The ability to use languages like Rust, C++, and Go directly in web applications is opening new possibilities for complex applications that previously required native code.</p>
+                    
+                    <p>The concept of "micro-frontends" has matured from experimental architecture to production-ready approach. By breaking down monolithic frontends into independently deployable, technology-agnostic modules, teams can work more autonomously and adapt more quickly to changing requirements.</p>
+                    
+                    <p>As we continue to embrace these changes, the most successful developers will be those who can balance technological innovation with fundamental principles of good software design. The tools may change, but the need for maintainable, accessible, and performant code remains constant.</p>
+                `
+            },
+            {
+                id: 2,
+                title: "Clean Code Principles Every Developer Should Follow",
+                date: "March 22, 2025",
+                content: `
+                    <p>After working on projects of various sizes and complexities over my career, I've come to appreciate that clean code isn't just a preference—it's a necessity for sustainable development. Here are the principles I live by when writing code:</p>
+                    
+                    <p>First and foremost, <strong>meaningful naming</strong> is perhaps the single most important aspect of clean code. A well-named variable, function, or class should tell you what it represents or does without requiring additional context. I often ask myself: "If someone else reads this name without seeing the implementation, will they understand its purpose?"</p>
+                    
+                    <p><strong>Single responsibility</strong> is another cornerstone of my approach. Each function or class should do exactly one thing and do it well. When I find myself using "and" to describe what a function does, it's usually a sign that it should be split into multiple functions.</p>
+                    
+                    <p>I've also learned to embrace <strong>simplicity</strong>. There's a natural tendency among developers to demonstrate cleverness through complex solutions, but I've found that the simplest solution that works is almost always the best long-term. Code is read far more often than it's written, and simple code is easier to understand, debug, and maintain.</p>
+                    
+                    <p>Finally, I'm a strong believer in <strong>consistent formatting</strong>. Whether it's through automated tools like Prettier or ESLint, or through team-wide standards, consistency in formatting reduces cognitive load when reading code and prevents wasteful debates about style preferences.</p>
+                    
+                    <p>These principles aren't about perfectionism—they're practical approaches that save time and reduce bugs in the long run. The extra few minutes spent on writing clean code today can save hours of debugging and refactoring tomorrow.</p>
+                `
+            },
+            {
+                id: 3,
+                title: "Balancing Creativity and Functionality in UI Design",
+                date: "February 15, 2025",
+                content: `
+                    <p>The tension between creative design and functional usability is one that every UI designer faces. On one hand, distinctive visual design helps products stand out and creates memorable user experiences. On the other hand, straying too far from established patterns can confuse users and create friction in the user experience.</p>
+                    
+                    <p>I've found that the most successful interfaces strike a balance by being <strong>creatively conventional</strong>. They follow established patterns for core functionality while using creative design to enhance rather than replace those patterns.</p>
+                    
+                    <p>For example, a navigation menu should be easily recognizable as such, but the transitions, colors, and styling can be unique to create brand identity. A submit button should look clickable, but its appearance can be customized to fit the overall aesthetic as long as its purpose remains clear.</p>
+                    
+                    <p>Another approach I've had success with is to use <strong>progressive creativity</strong>. Core functionality and frequently used features adhere more closely to conventions, while secondary elements and details can incorporate more creative expressions. This creates interfaces that feel familiar enough to be usable immediately but distinctive enough to create a memorable experience.</p>
+                    
+                    <p>The key is to remember that design doesn't exist for its own sake—it serves the user's goals. Every creative choice should be evaluated not just on its aesthetic merit but on how it affects the user's ability to accomplish their tasks efficiently and enjoyably.</p>
+                    
+                    <p>By keeping users at the center of the design process, we can create interfaces that are both functional and distinctive, practical and delightful.</p>
+                `
+            }
+        ];
+        
+        // Open modal when "Read More" is clicked
+        document.querySelectorAll('.read-more').forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                const postId = parseInt(e.target.getAttribute('data-post'));
+                const post = blogPosts.find(p => p.id === postId);
+                
+                if (post) {
+                    modalTitle.textContent = post.title;
+                    modalDate.textContent = post.date;
+                    modalText.innerHTML = post.content;
+                    blogModal.classList.add('active');
+                    document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+                }
+            });
+        });
+        
+        // Close modal when the close button is clicked
+        modalClose.addEventListener('click', () => {
+            blogModal.classList.remove('active');
+            document.body.style.overflow = ''; // Re-enable scrolling
+        });
+        
+        // Close modal when clicking outside the content
+        blogModal.addEventListener('click', (e) => {
+            if (e.target === blogModal) {
+                blogModal.classList.remove('active');
+                document.body.style.overflow = ''; // Re-enable scrolling
+            }
+        });
+        
+        // Form submission handling
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            // In a real implementation, form data would be sent to a server
+            alert('Thanks for your message! In a real implementation, this would be sent to Hendrix.');
+            e.target.reset();
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('.nav-item').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href');
+                document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
