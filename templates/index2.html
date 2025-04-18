@@ -1,0 +1,1384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hendrix Brent Fortu | Developer Portfolio</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&display=swap');
+        
+        :root {
+            --bg-dark: #0E0E10;
+            --bg-light: #F5F5F7;
+            --accent: #3CFFE2;
+            --accent-alt: #ACFF3D;
+            --text-dark: #E6E6E6;
+            --text-light: #2A2A2A;
+            --card-dark: #1A1A1C;
+            --card-light: #FFFFFF;
+            --transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-dark);
+            transition: var(--transition);
+            overflow-x: hidden;
+        }
+
+        body.light-mode {
+            background-color: var(--bg-light);
+            color: var(--text-light);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 0;
+            z-index: 100;
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            background-color: rgba(14, 14, 16, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+        }
+
+        body.light-mode header.scrolled {
+            background-color: rgba(245, 245, 247, 0.8);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-mono);
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+            display: flex;
+            align-items: center;
+			text-decoration:none;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: var(--transition);
+        }
+
+
+		.logo::before {
+            content: '>';
+            margin-right: 0.4rem;
+            animation: blink 2s infinite;
+        }
+		
+		
+        
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        body.light-mode nav a {
+            color: var(--text-light);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: var(--transition);
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .toggle-wrapper {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 100;
+        }
+
+        .toggle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--card-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: var(--transition);
+        }
+
+        body.light-mode .toggle {
+            background-color: var(--card-light);
+        }
+
+        .toggle:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        .toggle svg {
+            width: 24px;
+            height: 24px;
+            transition: var(--transition);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            transform: translateY(50px);
+            opacity: 0;
+            animation: fadeUp 1s forwards 0.5s;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            line-height: 1.6;
+            max-width: 600px;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .typewriter {
+            display: inline-block;
+            position: relative;
+        }
+
+        .typewriter::after {
+            content: '|';
+            position: absolute;
+            right: -8px;
+            color: var(--accent);
+            animation: blink 1s infinite;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background-color: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            margin-right: 1rem;
+        }
+
+        .cta-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background-color: var(--accent);
+            transition: var(--transition);
+            z-index: -1;
+        }
+
+        .cta-btn:hover {
+            color: var(--bg-dark);
+        }
+
+        .cta-btn:hover::before {
+            width: 100%;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.05;
+            background: 
+                radial-gradient(circle at 20% 30%, var(--accent) 0%, transparent 20%),
+                radial-gradient(circle at 80% 70%, var(--accent-alt) 0%, transparent 15%);
+        }
+
+        /* Sections Common Styles */
+        section {
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 40px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .about-card {
+            background-color: var(--card-dark);
+            padding: 2rem;
+            border-radius: 8px;
+            transition: var(--transition);
+            height: 100%;
+        }
+
+        body.light-mode .about-card {
+            background-color: var(--card-light);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .about-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .about-card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            color: var(--accent);
+        }
+
+        .about-card p {
+            line-height: 1.7;
+            opacity: 0.9;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .skill-tag {
+            padding: 0.3rem 0.8rem;
+            background-color: rgba(60, 255, 226, 0.1);
+            border-radius: 4px;
+            font-size: 0.8rem;
+            color: var(--accent);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background-color: var(--card-dark);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: var(--transition);
+            height: 100%;
+        }
+
+        body.light-mode .project-card {
+            background-color: var(--card-light);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+			
+        }
+		
+		.project-img img {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		transition: transform 0.5s ease;
+		}
+		
+		
+		.img-top {
+		z-index: 2;
+		}
+
+		.img-bottom {
+		z-index: 1;
+		}
+
+		.project-card:hover .img-top {
+		transform: translateY(100%);
+		}
+
+
+        .project-img {
+            width: 100%;
+            height: 200px;
+            
+            position: relative;
+            overflow: hidden;
+			
+        }
+
+        body.light-mode .project-img {
+            background-color: #EAEAEA;
+        }
+
+        .project-img::before {
+            content: '';
+			background-color: #978420;
+            position: before;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.7;
+            transition: var(--transition);
+            transform: translateY(100%);
+        }
+		
+
+        .project-card:hover .project-img::before {
+            transform: translateY(0);
+			object-fit: cover;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-content h3 {
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+        }
+
+        .project-content p {
+            line-height: 1.6;
+            margin-bottom: 1.2rem;
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .project-link:hover {
+            opacity: 0.7;
+        }
+
+        /* Blog Section */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .blog-card {
+            background-color: var(--card-dark);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        body.light-mode .blog-card {
+            background-color: var(--card-light);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .blog-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .blog-content {
+            padding: 1.5rem;
+        }
+
+        .blog-date {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-content h3 {
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+        }
+
+        .blog-content p {
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+
+        .read-more {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Contact Section 
+        .contact-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            max-width: 800px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 1rem;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            color: var(--text-dark);
+            font-family: 'JetBrains Mono', monospace;
+            transition: var(--transition);
+        }
+
+        body.light-mode input, 
+        body.light-mode textarea {
+            background-color: rgba(0, 0, 0, 0.03);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            color: var(--text-light);
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        button {
+            padding: 0.8rem 2rem;
+            background-color: var(--accent);
+            border: none;
+            color: var(--bg-dark);
+            font-weight: 600;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        button:hover {
+            background-color: var(--accent-alt);
+            transform: translateY(-3px);
+        }
+*/
+        /* Footer */
+        footer {
+            padding: 1.5rem 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        body.light-mode footer {
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--card-dark);
+            color: var(--text-dark);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        body.light-mode .social-link {
+            background-color: var(--card-light);
+            color: var(--text-light);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px);
+            color: var(--accent);
+        }
+
+        .social-link span {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--card-dark);
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        body.light-mode .social-link span {
+            background-color: var(--card-light);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .social-link:hover span {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .copy {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* Animation */
+        @keyframes fadeUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Modal */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: var(--bg-dark);
+            max-width: 800px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            border-radius: 8px;
+            padding: 2rem;
+            position: relative;
+            transform: translateY(50px);
+            transition: var(--transition);
+        }
+
+        body.light-mode .modal-content {
+            background-color: var(--bg-light);
+        }
+
+        .modal.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: var(--text-dark);
+            cursor: pointer;
+            font-size: 1.5rem;
+            padding: 0.5rem;
+        }
+
+        body.light-mode .close-modal {
+            color: var(--text-light);
+        }
+
+        .blog-modal-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .blog-modal-date {
+            opacity: 0.7;
+            margin-bottom: 2rem;
+            display: block;
+        }
+
+        .blog-modal-content p {
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Mobile Nav */
+        .mobile-nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-dark);
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 150;
+        }
+
+        body.light-mode .mobile-nav-toggle {
+            color: var(--text-light);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem 0;
+            }
+
+            nav {
+                position: fixed;
+                top: 0;
+                right: 0;
+                width: 35%;
+                height: 45vh;
+                background-color: var(--card-dark);
+                transform: translateX(100%);
+                transition: var(--transition);
+                z-index: 150;
+                padding: 5rem 2rem 2rem;
+            }
+
+            body.light-mode nav {
+                background-color: var(--card-light);
+            }
+            
+            nav.active {
+                transform: translateX(0);
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            nav a {
+                font-size: 1.2rem;
+            }
+
+            .mobile-nav-toggle {
+                display: block;
+            }
+
+            .projects-grid, .blog-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-form {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            section {
+                padding: 4rem 0;
+            }
+			
+		}
+			
+			
+		.profile-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 4px;
+            position: relative;
+            z-index: 1;
+            opacity: 0.9;
+            filter: contrast(1.1) brightness(1.05);
+            transition: all var(--transition-speed);
+        }
+		
+		.socials-access{
+		
+		font-size: clamp(1.8rem, 3vw, 2.5rem);
+        margin-bottom: 3rem;
+        position: relative;
+        display: inline-block;
+		text-align: center;
+		
+		
+		}
+		
+		.socials-access::before {
+		
+		content: "";
+		text-align: center;
+        position: absolute;
+        left: 0;
+        bottom: -8px;
+        width: 40px;
+        height: 3px;
+        background-color: var(--accent);
+		text-align: center;
+		
+		
+		
+		}
+		
+		
+		.test {
+		
+		text-align: center;
+		
+		
+		}
+		
+		
+		
+		
+		
+		
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container header-content">	
+            <a href="#" class="logo">hendrixbrent.com</a>
+            <button class="mobile-nav-toggle" aria-label="Toggle navigation">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 12H21M3 6H21M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+            <nav id="nav">
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#socials">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Theme Toggle -->
+    <div class="toggle-wrapper">
+        <div class="toggle" id="theme-toggle">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" id="toggle-icon">
+                <path d="M12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 2V4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 20V22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M4.93 4.93L6.34 6.34" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M17.66 17.66L19.07 19.07" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M2 12H4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M20 12H22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M6.34 17.66L4.93 19.07" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M19.07 4.93L17.66 6.34" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1><span class="typewriter" id="typewriter">Hi, I'm Hendrix!</span></h1>
+			
+            <p><del>Experienced</del> backend developer from the <u>Philippines</u> specializing in Python and Web Applications.</p>
+            <p>You can <u><b>View My Works</b></u> or <u><b>Contact</b></u> me through various Social Media Platforms.
+          
+            <br>
+            
+            <div class="hero-btns">
+                <a href="#projects" class="cta-btn">View My Work</a>
+                <a href="#socials" class="cta-btn">Get In Touch</a>
+            </div>
+        </div>
+        <div class="hero-bg"></div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-grid">
+                <div class="about-card">
+                    <h3>Who I Am</h3>
+                    <p>I'm a passionate software developer with a knack for translating complex problems into elegant solutions. With a background in computer science and a love for clean design, I create applications that not only work flawlessly but are also a joy to use.</p>
+                </div>
+                <div class="about-card">
+					
+					
+					
+					<img src="hendrix_pfp1.jpg" alt="Hendrix Brent Fortu" class="profile-image">
+					
+					
+                    
+                </div>
+                <div class="about-card">
+                    <h3>My Skills</h3>
+                    <div class="skills">
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">TypeScript</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">AWS</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">UI/UX Design</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card">
+				
+					<div class="project-img">
+                    
+					
+						<img src="static-assets-upload9728839762118119307.webp" alt="Ganyu Site" class="img-top">
+						<img src="on-hover-projectsBG1.jpg" alt="Hover Image" class="img-bottom">
+						
+						
+					</div>
+                    <div class="project-content">
+					
+					
+                        <h3>Ganyu Website</h3>
+                        <p>Ganyu from Genshin Impact themed website, featuring her battle skills, personality and her own image Gallery!</p>
+                        <div class="project-links">
+                            <a href="https://ganyu.hndrx.org" target=_blank class="project-link">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M18 13V19C18 19.5304 17.7893 20.0391 17.4142 20.4142C17.0391 20.7893 16.5304 21 16 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V8C3 7.46957 3.21071 6.96086 3.58579 6.58579C3.96086 6.21071 4.46957 6 5 6H11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M15 3H21V9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M10 14L21 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Visit Site
+                            </a>
+                            <a href="#" class="project-link">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9 19C4.7 20.4 4.7 16.5 3 16M15 21V17.5C15 16.5 15.1 16.1 14.5 15.5C17.3 15.2 20 14.1 20 9.49995C19.9988 8.30493 19.5325 7.15632 18.7 6.29995C19.0905 5.26192 19.0545 4.11158 18.6 3.09995C18.6 3.09995 17.5 2.79995 15.1 4.39995C13.0389 3.87054 10.9611 3.87054 8.9 4.39995C6.5 2.79995 5.4 3.09995 5.4 3.09995C4.94548 4.11158 4.90953 5.26192 5.3 6.29995C4.46745 7.15632 4.00122 8.30493 4 9.49995C4 14.1 6.7 15.2 9.5 15.5C8.9 16.1 8.9 16.7 9 17.5V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Source Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="project-card">
+				
+				<div class="project-img">
+                    
+					
+						<img src="static-assets-upload9728839762118119307.webp" alt="Ganyu Site" class="img-top">
+						<img src="on-hover-projectsBG1.jpg" alt="Hover Image" class="img-bottom">
+						
+						
+					</div>
+				
+                   
+                    <div class="project-content">
+                        <h3>DataViz Dashboard</h3>
+                        <p>An interactive data visualization platform that transforms complex datasets into insightful, interactive charts. Built with D3.js and Vue.</p>
+                        <div class="project-links">
+                            <a href="#" class="project-link">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M18 13V19C18 19.5304 17.7893 20.0391 17.4142 20.4142C17.0391 20.7893 16.5304 21 16 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V8C3 7.46957 3.21071 6.96086 3.58579 6.58579C3.96086 6.21071 4.46957 6 5 6H11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M15 3H21V9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M10 14L21 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Live Demo
+                            </a>
+                            <a href="#" class="project-link">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9 19C4.7 20.4 4.7 16.5 3 16M15 21V17.5C15 16.5 15.1 16.1 14.5 15.5C17.3 15.2 20 14.1 20 9.49995C19.9988 8.30493 19.5325 7.15632 18.7 6.29995C19.0905 5.26192 19.0545 4.11158 18.6 3.09995C18.6 3.09995 17.5 2.79995 15.1 4.39995C13.0389 3.87054 10.9611 3.87054 8.9 4.39995C6.5 2.79995 5.4 3.09995 5.4 3.09995C4.94548 4.11158 4.90953 5.26192 5.3 6.29995C4.46745 7.15632 4.00122 8.30493 4 9.49995C4 14.1 6.7 15.2 9.5 15.5C8.9 16.1 8.9 16.7 9 17.5V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <div class="project-img"></div>
+                    <div class="project-content">
+                        <h3>MindfulAI</h3>
+                        <p>An AI-powered mental wellness app that offers personalized meditation and stress reduction techniques. Built with React Native and TensorFlow.</p>
+                        <div class="project-links">
+                            <a href="#" class="project-link">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M18 13V19C18 19.5304 17.7893 20.0391 17.4142 20.4142C17.0391 20.7893 16.5304 21 16 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V8C3 7.46957 3.21071 6.96086 3.58579 6.58579C3.96086 6.21071 4.46957 6 5 6H11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M15 3H21V9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M10 14L21 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Live Demo
+                            </a>
+                            <a href="#" class="project-link">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9 19C4.7 20.4 4.7 16.5 3 16M15 21V17.5C15 16.5 15.1 16.1 14.5 15.5C17.3 15.2 20 14.1 20 9.49995C19.9988 8.30493 19.5325 7.15632 18.7 6.29995C19.0905 5.26192 19.0545 4.11158 18.6 3.09995C18.6 3.09995 17.5 2.79995 15.1 4.39995C13.0389 3.87054 10.9611 3.87054 8.9 4.39995C6.5 2.79995 5.4 3.09995 5.4 3.09995C4.94548 4.11158 4.90953 5.26192 5.3 6.29995C4.46745 7.15632 4.00122 8.30493 4 9.49995C4 14.1 6.7 15.2 9.5 15.5C8.9 16.1 8.9 16.7 9 17.5V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog">
+        <div class="container">
+            <h2 class="section-title">Latest Posts</h2>
+            <div class="blog-grid">
+                <!-- Blog Post 1 -->
+                <div class="blog-card" data-modal="blog1">
+                    <div class="blog-content">
+                        <span class="blog-date">April 12, 2025</span>
+                        <h3>The Future of Web Development: WebAssembly</h3>
+                        <p>Exploring how WebAssembly is changing the landscape of web development and enabling high-performance applications in the browser.</p>
+                        <a href="#blog1" class="read-more">
+                            Read More
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Blog Post 2 -->
+                <div class="blog-card" data-modal="blog2">
+                    <div class="blog-content">
+                        <span class="blog-date">March 25, 2025</span>
+                        <h3>Building Accessible UI: Best Practices</h3>
+                        <p>A comprehensive guide to creating inclusive user interfaces that work for everyone, regardless of ability or how they access the web.</p>
+                        <a href="#blog2" class="read-more">
+                            Read More
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Blog Post 3 -->
+                <div class="blog-card" data-modal="blog3">
+                    <div class="blog-content">
+                        <span class="blog-date">February 18, 2025</span>
+                        <h3>Modern State Management in React Applications</h3>
+                        <p>Comparing different state management approaches in React and when to use Context API, Redux, Zustand, or simple component state.</p>
+                        <a href="#blog3" class="read-more">
+                            Read More
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    
+
+        
+	<section id="socials">
+	
+        <div class="container">
+		
+
+
+            <center>
+		
+                <h3 class="socials-access">Get In Touch</h3>
+				
+				</center>
+                
+                
+		
+			
+            <div class="social-links">
+                <a href="https://github.com/hndrx67" target=_blank class="social-link">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 19C4.7 20.4 4.7 16.5 3 16M15 21V17.5C15 16.5 15.1 16.1 14.5 15.5C17.3 15.2 20 14.1 20 9.49995C19.9988 8.30493 19.5325 7.15632 18.7 6.29995C19.0905 5.26192 19.0545 4.11158 18.6 3.09995C18.6 3.09995 17.5 2.79995 15.1 4.39995C13.0389 3.87054 10.9611 3.87054 8.9 4.39995C6.5 2.79995 5.4 3.09995 5.4 3.09995C4.94548 4.11158 4.90953 5.26192 5.3 6.29995C4.46745 7.15632 4.00122 8.30493 4 9.49995C4 14.1 6.7 15.2 9.5 15.5C8.9 16.1 8.9 16.7 9 17.5V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>GitHub</span>
+                </a>
+                <a href="#" class="social-link">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 8C17.5913 8 19.1174 8.63214 20.2426 9.75736C21.3679 10.8826 22 12.4087 22 14V21H18V14C18 13.4696 17.7893 12.9609 17.4142 12.5858C17.0391 12.2107 16.5304 12 16 12C15.4696 12 14.9609 12.2107 14.5858 12.5858C14.2107 12.9609 14 13.4696 14 14V21H10V14C10 12.4087 10.6321 10.8826 11.7574 9.75736C12.8826 8.63214 14.4087 8 16 8Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M6 9H2V21H6V9Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M4 6C5.10457 6 6 5.10457 6 4C6 2.89543 5.10457 2 4 2C2.89543 2 2 2.89543 2 4C2 5.10457 2.89543 6 4 6Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>LinkedIn</span>
+                </a>
+                <a href="#" class="social-link">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M23 3.00005C22.0424 3.67552 20.9821 4.19216 19.86 4.53005C19.2577 3.83756 18.4573 3.34674 17.567 3.12397C16.6767 2.90121 15.7395 2.95724 14.8821 3.2845C14.0247 3.61176 13.2884 4.19445 12.773 4.95376C12.2575 5.71308 11.9877 6.61238 12 7.53005V8.53005C10.2426 8.57561 8.50127 8.18586 6.93101 7.39549C5.36074 6.60513 4.01032 5.43868 3 4.00005C3 4.00005 -1 13 8 17C5.94053 18.398 3.48716 19.099 1 19C10 24 21 19 21 7.50005C20.9991 7.2215 20.9723 6.94364 20.92 6.67005C21.9406 5.66354 22.6608 4.39276 23 3.00005Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Twitter</span>
+                </a>
+                <a href="#" class="social-link">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M22 6L12 13L2 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Email</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            
+            <p class="copy">&copy; 2025 Hendrix Brent Fortu. All rights reserved. | Under the Domain of <a href="https://hndrx.org">HNDRX.ORG</a></p>
+        </div>
+    </footer>
+
+    <!-- Blog Modals -->
+    <div class="modal" id="blog1-modal">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <h2 class="blog-modal-title">The Future of Web Development: WebAssembly</h2>
+            <span class="blog-modal-date">April 12, 2025</span>
+            <div class="blog-modal-content">
+                <p>WebAssembly (Wasm) is revolutionizing the way we think about web applications. As a binary instruction format for a stack-based virtual machine, WebAssembly is designed to be fast to load and execute, while providing a compact representation of code that can be compiled from languages like C, C++, and Rust.</p>
+                <p>The most exciting aspect of WebAssembly is how it's enabling previously desktop-bound applications to run in the browser with near-native performance. From video editing tools to complex 3D games, WebAssembly is pushing the boundaries of what's possible on the web.</p>
+                <p>In my recent project, I leveraged WebAssembly to implement complex data visualization algorithms that would have been prohibitively slow in JavaScript. By compiling the computation-heavy portions of my code from Rust to WebAssembly, I was able to achieve a 10x performance improvement while maintaining the flexibility and ease of use of the JavaScript ecosystem.</p>
+                <p>For developers looking to get started with WebAssembly, I recommend exploring tools like Emscripten or the Rust + wasm-pack workflow. These provide a gentle introduction to compiling code for the browser and integrating WebAssembly modules into your existing JavaScript applications.</p>
+                <p>As browser support continues to improve and the ecosystem around WebAssembly grows, we can expect to see more and more complex applications making their way to the web. The line between native and web applications is blurring, and WebAssembly is playing a crucial role in this transformation.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="blog2-modal">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <h2 class="blog-modal-title">Building Accessible UI: Best Practices</h2>
+            <span class="blog-modal-date">March 25, 2025</span>
+            <div class="blog-modal-content">
+                <p>Creating accessible interfaces isn't just a nice-to-have—it's essential for ensuring your applications can be used by everyone, regardless of ability. Over the years, I've collected a set of best practices that have helped me build more inclusive user experiences.</p>
+                <p>First, semantic HTML is your foundation. Using the right elements for the right purpose (buttons for actions, links for navigation, etc.) gives users of assistive technology important context about how to interact with your interface. This is often referred to as "accessibility for free" because proper HTML structure already communicates so much.</p>
+                <p>Color contrast is another critical consideration. Text should have sufficient contrast with its background to be readable by people with visual impairments. Tools like the WebAIM Contrast Checker can help you verify your color combinations meet WCAG standards.</p>
+                <p>Keyboard navigation is often overlooked but is crucial for users who can't use a mouse. Ensure all interactive elements can be reached and activated using only the keyboard, and provide visible focus indicators so users know where they are in the interface.</p>
+                <p>ARIA attributes can enhance accessibility when HTML alone isn't enough, but use them judiciously. The first rule of ARIA is: don't use ARIA if native HTML can do the job. When you do need ARIA, make sure you understand how it affects screen reader announcements.</p>
+                <p>Finally, test your interfaces with actual assistive technology. Using screen readers like NVDA, JAWS, or VoiceOver will give you insights into how users with disabilities experience your application. It's one thing to check against guidelines, but nothing beats real-world testing.</p>
+                <p>Building accessible interfaces takes practice, but integrating these practices into your workflow from the beginning makes it much easier. The result is an application that works better for everyone, not just those with disabilities.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="blog3-modal">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <h2 class="blog-modal-title">Modern State Management in React Applications</h2>
+            <span class="blog-modal-date">February 18, 2025</span>
+            <div class="blog-modal-content">
+                <p>State management in React has evolved significantly over the years, moving from centralized stores to more flexible and modular approaches. Let's explore the current landscape and when to use each option.</p>
+                <p>For simple components with local state, React's built-in useState and useReducer hooks are often all you need. They're lightweight, require no additional dependencies, and are perfect for encapsulated component state.</p>
+                <p>When state needs to be shared across components, the Context API provides a way to avoid prop drilling. It's built into React and works well for theme data, user information, or any other global state that doesn't change frequently. However, Context isn't optimized for high-frequency updates and can cause unnecessary re-renders.</p>
+                <p>Redux has long been the go-to for complex global state, especially in large applications. It enforces a strict unidirectional data flow and provides excellent developer tools. With Redux Toolkit, much of the boilerplate has been eliminated, making it more approachable. Redux is still a solid choice for applications with complex state interactions or when you need time-travel debugging.</p>
+                <p>For a lighter alternative, Zustand has gained popularity for its simplicity and flexibility. It provides a small API surface that's easy to learn, supports middleware, and has excellent performance characteristics. Zustand is a great middle ground between Context and Redux.</p>
+                <p>Jotai and Recoil take an atomic approach to state management, allowing you to build state up from small, reusable pieces. They're particularly well-suited to applications with complex derived state or where different parts of the state update at different frequencies.</p>
+                <p>The key to choosing a state management solution is understanding your application's needs. For small to medium applications, starting with useState/useReducer and Context is often sufficient. As complexity grows, evaluate whether the benefits of a third-party library outweigh the cost of the additional dependency.</p>
+                <p>Remember that different parts of your application can use different state management approaches—you're not locked into a single solution. The best state management is often a combination of techniques, tailored to the specific requirements of each feature.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Typewriter effect
+        const typewriterText = "Hi, I'm Hendrix Brent";
+        const typewriter = document.getElementById('typewriter');
+        let charIndex = 0;
+
+        function typeCharacter() {
+            if (charIndex < typewriterText.length) {
+                typewriter.textContent = typewriterText.substring(0, charIndex + 1);
+                charIndex++;
+                setTimeout(typeCharacter, 100);
+            } else {
+                // Start next sentence after short pause
+                setTimeout(() => {
+                    typewriterNext();
+                }, 2500);
+            }
+        }
+
+        function typewriterNext() {
+            typewriter.textContent = "";
+            const nextText = "Backend Web and Software Developer";
+            let nextIndex = 0;
+
+            function typeNext() {
+                if (nextIndex < nextText.length) {
+                    typewriter.textContent = nextText.substring(0, nextIndex + 1);
+                    nextIndex++;
+                    setTimeout(typeNext, 60);
+                }
+            }
+            typeNext();
+        }
+
+        // Start the typewriter effect when the page loads
+        window.addEventListener('load', function() {
+            setTimeout(typeCharacter, 1000);
+        });
+
+        // Handle scrolling header
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Theme toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const toggleIcon = document.getElementById('toggle-icon');
+        
+        themeToggle.addEventListener('click', function() {
+            document.body.classList.toggle('light-mode');
+            if (document.body.classList.contains('light-mode')) {
+                toggleIcon.innerHTML = `
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                `;
+            } else {
+                toggleIcon.innerHTML = `
+                    <path d="M12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M12 2V4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M12 20V22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M4.93 4.93L6.34 6.34" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M17.66 17.66L19.07 19.07" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2 12H4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M20 12H22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M6.34 17.66L4.93 19.07" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M19.07 4.93L17.66 6.34" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                `;
+            }
+        });
+
+        // Mobile navigation
+        const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+        const nav = document.getElementById('nav');
+        
+        mobileNavToggle.addEventListener('click', function() {
+            nav.classList.toggle('active');
+            if (nav.classList.contains('active')) {
+                mobileNavToggle.innerHTML = `
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                `;
+            } else {
+                mobileNavToggle.innerHTML = `
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3 12H21M3 6H21M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                `;
+            }
+        });
+
+        // Close mobile nav when clicking on a link
+        const navLinks = document.querySelectorAll('nav a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                nav.classList.remove('active');
+                mobileNavToggle.innerHTML = `
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3 12H21M3 6H21M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                `;
+            });
+        });
+
+        // Blog modals
+        const blogCards = document.querySelectorAll('.blog-card');
+        const modals = document.querySelectorAll('.modal');
+        const closeButtons = document.querySelectorAll('.close-modal');
+
+        blogCards.forEach(card => {
+            card.addEventListener('click', function() {
+                const modalId = `${this.dataset.modal}-modal`;
+                document.getElementById(modalId).classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        closeButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                this.closest('.modal').classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+        });
+
+        modals.forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+
+        // Form submission
+        const contactForm = document.querySelector('.contact-form');
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Here you would typically handle the form submission
+            alert('Thanks for your message! I will get back to you soon.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
