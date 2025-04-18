@@ -4,38 +4,38 @@
         const typewriter = document.getElementById('typewriter');
         let charIndex = 0;
 
-        function typeCharacter() {
-            if (charIndex < typewriterText.length) {
-                typewriter.textContent = typewriterText.substring(0, charIndex + 1);
-                charIndex++;
-                setTimeout(typeCharacter, 100);
-            } else {
-                // Start next sentence after short pause
-                setTimeout(() => {
-                    typewriterNext();
-                }, 2500);
-            }
+function typeCharacter() {
+    if (charIndex < typewriterText.length) {
+        typewriter.textContent = typewriterText.substring(0, charIndex + 1);
+        charIndex++;
+        setTimeout(typeCharacter, 100);
+    } else {
+        // Start next sentence after short pause
+        setTimeout(() => {
+            typewriterNext();
+        }, 2500);
+    }
+}
+
+function typewriterNext() {
+    typewriter.textContent = "";
+    const nextText = "Backend Web and Software Developer";
+    let nextIndex = 0;
+
+    function typeNext() {
+        if (nextIndex < nextText.length) {
+            typewriter.textContent = nextText.substring(0, nextIndex + 1);
+            nextIndex++;
+            setTimeout(typeNext, 60);
         }
+    }
+    typeNext();
+}
 
-        function typewriterNext() {
-            typewriter.textContent = "";
-            const nextText = "Backend Web and Software Developer";
-            let nextIndex = 0;
-
-            function typeNext() {
-                if (nextIndex < nextText.length) {
-                    typewriter.textContent = nextText.substring(0, nextIndex + 1);
-                    nextIndex++;
-                    setTimeout(typeNext, 60);
-                }
-            }
-            typeNext();
-        }
-
-        // Start the typewriter effect when the page loads
-        window.addEventListener('load', function() {
-            setTimeout(typeCharacter, 1000);
-        });
+// Start the typewriter effect when the page loads
+window.addEventListener('load', function() {
+    setTimeout(typeCharacter, 1000);
+});
 
         // Handle scrolling header
         const header = document.getElementById('header');
