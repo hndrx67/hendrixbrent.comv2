@@ -1,6 +1,6 @@
 // must be imported via src
 // Typewriter effect
-const typewriterText = "Hi, I'm Hendrix!";
+const typewriterText = "Hi, I'm Hendrix Brent Fortu";
 const typewriter = document.getElementById('typewriter');
 let charIndex = 0;
 
