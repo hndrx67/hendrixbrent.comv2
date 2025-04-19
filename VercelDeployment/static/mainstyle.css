@@ -899,17 +899,24 @@
 
         /* Mobile Nav */
         .mobile-nav-toggle {
-            display: none;
+            display: block; /* Changed from 'none' to always show on mobile */
             background: none;
             border: none;
             color: var(--text-dark);
             font-size: 1.5rem;
             cursor: pointer;
-            z-index: 150;
+            z-index: 1001;
+            padding: 0.5rem;
         }
 
         body.light-mode .mobile-nav-toggle {
             color: var(--text-light);
+        }
+
+        @media (min-width: 769px) {
+            .mobile-nav-toggle {
+                display: none; /* Hide on desktop */
+            }
         }
 
         /* Mobile Navigation Styles */

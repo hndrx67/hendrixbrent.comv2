@@ -115,18 +115,6 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// Close mobile nav when clicking on a link
-navLinks.forEach(link => {
-    link.addEventListener('click', function() {
-        nav.classList.remove('active');
-        mobileNavToggle.innerHTML = `
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M3 12H21M3 6H21M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-        `;
-    });
-});
-
 // Blog modals
 const blogCards = document.querySelectorAll('.blog-card');
 const modals = document.querySelectorAll('.modal');
