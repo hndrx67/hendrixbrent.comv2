@@ -1,0 +1,100 @@
+/* Projects Page Specific Styles */
+.projects-section {
+    padding-top: 120px; /* Account for fixed header */
+    min-height: calc(100vh - 100px); /* Full height minus footer */
+}
+
+.project-filters {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
+
+.filter-btn {
+    padding: 0.6rem 1.2rem;
+    background: none;
+    border: 2px solid var(--accent);
+    color: var(--accent);
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    transition: all var(--transition-speed);
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background-color: var(--accent);
+    color: var(--bg-dark);
+}
+
+body.light-mode .filter-btn {
+    border-color: var(--accent-tertiary-light);
+    color: var(--accent-tertiary-light);
+}
+
+body.light-mode .filter-btn:hover,
+body.light-mode .filter-btn.active {
+    background-color: var(--accent-tertiary-light);
+    color: var(--bg-light);
+}
+
+/* Fade animations for filtering */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+    position: relative;
+}
+
+.project-card {
+    opacity: 1;
+    transform: scale(1);
+    transition: all 0.5s ease;
+    position: relative;
+    height: auto;
+    backface-visibility: hidden;
+    will-change: transform, opacity;
+}
+
+.project-card.hidden {
+    opacity: 0;
+    transform: scale(0.8);
+    position: absolute; /* Remove from flow when hidden */
+    pointer-events: none;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    width: 0;
+    overflow: hidden;
+}
+
+/* Override any margin/padding when card is hidden */
+.project-card.hidden > * {
+    margin: 0;
+    padding: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .projects-section {
+        padding-top: 100px;
+    }
+
+    .project-filters {
+        gap: 0.5rem;
+    }
+
+    .filter-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+}

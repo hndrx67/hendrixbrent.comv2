@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Projects | Hendrix Brent Fortu</title>
+    <link rel="stylesheet" href="static/mainstyle.css">
+    <link rel="stylesheet" href="static/projects-style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container header-content">	
+            <a href="index.html" class="logo">hendrixbrent.com</a>
+            <button class="mobile-nav-toggle" aria-label="Toggle navigation">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 12H21M3 6H21M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+            <div class="nav-overlay"></div>
+            <nav id="nav">
+                <ul>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="#" class="active">Projects</a></li>
+                    <li><a href="index.html#blog">Blog</a></li>
+                    <li><a href="index.html#socials">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Theme Toggle -->
+    <div class="toggle-wrapper">
+        <div class="toggle" id="theme-toggle">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" id="toggle-icon">
+                <path d="M12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 2V4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 20V22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M4.93 4.93L6.34 6.34" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M17.66 17.66L19.07 19.07" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M2 12H4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M20 12H22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M6.34 17.66L4.93 19.07" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M19.07 4.93L17.66 6.34" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+    </div>
+
+    <!-- Projects Section -->
+    <section class="projects-section">
+        <div class="container">
+            <h1 class="section-title">All Projects</h1>
+            
+            <!-- Project Filters -->
+            <div class="project-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="web">Web</button>
+                <button class="filter-btn" data-filter="software">Software</button>
+                <button class="filter-btn" data-filter="security">Security</button>
+            </div>
+
+            <!-- Projects Grid -->
+            <div class="projects-grid">
+                <!-- Featured Projects -->
+                <div class="project-card" data-category="web">
+                    <div class="project-img">
+                        <img src="../static-assets-upload9728839762118119307.webp" alt="Ganyu Site" class="img-top">
+                        <img src="../on-hover-projectsBG1.jpg" alt="Hover Image" class="img-bottom">
+                    </div>
+                    <div class="project-content">
+                        <h3>Ganyu Website</h3>
+                        <p>Ganyu from Genshin Impact themed website, featuring her battle skills, personality and her own image Gallery!</p>
+                        <div class="project-links">
+                            <a href="https://ganyu.hndrx.org" class="project-link">Visit Site</a>
+                            <a href="https://github.com/hndrx67/Ganyu-Website" class="project-link">Source Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Projects -->
+                <div class="project-card" data-category="software,security">
+                    <div class="project-img">
+                        <img src="../ON-HOVER-marinekeyloggerv2.jpg" alt="Marine Keylogger" class="img-top">
+                        <img src="../on-hover-projectsBG-construct.jpg" alt="Hover Image" class="img-bottom">
+                    </div>
+                    <div class="project-content">
+                        <h3>Marine Keylogger</h3>
+                        <p>A Python Powered Keylogger for Windows, with a Houshou Marine theme. Records keystrokes and sends them via FTP.</p>
+                        <div class="project-links">
+                            <a href="#" class="project-link">Download</a>
+                            <a href="#" class="project-link">Source Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project: SPMS -->
+                <div class="project-card" data-category="web">
+                    <div class="project-img">
+                        <img src="../on-hover-projectsBG1.jpg" alt="SPMS" class="img-top">
+                        <img src="../on-hover-projectsBG-construct.jpg" alt="Hover Image" class="img-bottom">
+                    </div>
+                    <div class="project-content">
+                        <h3>Student Profile Management System</h3>
+                        <p>A comprehensive student management platform featuring grade tracking, account balance monitoring, and administrative tools for educational institutions.</p>
+                        <div class="project-links">
+                            <a href="https://spm-system.hndrx.org/" class="project-link">Visit Site</a>
+                            <a href="#" class="project-link">Source Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project: Ryo-TROJAN -->
+                <div class="project-card" data-category="security,software">
+                    <div class="project-img">
+                        <img src="../ryoeatinggrass1.gif" alt="Ryo-TROJAN" class="img-top">
+                        <img src="../on-hover-projectsBG-construct.jpg" alt="Hover Image" class="img-bottom">
+                    </div>
+                    <div class="project-content">
+                        <h3>Ryo-TROJAN</h3>
+                        <p>A Windows Trojan demonstration tool disguised as Google Chrome. Utilizes startup shell hijacking and disk space manipulation techniques.</p>
+                        <div class="project-links">
+                            <a href="#" class="project-link">Demo</a>
+                            <a href="#" class="project-link">Source Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project: Network Scanner -->
+                <div class="project-card" data-category="security,software">
+                    <div class="project-img">
+                        <img src="../on-hover-projectsBG1.jpg" alt="Network Scanner" class="img-top">
+                        <img src="../on-hover-projectsBG-construct.jpg" alt="Hover Image" class="img-bottom">
+                    </div>
+                    <div class="project-content">
+                        <h3>Python Network Scanner</h3>
+                        <p>A robust network scanning tool built with Python. Features port scanning, service detection, and vulnerability assessment capabilities.</p>
+                        <div class="project-links">
+                            <a href="#" class="project-link">Download</a>
+                            <a href="#" class="project-link">Documentation</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project: Anime Blog -->
+                <div class="project-card" data-category="web">
+                    <div class="project-img">
+                        <img src="../static-assets-upload9728839762118119307.webp" alt="Anime Blog" class="img-top">
+                        <img src="../on-hover-projectsBG1.jpg" alt="Hover Image" class="img-bottom">
+                    </div>
+                    <div class="project-content">
+                        <h3>Anime Review Blog</h3>
+                        <p>A dynamic blog platform focused on anime reviews and discussions. Built with React and Firebase, featuring real-time comments and user authentication.</p>
+                        <div class="project-links">
+                            <a href="#" class="project-link">Visit Site</a>
+                            <a href="#" class="project-link">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project: File Encryptor -->
+                <div class="project-card" data-category="security,software">
+                    <div class="project-img">
+                        <img src="../on-hover-projectsBG-construct.jpg" alt="File Encryptor" class="img-top">
+                        <img src="../on-hover-projectsBG1.jpg" alt="Hover Image" class="img-bottom">
+                    </div>
+                    <div class="project-content">
+                        <h3>Marine's File Encryptor</h3>
+                        <p>A secure file encryption tool with a Houshou Marine theme. Uses AES-256 encryption with a custom key management system.</p>
+                        <div class="project-links">
+                            <a href="#" class="project-link">Download</a>
+                            <a href="#" class="project-link">Source Code</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p class="copy">&copy; 2025 Hendrix Brent Fortu. All rights reserved. | Under the Domain of <a href="https://hndrx.org">HNDRX.ORG</a></p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="static/mainscript.js"></script>
+    <script src="static/projects-script.js"></script>
+</body>
+</html>
