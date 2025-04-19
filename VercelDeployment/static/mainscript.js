@@ -97,6 +97,30 @@ function toggleNav() {
     }
 }
 
+mobileNavToggle.addEventListener('click', toggleNav);
+navOverlay.addEventListener('click', toggleNav);
+
+// Close mobile nav when clicking links
+const navLinks = document.querySelectorAll('nav a');
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        if (nav.classList.contains('active')) {
+            toggleNav();
+            // Small delay to allow the smooth scroll to work properly
+            setTimeout(() => {
+                document.body.style.overflow = '';
+            }, 300);
+        }
+    });
+});
+
+// Close mobile nav on escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && nav.classList.contains('active')) {
+        toggleNav();
+    }
+});
+
 // Add scroll position check
 let lastScrollPosition = 0;
 
@@ -108,26 +132,6 @@ function checkScrollPosition() {
 }
 
 window.addEventListener('scroll', checkScrollPosition);
-mobileNavToggle.addEventListener('click', toggleNav);
-navOverlay.addEventListener('click', toggleNav);
-
-// Close mobile nav when clicking links or pressing escape
-const navLinks = document.querySelectorAll('nav a');
-navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        if (nav.classList.contains('active')) {
-            toggleNav();
-            window.scrollTo(0, lastScrollPosition);
-        }
-    });
-});
-
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && nav.classList.contains('active')) {
-        toggleNav();
-        window.scrollTo(0, lastScrollPosition);
-    }
-});
 
 // Blog modals
 const blogCards = document.querySelectorAll('.blog-card');
