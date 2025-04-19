@@ -236,11 +236,26 @@
         }
 
         .hero-content {
+            position: relative;
+            z-index: 1;
             transform: translateY(50px);
             opacity: 0;
             animation: fadeUp 1s forwards 0.5s;
+            max-width: 1100px;
+            text-align: left;
+            padding-left: 1rem;
+            margin-right: auto;
+            margin-top: auto;
             
-            
+        }
+
+        .hero h1, .hero p {
+            text-align: left;
+        }
+
+        .hero-btns {
+            text-align: left;
+            margin-top: 2rem;
         }
 
         .hero h1 {

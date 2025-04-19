@@ -1,5 +1,5 @@
 // must be imported via src
-// Typewriter effect
+// Typewriter effect with left alignment
 const typewriterText = "Hi, I'm Hendrix Brent Fortu";
 const typewriter = document.getElementById('typewriter');
 let charIndex = 0;
@@ -7,6 +7,7 @@ let charIndex = 0;
 function typeCharacter() {
     if (charIndex < typewriterText.length) {
         typewriter.textContent = typewriterText.substring(0, charIndex + 1);
+        typewriter.style.textAlign = 'left'; // Ensure left alignment
         charIndex++;
         setTimeout(typeCharacter, 100);
     } else {
@@ -19,6 +20,7 @@ function typeCharacter() {
 
 function typewriterNext() {
     typewriter.textContent = "";
+    typewriter.style.textAlign = 'left'; // Maintain left alignment
     const nextText = "Backend Web and Software Developer";
     let nextIndex = 0;
 

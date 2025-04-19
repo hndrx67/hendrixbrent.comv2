@@ -1,0 +1,99 @@
+/* Tech Cube Styles */
+.cube-wrapper {
+  position: absolute;
+  right: 10%;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.cube-container {
+  width: 200px;
+  height: 200px;
+  perspective: 1000px;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  pointer-events: all;
+}
+
+.cube-container.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.cube {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: rotate 20s infinite linear;
+}
+
+.cube-face {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2em;
+  background: rgba(60, 255, 226, 0.1);
+  border: 2px solid var(--accent);
+  backface-visibility: visible;
+  transition: all 0.3s ease;
+}
+
+.front  { transform: rotateY(0deg) translateZ(100px); }
+.right  { transform: rotateY(90deg) translateZ(100px); }
+.back   { transform: rotateY(180deg) translateZ(100px); }
+.left   { transform: rotateY(-90deg) translateZ(100px); }
+.top    { transform: rotateX(90deg) translateZ(100px); }
+.bottom { transform: rotateX(-90deg) translateZ(100px); }
+
+@keyframes rotate {
+  from {
+    transform: rotateX(0deg) rotateY(0deg);
+  }
+  to {
+    transform: rotateX(360deg) rotateY(360deg);
+  }
+}
+
+/* Theme-specific styles */
+body.light-mode .cube-face {
+  background: rgba(255, 107, 133, 0.1);
+  border-color: var(--accent-tertiary-light);
+}
+
+/* Hover effects */
+.cube-container:hover .cube {
+  animation-play-state: paused;
+}
+
+.cube-face:hover {
+  background: rgba(60, 255, 226, 0.2);
+}
+
+body.light-mode .cube-face:hover {
+  background: rgba(255, 107, 133, 0.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .cube-wrapper {
+    right: 5%;
+  }
+}
+
+@media (max-width: 768px) {
+  .cube-wrapper {
+    position: relative;
+    right: auto;
+    top: auto;
+    transform: none;
+    margin: 2rem auto;
+    opacity: 0.5;
+  }
+}

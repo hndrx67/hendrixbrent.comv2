@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hendrix Brent Fortu | Developer Portfolio</title>
     <link rel="stylesheet" href="static/mainstyle.css"> <!--CSS IMPORT VIA STATIC (mainstyle.css)-->
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="static/css/tech-cube.css">
+    <script src="static/js/tech-cube.js" defer></script>
 </head>
 <body>
     <!-- Mobile Experience Banner -->
@@ -55,22 +57,29 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container hero-content">
-            
-                <h1><span class="typewriter" id="typewriter">Hi, I'm Hendrix!</span></h1>
-            
-            
-            
-                <p><del>Experienced</del> backend developer from the <u>Philippines</u> specializing in Python and Web Applications.</p>
-                <br>
-                <p>You can <u><b>View My Works</b></u> or <u><b>Contact</b></u> me through various Social Media Platforms.</p>
-                <br>
-                <div class="hero-btns">
-                    <a href="#projects" class="cta-btn">View My Work</a>
-                    <a href="#socials" class="cta-btn">Get In Touch</a>
-               
+            <h1><span class="typewriter" id="typewriter">Hi, I'm Hendrix!</span></h1>
+            <p><del>Experienced</del> backend developer from the <u>Philippines</u> specializing in Python and Web Applications.</p>
+            <br>
+            <p>You can <u><b>View My Works</b></u> or <u><b>Contact</b></u> me through various Social Media Platforms.</p>
+            <br>
+            <div class="hero-btns">
+                <a href="#projects" class="cta-btn">View My Work</a>
+                <a href="#socials" class="cta-btn">Get In Touch</a>
             </div>
         </div>
-        
+        <!-- Add cube as background element -->
+        <div class="cube-wrapper">
+            <div class="cube-container">
+                <div class="cube">
+                    <div class="cube-face front"><i class="fab fa-python"></i></div>
+                    <div class="cube-face back"><i class="fab fa-php"></i></div>
+                    <div class="cube-face right"><i class="fab fa-js"></i></div>
+                    <div class="cube-face left"><i class="fab fa-html5"></i></div>
+                    <div class="cube-face top"><i class="fab fa-css3-alt"></i></div>
+                    <div class="cube-face bottom"><i class="fab fa-node"></i></div>
+                </div>
+            </div>
+        </div>
         <div class="hero-bg"></div>
     </section>
 
