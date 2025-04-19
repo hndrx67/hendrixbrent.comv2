@@ -55,7 +55,7 @@ window.addEventListener('load', function() {
             document.body.classList.toggle('light-mode');
             if (document.body.classList.contains('light-mode')) {
                 toggleIcon.innerHTML = `
-                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 A7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 `;
             } else {
                 toggleIcon.innerHTML = `
@@ -143,4 +143,25 @@ window.addEventListener('load', function() {
             alert('Thanks for your message! I will get back to you soon.');
             this.reset();
         });
-    
+
+        // Mobile notice handling
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileNotice = document.getElementById('mobile-notice');
+            const closeNoticeBtn = document.getElementById('close-mobile-notice');
+            
+            // Check if the user has previously dismissed the notice
+            const hasSeenNotice = localStorage.getItem('hasSeenMobileNotice');
+            
+            // Only show notice on mobile devices and if not previously dismissed
+            if (window.innerWidth <= 768 && !hasSeenNotice) {
+                setTimeout(() => {
+                    mobileNotice.classList.add('show');
+                }, 1000);
+            }
+            
+            // Handle notice dismissal
+            closeNoticeBtn.addEventListener('click', function() {
+                mobileNotice.classList.remove('show');
+                localStorage.setItem('hasSeenMobileNotice', 'true');
+            });
+        });
