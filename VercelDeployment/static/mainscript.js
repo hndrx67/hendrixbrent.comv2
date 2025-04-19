@@ -3,30 +3,55 @@
 const typewriterText = "Hi, I'm Hendrix Brent Fortu";
 const typewriter = document.getElementById('typewriter');
 let charIndex = 0;
+const randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+const scrambleIterations = 9; // Reduced number of iterations before settling
+const scrambleSpeed = 10; // Speed of character scrambling (milliseconds)
+const characterDelay = 30; // Delay between each character (milliseconds)
 
-function typeCharacter() {
+function getRandomChar() {
+    return randomChars[Math.floor(Math.random() * randomChars.length)];
+}
+
+async function typeCharacter() {
     if (charIndex < typewriterText.length) {
+        const currentChar = typewriterText[charIndex];
+        // Scramble effect for each character
+        for (let i = 0; i < scrambleIterations; i++) {
+            let scrambledText = typewriterText.substring(0, charIndex);
+            scrambledText += getRandomChar();
+            typewriter.textContent = scrambledText;
+            await new Promise(resolve => setTimeout(resolve, scrambleSpeed));
+        }
+        // Set the correct character
         typewriter.textContent = typewriterText.substring(0, charIndex + 1);
         charIndex++;
-        setTimeout(typeCharacter, 100);
+        setTimeout(typeCharacter, characterDelay);
     } else {
-        // Start next sentence after short pause
+        // Start next sentence after a pause
         setTimeout(() => {
             typewriterNext();
         }, 2500);
     }
 }
 
-function typewriterNext() {
+async function typewriterNext() {
     typewriter.textContent = "";
     const nextText = "Backend Web and Software Developer";
     let nextIndex = 0;
 
-    function typeNext() {
+    async function typeNext() {
         if (nextIndex < nextText.length) {
+            // Scramble effect for each character
+            for (let i = 0; i < scrambleIterations; i++) {
+                let scrambledText = nextText.substring(0, nextIndex);
+                scrambledText += getRandomChar();
+                typewriter.textContent = scrambledText;
+                await new Promise(resolve => setTimeout(resolve, scrambleSpeed));
+            }
+            // Set the correct character
             typewriter.textContent = nextText.substring(0, nextIndex + 1);
             nextIndex++;
-            setTimeout(typeNext, 60);
+            setTimeout(typeNext, characterDelay);
         }
     }
     typeNext();

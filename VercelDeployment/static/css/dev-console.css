@@ -1,0 +1,254 @@
+/* Developer Console Styles */
+.dev-console-btn {
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: none;
+}
+
+.dev-console-btn.active {
+    opacity: 1;
+    transform: translateX(0);
+    animation: pulseGlow 2s infinite;
+}
+
+@keyframes pulseGlow {
+    0%, 100% {
+        box-shadow: 0 0 5px var(--accent), 0 0 10px var(--accent);
+    }
+    50% {
+        box-shadow: 0 0 15px var(--accent), 0 0 20px var(--accent);
+    }
+}
+
+/* Console Window */
+.dev-console {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    width: 80%;
+    max-width: 800px;
+    height: 80vh;
+    background-color: rgba(0, 0, 0, 0.95);
+    border: 1px solid var(--accent);
+    border-radius: 8px;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    font-family: var(--font-mono);
+}
+
+.dev-console.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.console-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid var(--accent);
+}
+
+.console-title {
+    color: var(--accent);
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.console-controls {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.console-btn {
+    background: none;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.console-btn:hover {
+    background: var(--accent);
+    color: black;
+}
+
+.console-content {
+    display: flex;
+    height: calc(100% - 60px);
+}
+
+.console-sidebar {
+    width: 200px;
+    border-right: 1px solid var(--accent);
+    padding: 1rem;
+    overflow-y: auto;
+}
+
+.console-main {
+    flex: 1;
+    padding: 1rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.console-category {
+    margin-bottom: 1rem;
+}
+
+.console-category-title {
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+.console-option {
+    padding: 0.5rem;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    font-size: 0.9rem;
+    color: #fff;
+}
+
+.console-option:hover {
+    background: rgba(60, 255, 226, 0.1);
+}
+
+.console-option.active {
+    background: rgba(60, 255, 226, 0.2);
+    color: var(--accent);
+}
+
+.console-panel {
+    display: none;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.console-panel.active {
+    display: block;
+}
+
+/* Custom Controls */
+.color-picker-group {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0;
+    align-items: center;
+}
+
+.color-picker-label {
+    color: #fff;
+    font-size: 0.9rem;
+}
+
+.console-slider {
+    width: 100%;
+    margin: 1rem 0;
+}
+
+.console-slider-label {
+    display: flex;
+    justify-content: space-between;
+    color: #fff;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.preset-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+.preset-btn {
+    background: none;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.8rem;
+}
+
+.preset-btn:hover {
+    background: var(--accent);
+    color: black;
+}
+
+.console-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0.5rem 0;
+    color: #fff;
+}
+
+/* Console Output */
+.console-output {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+    padding: 1rem;
+    margin-top: auto;
+    color: #00ff00;
+    font-family: monospace;
+    height: 100px;
+    overflow-y: auto;
+}
+
+.output-line {
+    margin: 0.2rem 0;
+    font-size: 0.9rem;
+}
+
+.output-line.error {
+    color: #ff4444;
+}
+
+.output-line.success {
+    color: #44ff44;
+}
+
+/* Matrix Rain Effect */
+.matrix-rain {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.1;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .console-content {
+        flex-direction: column;
+    }
+
+    .console-sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid var(--accent);
+        max-height: 150px;
+    }
+}

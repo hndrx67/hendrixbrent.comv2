@@ -1,0 +1,99 @@
+/* Strip Theme Transitions */
+.strip-transition * {
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Stripped Website State */
+body.stripped {
+    background: white !important;
+    color: black !important;
+    font-family: 'Times New Roman', serif !important;
+}
+
+body.stripped * {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: black !important;
+    text-shadow: none !important;
+    font-family: 'Times New Roman', serif !important;
+    animation: none !important;
+}
+
+body.stripped img {
+    filter: grayscale(100%) !important;
+}
+
+body.stripped .container,
+body.stripped .container2 {
+    max-width: none !important;
+    padding: 1rem !important;
+}
+
+body.stripped .skill-tag.html-css-tag {
+    border: 1px dashed black !important;
+    padding: 2px 5px !important;
+    cursor: pointer !important;
+}
+
+body.stripped .skill-tag.html-css-tag:hover {
+    background: rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Strip Animation */
+@keyframes stripDown {
+    0% {
+        filter: none;
+        transform: scale(1);
+    }
+    50% {
+        filter: grayscale(50%);
+        transform: scale(1.02);
+    }
+    100% {
+        filter: grayscale(100%);
+        transform: scale(1);
+    }
+}
+
+@keyframes restoreUp {
+    0% {
+        filter: grayscale(100%);
+        transform: scale(1);
+    }
+    50% {
+        filter: grayscale(50%);
+        transform: scale(1.02);
+    }
+    100% {
+        filter: none;
+        transform: scale(1);
+    }
+}
+
+/* Strip Notification */
+.strip-notification {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-100px);
+    background: black;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-family: monospace;
+    z-index: 1000;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.strip-notification.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
+
+body.stripped .strip-notification {
+    border: 1px solid black !important;
+    background: white !important;
+    color: black !important;
+}

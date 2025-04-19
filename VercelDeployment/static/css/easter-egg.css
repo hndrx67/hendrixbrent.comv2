@@ -1,0 +1,112 @@
+.easter-egg-dialog {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--card-dark);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    text-align: center;
+}
+
+body.light-mode .easter-egg-dialog {
+    background: var(--card-light);
+}
+
+.easter-egg-dialog h3 {
+    margin-bottom: 1.5rem;
+    color: var(--accent);
+}
+
+.easter-egg-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.easter-egg-button {
+    padding: 0.5rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: var(--font-mono);
+    transition: all 0.3s ease;
+}
+
+.easter-egg-button.yes {
+    background-color: #ff3333;
+    color: white;
+}
+
+.easter-egg-button.no {
+    background-color: var(--accent);
+    color: var(--bg-dark);
+}
+
+.easter-egg-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.falling {
+    animation: fall 2s forwards;
+    position: relative;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(200vh);
+        opacity: 0;
+    }
+}
+
+.destroy-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 999;
+}
+
+/* Reconstruction Animation */
+@keyframes reconstruct {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.reconstructing {
+    animation: reconstruct 0.5s ease forwards;
+}
+
+/* Loading Screen Customization */
+.loading-screen.destroying {
+    background-color: rgba(255, 0, 0, 0.1);
+}
+
+.loading-screen.reconstructing {
+    background-color: rgba(60, 255, 226, 0.1);
+}
+
+body.light-mode .loading-screen.destroying {
+    background-color: rgba(255, 107, 133, 0.1);
+}
+
+body.light-mode .loading-screen.reconstructing {
+    background-color: rgba(172, 255, 61, 0.1);
+}

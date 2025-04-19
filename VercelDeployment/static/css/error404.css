@@ -1,0 +1,52 @@
+.error-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.floating-text {
+    text-align: center;
+    animation: float 3s ease-in-out infinite;
+}
+
+.floating-text h1 {
+    font-size: 4rem;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    text-shadow: 0 0 10px var(--accent);
+}
+
+.floating-text p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.destroyed-emoji {
+    font-size: 5rem;
+    animation: spin 8s linear infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+body.light-mode .floating-text h1 {
+    color: var(--accent-tertiary-light);
+    text-shadow: 0 0 10px var(--accent-tertiary-light);
+}

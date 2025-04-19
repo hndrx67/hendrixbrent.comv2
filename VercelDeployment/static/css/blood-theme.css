@@ -1,0 +1,116 @@
+/* Blood Red Theme */
+body.blood-theme {
+    --accent: #ff0000;
+    --accent-alt: #8b0000;
+    --accent-tertiary-links: #ff4d4d;
+    --accent-tertiary: #cc0000;
+    --accent-tertiary-light: #ff1a1a;
+}
+
+body.blood-theme .logo::before {
+    color: #ff0000;
+    text-shadow: 0 0 10px #ff0000;
+    animation: bloodBlink 2s infinite;
+}
+
+body.blood-theme .toggle {
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+}
+
+body.blood-theme .loading-icon {
+    border-color: #ff0000;
+    border-top-color: transparent;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+}
+
+body.blood-theme .loading-text {
+    color: #ff0000;
+    text-shadow: 0 0 10px #ff0000;
+}
+
+/* Blood theme specific animations */
+@keyframes bloodBlink {
+    0%, 100% { 
+        opacity: 1;
+        text-shadow: 0 0 10px #ff0000;
+    }
+    50% { 
+        opacity: 0.5;
+        text-shadow: 0 0 20px #ff0000;
+    }
+}
+
+/* Blood theme entrance animation */
+.blood-theme-transition * {
+    transition: all 0.5s ease-in-out !important;
+}
+
+/* Blood drip effect on section titles */
+body.blood-theme .section-title::before {
+    background-color: #ff0000;
+    box-shadow: 0 0 10px #ff0000;
+    animation: drip 2s ease-in-out infinite;
+}
+
+@keyframes drip {
+    0%, 100% {
+        transform: scaleY(1);
+    }
+    50% {
+        transform: scaleY(1.5);
+    }
+}
+
+/* Pulsing effect for cards in blood theme */
+body.blood-theme .project-card:hover,
+body.blood-theme .blog-card:hover,
+body.blood-theme .about-card:hover {
+    box-shadow: 0 8px 30px rgba(255, 0, 0, 0.2);
+    animation: bloodPulse 2s infinite;
+}
+
+@keyframes bloodPulse {
+    0%, 100% {
+        box-shadow: 0 8px 30px rgba(255, 0, 0, 0.2);
+    }
+    50% {
+        box-shadow: 0 8px 40px rgba(255, 0, 0, 0.4);
+    }
+}
+
+/* Blood theme notification */
+.blood-theme-notification {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.9);
+    color: #ff0000;
+    padding: 2rem;
+    border-radius: 8px;
+    text-align: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    border: 2px solid #ff0000;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+}
+
+.blood-theme-notification.active {
+    opacity: 1;
+    visibility: visible;
+    animation: bloodNotification 0.5s ease-out;
+}
+
+@keyframes bloodNotification {
+    0% {
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
