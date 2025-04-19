@@ -430,6 +430,11 @@
             margin-top: 1rem;
         }
 
+        .game-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
         .game-tag {
             padding: 0.3rem 0.8rem;
             background-color: rgba(60, 255, 226, 0.1);
@@ -439,7 +444,6 @@
             transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             cursor: pointer;
-            transform: translateY(0);
         }
 
         body.light-mode .game-tag {
@@ -447,29 +451,128 @@
             color: var(--accent-tertiary-light);
         }
 
-        body.light-mode .game-tag:hover {
-            background-color: rgba(255, 107, 133, 0.15);
-            box-shadow: 0 4px 12px rgba(255, 107, 133, 0.15);
-        }
-
         .game-tag:hover {
-            background-color: rgba(60, 255, 226, 0.15);
-            transform: translateY(-3px);
-            box-shadow: 0 4px 12px rgba(60, 255, 226, 0.15);
+            transform: translateY(-2px);
+            box-shadow: 0 0 8px var(--accent);
         }
 
-        .game-tag::after {
+        body.light-mode .game-tag:hover {
+            box-shadow: 0 0 8px var(--accent-tertiary-light);
+        }
+
+        .game-stats {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            background-color: var(--card-dark);
+            border-radius: 8px;
+            padding: 1rem;
+            width: 250px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 10px;
+            z-index: 100;
+        }
+
+        .game-wrapper:hover .game-stats {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .game-stats::after {
             content: '';
             position: absolute;
-            inset: 0;
-            border-radius: 4px;
-            opacity: 0;
-            transition: opacity 0.25s ease;
-            background: radial-gradient(circle at center, rgba(60, 255, 226, 0.1), transparent);
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 8px;
+            border-style: solid;
+            border-color: var(--card-dark) transparent transparent transparent;
         }
 
-        .game-tag:hover::after {
-            opacity: 1;
+        body.light-mode .game-stats {
+            background-color: var(--card-light);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        body.light-mode .game-stats::after {
+            border-color: var(--card-light) transparent transparent transparent;
+        }
+
+        .game-stats-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        body.light-mode .game-stats-header {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .game-username {
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        body.light-mode .game-username {
+            color: var(--accent-tertiary-light);
+        }
+
+        .game-server {
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        .game-stats-content {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .stat-row {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 0.8rem;
+        }
+
+        .progress-bar {
+            height: 4px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        body.light-mode .progress-bar {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .progress {
+            height: 100%;
+            background-color: var(--accent);
+            transform-origin: left;
+            transform: scaleX(0);
+            transition: transform 1s ease;
+        }
+
+        body.light-mode .progress {
+            background-color: var(--accent-tertiary-light);
+        }
+
+        .game-wrapper:hover .progress {
+            transform: scaleX(1);
+        }
+
+        .stat-value {
+            white-space: nowrap;
         }
 
         /* Projects Section */

@@ -170,3 +170,15 @@ contactForm.addEventListener('submit', function(e) {
     alert('Thanks for your message! I will get back to you soon.');
     this.reset();
 });
+
+// Game stats progress bars
+function initGameStats() {
+    const progressBars = document.querySelectorAll('.progress');
+    progressBars.forEach(progress => {
+        const value = progress.dataset.value;
+        progress.style.transform = `scaleX(0)`;
+    });
+}
+
+// Initialize game stats when DOM is loaded
+document.addEventListener('DOMContentLoaded', initGameStats);
