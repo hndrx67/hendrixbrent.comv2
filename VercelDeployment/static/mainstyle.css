@@ -1,5 +1,4 @@
-
-        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&display=swap');
         
         :root {
             --bg-dark: #0E0E10;
@@ -422,6 +421,46 @@
             border-radius: 4px;
             font-size: 0.8rem;
             color: var(--accent);
+        }
+
+        /* Games Section */
+        .games {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .game-tag {
+            padding: 0.3rem 0.8rem;
+            background-color: rgba(60, 255, 226, 0.1);
+            border-radius: 4px;
+            font-size: 0.8rem;
+            color: var(--accent);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            cursor: pointer;
+            transform: translateY(0);
+        }
+
+        .game-tag:hover {
+            background-color: rgba(60, 255, 226, 0.15);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(60, 255, 226, 0.15);
+        }
+
+        .game-tag::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 4px;
+            opacity: 0;
+            transition: opacity 0.25s ease;
+            background: radial-gradient(circle at center, rgba(60, 255, 226, 0.1), transparent);
+        }
+
+        .game-tag:hover::after {
+            opacity: 1;
         }
 
         /* Projects Section */
@@ -976,11 +1015,10 @@
 		text-align: center;
 		
 		
-		}
-		
-		
-		
-		
-		
-		
-   
+		 }
+
+
+
+
+
+
