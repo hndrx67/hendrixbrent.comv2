@@ -393,6 +393,12 @@
             color: var(--accent);
         }
 
+        .inst {
+            font-size: 0.8rem;
+            line-height: 1.7;
+            opacity: 0.9;
+        }
+
         body.light-mode .about-card h3 {
             color: var(--accent-tertiary-light);
         }
