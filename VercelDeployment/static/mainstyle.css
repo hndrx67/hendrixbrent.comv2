@@ -575,6 +575,100 @@
             white-space: nowrap;
         }
 
+        /* Other Info Section */
+        .other-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .other-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .other-tag {
+            padding: 0.3rem 0.8rem;
+            background-color: rgba(60, 255, 226, 0.1);
+            border-radius: 4px;
+            font-size: 0.8rem;
+            color: var(--accent);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            cursor: pointer;
+        }
+
+        body.light-mode .other-tag {
+            background-color: rgba(255, 107, 133, 0.1);
+            color: var(--accent-tertiary-light);
+        }
+
+        .other-tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 8px var(--accent);
+        }
+
+        body.light-mode .other-tag:hover {
+            box-shadow: 0 0 8px var(--accent-tertiary-light);
+        }
+
+        .other-stats {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            background-color: var(--card-dark);
+            border-radius: 8px;
+            padding: 1rem;
+            width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 10px;
+            z-index: 100;
+        }
+
+        .other-wrapper:hover .other-stats {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .other-stats::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 8px;
+            border-style: solid;
+            border-color: var(--card-dark) transparent transparent transparent;
+        }
+
+        body.light-mode .other-stats {
+            background-color: var(--card-light);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        body.light-mode .other-stats::after {
+            border-color: var(--card-light) transparent transparent transparent;
+        }
+
+        .other-stats-content {
+            text-align: center;
+        }
+
+        .other-value {
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        body.light-mode .other-value {
+            color: var(--accent-tertiary-light);
+        }
+
         /* Projects Section */
         .projects-grid {
             display: grid;
