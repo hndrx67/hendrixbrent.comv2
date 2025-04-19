@@ -75,26 +75,47 @@ themeToggle.addEventListener('click', function() {
 // Mobile navigation
 const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
 const nav = document.getElementById('nav');
+const navOverlay = document.querySelector('.nav-overlay');
 
-mobileNavToggle.addEventListener('click', function() {
+function toggleNav() {
     nav.classList.toggle('active');
+    navOverlay.classList.toggle('active');
+    
     if (nav.classList.contains('active')) {
         mobileNavToggle.innerHTML = `
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
         `;
+        document.body.style.overflow = 'hidden';
     } else {
         mobileNavToggle.innerHTML = `
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M3 12H21M3 6H21M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
         `;
+        document.body.style.overflow = 'auto';
+    }
+}
+
+mobileNavToggle.addEventListener('click', toggleNav);
+
+// Close mobile nav when clicking on overlay or links
+navOverlay.addEventListener('click', toggleNav);
+
+const navLinks = document.querySelectorAll('nav a');
+navLinks.forEach(link => {
+    link.addEventListener('click', toggleNav);
+});
+
+// Close mobile nav when pressing escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && nav.classList.contains('active')) {
+        toggleNav();
     }
 });
 
 // Close mobile nav when clicking on a link
-const navLinks = document.querySelectorAll('nav a');
 navLinks.forEach(link => {
     link.addEventListener('click', function() {
         nav.classList.remove('active');
