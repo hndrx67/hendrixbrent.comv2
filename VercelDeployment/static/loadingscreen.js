@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize loading screen
     const loadingScreen = document.querySelector('.loading-screen');
     const loadingText = loadingScreen.querySelector('.loading-text');
+    let loadingTimeout = null;
+    let loadingInterval = null;
 
     // Handle navigation links
     document.querySelectorAll('a').forEach(link => {
@@ -23,23 +25,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Animate loading text with dots
         let dots = '';
-        const loadingInterval = setInterval(() => {
+        loadingInterval = setInterval(() => {
             dots = dots.length >= 3 ? '' : dots + '.';
             loadingText.textContent = 'Loading' + dots;
         }, 500);
 
         // Add random delay between 800ms and 1500ms for visual effect
-        setTimeout(() => {
+        loadingTimeout = setTimeout(() => {
             clearInterval(loadingInterval);
             window.location.href = targetUrl;
         }, Math.random() * 700 + 800);
     }
 
+    function clearLoadingScreen() {
+        if (loadingTimeout) {
+            clearTimeout(loadingTimeout);
+            loadingTimeout = null;
+        }
+        if (loadingInterval) {
+            clearInterval(loadingInterval);
+            loadingInterval = null;
+        }
+        loadingScreen.classList.remove('active');
+    }
+
     // Hide loading screen when back button is pressed
     window.addEventListener('popstate', () => {
-        loadingScreen.classList.remove('active');
+        clearLoadingScreen();
     });
 
     // Hide loading screen on page load
-    loadingScreen.classList.remove('active');
+    clearLoadingScreen();
 });
