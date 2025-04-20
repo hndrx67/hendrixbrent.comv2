@@ -1,13 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Create developer console button
-    const consoleBtn = document.createElement('a');
-    consoleBtn.href = '#';
-    consoleBtn.className = 'cta-btn dev-console-btn';
-    consoleBtn.textContent = 'Developer Console';
-    
-    // Add button to hero-btns
-    const heroBtns = document.querySelector('.hero-btns');
-    heroBtns.appendChild(consoleBtn);
+    const consoleToggle = document.getElementById('consoleToggle');
+    const isMobile = window.innerWidth <= 768;
 
     // Create console window
     const consoleWindow = document.createElement('div');
@@ -19,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <path d="M16 18L22 12L16 6"></path>
                     <path d="M8 6L2 12L8 18"></path>
                 </svg>
-                Developer Console v1.0
+                Developer Console v2.0
             </div>
             <div class="console-controls">
                 <button class="console-btn" id="minimizeConsole">_</button>
@@ -40,10 +33,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     <div class="console-option" data-panel="typography">Typography</div>
                 </div>
                 <div class="console-category">
-                    <div class="console-category-title">Fun Stuff</div>
+                    <div class="console-category-title">Easter Eggs</div>
+                    <div class="console-option" data-panel="eastereggs">Easter Egg Controls</div>
                     <div class="console-option" data-panel="matrix">Matrix Mode</div>
                     <div class="console-option" data-panel="particles">Particle Effects</div>
-                    <div class="console-option" data-panel="eastereggs">Easter Eggs</div>
                 </div>
             </div>
             <div class="console-main">
@@ -59,6 +52,17 @@ document.addEventListener('DOMContentLoaded', function() {
                         <button class="preset-btn" data-colors='{"accent": "#FF0000", "alt": "#8B0000"}'>Blood Red</button>
                         <button class="preset-btn" data-colors='{"accent": "#00FF00", "alt": "#008000"}'>Matrix</button>
                         <button class="preset-btn" data-colors='{"accent": "#FF00FF", "alt": "#800080"}'>Synthwave</button>
+                    </div>
+                </div>
+
+                <!-- Easter Eggs Panel -->
+                <div class="console-panel" data-panel="eastereggs">
+                    <h3>Easter Egg Controls</h3>
+                    <div class="preset-buttons">
+                        <button class="preset-btn" data-egg="blood">Toggle Blood Theme</button>
+                        <button class="preset-btn" data-egg="strip">Toggle Strip Mode</button>
+                        <button class="preset-btn" data-egg="invert">Invert Colors</button>
+                        <button class="preset-btn" data-egg="rainbow">Rainbow Mode</button>
                     </div>
                 </div>
 
@@ -98,19 +102,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 </div>
 
-                <!-- Layout Panel -->
-                <div class="console-panel" data-panel="layout">
-                    <h3>Layout Options</h3>
-                    <div class="console-checkbox">
-                        <input type="checkbox" id="wideLayout">
-                        <label for="wideLayout">Wide Layout</label>
-                    </div>
-                    <div class="console-checkbox">
-                        <input type="checkbox" id="compactMode">
-                        <label for="compactMode">Compact Mode</label>
-                    </div>
-                </div>
-
                 <!-- Typography Panel -->
                 <div class="console-panel" data-panel="typography">
                     <h3>Typography Settings</h3>
@@ -128,81 +119,31 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 </div>
 
-                <!-- Matrix Mode Panel -->
-                <div class="console-panel" data-panel="matrix">
-                    <h3>Matrix Rain Effect</h3>
-                    <div class="console-checkbox">
-                        <input type="checkbox" id="enableMatrix">
-                        <label for="enableMatrix">Enable Matrix Rain</label>
-                    </div>
-                    <div class="console-slider">
-                        <div class="console-slider-label">
-                            <span>Rain Density</span>
-                            <span id="rainDensityValue">50%</span>
-                        </div>
-                        <input type="range" min="10" max="100" value="50" id="rainDensity">
-                    </div>
-                </div>
-
-                <!-- Particle Effects Panel -->
-                <div class="console-panel" data-panel="particles">
-                    <h3>Particle Effects</h3>
-                    <div class="console-checkbox">
-                        <input type="checkbox" id="enableParticles">
-                        <label for="enableParticles">Enable Particles</label>
-                    </div>
-                    <select class="console-select" id="particleType">
-                        <option value="dots">Dots</option>
-                        <option value="lines">Lines</option>
-                        <option value="triangles">Triangles</option>
-                    </select>
-                </div>
-
-                <!-- Easter Eggs Panel -->
-                <div class="console-panel" data-panel="eastereggs">
-                    <h3>Easter Egg Controls</h3>
-                    <div class="preset-buttons">
-                        <button class="preset-btn" data-egg="blood">Toggle Blood Theme</button>
-                        <button class="preset-btn" data-egg="strip">Toggle Strip Mode</button>
-                        <button class="preset-btn" data-egg="invert">Invert Colors</button>
-                        <button class="preset-btn" data-egg="rainbow">Rainbow Mode</button>
-                    </div>
-                </div>
-
                 <div class="console-output">
-                    <div class="output-line">> Developer Console initialized...</div>
+                    <div class="output-line">> Developer Console v2.0 initialized...</div>
                     <div class="output-line success">> Ready for input</div>
+                    ${isMobile ? '<div class="output-line error">> Mobile device detected. Some features are disabled.</div>' : ''}
+                </div>
+                <div class="console-input-container">
+                    <input type="text" class="console-input" placeholder="Enter command...">
+                    <button class="console-enter-btn">Enter</button>
                 </div>
             </div>
         </div>
     `;
     document.body.appendChild(consoleWindow);
 
-    // Show console button when blood theme is activated
-    const observer = new MutationObserver((mutations) => {
-        mutations.forEach((mutation) => {
-            if (mutation.attributeName === 'class') {
-                if (document.body.classList.contains('blood-theme')) {
-                    consoleBtn.classList.add('active');
-                } else {
-                    consoleBtn.classList.remove('active');
-                }
-            }
-        });
-    });
-
-    observer.observe(document.body, { attributes: true });
-
-    // Console functionality
-    const closeConsole = document.getElementById('closeConsole');
-    const minimizeConsole = document.getElementById('minimizeConsole');
-    let isMinimized = false;
-
-    consoleBtn.addEventListener('click', (e) => {
+    // Console toggle functionality
+    consoleToggle.addEventListener('click', (e) => {
         e.preventDefault();
         consoleWindow.classList.add('active');
         logToConsole('Console opened');
     });
+
+    // Console controls
+    const closeConsole = document.getElementById('closeConsole');
+    const minimizeConsole = document.getElementById('minimizeConsole');
+    let isMinimized = false;
 
     closeConsole.addEventListener('click', () => {
         consoleWindow.classList.remove('active');
@@ -218,6 +159,7 @@ document.addEventListener('DOMContentLoaded', function() {
             minimizeConsole.textContent = '□';
         }
         isMinimized = !isMinimized;
+        logToConsole(`Console ${isMinimized ? 'minimized' : 'maximized'}`);
     });
 
     // Panel navigation
@@ -228,6 +170,12 @@ document.addEventListener('DOMContentLoaded', function() {
         option.addEventListener('click', () => {
             const panelName = option.dataset.panel;
             
+            // Check if feature is available on mobile
+            if (isMobile && ['effects', 'matrix', 'particles'].includes(panelName)) {
+                logToConsole(`${panelName} is not available on mobile devices`, 'error');
+                return;
+            }
+
             options.forEach(opt => opt.classList.remove('active'));
             panels.forEach(panel => panel.classList.remove('active'));
             
@@ -247,73 +195,58 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Animation controls
     const animationSpeed = document.getElementById('animationSpeed');
+    const enableAnimations = document.getElementById('enableAnimations');
+
     animationSpeed.addEventListener('input', (e) => {
         document.documentElement.style.setProperty('--transition-speed', `${e.target.value * 0.3}s`);
         document.getElementById('speedValue').textContent = `${e.target.value}x`;
         logToConsole(`Set animation speed to ${e.target.value}x`);
     });
 
-    // Matrix rain effect
-    const enableMatrix = document.getElementById('enableMatrix');
-    let matrixRain;
-
-    enableMatrix.addEventListener('change', (e) => {
+    enableAnimations.addEventListener('change', (e) => {
         if (e.target.checked) {
-            createMatrixRain();
-            logToConsole('Matrix rain effect enabled');
+            document.documentElement.style.setProperty('--transition-speed', '0.3s');
         } else {
-            if (matrixRain) {
-                matrixRain.remove();
-                logToConsole('Matrix rain effect disabled');
-            }
+            document.documentElement.style.setProperty('--transition-speed', '0s');
         }
+        logToConsole(`${e.target.checked ? 'Enabled' : 'Disabled'} animations`);
     });
 
-    function createMatrixRain() {
-        matrixRain = document.createElement('canvas');
-        matrixRain.className = 'matrix-rain';
-        document.body.appendChild(matrixRain);
+    // Typography controls
+    const fontSelect = document.getElementById('fontSelect');
+    const fontSize = document.getElementById('fontSize');
 
-        const ctx = matrixRain.getContext('2d');
-        matrixRain.width = window.innerWidth;
-        matrixRain.height = window.innerHeight;
+    fontSelect.addEventListener('change', (e) => {
+        document.documentElement.style.setProperty('--font-mono', e.target.value);
+        logToConsole(`Changed font to ${e.target.value}`);
+    });
 
-        const chars = 'アィイゥウェエォオカガキギクグケゲコゴサザシジスズセゼソゾタダチヂッツヅテデトドナニヌネノハバパヒビピフブプヘベペホボポマミムメモャヤュユョヨラリルレロワヲンヴヵヶ';
-        const columns = matrixRain.width / 20;
-        const drops = new Array(Math.floor(columns)).fill(1);
+    fontSize.addEventListener('input', (e) => {
+        document.documentElement.style.setProperty('--base-font-size', `${e.target.value}px`);
+        document.getElementById('fontSizeValue').textContent = `${e.target.value}px`;
+        logToConsole(`Changed font size to ${e.target.value}px`);
+    });
 
-        function draw() {
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-            ctx.fillRect(0, 0, matrixRain.width, matrixRain.height);
-            
-            ctx.fillStyle = '#0F0';
-            ctx.font = '15px monospace';
-            
-            for (let i = 0; i < drops.length; i++) {
-                const text = chars[Math.floor(Math.random() * chars.length)];
-                ctx.fillText(text, i * 20, drops[i] * 20);
-                
-                if (drops[i] * 20 > matrixRain.height && Math.random() > 0.975) {
-                    drops[i] = 0;
-                }
-                drops[i]++;
-            }
-            
-            requestAnimationFrame(draw);
-        }
-        
-        draw();
-    }
+    // Effects controls
+    const enableBloom = document.getElementById('enableBloom');
+    const enableGlow = document.getElementById('enableGlow');
+    const blurIntensity = document.getElementById('blurIntensity');
 
-    // Console logging
-    function logToConsole(message, type = 'info') {
-        const output = document.querySelector('.console-output');
-        const line = document.createElement('div');
-        line.className = `output-line ${type}`;
-        line.textContent = `> ${message}`;
-        output.appendChild(line);
-        output.scrollTop = output.scrollHeight;
-    }
+    enableBloom.addEventListener('change', (e) => {
+        document.body.classList.toggle('bloom-effect', e.target.checked);
+        logToConsole(`${e.target.checked ? 'Enabled' : 'Disabled'} bloom effect`);
+    });
+
+    enableGlow.addEventListener('change', (e) => {
+        document.body.classList.toggle('glow-effect', e.target.checked);
+        logToConsole(`${e.target.checked ? 'Enabled' : 'Disabled'} glow effect`);
+    });
+
+    blurIntensity.addEventListener('input', (e) => {
+        document.documentElement.style.setProperty('--blur-intensity', `${e.target.value}px`);
+        document.getElementById('blurValue').textContent = `${e.target.value}px`;
+        logToConsole(`Set blur intensity to ${e.target.value}px`);
+    });
 
     // Easter egg controls
     const eggButtons = document.querySelectorAll('[data-egg]');
@@ -341,6 +274,70 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // Console input handling
+    const consoleInput = document.querySelector('.console-input');
+    const consoleEnterBtn = document.querySelector('.console-enter-btn');
+    const consoleOutput = document.querySelector('.console-output');
+
+    function handleCommand(command) {
+        logToConsole(`$ ${command}`);
+        
+        switch(command.toLowerCase().trim()) {
+            case 'houshou marine':
+                logToConsole('Redirecting to VTuber Wiki...', 'success');
+                setTimeout(() => {
+                    window.location.href = 'vtubers-wiki.html';
+                }, 1000);
+                break;
+                
+            case 'sudo rm -rf':
+                logToConsole('Initiating website destruction sequence...', 'error');
+                document.body.classList.add('destroying');
+                const elements = document.querySelectorAll('section, header, footer');
+                elements.forEach((element, index) => {
+                    setTimeout(() => {
+                        element.classList.add('falling');
+                    }, index * 200);
+                });
+                
+                // Close console but don't move the icon
+                setTimeout(() => {
+                    consoleWindow.classList.remove('active');
+                }, elements.length * 200 + 500);
+                break;
+                
+            default:
+                logToConsole(`Command not recognized: ${command}`, 'error');
+                break;
+        }
+    }
+
+    function processInput() {
+        const command = consoleInput.value.trim();
+        if (command) {
+            handleCommand(command);
+            consoleInput.value = '';
+        }
+    }
+
+    consoleEnterBtn.addEventListener('click', processInput);
+    consoleInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            processInput();
+        }
+    });
+
+    // Console logging
+    function logToConsole(message, type = 'info') {
+        const output = document.querySelector('.console-output');
+        const line = document.createElement('div');
+        line.className = `output-line ${type}`;
+        line.textContent = `> ${message}`;
+        output.appendChild(line);
+        output.scrollTop = output.scrollHeight;
+    }
+
+    // Rainbow mode
     let rainbowInterval;
     function startRainbowMode() {
         if (rainbowInterval) {
