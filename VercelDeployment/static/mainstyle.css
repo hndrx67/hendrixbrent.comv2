@@ -264,7 +264,7 @@
         .typewriter::after {
             content: '|';
             position: absolute;
-            right: -8px;
+            right: -15px;
             color: var(--accent);
             animation: blink 1s infinite;
         }
