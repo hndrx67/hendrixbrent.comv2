@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Posts | Hendrix Brent Fortu</title>
+    <link rel="stylesheet" href="static/mainstyle.css">
+    <link rel="stylesheet" href="static/posts-style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container header-content">	
+            <a href="index.html#header" class="logo">hendrixbrent.com</a>
+            <button class="mobile-nav-toggle" aria-label="Toggle navigation">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 12H21M3 6H21M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+            <div class="nav-overlay"></div>
+            <nav id="nav">
+                <ul>
+                    <li><a href="index.html">Back to Home</a></li>
+                    <li><a href="#" class="active">Blog Posts</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-icon"></div>
+            <div class="loading-text">Loading...</div>
+        </div>
+    </div>
+
+    <!-- Theme Toggle -->
+    <div class="toggle-wrapper">
+        <div class="toggle" id="theme-toggle">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" id="toggle-icon">
+                <path d="M12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 2V4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 20V22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M4.93 4.93L6.34 6.34" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M17.66 17.66L19.07 19.07" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M2 12H4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M20 12H22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M6.34 17.66L4.93 19.07" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M19.07 4.93L17.66 6.34" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+    </div>
+
+    <!-- Blog Posts Section -->
+    <section class="posts-section">
+        <div class="container">
+            <h1 class="section-title">All Blog Posts</h1>
+            
+            <!-- Post Categories -->
+            <div class="post-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="tech">Tech</button>
+                <button class="filter-btn" data-filter="personal">Personal</button>
+                <button class="filter-btn" data-filter="tutorials">Tutorials</button>
+            </div>
+
+            <!-- Posts Grid -->
+            <div class="posts-grid">
+                <!-- Post 1 -->
+                <div class="blog-card" data-category="personal" data-modal="blog1">
+                    <div class="blog-content">
+                        <span class="blog-date">April 19, 2025</span>
+                        <h3>My take on LGBTQ+ Community</h3>
+                        <p>In this day and age people are so very creative on creating genders, I don't hate this community, but please; if you plan to be gay or lesbian or any other gender, please be reminded that your gender is based on the gender that you are born with.</p>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+                </div>
+
+                <!-- Post 2 -->
+                <div class="blog-card" data-category="tech,tutorials" data-modal="blog2">
+                    <div class="blog-content">
+                        <span class="blog-date">March 25, 2025</span>
+                        <h3>Building Accessible UI: Best Practices</h3>
+                        <p>A comprehensive guide to creating inclusive user interfaces that work for everyone, regardless of ability or how they access the web.</p>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+                </div>
+
+                <!-- Post 3 -->
+                <div class="blog-card" data-category="tech,tutorials" data-modal="blog3">
+                    <div class="blog-content">
+                        <span class="blog-date">February 18, 2025</span>
+                        <h3>Modern State Management in React Applications</h3>
+                        <p>Comparing different state management approaches in React and when to use Context API, Redux, Zustand, or simple component state.</p>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+                </div>
+
+                <!-- Additional blog posts can be added here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Post Modals -->
+    <div class="modal" id="blog1-modal">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <h2 class="blog-modal-title">My take on LGBTQ+</h2>
+            <span class="blog-modal-date">April 19, 2025</span>
+            <div class="blog-modal-content">
+                <p>Bro why create many genders? When you are first born either you be a girl or a boy, when you grow up you'll
+                    be a man or a woman, and when you die, you will be a skeleton. So why create many genders?
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="blog2-modal">
+        <!-- ... Same modal content as in index.html ... -->
+    </div>
+
+    <div class="modal" id="blog3-modal">
+        <!-- ... Same modal content as in index.html ... -->
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p class="copy">&copy; 2025 Hendrix Brent Fortu. All rights reserved. | Under the Domain of <a href="https://hndrx.org">HNDRX.ORG</a></p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="static/mainscript.js"></script>
+    <script src="static/posts-script.js"></script>
+    <script src="static/loadingscreen.js"></script>
+</body>
+</html>
