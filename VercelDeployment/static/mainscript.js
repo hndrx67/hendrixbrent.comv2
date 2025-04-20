@@ -1,12 +1,12 @@
 // must be imported via src
 // Typewriter effect
-const typewriterText = "Hi, I'm Hendrix Brent Fortu";
+const typewriterText = "Hi, I'm Hendrix Brent, Backend Web and Software Developer!";
 const typewriter = document.getElementById('typewriter');
 let charIndex = 0;
 const randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-const scrambleIterations = 9; // Reduced number of iterations before settling
+const scrambleIterations = 3; // Reduced number of iterations before settling
 const scrambleSpeed = 10; // Speed of character scrambling (milliseconds)
-const characterDelay = 30; // Delay between each character (milliseconds)
+const characterDelay = 10; // Delay between each character (milliseconds)
 
 function getRandomChar() {
     return randomChars[Math.floor(Math.random() * randomChars.length)];
@@ -26,14 +26,10 @@ async function typeCharacter() {
         typewriter.textContent = typewriterText.substring(0, charIndex + 1);
         charIndex++;
         setTimeout(typeCharacter, characterDelay);
-    } else {
-        // Start next sentence after a pause
-        setTimeout(() => {
-            typewriterNext();
-        }, 2500);
-    }
+    } 
 }
 
+/*
 async function typewriterNext() {
     typewriter.textContent = "";
     const nextText = "Backend Web and Software Developer";
@@ -56,6 +52,7 @@ async function typewriterNext() {
     }
     typeNext();
 }
+    */
 
 // Start the typewriter effect when the page loads
 window.addEventListener('load', function() {
