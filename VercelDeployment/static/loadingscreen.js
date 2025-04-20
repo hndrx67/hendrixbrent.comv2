@@ -5,6 +5,17 @@ document.addEventListener('DOMContentLoaded', () => {
     let loadingTimeout = null;
     let loadingInterval = null;
 
+    // VTuber trigger handler
+    const marineTrigger = document.getElementById('marine-trigger');
+    if (marineTrigger) {
+        marineTrigger.addEventListener('mouseup', () => {
+            const selectedText = window.getSelection().toString();
+            if (selectedText === 'Houshou Marine') {
+                showLoadingScreen('vtubers-wiki.html');
+            }
+        });
+    }
+
     // Handle navigation links
     document.querySelectorAll('a').forEach(link => {
         // Only handle internal navigation links (same domain)
