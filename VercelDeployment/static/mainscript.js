@@ -207,8 +207,3 @@ function initGameStats() {
 
 // Initialize game stats when DOM is loaded
 document.addEventListener('DOMContentLoaded', initGameStats);
-
-//turnstile
-
-
-  
