@@ -21,6 +21,30 @@
     }
 }
 
+/* Console Toggle Button */
+.console-toggle {
+    font-family: monospace;
+    color: var(--accent);
+    animation: glowPulse 2s infinite;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.console-toggle:hover {
+    text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
+    color: #ff0000;
+}
+
+@keyframes glowPulse {
+    0%, 100% {
+        text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000;
+    }
+    50% {
+        text-shadow: 0 0 15px #ff0000, 0 0 20px #ff0000;
+    }
+}
+
 /* Console Window */
 .dev-console {
     position: fixed;
@@ -62,6 +86,11 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
+}
+
+.console-title svg {
+    color: #ff0000;
+    animation: glowPulse 2s infinite;
 }
 
 .console-controls {
@@ -227,6 +256,47 @@
     color: #44ff44;
 }
 
+/* Console Input Area */
+.console-input-container {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding: 0.5rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+}
+
+.console-input {
+    flex: 1;
+    background: none;
+    border: none;
+    color: #00ff00;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    outline: none;
+    padding: 0.5rem;
+}
+
+.console-input::placeholder {
+    color: rgba(0, 255, 0, 0.3);
+}
+
+.console-enter-btn {
+    background: none;
+    border: 1px solid #00ff00;
+    color: #00ff00;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: var(--font-mono);
+    transition: all 0.3s ease;
+}
+
+.console-enter-btn:hover {
+    background: #00ff00;
+    color: #000;
+}
+
 /* Matrix Rain Effect */
 .matrix-rain {
     position: absolute;
@@ -237,6 +307,76 @@
     pointer-events: none;
     z-index: -1;
     opacity: 0.1;
+}
+
+/* Visual Effects */
+.bloom-effect {
+    --bloom-strength: 20px;
+    --bloom-color: var(--accent);
+}
+
+.bloom-effect * {
+    text-shadow: 0 0 var(--bloom-strength) var(--bloom-color);
+}
+
+.glow-effect {
+    --glow-strength: 10px;
+    --glow-color: var(--accent);
+}
+
+.glow-effect .console-panel {
+    box-shadow: 0 0 var(--glow-strength) var(--glow-color);
+}
+
+/* Console Select */
+.console-select {
+    width: 100%;
+    padding: 0.5rem;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--accent);
+    border-radius: 4px;
+    color: #fff;
+    margin: 1rem 0;
+}
+
+.console-select option {
+    background: #000;
+    color: #fff;
+}
+
+/* Animation Speeds */
+* {
+    transition-duration: var(--transition-speed, 0.3s);
+}
+
+/* Font Controls */
+:root {
+    --base-font-size: 16px;
+    --font-mono: 'JetBrains Mono', monospace;
+    --blur-intensity: 0px;
+}
+
+body {
+    font-size: var(--base-font-size);
+}
+
+.dev-console {
+    backdrop-filter: blur(var(--blur-intensity));
+}
+
+/* Mobile Warning */
+.mobile-feature-warning {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 0, 0, 0.1);
+    padding: 1rem;
+    border-radius: 4px;
+    border: 1px solid #ff0000;
+    color: #ff0000;
+    text-align: center;
+    pointer-events: none;
 }
 
 /* Responsive */
@@ -251,4 +391,60 @@
         border-bottom: 1px solid var(--accent);
         max-height: 150px;
     }
+
+    .console-panel[data-panel="effects"],
+    .console-panel[data-panel="matrix"],
+    .console-panel[data-panel="particles"] {
+        opacity: 0.5;
+        pointer-events: none;
+    }
+
+    .console-panel[data-panel="effects"]::before,
+    .console-panel[data-panel="matrix"]::before,
+    .console-panel[data-panel="particles"]::before {
+        content: "Not available on mobile";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #ff0000;
+        font-size: 0.9rem;
+        text-align: center;
+        z-index: 1;
+    }
+
+    .dev-console {
+        width: 95%;
+        height: 90vh;
+    }
+
+    .console-content {
+        flex-direction: column;
+    }
+
+    .console-sidebar {
+        width: 100%;
+        max-height: 150px;
+        overflow-y: auto;
+    }
+}
+
+/* For the falling animation when using sudo rm -rf */
+.falling {
+    animation: fall 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(0) rotate(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(200vh) rotate(45deg);
+        opacity: 0;
+    }
+}
+
+body.destroying {
+    background: #000;
 }
