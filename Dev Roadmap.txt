@@ -1,0 +1,28 @@
+Frontend:
+React JS + HTML,CSS, JS
+Axios - Handles API Requests for Node JS 
+
+Backend:
+Node JS + Express or (Django for Python)
+Jason Web Tokens JWT - Login Auth
+
+DB:
+PostgreSQL + Laravel API, PHP (Custom Database UI)
+
+Admin Panels:
+React Admin + Chart JS
+
+Notification Handling for Students and Admins:
+Socket.io + Firebase (backup)
+
+Email Verif, Password Reset for Student Accounts:
+Nodemailer + Laravel Mailer (backup 2FA)
+
+DEPLOYMENT:
+1.LOCAL
+
+2. Vercel - Frontend
+   Railway - Backend
+   Railway - Database
+   DOR - Database 
+DOMAIN: hndrx.org - 2026 March (400)
