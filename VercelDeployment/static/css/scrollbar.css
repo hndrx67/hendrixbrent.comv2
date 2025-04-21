@@ -1,0 +1,69 @@
+/* Custom scrollbar styles */
+:root {
+    --scrollbar-size: 6px;
+    --scrollbar-minlength: 50px; /* Minimum length of scrollbar thumb */
+}
+
+/* Webkit browsers (Chrome, Safari, newer Edge) */
+.vtuber-modal ::-webkit-scrollbar {
+    width: var(--scrollbar-size);
+}
+
+.vtuber-modal ::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--scrollbar-size);
+}
+
+.vtuber-modal ::-webkit-scrollbar-thumb {
+    border-radius: var(--scrollbar-size);
+    min-height: var(--scrollbar-minlength);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Theme-specific scrollbar colors */
+.gura .modal-info::-webkit-scrollbar-thumb {
+    background: rgba(59, 131, 246, 0.5);
+}
+
+.marine .modal-info::-webkit-scrollbar-thumb {
+    background: rgba(255, 0, 0, 0.5);
+}
+
+.mori .modal-info::-webkit-scrollbar-thumb {
+    background: rgba(255, 107, 133, 0.5);
+}
+
+/* Hover states */
+.vtuber-modal ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.gura .modal-info::-webkit-scrollbar-thumb:hover {
+    background: rgba(59, 131, 246, 0.7);
+}
+
+.marine .modal-info::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 0, 0, 0.7);
+}
+
+.mori .modal-info::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 107, 133, 0.7);
+}
+
+/* Firefox */
+.vtuber-modal {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.2) rgba(255, 255, 255, 0.05);
+}
+
+.gura .modal-info {
+    scrollbar-color: rgba(59, 131, 246, 0.5) rgba(255, 255, 255, 0.05);
+}
+
+.marine .modal-info {
+    scrollbar-color: rgba(255, 0, 0, 0.5) rgba(255, 255, 255, 0.05);
+}
+
+.mori .modal-info {
+    scrollbar-color: rgba(255, 107, 133, 0.5) rgba(255, 255, 255, 0.05);
+}

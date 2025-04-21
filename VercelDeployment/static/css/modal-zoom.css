@@ -1,0 +1,42 @@
+.vtuber-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.85);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.vtuber-modal .modal-content {
+    position: relative;
+    transition: all 0.3s ease;
+    will-change: transform, width, height;
+    transform-origin: center center;
+}
+
+/* Base styles that will be dynamically adjusted by JavaScript */
+.modal-content {
+    transform: scale(1);
+    width: 90vw;
+    height: 90vh;
+}
+
+.modal-grid {
+    height: 100%;
+    width: 100%;
+}
+
+.modal-img {
+    height: 100%;
+    width: 100%;
+}
+
+.modal-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
