@@ -682,6 +682,11 @@
             transform: translateX(-50%) translateY(0);
         }
 
+        /* Increase width for The Weeknd's stats specifically */
+        .weeknd-stats-content + .other-stats {
+            width: 250px; /* Wider to accommodate the image */
+        }
+
         .other-stats::after {
             content: '';
             position: absolute;
@@ -1471,7 +1476,7 @@
                             0 0 15px var(--accent-light-alt);
             }
         }
-		
+
 
 
 
