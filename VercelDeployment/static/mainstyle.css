@@ -411,7 +411,21 @@
 
         .about-card:hover {
             transform: translateY(-8px);
+            
         }
+
+       .profile-card:hover{
+        cursor: progress;
+        transform: translateY(-9px);
+        box-shadow: 0 8px 30px rgba(255, 0, 0, 0.2);
+        animation: bloodPulse 0.5s infinite;
+
+
+
+
+
+        }
+       
 
         .about-card h3 {
             margin-bottom: 1rem;
@@ -1419,6 +1433,45 @@
 		
 		
 		 }
+
+
+        
+         .hero-btns {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .glow-btn {
+            background-color: var(--accent-light-alt) !important;
+            border-color: var(--accent-light-alt) !important;
+            color: var(--bg-dark) !important;
+            animation: glow 2s infinite;
+            position: relative;
+        }
+
+        .glow-btn::before {
+            display: none;
+        }
+
+        @keyframes glow {
+            0% {
+                box-shadow: 0 0 5px var(--accent-light-alt),
+                            0 0 10px var(--accent-light-alt),
+                            0 0 15px var(--accent-light-alt);
+            }
+            50% {
+                box-shadow: 0 0 10px var(--accent-light-alt),
+                            0 0 20px var(--accent-light-alt),
+                            0 0 30px var(--accent-light-alt);
+            }
+            100% {
+                box-shadow: 0 0 5px var(--accent-light-alt),
+                            0 0 10px var(--accent-light-alt),
+                            0 0 15px var(--accent-light-alt);
+            }
+        }
+		
 
 
 

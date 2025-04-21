@@ -12,7 +12,9 @@
     <link rel="stylesheet" href="static/css/blood-theme.css">
     <link rel="stylesheet" href="static/css/strip-theme.css">
     <link rel="stylesheet" href="static/css/dev-console.css">
+    <link rel="stylesheet" href="static/css/pfp-modal.css">
     <script src="static/js/tech-cube.js" defer></script>
+    <script src="static/js/pfp-modal.js" defer></script>
 </head>
 <body>
     <!-- Mobile Experience Banner -->
@@ -78,6 +80,7 @@
             <div class="hero-btns">
                 <a href="#projects" class="cta-btn">View My Work</a>
                 <a href="#socials" class="cta-btn">Get In Touch</a>
+                <a href="404.html" class="cta-btn glow-btn">Play Games</a>
             </div>
             
         </div>
@@ -253,57 +256,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <!--
-                            <div class="game-wrapper">
-                                <span class="game-tag">GAYNESS</span>
-                                <div class="game-stats">
-                                    <div class="game-stats-header">
-                                        <span class="game-username">GAYNESS</span>
-                                        <span class="game-server">Pro Gay</span>
-                                    </div>
-                                    <div class="game-stats-content">
-                                        <div class="stat-row">
-                                            <span>LUCK</span>
-                                            <div class="progress-bar">
-                                                <div class="progress" data-value="100"></div>
-                                            </div>
-                                            <span class="stat-value">100%</span> 
-                                        </div>
-                                        <div class="stat-row">
-                                            <span>INT</span>
-                                            
-                                            <span class="stat-value">0%</span> 
-                                        </div>
-                                        <div class="stat-row">
-                                            <span>CLINGY</span>
-                                            <div class="progress-bar">
-                                                <div class="progress" data-value="100"></div>
-                                            </div>
-                                            <span class="stat-value">100%</span> 
-                                        </div>
-                                        <div class="stat-row">
-                                            <span>CRINGE</span>
-                                            <div class="progress-bar">
-                                                <div class="progress" data-value="100"></div>
-                                            </div>
-                                            <span class="stat-value">100%</span> 
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            -->
-
-
                         </div>
                 </div>
-                <div class="about-card">
-					
-					
-					
-					<img src="../hendrix_pfp1.jpg" alt="Hendrix Brent Fortu" class="profile-image">
-					
-					
-                    
+                <div class="about-card profile-card">
+                    <img src="hendrix_pfp1.jpg" alt="Hendrix Brent Fortu" class="profile-image">
                 </div>
                 <div class="about-card">
                     <h3>Skillset</h3>
@@ -358,16 +314,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!--
-                        <div class="other-wrapper">
-                            <span class="other-tag">Overall Financial Debt</span>
-                            <div class="other-stats">
-                                <div class="other-stats-content">
-                                    <span class="other-value">PHP 60,000+</span>
-                                </div>
-                            </div>
-                        </div>
-                        -->
                         <div class="other-wrapper">
                             <span class="other-tag">Favorite Music Artist</span>
                             <div class="other-stats">
@@ -710,6 +656,93 @@
             </div>
         </div>
     </div>
+
+    <!-- Profile Modal -->
+    <div class="pfp-modal">
+        <div class="pfp-modal-content">
+            <button class="close-pfp-modal" aria-label="Close modal">×</button>
+            <div class="pfp-modal-left">
+                <div class="pfp-modal-image">
+                    <img src="hendrix_pfp1.jpg" alt="Hendrix Brent Fortu">
+                </div>
+            </div>
+            <div class="pfp-modal-right">
+                <div class="pfp-modal-header">
+                    <h2 class="pfp-modal-title">Hendrix Brent Fortu</h2>
+                    <p class="pfp-modal-subtitle">Backend Developer & Software Engineer</p>
+                </div>
+                <div class="education-timeline">
+                    <div class="timeline-item">
+                        <span class="timeline-date">2021 - Present</span>
+                        <h3 class="timeline-title">University of Santo Tomas</h3>
+                        <p class="timeline-subtitle">Bachelor of Science in Information Technology</p>
+                        <div class="timeline-content">
+                            <p>Major in Web and Mobile Development</p>
+                            <p>Current GPA: 3.72</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <span class="timeline-date">2019 - 2021</span>
+                        <h3 class="timeline-title">Immaculate Heart of Mary College-Parañaque</h3>
+                        <p class="timeline-subtitle">Senior High School - STEM Track</p>
+                        <div class="timeline-content">
+                            <p>With Honors</p>
+                            <p>Research: Machine Learning in Education</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <span class="timeline-date">2019</span>
+                        <h3 class="timeline-title">ACE Technical Training Center</h3>
+                        <p class="timeline-subtitle">Technical Training</p>
+                        <div class="timeline-content">
+                            <p>Computer Systems Servicing NC-II</p>
+                            <p>TESDA Certified</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="achievement-list">
+                    <h3 class="timeline-title">Certifications & Awards</h3>
+                    <div class="achievement-item">
+                        <div class="achievement-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M12 15L8.5 12L12 9" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>AWS Cloud Practitioner</h4>
+                            <p>Amazon Web Services</p>
+                        </div>
+                    </div>
+                    <div class="achievement-item">
+                        <div class="achievement-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M12 15L8.5 12L12 9" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Microsoft Technology Associate</h4>
+                            <p>Microsoft</p>
+                        </div>
+                    </div>
+                    <div class="achievement-item">
+                        <div class="achievement-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M12 15L8.5 12L12 9" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Dean's Lister (2021-2022)</h4>
+                            <p>Academic Excellence</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 <!-- Scripts -->
     <script src="static/mobile-notif.js"></script>
     <script src="static/mainscript.js"></script>
