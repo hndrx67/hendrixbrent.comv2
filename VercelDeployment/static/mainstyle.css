@@ -56,6 +56,34 @@
             width: 100%;
         }
 
+        .vtuber-link {
+            color: var(--marine-accent);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            font-weight: 500;
+        }
+
+        .vtuber-link:hover {
+            color: var(--accent-tertiary);
+            text-shadow: 0 0 8px var(--accent-tertiary);
+        }
+
+        .vtuber-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--accent-tertiary);
+            transition: width 0.3s ease;
+        }
+
+        .vtuber-link:hover::after {
+            width: 100%;
+        }
+
         body {
             background-color: var(--bg-dark);
             color: var(--text-dark);

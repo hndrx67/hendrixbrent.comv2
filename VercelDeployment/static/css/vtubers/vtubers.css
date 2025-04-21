@@ -1,7 +1,7 @@
 :root {
     --gura-accent: #3b83f6;
-    --marine-accent: #ff6b85;
-    --mori-accent: #ff0000;
+    --marine-accent: #ff0000;
+    --mori-accent: #ff6b85;
 }
 
 .vtuber-section {
@@ -93,6 +93,7 @@ body.light-mode .vtuber-card {
 
 .stat-value {
     font-weight: 600;
+    animation: fadeIn 0.5s ease-out forwards;
 }
 
 .gura .stat-value { color: var(--gura-accent); }
@@ -151,7 +152,8 @@ body.light-mode .back-home {
     position: relative;
     transform: translateY(20px);
     opacity: 0;
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    will-change: transform, opacity;
 }
 
 .vtuber-modal.active .modal-content {
@@ -161,6 +163,27 @@ body.light-mode .back-home {
 
 body.light-mode .vtuber-modal .modal-content {
     background: var(--card-light);
+}
+
+/* Modal theme colors */
+.vtuber-modal .modal-content {
+    background: var(--card-dark);
+    transition: all 0.3s ease;
+}
+
+.gura .modal-content {
+    background: linear-gradient(145deg, var(--card-dark), #1a2635);
+    border: 1px solid rgba(59, 131, 246, 0.2);
+}
+
+.marine .modal-content {
+    background: linear-gradient(145deg, var(--card-dark), #351a1a);
+    border: 1px solid rgba(255, 107, 133, 0.2);
+}
+
+.mori .modal-content {
+    background: linear-gradient(145deg, var(--card-dark), #2a1a1a);
+    border: 1px solid rgba(255, 0, 0, 0.2);
 }
 
 .modal-grid {
@@ -223,6 +246,18 @@ body.light-mode .vtuber-modal .modal-content {
     margin-top: 2rem;
 }
 
+.gura .modal-stats {
+    background: rgba(59, 131, 246, 0.1);
+}
+
+.marine .modal-stats {
+    background: rgba(255, 107, 133, 0.1);
+}
+
+.mori .modal-stats {
+    background: rgba(255, 0, 0, 0.1);
+}
+
 .stat-group h3 {
     margin-bottom: 1rem;
     font-size: 1.2rem;
@@ -266,6 +301,141 @@ body.light-mode .vtuber-modal .modal-content {
     background: rgba(255, 255, 255, 0.1);
 }
 
+.modal-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.modal-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    padding: 0.6rem 1.5rem;
+    height: 42px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.image-source-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-dark);
+}
+
+.gallery-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.6rem 1.5rem;
+    border: 2px solid var(--accent);
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.gura .gallery-btn {
+    border: 2px solid var(--gura-accent);
+    color: var(--gura-accent);
+}
+
+.gura .gallery-btn:hover {
+    color: var(--card-dark);
+}
+
+.marine .gallery-btn {
+    border: 2px solid var(--marine-accent);
+    color: var(--marine-accent);
+}
+
+.marine .gallery-btn:hover {
+    color: var(--card-dark);
+}
+
+.mori .gallery-btn {
+    border: 2px solid var(--mori-accent);
+    color: var(--mori-accent);
+}
+
+.mori .gallery-btn:hover {
+    color: var(--card-dark);
+}
+
+.gallery-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    transition: var(--transition);
+    z-index: -1;
+}
+
+.gallery-btn:hover {
+    color: var(--bg-dark);
+}
+
+.gallery-btn:hover::before {
+    width: 100%;
+}
+
+.gura .gallery-btn::before {
+    background-color: var(--gura-accent);
+}
+
+.marine .gallery-btn::before {
+    background-color: var(--marine-accent);
+}
+
+.mori .gallery-btn::before {
+    background-color: var(--mori-accent);
+}
+
+/* Modal theme-specific stat labels */
+.gura .stat-label {
+    color: var(--gura-accent);
+}
+
+.marine .stat-label {
+    color: var(--marine-accent);
+}
+
+.mori .stat-label {
+    color: var(--mori-accent);
+}
+
+.modal-btn:hover {
+    transform: translateY(-2px);
+    color: var(--accent)
+}
+
+.modal-btn svg {
+    width: 20px;
+    height: 20px;
+    stroke: currentColor;
+    flex-shrink: 0;
+}
+
+/* Fade in animation for statistics */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* Responsive Modal */
 @media (max-width: 768px) {
     .modal-grid {
@@ -278,5 +448,16 @@ body.light-mode .vtuber-modal .modal-content {
 
     .modal-info {
         padding: 1.5rem;
+    }
+
+    .modal-btn {
+        padding: 0.5rem 1.2rem;
+        height: 38px;
+        font-size: 0.85rem;
+    }
+    
+    .modal-btn svg {
+        width: 18px;
+        height: 18px;
     }
 }
