@@ -9,70 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Text iteration animation for stats
-    const possibleChars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ+';
-    const iterationSpeed = 80; // milliseconds per iteration
-    const iterations = 30; // number of iterations before settling
-
-    function getRandomChar() {
-        return possibleChars[Math.floor(Math.random() * possibleChars.length)];
-    }
-
-    function animateText(element, finalText) {
-        element.classList.add('animating');
-        let currentIteration = 0;
-        
-        const animate = () => {
-            if (currentIteration < iterations) {
-                // Generate random text of same length as final
-                let randomText = '';
-                for (let i = 0; i < finalText.length; i++) {
-                    randomText += getRandomChar();
-                }
-                element.textContent = randomText;
-                currentIteration++;
-                setTimeout(animate, iterationSpeed);
-            } else {
-                element.textContent = finalText;
-            }
-        };
-        
-        animate();
-    }
-
-    function startStatsAnimation(container, delay = 0) {
-        const statValues = container.querySelectorAll('.stat-value');
-        statValues.forEach((value, index) => {
-            const finalText = value.textContent;
-            value.textContent = '';
-            setTimeout(() => {
-                animateText(value, finalText);
-            }, delay + (index * 200)); // Stagger the animations
-        });
-    }
-
-    // Animate stats when cards become visible
-    const vtuberCards = document.querySelectorAll('.vtuber-card');
-    function checkCardVisibility() {
-        vtuberCards.forEach(card => {
-            const rect = card.getBoundingClientRect();
-            const isVisible = (
-                rect.top >= 0 &&
-                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight)
-            );
-            
-            if (isVisible && !card.dataset.animated) {
-                card.dataset.animated = 'true';
-                startStatsAnimation(card);
-            }
-        });
-    }
-
-    // Check visibility on load and scroll
-    checkCardVisibility();
-    window.addEventListener('scroll', checkCardVisibility);
-
     // Modal functionality
+    const vtuberCards = document.querySelectorAll('.vtuber-card');
     const modals = document.querySelectorAll('.vtuber-modal');
     const closeButtons = document.querySelectorAll('.close-modal');
 
@@ -91,8 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     modal.classList.add('active');
                     modal.querySelector('.modal-content').style.opacity = '1';
                     modal.querySelector('.modal-content').style.transform = 'translateY(0)';
-                    // Start animation for modal stats
-                    startStatsAnimation(modal.querySelector('.modal-stats'), 500);
                 }, 10);
             }
         });

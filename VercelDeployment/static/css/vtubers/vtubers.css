@@ -93,13 +93,6 @@ body.light-mode .vtuber-card {
 
 .stat-value {
     font-weight: 600;
-    position: relative;
-    opacity: 0;
-    transition: opacity 0.2s ease;
-}
-
-.stat-value.animating {
-    opacity: 1;
 }
 
 .gura .stat-value { color: var(--gura-accent); }
