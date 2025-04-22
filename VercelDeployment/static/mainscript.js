@@ -1,6 +1,6 @@
 // must be imported via src
 // Typewriter effect
-const typewriterText = "Hi, I'm Hendrix Brent, Backend Web and Software Developer!";
+const typewriterText = "Hi, I'm Hendrix Brent!";
 const typewriter = document.getElementById('typewriter');
 let charIndex = 0;
 const randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
