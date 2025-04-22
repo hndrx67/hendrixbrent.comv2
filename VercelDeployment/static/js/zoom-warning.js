@@ -1,8 +1,16 @@
 class ZoomWarningHandler {
     constructor() {
+        // Don't show warning on mobile devices
+        if (this.isMobileDevice()) {
+            return;
+        }
         this.createWarningElement();
         this.checkZoom();
         this.setupEventListeners();
+    }
+
+    isMobileDevice() {
+        return window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     }
 
     createWarningElement() {
@@ -39,13 +47,20 @@ class ZoomWarningHandler {
     }
 
     getCurrentZoom() {
-        return Math.round((window.outerWidth / window.innerWidth) * 100);
+        // More accurate zoom detection using devicePixelRatio
+        return Math.round(window.devicePixelRatio * 100);
     }
 
     checkZoom() {
+        if (this.isMobileDevice()) {
+            this.hideWarning();
+            return;
+        }
+
         const currentZoom = this.getCurrentZoom();
         const hasBeenDismissed = sessionStorage.getItem('zoomWarningDismissed');
 
+        // Only show warning if zoom is greater than 80%
         if (currentZoom > 80 && !hasBeenDismissed) {
             this.showWarning();
         } else {
