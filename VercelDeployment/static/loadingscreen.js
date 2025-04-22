@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const loadingText = loadingScreen.querySelector('.loading-text');
     let loadingTimeout = null;
     let loadingInterval = null;
+    let isNavigating = false;
 
     // VTuber trigger handler
     const marineTrigger = document.getElementById('marine-trigger');
@@ -31,6 +32,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function showLoadingScreen(targetUrl) {
+        if (isNavigating) return;
+        isNavigating = true;
+
         // Show loading screen with fade in
         loadingScreen.classList.add('active');
 
@@ -58,13 +62,24 @@ document.addEventListener('DOMContentLoaded', () => {
             loadingInterval = null;
         }
         loadingScreen.classList.remove('active');
+        isNavigating = false;
     }
 
-    // Hide loading screen when back button is pressed
+    // Handle back/forward button navigation
     window.addEventListener('popstate', () => {
         clearLoadingScreen();
     });
 
-    // Hide loading screen on page load
+    // Handle page load and refresh
+    window.addEventListener('load', () => {
+        clearLoadingScreen();
+    });
+
+    // Handle beforeunload to reset state
+    window.addEventListener('beforeunload', () => {
+        clearLoadingScreen();
+    });
+
+    // Initial clear on page load
     clearLoadingScreen();
 });
