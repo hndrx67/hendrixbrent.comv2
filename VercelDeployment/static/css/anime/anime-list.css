@@ -1,0 +1,263 @@
+:root {
+    --hotd-accent: #ff4444;
+    --aot-accent: #2a6b3c;
+    --jjk-accent: #6b2a5c;
+}
+
+.anime-section {
+    padding: 4rem 0;
+}
+
+.anime-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.anime-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.anime-card {
+    background-color: var(--card-dark);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+body.light-mode .anime-card {
+    background-color: var(--card-light);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.anime-card:hover {
+    transform: translateY(-8px);
+}
+
+.anime-img {
+    width: 100%;
+    height: 300px;
+    position: relative;
+    overflow: hidden;
+}
+
+.anime-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.anime-content {
+    padding: 1.5rem;
+}
+
+.anime-name {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.hotd .anime-name { color: var(--hotd-accent); }
+.aot .anime-name { color: var(--aot-accent); }
+.jjk .anime-name { color: var(--jjk-accent); }
+
+.anime-description {
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+}
+
+.anime-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    opacity: 0.7;
+    margin-bottom: 0.3rem;
+}
+
+.stat-value {
+    font-weight: 600;
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+.hotd .stat-value { color: var(--hotd-accent); }
+.aot .stat-value { color: var(--aot-accent); }
+.jjk .stat-value { color: var(--jjk-accent); }
+
+/* Anime Modal Styles */
+.anime-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.anime-modal.active {
+    display: flex;
+    opacity: 1;
+}
+
+.anime-modal .modal-content {
+    background: var(--card-dark);
+    width: 90%;
+    max-width: 1000px;
+    max-height: 90vh;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    will-change: transform, opacity;
+}
+
+.anime-modal.active .modal-content {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+body.light-mode .anime-modal .modal-content {
+    background: var(--card-light);
+}
+
+/* Modal theme colors */
+.hotd .modal-content {
+    background: linear-gradient(145deg, var(--card-dark), #351a1a);
+    border: 1px solid rgba(255, 68, 68, 0.2);
+}
+
+.aot .modal-content {
+    background: linear-gradient(145deg, var(--card-dark), #1a2a1a);
+    border: 1px solid rgba(42, 107, 60, 0.2);
+}
+
+.jjk .modal-content {
+    background: linear-gradient(145deg, var(--card-dark), #2a1a2a);
+    border: 1px solid rgba(107, 42, 92, 0.2);
+}
+
+.modal-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    height: 100%;
+}
+
+.modal-img {
+    position: relative;
+    height: 600px;
+    overflow: hidden;
+}
+
+.modal-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.modal-info {
+    padding: 2rem;
+    overflow-y: auto;
+}
+
+.modal-info h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--accent);
+}
+
+.hotd .modal-info h2 { color: var(--hotd-accent); }
+.aot .modal-info h2 { color: var(--aot-accent); }
+.jjk .modal-info h2 { color: var(--jjk-accent); }
+
+.modal-description {
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.modal-stats {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-top: 2rem;
+}
+
+.hotd .modal-stats { background: rgba(255, 68, 68, 0.1); }
+.aot .modal-stats { background: rgba(42, 107, 60, 0.1); }
+.jjk .modal-stats { background: rgba(107, 42, 92, 0.1); }
+
+.stat-group h3 {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    color: var(--accent);
+}
+
+.modal-stats .stat-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.8rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal-stats .stat-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Modal */
+@media (max-width: 768px) {
+    .modal-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .modal-img {
+        height: 300px;
+    }
+
+    .modal-info {
+        padding: 1.5rem;
+    }
+    
+    .anime-grid {
+        grid-template-columns: 1fr;
+        padding: 0 1rem;
+    }
+}

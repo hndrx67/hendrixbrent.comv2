@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#000000">
+    <title>Anime List | Hendrix Brent</title>
+    <link rel="icon" type="image/png" href="webFAVICON2.png">
+    <link rel="stylesheet" href="static/mainstyle.css">
+    <link rel="stylesheet" href="static/css/anime/anime-list.css">
+    <link rel="stylesheet" href="static/css/modal-zoom.css">
+    <link rel="stylesheet" href="static/css/scrollbar.css">
+    <link rel="stylesheet" href="static/css/hidden-scroll.css">
+</head>
+<body>
+    <header id="header">
+        <div class="container header-content">    
+            <a href="index.html" class="logo">hendrixbrent.com</a>
+            <nav id="nav">
+                <ul>
+                    <li><a href="index.html" class="back-home">Back to Home</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-icon"></div>
+            <div class="loading-text">Loading...</div>
+        </div>
+    </div>
+
+    <section class="anime-section">
+        <div class="anime-container">
+            <h2 class="section-title">My Anime List</h2>
+            <center><h1 class="h2varlock">Top 3 Favorite Anime</h1></center>
+            <div class="anime-grid">
+                <!-- Highschool of the Dead -->
+                <div class="anime-card hotd">
+                    <div class="anime-img">
+                        <img src="static/images/anime/hotd.jpg" alt="Highschool of the Dead">
+                    </div>
+                    <div class="anime-content">
+                        <h3 class="anime-name"><b>#1 </b>Highschool of the Dead</h3>
+                        <p class="anime-description">A group of high school students caught in a zombie apocalypse. They must fight to survive while dealing with the collapse of society.</p>
+                        <div class="anime-stats">
+                            <div class="stat-item">
+                                <div class="stat-label">Episodes</div>
+                                <div class="stat-value">12</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-label">Year</div>
+                                <div class="stat-value">2010</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-label">Rating</div>
+                                <div class="stat-value">9.5/10</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-label">Genre</div>
+                                <div class="stat-value">Action, Horror</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Attack on Titan -->
+                <div class="anime-card aot">
+                    <div class="anime-img">
+                        <img src="static/images/anime/aot.jpg" alt="Attack on Titan">
+                    </div>
+                    <div class="anime-content">
+                        <h3 class="anime-name"><b>#2 </b>Attack on Titan</h3>
+                        <p class="anime-description">Humanity lives inside cities surrounded by walls due to the Titans, gigantic humanoid creatures who devour humans seemingly without reason.</p>
+                        <div class="anime-stats">
+                            <div class="stat-item">
+                                <div class="stat-label">Episodes</div>
+                                <div class="stat-value">87</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-label">Year</div>
+                                <div class="stat-value">2013-2023</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-label">Rating</div>
+                                <div class="stat-value">9/10</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-label">Genre</div>
+                                <div class="stat-value">Action, Drama</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Jujutsu Kaisen -->
+                <div class="anime-card jjk">
+                    <div class="anime-img">
+                        <img src="static/images/anime/jjk.jpg" alt="Jujutsu Kaisen">
+                    </div>
+                    <div class="anime-content">
+                        <h3 class="anime-name"><b>#3 </b>Jujutsu Kaisen</h3>
+                        <p class="anime-description">A boy swallows a cursed talisman - the finger of a demon - and becomes cursed himself. He enters a shaman school to be exorcised of the curse.</p>
+                        <div class="anime-stats">
+                            <div class="stat-item">
+                                <div class="stat-label">Episodes</div>
+                                <div class="stat-value">47</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-label">Year</div>
+                                <div class="stat-value">2020-2023</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-label">Rating</div>
+                                <div class="stat-value">8.5/10</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-label">Genre</div>
+                                <div class="stat-value">Action, Fantasy</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Anime Modals -->
+    <div class="anime-modal" id="hotd-modal">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <div class="modal-grid">
+                <div class="modal-img">
+                    <img src="static/images/anime/hotd.jpg" alt="Highschool of the Dead">
+                </div>
+                <div class="modal-info">
+                    <h2>Highschool of the Dead</h2>
+                    <div class="modal-description">
+                        <p>When a deadly virus outbreak causes the world to become infested with zombies, Takashi Komuro and several of his classmates at Fujimi High School try to survive the apocalypse.</p>
+                        <div class="modal-stats">
+                            <div class="stat-group">
+                                <h3>Details</h3>
+                                <div class="stat-item">
+                                    <span class="stat-label">Episodes:</span>
+                                    <span class="stat-value">12</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Year:</span>
+                                    <span class="stat-value">2010</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Rating:</span>
+                                    <span class="stat-value">9.5/10</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Genre:</span>
+                                    <span class="stat-value">Action, Horror, Ecchi</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="anime-modal" id="aot-modal">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <div class="modal-grid">
+                <div class="modal-img">
+                    <img src="static/images/anime/aot.jpg" alt="Attack on Titan">
+                </div>
+                <div class="modal-info">
+                    <h2>Attack on Titan</h2>
+                    <div class="modal-description">
+                        <p>Set in a world where humanity lives inside cities surrounded by enormous walls due to the Titans, gigantic humanoid creatures who devour humans seemingly without reason.</p>
+                        <div class="modal-stats">
+                            <div class="stat-group">
+                                <h3>Details</h3>
+                                <div class="stat-item">
+                                    <span class="stat-label">Episodes:</span>
+                                    <span class="stat-value">87</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Year:</span>
+                                    <span class="stat-value">2013-2023</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Rating:</span>
+                                    <span class="stat-value">9/10</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Genre:</span>
+                                    <span class="stat-value">Action, Drama, Fantasy</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="anime-modal" id="jjk-modal">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <div class="modal-grid">
+                <div class="modal-img">
+                    <img src="static/images/anime/jjk.jpg" alt="Jujutsu Kaisen">
+                </div>
+                <div class="modal-info">
+                    <h2>Jujutsu Kaisen</h2>
+                    <div class="modal-description">
+                        <p>A boy swallows a cursed talisman and becomes cursed himself. He enters a shaman school to be exorcised of the curse and learns to fight against cursed spirits.</p>
+                        <div class="modal-stats">
+                            <div class="stat-group">
+                                <h3>Details</h3>
+                                <div class="stat-item">
+                                    <span class="stat-label">Episodes:</span>
+                                    <span class="stat-value">47</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Year:</span>
+                                    <span class="stat-value">2020-2023</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Rating:</span>
+                                    <span class="stat-value">8.5/10</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Genre:</span>
+                                    <span class="stat-value">Action, Fantasy, Supernatural</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p class="copy">&copy; 2025 Hendrix Brent Fortu. All rights reserved. | Under the Domain of <a href="https://hndrx.org">HNDRX.ORG</a> | Powered
+                by Cloudflare, GitHub, and Vercel.
+            </p>
+        </div>
+    </footer>
+
+    <script src="static/loadingscreen.js"></script>
+    <script src="static/mainscript.js"></script>
+    <script src="static/js/anime/anime-modals.js"></script>
+    <script src="static/js/modal-zoom-handler.js"></script>
+    <script src="static/js/mobile-warning.js"></script>
+</body>
+</html>

@@ -84,6 +84,22 @@
             width: 100%;
         }
 
+        .anime-link {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: block;
+            width: 100%;
+        }
+
+        .anime-link:hover {
+            color: var(--accent);
+        }
+
+        .other-stats:hover .anime-link {
+            color: var(--accent);
+        }
+
         body {
             background-color: var(--bg-dark);
             color: var(--text-dark);
@@ -643,16 +659,18 @@
             transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             cursor: pointer;
-        }
-
-        body.light-mode .other-tag {
-            background-color: rgba(255, 107, 133, 0.1);
-            color: var(--accent-tertiary-light);
+            display: inline-block;
+            text-decoration: none;
         }
 
         .other-tag:hover {
             transform: translateY(-2px);
             box-shadow: 0 0 8px var(--accent);
+        }
+
+        body.light-mode .other-tag {
+            background-color: rgba(255, 107, 133, 0.1);
+            color: var(--accent-tertiary-light);
         }
 
         body.light-mode .other-tag:hover {
