@@ -60,16 +60,16 @@
     <section class="vtuber-section">
         <div class="vtuber-container">
             <h2 class="section-title">VTuber Wiki</h2>
-                         <center><h1 class="h2varlock">My Top 3 VTubers</h1></center>
+                         <center><h1 class="h2varlock">My Top VTubers</h1></center>
             <div class="vtuber-grid">
                 <!-- Gawr Gura -->
                 <div class="vtuber-card gura">
                     <div class="vtuber-img">
-                        <img src="static/images/vtubers/Gawr.Gura.full.4453810.webp" alt="Gawr Gura">
+                        <img src="static/images/vtubers/Gawr.Gura.full.4453810.webp" alt="Gawr Gura" id="gura">
                     </div>
                     <div class="vtuber-content">
                         <h3 class="vtuber-name"><b>#2 </b>Gawr Gura</h3>
-                        <p class="vtuber-description">A descendant of the Lost City of Atlantis, who swam to Earth while saying "It's so boring down there LOLOLOL!" She loves rhythm games and is now enjoying her life on land.</p>
+                        <p class="vtuber-description-gura" id="gura-segs">Thank You Gura! Our best Shark!</p>
                         <div class="vtuber-stats">
                             <div class="stat-item">
                                 <div class="stat-label">Debut Date</div>
@@ -81,11 +81,15 @@
                             </div>
                             <div class="stat-item">
                                 <div class="stat-label">Branch</div>
-                                <div class="stat-value">hololive EN</div>
+                                <div class="stat-value">Former HoloEN</div>
                             </div>
                             <div class="stat-item">
                                 <div class="stat-label">Birthday</div>
                                 <div class="stat-value">June 20</div>
+                            </div>
+                            <div class="stat-item stat-width">
+                                <div class="stat-label">Status</div>
+                                <div class="stat-value">Graduated (May 1, 2025)</div>
                             </div>
                         </div>
                     </div>
@@ -106,7 +110,7 @@
                             </div>
                             <div class="stat-item">
                                 <div class="stat-label">Subscribers</div>
-                                <div class="stat-value">2.5M+</div>
+                                <div class="stat-value" id="marine-segs">3.96M</div>
                             </div>
                             <div class="stat-item">
                                 <div class="stat-label">Branch</div>
@@ -115,6 +119,10 @@
                             <div class="stat-item">
                                 <div class="stat-label">Birthday</div>
                                 <div class="stat-value">July 30</div>
+                            </div>
+                            <div class="stat-item stat-width">
+                                <div class="stat-label">Status:</div>
+                                <div class="stat-value" id="marine-segs">Active</div>
                             </div>
                         </div>
                     </div>
@@ -135,7 +143,7 @@
                             </div>
                             <div class="stat-item">
                                 <div class="stat-label">Subscribers</div>
-                                <div class="stat-value">2.5M+</div>
+                                <div class="stat-value" id="mori-segs">2.5M+</div>
                             </div>
                             <div class="stat-item">
                                 <div class="stat-label">Branch</div>
@@ -144,6 +152,101 @@
                             <div class="stat-item">
                                 <div class="stat-label">Birthday</div>
                                 <div class="stat-value">April 4</div>
+                            </div>
+                            <div class="stat-item stat-width">
+                                <div class="stat-label">Status</div>  
+                                <div class="stat-value" id="mori-segs">Active</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ouro Kronii -->
+                <div class="vtuber-card kronii">
+                    <div class="vtuber-img">
+                        <img src="static/images/vtubers/Ouro.Kronii.full.3939037.webp" alt="Ouro Kronii">
+                    </div>
+                    <div class="vtuber-content">
+                        <h3 class="vtuber-name"><b>#4 </b>Ouro Kronii</h3>
+                        <p class="vtuber-description">The Warden of Time itself, a perfectionist who ensures the proper flow of time. Known for her exceptional organization skills, dry humor, and endearing gap moe personality.</p>
+                        <div class="vtuber-stats">
+                            <div class="stat-item">
+                                <div class="stat-label">Debut Date</div>
+                                <div class="stat-value">Aug 22, 2021</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-label">Subscribers</div>
+                                <div class="stat-value">1.1M+</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-label">Branch</div>
+                                <div class="stat-value">hololive EN</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-label">Birthday</div>
+                                <div class="stat-value">March 14</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ceres Fauna -->
+                <div class="vtuber-card fauna">
+                    <div class="vtuber-img">
+                        <img src="static/images/vtubers/Ceres.Fauna.full.4397398.webp" alt="Ceres Fauna" id="gura">
+                    </div>
+                    <div class="vtuber-content">
+                        <h3 class="vtuber-name"><b>#5 </b>Ceres Fauna</h3>
+                        <p class="vtuber-description-fauna">Thank you Mommy Fauna! Mother of nature fr fr</p>
+                        <div class="vtuber-stats">
+                            <div class="stat-item">
+                                <div class="stat-label">Debut Date</div>
+                                <div class="stat-value">Aug 22, 2021</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-label">Subscribers</div>
+                                <div class="stat-value">850K+</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-label">Branch</div>
+                                <div class="stat-value">Former holoEN</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-label">Birthday</div>
+                                <div class="stat-value">March 21</div>
+                            </div>
+                            <div class="stat-item stat-width">
+                                <div class="stat-label">Status</div>
+                                <div class="stat-value">Graduated (January 3, 2025)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Nerissa Ravencroft -->
+                <div class="vtuber-card nerissa">
+                    <div class="vtuber-img">
+                        <img src="static/images/vtubers/Nerissa.Ravencroft.full.4019882.webp" alt="Nerissa Ravencroft">
+                    </div>
+                    <div class="vtuber-content">
+                        <h3 class="vtuber-name"><b>#6 </b>Nerissa Ravencroft</h3>
+                        <p class="vtuber-description">A mysterious witch who streams from her magical library. Known for her enchanting singing voice and deep knowledge of arcane lore. Her streams often feature magical themed content and RPG games.</p>
+                        <div class="vtuber-stats">
+                            <div class="stat-item">
+                                <div class="stat-label">Debut Date</div>
+                                <div class="stat-value">Oct 31, 2024</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-label">Subscribers</div>
+                                <div class="stat-value">500K+</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-label">Branch</div>
+                                <div class="stat-value">Independent</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-label">Birthday</div>
+                                <div class="stat-value">October 13</div>
                             </div>
                         </div>
                     </div>
@@ -163,10 +266,15 @@
                 <div class="modal-info">
                     <h2>Gawr Gura</h2>
                     <div class="modal-description">
-                        <p>A descendant of the Lost City of Atlantis, who swam to Earth while saying "It's so boring down there LOLOLOL!" She loves rhythm games and is now enjoying her life on land.</p>
+                        <p>A descendant of the Lost City of Atlantis, who swam to Earth while saying "It's so boring down there LOLOLOL!" She loves rhythm games and is now enjoying her life on land.</p><br>
+                        <p><b>Thank you Gura!</b></p>
                         <div class="modal-stats">
                             <div class="stat-group">
                                 <h3>Statistics</h3>
+                                <div class="stat-item">
+                                    <span class="stat-label">Status:</span>
+                                    <span class="stat-value">Graduated (May 1, 2025)</span>
+                                </div>
                                 <div class="stat-item">
                                     <span class="stat-label">Debut Date:</span>
                                     <span class="stat-value">Sep 13, 2020</span>
@@ -177,7 +285,7 @@
                                 </div>
                                 <div class="stat-item">
                                     <span class="stat-label">Branch:</span>
-                                    <span class="stat-value">hololive EN</span>
+                                    <span class="stat-value">hololive EN(Former)</span>
                                 </div>
                                 <div class="stat-item">
                                     <span class="stat-label">Birthday:</span>
@@ -186,7 +294,7 @@
                             </div>
                         </div>
                         <div class="modal-buttons">
-                            <a href="https://www.pixiv.net/en/artworks/84453810" target="_blank" class="modal-btn image-source-btn">
+                            <a href="https://www.zerochan.net/4453810" target="_blank" class="modal-btn image-source-btn">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                     <path d="M8.5 10C9.32843 10 10 9.32843 10 8.5C10 7.67157 9.32843 7 8.5 7C7.67157 7 7 7.67157 7 8.5C7 9.32843 7.67157 10 8.5 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -229,7 +337,7 @@
                                 </div>
                                 <div class="stat-item">
                                     <span class="stat-label">Subscribers:</span>
-                                    <span class="stat-value">2.5M+</span>
+                                    <span class="stat-value" id="marine-segs">3.96</span>
                                 </div>
                                 <div class="stat-item">
                                     <span class="stat-label">Branch:</span>
@@ -285,7 +393,7 @@
                                 </div>
                                 <div class="stat-item">
                                     <span class="stat-label">Subscribers:</span>
-                                    <span class="stat-value">2.5M+</span>
+                                    <span class="stat-value" id="mori-segs">2.5M+</span>
                                 </div>
                                 <div class="stat-item">
                                     <span class="stat-label">Branch:</span>
@@ -309,6 +417,154 @@
                             <a href="#" class="modal-btn gallery-btn">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M3 6C3 4.89543 3.89543 4 5 4H19C20.1046 4 21 4.89543 21 6V18C21 19.1046 20.1046 20 19 20H5C3.89543 20 3 19.1046 3 18V6Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M3 14L7 10L13 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M13 16L17 12L21 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                View Gallery
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ouro Kronii Modal -->
+    <div class="vtuber-modal" id="kronii-modal">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <div class="modal-grid">
+                <div class="modal-img">
+                    <img src="static/images/vtubers/Ouro.Kronii.full.3939037.webp" alt="Ouro Kronii">
+                </div>
+                <div class="modal-info">
+                    <h2>Ouro Kronii</h2>
+                    <div class="modal-description">
+                        <p>The Warden of Time itself, a perfectionist who ensures the proper flow of time. Known for her exceptional organization skills, dry humor, and endearing gap moe personality. Despite her serious demeanor, she often shows her dorky side during streams.</p>
+                        <div class="modal-stats">
+                            <div class="stat-group">
+                                <h3>Statistics</h3>
+                                <div class="stat-item">
+                                    <span class="stat-label">Debut Date:</span>
+                                    <span class="stat-value">Aug 22, 2021</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Subscribers:</span>
+                                    <span class="stat-value">1.1M+</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Branch:</span>
+                                    <span class="stat-value">hololive EN</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Birthday:</span>
+                                    <span class="stat-value">March 14</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-buttons">
+                            <a href="#" target="_blank" class="modal-btn image-source-btn">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M3 14L7 10L13 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M13 16L17 12L21 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                View Gallery
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ceres Fauna Modal -->
+    <div class="vtuber-modal" id="fauna-modal">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <div class="modal-grid">
+                <div class="modal-img">
+                    <img src="static/images/vtubers/Ceres.Fauna.full.4397398.webp" alt="Ceres Fauna">
+                </div>
+                <div class="modal-info">
+                    <h2>Ceres Fauna</h2>
+                    <div class="modal-description">
+                        <p>Mother Nature herself, the Keeper of Nature. A warm and caring presence who loves gardening and ASMR. Her soothing voice and comfy streams bring peace to her listeners. She has a special connection with animals and plants, often sharing gardening tips with her viewers.</p>
+                        <div class="modal-stats">
+                            <div class="stat-group">
+                                <h3>Statistics</h3>
+                                <div class="stat-item">
+                                    <span class="stat-label">Status:</span>
+                                    <span class="stat-value">Graduated (January 3, 2025)</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Debut Date:</span>
+                                    <span class="stat-value">Aug 22, 2021</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Subscribers:</span>
+                                    <span class="stat-value">850K+</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Branch:</span>
+                                    <span class="stat-value">Former holoEN</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Birthday:</span>
+                                    <span class="stat-value">March 21</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-buttons">
+                            <a href="#" target="_blank" class="modal-btn image-source-btn">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M3 14L7 10L13 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M13 16L17 12L21 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                View Gallery
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Nerissa Ravencroft Modal -->
+    <div class="vtuber-modal" id="nerissa-modal">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <div class="modal-grid">
+                <div class="modal-img">
+                    <img src="static/images/vtubers/Nerissa.Ravencroft.full.4019882.webp" alt="Nerissa Ravencroft">
+                </div>
+                <div class="modal-info">
+                    <h2>Nerissa Ravencroft</h2>
+                    <div class="modal-description">
+                        <p>A mysterious witch who streams from her magical library. Known for her enchanting singing voice and deep knowledge of arcane lore. Her streams often feature magical themed content and RPG games. She has a particular fondness for old grimoires and teaching her viewers about mythological creatures.</p>
+                        <div class="modal-stats">
+                            <div class="stat-group">
+                                <h3>Statistics</h3>
+                                <div class="stat-item">
+                                    <span class="stat-label">Debut Date:</span>
+                                    <span class="stat-value">Oct 31, 2024</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Subscribers:</span>
+                                    <span class="stat-value">500K+</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Branch:</span>
+                                    <span class="stat-value">Independent</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Birthday:</span>
+                                    <span class="stat-value">October 13</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-buttons">
+                            <a href="#" target="_blank" class="modal-btn image-source-btn">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M3 14L7 10L13 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                     <path d="M13 16L17 12L21 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>

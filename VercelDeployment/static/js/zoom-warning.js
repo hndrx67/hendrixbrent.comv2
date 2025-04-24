@@ -4,6 +4,8 @@ class ZoomWarningHandler {
         if (this.isMobileDevice()) {
             return;
         }
+        this.warningTimeout = null;
+        this.lastZoom = this.getCurrentZoom();
         this.createWarningElement();
         this.checkZoom();
         this.setupEventListeners();
@@ -19,8 +21,8 @@ class ZoomWarningHandler {
         warningDiv.innerHTML = `
             <span class="zoom-warning-icon">⚠️</span>
         
-            <span>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;WARNING!<br>For the best viewing experience, please set your browser zoom to <b>80%</b><br>
-            Page won't work properly if ur zoom is <b>100%</b> or higher.<br>
+            <span>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;WARNING!<br>For the best viewing experience, please set your browser zoom to <b>80%</b>
+           
             </span>
             <button class="zoom-warning-close">&times;</button>
         `;
@@ -58,14 +60,21 @@ class ZoomWarningHandler {
         }
 
         const currentZoom = this.getCurrentZoom();
-        const hasBeenDismissed = sessionStorage.getItem('zoomWarningDismissed');
-
-        // Only show warning if zoom is greater than 80%
-        if (currentZoom > 80 && !hasBeenDismissed) {
+        
+        // Show warning if zoom is greater than 80% and has changed
+        if (currentZoom > 80 && currentZoom !== this.lastZoom) {
             this.showWarning();
-        } else {
-            this.hideWarning();
+            // Clear any existing timeout
+            if (this.warningTimeout) {
+                clearTimeout(this.warningTimeout);
+            }
+            // Set new timeout to hide warning after 2 seconds
+            this.warningTimeout = setTimeout(() => {
+                this.hideWarning();
+            }, 1500);
         }
+        
+        this.lastZoom = currentZoom;
     }
 
     showWarning() {

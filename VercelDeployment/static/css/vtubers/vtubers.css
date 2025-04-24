@@ -1,7 +1,12 @@
 :root {
-    --gura-accent: #3b83f6;
+    --gura-accent-og: #3b83f6 0 0 10px;
+    --gura-accent: #5c5c5c;
     --marine-accent: #ff0000;
     --mori-accent: #ff6b85;
+    --kronii-accent: #00c8ff;
+    --fauna-accent: #57bd6a;
+    --nerissa-accent: #9b59b6;
+    --glow-shadow: 0 0 10px;
 }
 
 .vtuber-section {
@@ -64,11 +69,30 @@ body.light-mode .vtuber-card {
 .gura .vtuber-name { color: var(--gura-accent); }
 .marine .vtuber-name { color: var(--marine-accent); }
 .mori .vtuber-name { color: var(--mori-accent); }
+.kronii .vtuber-name { color: var(--kronii-accent); }
+.fauna .vtuber-name { color: var(--gura-accent); }
+.nerissa .vtuber-name { color: var(--nerissa-accent); }
 
 .vtuber-description {
     line-height: 1.6;
     margin-bottom: 1.5rem;
     opacity: 0.9;
+}
+
+.vtuber-description-gura {
+    line-height: 1.6;
+    margin-bottom: 9rem;
+    opacity: 0.9;
+    color: var(--gura-accent-og);
+       
+}
+
+.vtuber-description-fauna{
+
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+    opacity: 0.9;
+    color: var(--gura-accent-og);
 }
 
 .vtuber-stats {
@@ -85,6 +109,11 @@ body.light-mode .vtuber-card {
     border-radius: 4px;
 }
 
+/* Special styling for status item in Gura's card */
+.stat-item + .stat-width {
+    grid-column: 1 / -1; /* Span full width */
+}
+
 .stat-label {
     font-size: 0.8rem;
     opacity: 0.7;
@@ -94,11 +123,33 @@ body.light-mode .vtuber-card {
 .stat-value {
     font-weight: 600;
     animation: fadeIn 0.5s ease-out forwards;
+    
+}
+
+#marine-segs{
+
+  
+    text-shadow: var(--glow-shadow) currentColor;
+}
+
+#mori-segs{
+
+  
+    text-shadow: var(--glow-shadow) currentColor;
+}
+
+#gura-segs{
+
+  
+    text-shadow: var(--gura-accent-og);
 }
 
 .gura .stat-value { color: var(--gura-accent); }
 .marine .stat-value { color: var(--marine-accent); }
 .mori .stat-value { color: var(--mori-accent); }
+.kronii .stat-value { color: var(--kronii-accent); }
+.fauna .stat-value { color: var(--gura-accent); }
+.nerissa .stat-value { color: var(--nerissa-accent); }
 
 /* Header Scroll Effect */
 header.scrolled {
@@ -186,6 +237,21 @@ body.light-mode .vtuber-modal .modal-content {
     border: 1px solid rgba(255, 0, 0, 0.2);
 }
 
+.kronii .modal-content {
+    background: linear-gradient(145deg, var(--card-dark), #1a2a35);
+    border: 1px solid rgba(0, 200, 255, 0.2);
+}
+
+.fauna .modal-content {
+    background: linear-gradient(145deg, var(--card-dark), #1a351a);
+    border: 1px solid rgba(87, 189, 106, 0.2);
+}
+
+.nerissa .modal-content {
+    background: linear-gradient(145deg, var(--card-dark), #2a1a35);
+    border: 1px solid rgba(155, 89, 182, 0.2);
+}
+
 .modal-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -233,6 +299,9 @@ body.light-mode .vtuber-modal .modal-content {
 .gura .modal-info h2 { color: var(--gura-accent); }
 .marine .modal-info h2 { color: var(--marine-accent); }
 .mori .modal-info h2 { color: var(--mori-accent); }
+.kronii .modal-info h2 { color: var(--kronii-accent); }
+.fauna .modal-info h2 { color: var(--fauna-accent); }
+.nerissa .modal-info h2 { color: var(--nerissa-accent); }
 
 .modal-description {
     line-height: 1.6;
@@ -256,6 +325,18 @@ body.light-mode .vtuber-modal .modal-content {
 
 .mori .modal-stats {
     background: rgba(255, 0, 0, 0.1);
+}
+
+.kronii .modal-stats {
+    background: rgba(0, 200, 255, 0.1);
+}
+
+.fauna .modal-stats {
+    background: rgba(87, 189, 106, 0.1);
+}
+
+.nerissa .modal-stats {
+    background: rgba(155, 89, 182, 0.1);
 }
 
 .stat-group h3 {
@@ -368,6 +449,27 @@ body.light-mode .vtuber-modal .modal-content {
     color: var(--card-dark);
 }
 
+.kronii .gallery-btn {
+    border: 2px solid var(--kronii-accent);
+    color: var(--kronii-accent);
+}
+
+.fauna .gallery-btn {
+    border: 2px solid var(--fauna-accent);
+    color: var(--fauna-accent);
+}
+
+.nerissa .gallery-btn {
+    border: 2px solid var(--nerissa-accent);
+    color: var(--nerissa-accent);
+}
+
+.kronii .gallery-btn:hover,
+.fauna .gallery-btn:hover,
+.nerissa .gallery-btn:hover {
+    color: var(--card-dark);
+}
+
 .gallery-btn::before {
     content: '';
     position: absolute;
@@ -399,6 +501,18 @@ body.light-mode .vtuber-modal .modal-content {
     background-color: var(--mori-accent);
 }
 
+.kronii .gallery-btn::before {
+    background-color: var(--kronii-accent);
+}
+
+.fauna .gallery-btn::before {
+    background-color: var(--fauna-accent);
+}
+
+.nerissa .gallery-btn::before {
+    background-color: var(--nerissa-accent);
+}
+
 /* Modal theme-specific stat labels */
 .gura .stat-label {
     color: var(--gura-accent);
@@ -410,6 +524,18 @@ body.light-mode .vtuber-modal .modal-content {
 
 .mori .stat-label {
     color: var(--mori-accent);
+}
+
+.kronii .stat-label {
+    color: var(--kronii-accent);
+}
+
+.fauna .stat-label {
+    color: var(--gura-accent);
+}
+
+.nerissa .stat-label {
+    color: var(--nerissa-accent);
 }
 
 .modal-btn:hover {
@@ -460,4 +586,10 @@ body.light-mode .vtuber-modal .modal-content {
         width: 18px;
         height: 18px;
     }
+}
+
+#gura{
+    filter: grayscale(100%);
+    transition: filter 0.3s ease;
+    
 }
