@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const heroContainer = document.querySelector('.hero-container');
       const heroImage = document.querySelector('.hero-image');
       
+      
       if (!heroContainer || !heroImage) return;
       
       // Get device width
@@ -12,21 +13,21 @@ document.addEventListener('DOMContentLoaded', function() {
       
       if (screenWidth <= 768) { // Tablet and mobile
         // Adjust image height for mobile
-        heroImage.style.height = '100%';
+        heroImage.style.height = '120%';
         heroImage.style.paddingBottom = '0';
         
         // Adjust container height for better mobile viewing
-        heroContainer.style.height = '50vh';
+        heroContainer.style.height = '20vh';
         
         // Adjust gradient height for mobile
         const gradient = document.querySelector('.hero-gradient');
         if (gradient) {
-          gradient.style.height = '100px';
+          gradient.style.height = '300px';
         }
       } else {
         // Reset to original values for desktop
-        heroImage.style.height = '200%';
-        heroImage.style.paddingBottom = '20vh';
+        heroImage.style.height = '250%';
+        heroImage.style.paddingBottom = '25vh';
         heroContainer.style.height = '70vh';
         
         const gradient = document.querySelector('.hero-gradient');
@@ -41,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
       
       // Use the custom vh property for height
       if (screenWidth <= 768) {
-        heroContainer.style.height = `calc(var(--vh, 1vh) * 50)`; // 50vh for mobile
+        heroContainer.style.height = `calc(var(--vh, 1vh) * 40)`; // 50vh for mobile
       } else {
         heroContainer.style.height = `calc(var(--vh, 1vh) * 70)`; // 70vh for desktop
       }
@@ -77,3 +78,5 @@ document.addEventListener('DOMContentLoaded', function() {
       lastTouchEnd = now;
     }, false);
   });
+
+ 

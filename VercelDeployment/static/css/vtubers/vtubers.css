@@ -691,7 +691,7 @@ body.light-mode .vtuber-modal .modal-content {
     left: 0;
     width: 100%;
     height: 200px; /* Height of the gradient fade effect */
-    background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, var(--gay-accent) 90%);
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, var(--gay-accent) 100%);
     /* Change rgba(0,0,0,1) to match your body background color */
   }
 
