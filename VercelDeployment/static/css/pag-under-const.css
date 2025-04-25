@@ -1,0 +1,33 @@
+.foot-container {
+   
+    left: 0;
+    right: 0;
+    padding: 0 2rem;
+    position: fixed;
+    width: 100%;
+    text-align: center;
+    bottom: 0;
+}
+
+.copy {
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+}
+.message {
+    text-align: center;
+}
+h1 {
+    color: #333;
+}
+p {
+    color: #666;
+}
