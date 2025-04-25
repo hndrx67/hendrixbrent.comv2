@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Run on orientation change (important for mobile)
     window.addEventListener('orientationchange', function() {
       // Small delay to ensure the browser has completed the orientation change
-      setTimeout(optimizeHeroForMobile, 100);
+      setTimeout(optimizeHeroForMobile, 1);
     });
     
     // Add viewport meta tag if not present
