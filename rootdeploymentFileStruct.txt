@@ -1,0 +1,101 @@
+📄 .DS_Store
+📄 404.html
+📄 8cc4d944339c489553a0625aa502aeb4.jpg
+📄 LICENSE
+📄 ON-HOVER-marinekeylogger.jpg
+📄 ON-HOVER-marinekeylogger.psd
+📄 ON-HOVER-marinekeyloggerv2.jpg
+📄 README.md
+📄 a-anime-list-hndrx.html
+📄 flaskwebdeploy.py
+📄 ganyuwebsite-peekerhover1.png
+📄 hendrix_pfp1.jpg
+📄 index.html
+📄 landing-page.png
+📄 on-hover-projectsBG-THISPROJIS.jpg
+📄 on-hover-projectsBG-construct.jpg
+📄 on-hover-projectsBG1.jpg
+📁 otherindexes/
+    📄 index3.html
+    📄 index4.html
+    📄 index5.html
+📄 page-under-const.html
+📄 posts.html
+📄 projects.html
+📄 ryoeatinggrass1.gif
+📄 sitemap.xml
+📄 star.png
+📁 static/
+    📄 .DS_Store
+    📁 css/
+        📁 anime/
+            📄 anime-list.css
+        📄 blood-theme.css
+        📄 dev-console.css
+        📄 easter-egg.css
+        📄 error404.css
+        📄 games.css
+        📄 global-tag-add-hover.css
+        📄 hidden-scroll.css
+        📄 modal-zoom.css
+        📄 pag-under-const.css
+        📄 pfp-modal.css
+        📄 scrollbar.css
+        📄 strip-theme.css
+        📄 tech-cube.css
+        📁 vtubers/
+            📄 vtubers.css
+        📄 weeknd-hover.css
+    📁 icons/
+        📄 gfithub_icon_blk.png
+        📄 gfithub_icon_blk.svg
+    📁 images/
+        📄 .DS_Store
+        📄 Anna.Yanami1.jpg
+        📄 Ryo.Yamada.1.jpg
+        📄 houshoumarine1.jpg
+        📄 theweeknd.jpeg
+        📄 theweeknd2.jpg
+        📁 vtubers/
+            📄 .DS_Store
+            📄 Ceres.Fauna.full.4397398.webp
+            📄 Gawr.Gura.full.3934121.webp
+            📄 Gawr.Gura.full.4453810.jpg
+            📄 Gawr.Gura.full.4453810.webp
+            📄 Gawr.Gura.full.4453813.jpg
+            📄 Gawr.Gura.full.4470206.webp
+            📄 Houshou.Marine.full.3736744.jpg
+            📄 Houshou.Marine.full.3736744.webp
+            📄 Mori.Calliope.full.4012402.png
+            📄 Mori.Calliope.full.4012402.webp
+            📄 Nerissa.Ravencroft.full.4019882.webp
+            📄 Ouro.Kronii.full.3939037.webp
+            📄 rinpenrose.jpg
+    📁 js/
+        📁 anime/
+            📄 anime-modals.js
+        📄 blood-theme.js
+        📄 dev-console.js
+        📄 easter-egg.js
+        📄 games.js
+        📄 mobile-warning.js
+        📄 modal-zoom-handler.js
+        📄 page-under-const.js
+        📄 pfp-modal.js
+        📄 strip-theme.js
+        📄 tech-cube.js
+        📄 vtuber-modals.js
+        📄 zoom-warning.js
+    📄 loadingscreen.js
+    📄 mainscript.js
+    📄 mainstyle.css
+    📄 mobile-notif.js
+    📄 posts-script.js
+    📄 posts-style.css
+    📄 projects-script.js
+    📄 projects-style.css
+    📁 vtubers/
+        📄 .DS_Store
+📄 static-assets-upload9728839762118119307.webp
+📄 vtubers-wiki.html
+📄 webFAVICON2.png

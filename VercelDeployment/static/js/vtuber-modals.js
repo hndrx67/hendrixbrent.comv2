@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     vtuberCards.forEach(card => {
         card.addEventListener('click', () => {
             const vtuberClass = Array.from(card.classList)
-                .find(className => ['gura', 'marine', 'mori', 'kronii', 'fauna', 'nerissa'].includes(className));
+                .find(className => ['gura', 'marine', 'mori', 'kronii', 'fauna', 'nerissa','rin'].includes(className));
             const modal = document.getElementById(`${vtuberClass}-modal`);
             
             if (modal) {
