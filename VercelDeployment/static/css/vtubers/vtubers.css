@@ -90,7 +90,7 @@ body.light-mode .vtuber-card {
 .vtuber-description-fauna{
 
     line-height: 1.6;
-    margin-bottom: 2.5rem;
+    margin-bottom: 9rem;
     opacity: 0.9;
     color: var(--gura-accent-og);
 }
@@ -143,6 +143,18 @@ body.light-mode .vtuber-card {
   
     text-shadow: var(--gura-accent-og);
 }
+
+#kronii-segs{
+
+  
+    text-shadow: var(--glow-shadow) currentColor;
+}
+#nerissa-segs{
+
+  
+    text-shadow: var(--glow-shadow) currentColor;
+}
+
 
 .gura .stat-value { color: var(--gura-accent); }
 .marine .stat-value { color: var(--marine-accent); }

@@ -1495,8 +1495,21 @@
             }
         }
 
+/*
+        .cta-btn:hover {
+
+            color : var(--bg-dark) !important;
+            text-shadow: 0 0 2px rgba(0, 0, 0, 0.5) !important;
+            box-shadow: 0 0 5px var(--accent-light-alt),
+                            0 0 10px var(--accent-light-alt),
+                            0 0 15px var(--accent-light-alt) !important;
+
+            
 
 
+        }
+
+*/
 
 
 
