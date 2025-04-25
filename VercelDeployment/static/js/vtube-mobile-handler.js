@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Adjust gradient height for mobile
         const gradient = document.querySelector('.hero-gradient');
         if (gradient) {
-          gradient.style.height = '300px';
+          gradient.style.height = '400px';
         }
       } else {
         // Reset to original values for desktop
