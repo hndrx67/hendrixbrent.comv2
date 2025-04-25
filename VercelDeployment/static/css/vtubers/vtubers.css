@@ -8,6 +8,7 @@
     --nerissa-accent: #9b59b6;
     --glow-shadow: 0 0 10px;
     --rin-accent: #cc00ff;
+    --gay-accent: #0E0E10;
 
 }
 
@@ -609,7 +610,7 @@ body.light-mode .vtuber-modal .modal-content {
     }
 }
 
-/* Responsive Modal */
+/* Responsive VModal */
 @media (max-width: 768px) {
     .modal-grid {
         grid-template-columns: 1fr;
@@ -640,3 +641,99 @@ body.light-mode .vtuber-modal .modal-content {
     transition: filter 0.3s ease;
     
 }
+
+#holoENCouncil-ONHOVER{
+    filter: grayscale(100%);
+    transition: filter 0.3s ease;
+}
+
+#holoENCouncil-ONHOVER:hover{
+    filter: grayscale(0%);
+    transition: filter 0.3s ease;
+
+
+
+
+}
+
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+  }
+  
+
+  /* Hero section styles */
+  .hero-container {
+    position: relative;
+    width: 100%;
+    height: 70vh; /* Adjust height as needed */
+    overflow: hidden;
+  }
+  
+  .hero-image {
+    width: 100%;
+    height: 200%;
+    object-fit: cover; /* This ensures the image covers the container */
+    padding-bottom: 20vh;
+  }
+  
+  /* Gradient overlay for fade effect */
+  .hero-gradient {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 200px; /* Height of the gradient fade effect */
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, var(--gay-accent) 90%);
+    /* Change rgba(0,0,0,1) to match your body background color */
+  }
+
+  /* Top gradient overlay for fade effect */
+  .hero-gradient-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: px; /* Height of the top gradient fade effect */
+    background: linear-gradient(to top, var(--gay-accent) 0%, var(--gay-accent) 90%);
+    /* You can adjust the opacity (0.7) to control the darkness */
+  }
+  
+  /* Hero content */
+  .hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    z-index: 10;
+    width: 80%;
+  }
+  
+  .hero-title {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  }
+  
+  .hero-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+  }
+  
+  /* Main content section */
+  .main-content {
+    padding: 3rem;
+    background-color: black; /* Match this with the bottom color of your gradient */
+    color: white;
+    min-height: 50vh;
+  }
