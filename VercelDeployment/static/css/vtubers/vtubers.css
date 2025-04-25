@@ -9,6 +9,7 @@
     --glow-shadow: 0 0 10px;
     --rin-accent: #cc00ff;
     --gay-accent: #0E0E10;
+    --glow-shadow2: #ffffff 0 0 7px;
 
 }
 
@@ -133,6 +134,11 @@ body.light-mode .vtuber-card {
 #marine-segs{
 
   
+    text-shadow: var(--glow-shadow) currentColor;
+}
+
+#marine-segs1{
+
     text-shadow: var(--glow-shadow) currentColor;
 }
 
