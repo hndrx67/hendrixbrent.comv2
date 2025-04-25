@@ -737,3 +737,15 @@ body.light-mode .vtuber-modal .modal-content {
     color: white;
     min-height: 50vh;
   }
+
+  /* fcking media quesrys */
+
+@media screen and (max-width: 768px) {
+    .hero-title {
+      font-size: 2rem;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.2rem;
+    }
+  }
