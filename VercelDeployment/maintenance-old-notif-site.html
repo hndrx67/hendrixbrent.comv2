@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maintenance</title>
+    <style>
+        /* Global Styles */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'MS Sans Serif', 'Segoe UI', Tahoma, sans-serif;
+            background-color: #008080;
+            overflow: hidden;
+            user-select: none;
+        }
+
+        /* Desktop Icons */
+        .desktop {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .desktop-icon {
+            width: 75px;
+            height: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            margin: 15px;
+            cursor: pointer;
+            color: white;
+            text-shadow: 1px 1px 1px rgba(0,0,0,0.7);
+        }
+
+        .desktop-icon img {
+            width: 32px;
+            height: 32px;
+            margin-bottom: 5px;
+        }
+
+        .desktop-icon span {
+            text-align: center;
+            font-size: 12px;
+        }
+
+        /* Windows 95 Window */
+        .window {
+            position: absolute;
+            width: 500px;
+            background-color: #c0c0c0;
+            border: 2px solid #ffffff;
+            border-right-color: #5e5e5e;
+            border-bottom-color: #5e5e5e;
+            box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #dfdfdf;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 100;
+        }
+
+        .window-title {
+            background: linear-gradient(to right, #000080, #1084d0);
+            color: white;
+            font-weight: bold;
+            padding: 3px 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: move;
+        }
+
+        .window-title-text {
+            display: flex;
+            align-items: center;
+        }
+
+        .title-icon {
+            width: 16px;
+            height: 16px;
+            margin-right: 5px;
+        }
+
+        .window-buttons {
+            display: flex;
+        }
+
+        .window-button {
+            width: 16px;
+            height: 14px;
+            background-color: #c0c0c0;
+            border: 1px solid #ffffff;
+            border-right-color: #5e5e5e;
+            border-bottom-color: #5e5e5e;
+            box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #dfdfdf;
+            margin-left: 2px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 9px;
+            cursor: pointer;
+        }
+
+        .window-button:active {
+            border: 1px solid #5e5e5e;
+            border-right-color: #ffffff;
+            border-bottom-color: #ffffff;
+        }
+
+        .window-content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .image-placeholder {
+            width: 250px;
+            height: 200px;
+            margin-bottom: 20px;
+            border: 1px solid #5e5e5e;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+            object-fit: cover;
+
+        }
+
+        .maintenance-text {
+            margin: 15px 0;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .status-text {
+            margin-bottom: 15px;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        /* Updated Windows 95 Segmented Progress Bar */
+        .progress-container {
+            width: 90%;
+            height: 20px;
+            margin: 10px 0;
+            border: 2px solid #ffffff;
+            border-right-color: #5e5e5e;
+            border-bottom-color: #5e5e5e;
+            box-shadow: inset -1px -1px #dfdfdf, inset 1px 1px #0a0a0a;
+            padding: 1px;
+            background-color: #ffffff;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .segmented-progress {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            position: relative;
+        }
+
+        .progress-segment {
+            width: 10px;
+            height: 100%;
+            background-color: #000080;
+            margin-right: 3px;
+            opacity: 0;
+        }
+
+        /* File transfer details */
+        .transfer-details {
+            display: flex;
+            justify-content: space-between;
+            width: 90%;
+            margin-top: 5px;
+            font-size: 12px;
+        }
+
+        .transfer-file {
+            font-weight: bold;
+        }
+
+        .transfer-size {
+            color: #444;
+        }
+
+        /* Windows 95 Buttons */
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .win95-button {
+            padding: 5px 15px;
+            background-color: #c0c0c0;
+            border: 2px solid #ffffff;
+            border-right-color: #5e5e5e;
+            border-bottom-color: #5e5e5e;
+            box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #dfdfdf;
+            font-family: 'MS Sans Serif', sans-serif;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .win95-button:active {
+            border: 2px solid #5e5e5e;
+            border-right-color: #ffffff;
+            border-bottom-color: #ffffff;
+        }
+
+        /* Windows 95 Taskbar */
+        .taskbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 30px;
+            background-color: #c0c0c0;
+            border-top: 2px solid #dfdfdf;
+            display: flex;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .start-button {
+            display: flex;
+            align-items: center;
+            padding: 2px 5px;
+            margin-left: 2px;
+            background-color: #c0c0c0;
+            border: 2px solid #ffffff;
+            border-right-color: #5e5e5e;
+            border-bottom-color: #5e5e5e;
+            box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #dfdfdf;
+            font-weight: bold;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .start-button img {
+            width: 50px;
+            height: 16px;
+            margin-right: 5px;
+        }
+
+        .taskbar-divider {
+            width: 1px;
+            height: 22px;
+            background-color: #5e5e5e;
+            margin: 0 5px;
+        }
+
+        .taskbar-time {
+            margin-left: auto;
+            margin-right: 10px;
+            padding: 2px 5px;
+            background-color: #c0c0c0;
+            border: 2px solid #5e5e5e;
+            border-right-color: #ffffff;
+            border-bottom-color: #ffffff;
+            box-shadow: inset -1px -1px #dfdfdf, inset 1px 1px #0a0a0a;
+            font-size: 12px;
+        }
+
+        .task-item {
+            height: 22px;
+            padding: 0 8px;
+            display: flex;
+            align-items: center;
+            background-color: #c0c0c0;
+            border: 2px solid #ffffff;
+            border-right-color: #5e5e5e;
+            border-bottom-color: #5e5e5e;
+            box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #dfdfdf;
+            margin-left: 3px;
+            font-size: 12px;
+        }
+
+        .task-item.active {
+            background-color: #dfdfdf;
+            border: 2px solid #5e5e5e;
+            border-right-color: #ffffff;
+            border-bottom-color: #ffffff;
+        }
+
+        .task-item img {
+            width: 16px;
+            height: 16px;
+            margin-right: 5px;
+        }
+
+        /* Error Window */
+        .error-window {
+            position: absolute;
+            width: 300px;
+            background-color: #c0c0c0;
+            border: 2px solid #ffffff;
+            border-right-color: #5e5e5e;
+            border-bottom-color: #5e5e5e;
+            box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #dfdfdf;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 200;
+            display: none;
+        }
+
+        .error-content {
+            padding: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .error-icon {
+            width: 32px;
+            height: 32px;
+            margin-right: 15px;
+        }
+
+        .error-message {
+            font-size: 12px;
+        }
+
+        .error-buttons {
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Modal Overlay */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.3);
+            z-index: 150;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Desktop Background -->
+    <div class="desktop">
+        <!-- Desktop Icons -->
+        <div class="desktop-icon" onclick="showErrorWindow()">
+            <img src="/api/placeholder/32/32" alt="My Computer">
+            <span>My Computer</span>
+        </div>
+        <div class="desktop-icon">
+            <img src="/api/placeholder/32/32" alt="Network">
+            <span>Network</span>
+        </div>
+        <div class="desktop-icon">
+            <img src="/api/placeholder/32/32" alt="Recycle Bin">
+            <span>Recycle Bin</span>
+        </div>
+    </div>
+
+    <!-- Main Window -->
+    <div class="window" id="mainWindow">
+        <div class="window-title" id="windowTitle">
+            <div class="window-title-text">
+                <img class="title-icon" src="/api/placeholder/16/16" alt="Maintenance">
+                System Maintenance
+            </div>
+            <div class="window-buttons">
+                <div class="window-button" onclick="minimizeWindow()">_</div>
+                <div class="window-button" onclick="maximizeWindow()">□</div>
+                <div class="window-button" onclick="closeWindow()">✕</div>
+            </div>
+        </div>
+        <div class="window-content">
+            <div>
+                <img  class="image-placeholder" src="static/images/__gawr_gura_and_gawr_gura_hololive_and_1_more_drawn_by_doktahzaki__3e2ec28c3666bf63387abf17cabed57b.jpg" alt="Maintenance Image">
+            </div>
+            <div class="maintenance-text">ABSOLUTE MAINTENANCE!</div>
+            <div class="status-text">Please wait while we update our systems.<br>This process may take 10 DECADES</div>
+            
+            <div class="progress-container">
+                <div class="segmented-progress" id="segmentedProgress">
+                    <!-- Segments will be created by JavaScript -->
+                </div>
+            </div>
+
+            <div class="transfer-details">
+                <div class="transfer-file" id="currentFile">Copying: system32.dll</div>
+                <div class="transfer-size" id="transferSize">2.4 MB of 15.8 MB</div>
+            </div>
+            
+            <div class="status-text" id="progressText">Time remaining: Calculating...</div>
+            
+            <div class="button-group">
+                <button class="win95-button" onclick="cancelMaintenance()">Cancel</button>
+                <button class="win95-button" onclick="pauseMaintenance(this)">Pause</button>
+                <button class="win95-button" onclick="showDetails()">Details</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Error Window -->
+    <div class="error-window" id="errorWindow">
+        <div class="window-title">
+            <div class="window-title-text">
+                <img class="title-icon" src="/api/placeholder/16/16" alt="Error">
+                System Error
+            </div>
+            <div class="window-buttons">
+                <div class="window-button" onclick="closeErrorWindow()">✕</div>
+            </div>
+        </div>
+        <div class="error-content">
+            <img class="error-icon" src="/api/placeholder/32/32" alt="Error Icon">
+            <div class="error-message">
+                Cannot access system files. The maintenance process requires administrator privileges.
+            </div>
+        </div>
+        <div class="error-buttons">
+            <button class="win95-button" onclick="closeErrorWindow()">OK</button>
+        </div>
+    </div>
+
+    <!-- Modal Overlay -->
+    <div class="modal-overlay" id="modalOverlay"></div>
+
+    <!-- Windows 95 Taskbar -->
+    <div class="taskbar">
+        <div class="start-button">
+            <img src="static/icons/win95startupLogo.jpg" alt="Start">
+            
+        </div>
+        <div class="taskbar-divider"></div>
+        <div class="task-item active">
+            <img src="/api/placeholder/16/16" alt="Maintenance">
+            System Maintenance
+        </div>
+        <div class="taskbar-time" id="taskbarTime">12:00 PM</div>
+    </div>
+
+    <script>
+        // Make window draggable
+        const mainWindow = document.getElementById("mainWindow");
+        const windowTitle = document.getElementById("windowTitle");
+        
+        let isDragging = false;
+        let offsetX, offsetY;
+
+        windowTitle.addEventListener("mousedown", function(e) {
+            isDragging = true;
+            offsetX = e.clientX - mainWindow.getBoundingClientRect().left;
+            offsetY = e.clientY - mainWindow.getBoundingClientRect().top;
+        });
+
+        document.addEventListener("mousemove", function(e) {
+            if (isDragging) {
+                mainWindow.style.left = (e.clientX - offsetX) + "px";
+                mainWindow.style.top = (e.clientY - offsetY) + "px";
+                mainWindow.style.transform = "none";
+            }
+        });
+
+        document.addEventListener("mouseup", function() {
+            isDragging = false;
+        });
+
+        // Segmented Progress Bar
+        const segmentedProgress = document.getElementById("segmentedProgress");
+        const progressText = document.getElementById("progressText");
+        const currentFile = document.getElementById("currentFile");
+        const transferSize = document.getElementById("transferSize");
+        
+        let isPaused = false;
+        let totalSegments = 25; // Number of segments in the progress bar
+        let segments = [];
+        let currentSegment = 0;
+        let timeCounter = 0;
+        
+        // Create segments
+        function createSegments() {
+            for (let i = 0; i < totalSegments; i++) {
+                const segment = document.createElement("div");
+                segment.className = "progress-segment";
+                segmentedProgress.appendChild(segment);
+                segments.push(segment);
+            }
+        }
+
+        // Files to show in the transfer
+        const files = [
+            { name: "system32.dll", size: "2.4 MB" },
+            { name: "kernel.sys", size: "1.8 MB" },
+            { name: "explorer.exe", size: "3.2 MB" },
+            { name: "regedit.exe", size: "0.9 MB" },
+            { name: "msconfig.dll", size: "1.5 MB" },
+            { name: "user32.dll", size: "2.1 MB" },
+            { name: "wininet.dll", size: "1.3 MB" },
+            { name: "services.exe", size: "0.7 MB" }
+        ];
+        let currentFileIndex = 0;
+
+        // Update file info
+        function updateFileInfo() {
+            currentFileIndex = (currentFileIndex + 1) % files.length;
+            const file = files[currentFileIndex];
+            
+            // Calculate a random completed size that's less than the total
+            const totalSize = parseFloat(file.size);
+            const completedSize = (Math.random() * 0.8 * totalSize).toFixed(1);
+            
+            currentFile.textContent = `Copying: ${file.name}`;
+            transferSize.textContent = `${completedSize} MB of ${file.size}`;
+        }
+
+        // Animate segments
+        function animateSegments() {
+            if (isPaused) return;
+            
+            // Make the current segment visible
+            segments[currentSegment].style.opacity = "1";
+            
+            // Move to the next segment
+            currentSegment = (currentSegment + 1) % totalSegments;
+            
+            // If we've gone through all segments, reset them
+            if (currentSegment === 0) {
+                // Wait a bit before resetting
+                setTimeout(() => {
+                    segments.forEach((segment, index) => {
+                        // Stagger the fade out for a smoother effect
+                        setTimeout(() => {
+                            segment.style.opacity = "0";
+                        }, index * 20);
+                    });
+                    updateFileInfo();
+                }, 300);
+            }
+            
+            // Update the time remaining
+            timeCounter++;
+            if (timeCounter % 10 === 0) {
+                const minutes = Math.floor(Math.random() * 30) + 10;
+                const seconds = Math.floor(Math.random() * 60);
+                progressText.textContent = `Time remaining: About ${minutes} minutes, ${seconds} seconds`;
+            }
+        }
+
+        // Initialize the progress bar
+        function initProgressBar() {
+            createSegments();
+            
+            // Start animation
+            setInterval(animateSegments, 150);
+            
+            // Initial file info
+            updateFileInfo();
+        }
+
+        // Start when page loads
+        window.onload = function() {
+            initProgressBar();
+            updateTime();
+            setInterval(updateTime, 60000); // Update time every minute
+        }
+
+        // Window control functions
+        function minimizeWindow() {
+            
+            showErrorWindow();  
+            
+        }
+        
+
+        function maximizeWindow() {
+            if (mainWindow.style.width === "100%") {
+                mainWindow.style.width = "500px";
+                mainWindow.style.height = "auto";
+                mainWindow.style.top = "50%";
+                mainWindow.style.left = "50%";
+                mainWindow.style.transform = "translate(-50%, -50%)";
+            } else {
+                mainWindow.style.width = "100%";
+                mainWindow.style.height = "calc(100% - 30px)";
+                mainWindow.style.top = "0";
+                mainWindow.style.left = "0";
+                mainWindow.style.transform = "none";
+            }
+        }
+
+        function closeWindow() {
+            showErrorWindow();
+        }
+
+        // Maintenance control functions
+        function pauseMaintenance(button) {
+            isPaused = !isPaused;
+            button.innerText = isPaused ? "Resume" : "Pause";
+            
+            if (isPaused) {
+                progressText.textContent = "Transfer paused";
+            } else {
+                progressText.textContent = "Resuming...";
+                setTimeout(() => {
+                    const minutes = Math.floor(Math.random() * 30) + 10;
+                    const seconds = Math.floor(Math.random() * 60);
+                    progressText.textContent = `Time remaining: About ${minutes} minutes, ${seconds} seconds`;
+                }, 1000);
+            }
+        }
+
+        function cancelMaintenance() {
+            showErrorWindow();
+        }
+
+        function showDetails() {
+            alert("File Transfer Details:\n\n" + 
+                  "- Copying system files to temporary location\n" + 
+                  "- Backing up registry\n" + 
+                  "- Installing updated components\n" + 
+                  "- Updating system configuration\n" + 
+                  "- Preparing for system restart");
+        }
+
+        // Error window functions
+        function showErrorWindow() {
+            document.getElementById("errorWindow").style.display = "block";
+            document.getElementById("modalOverlay").style.display = "block";
+        }
+
+        function closeErrorWindow() {
+            document.getElementById("errorWindow").style.display = "none";
+            document.getElementById("modalOverlay").style.display = "none";
+        }
+
+        // Update taskbar time
+        function updateTime() {
+            const now = new Date();
+            let hours = now.getHours();
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            
+            hours = hours % 12;
+            hours = hours ? hours : 12; // Convert 0 to 12
+            
+            document.getElementById("taskbarTime").innerText = hours + ":" + minutes + " " + ampm;
+        }
+    </script>
+
+    <script src="static/js/maintenance-old.js"></script>
+</body>
+</html>

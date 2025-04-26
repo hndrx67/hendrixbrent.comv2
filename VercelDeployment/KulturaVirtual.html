@@ -245,7 +245,7 @@
             position: absolute;
             width: 100%;
             height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='100' cy='100' r='70' fill='%23324b8c'/%3E%3Ccircle cx='100' cy='100' r='40' fill='%23fffef7'/%3E%3Ccircle cx='100' cy='100' r='20' fill='%23f9b05f'/%3E%3C/svg%3E");
+            background-image: url("");
             background-size: contain;
             z-index: 1;
             animation: pulse 2s infinite alternate;
@@ -282,7 +282,7 @@
             width: 300px;
             height: 400px;
             z-index: 1;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 400'%3E%3Crect width='300' height='400' fill='none'/%3E%3Cellipse cx='150' cy='320' rx='70' ry='20' fill='rgba(0,0,0,0.1)'/%3E%3Cpath d='M150,300 L150,100 Q130,110 110,100 Q100,90 110,80 Q130,70 150,80 Q170,70 190,80 Q200,90 190,100 Q170,110 150,100' fill='%23f9b05f'/%3E%3Ccircle cx='150' cy='70' r='40' fill='%23f9b05f'/%3E%3Cpath d='M130,65 Q135,60 140,65 M160,65 Q165,60 170,65' stroke='%23324b8c' stroke-width='2' fill='none'/%3E%3Cpath d='M145,85 Q150,90 155,85' stroke='%23324b8c' stroke-width='2' fill='none'/%3E%3Cpath d='M140,200 Q150,190 160,200 L160,240 Q150,250 140,240 Z' fill='%23f5f5f5'/%3E%3C/svg%3E");
+            background-image: url("");
             animation: vtuberWave 3s infinite alternate ease-in-out;
         }
         
@@ -297,7 +297,7 @@
             left: -100px;
             width: 100px;
             height: 50px;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 50'%3E%3Crect x='10' y='20' width='80' height='20' fill='%23f9b05f'/%3E%3Crect x='0' y='30' width='100' height='10' fill='%23324b8c'/%3E%3Ccircle cx='20' cy='45' r='5' fill='%23333'/%3E%3Ccircle cx='80' cy='45' r='5' fill='%23333'/%3E%3C/svg%3E");
+            background-image: url("E");
             animation: driveBy 15s linear infinite;
         }
         
@@ -1243,6 +1243,13 @@
             .date-day {
                 font-size: 1.4rem;
             }
+
+            .hero-image {
+    width: 100%;
+    height: 200%;
+    object-fit: cover; /* This ensures the image covers the container */
+    padding-bottom: 20vh;
+  }
         }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
@@ -1276,9 +1283,9 @@
 
     <!-- Hero Section -->
     <section id="hero">
-        <div class="pattern-overlay capiz-pattern"></div>
-        
-        <div class="container hero-content">
+      
+        <img src="static/images/485405944_9186668838128997_985489640448316727_n.jpg" alt="holoEN-Council" class="hero-image" >
+
             <div class="hero-logo">
                 <!-- Logo animation happens via CSS -->
             </div>
@@ -1312,7 +1319,7 @@
                         <div class="flower"></div>
                         <div class="flower"></div>
                         <p>"We created Kultura Virtual with the dream of seeing Filipino stories take center stage in the VTuber world. Each of our talents carries a piece of our beautiful culture with them into the virtual realm, sharing our heritage, humor, and heart with the world."</p>
-                        <div class="founder-signature">- The Founder</div>
+                        <div class="founder-signature">- CEO - Hendrix Mali T. Bog</div>
                     </div>
                 </div>
             </div>
