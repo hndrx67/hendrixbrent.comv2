@@ -1,0 +1,1939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kultura Virtual | Filipino VTuber Agency</title>
+    <style>
+        /* Base Styles */
+        :root {
+            --sampaguita-white: #fffef7;
+            --sunset-gold: #f9b05f;
+            --indigo-blue: #324b8c;
+            --bamboo-green: #177245;
+            --soft-pink: #ffb6c1;
+            --dark-text: #333333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background-color: var(--sampaguita-white);
+            color: var(--dark-text);
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--indigo-blue);
+            transition: all 0.3s ease;
+        }
+        
+        a:hover {
+            color: var(--sunset-gold);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            margin: 10px 5px;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(45deg, var(--indigo-blue), #5f74b8);
+            color: white;
+            box-shadow: 0 4px 15px rgba(50, 75, 140, 0.3);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(45deg, var(--sunset-gold), #ffd280);
+            color: var(--dark-text);
+            box-shadow: 0 4px 15px rgba(249, 176, 95, 0.3);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--indigo-blue);
+            color: var(--indigo-blue);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        section {
+            padding: 80px 0;
+            position: relative;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--indigo-blue);
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: "";
+            display: block;
+            width: 70%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--sunset-gold), transparent);
+            margin: 10px auto 0;
+        }
+        
+        /* Pattern Overlays */
+        .pattern-overlay {
+            position: absolute;
+            opacity: 0.05;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .capiz-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cpath d='M0 0h60v60H0z'/%3E%3Cpath d='M30 30h30v30H30zM0 30h30v30H0zM30 0h30v30H30zM0 0h30v30H0z' stroke='%23000' stroke-width='1'/%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+        .baybayin-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30,50 C20,40 50,20 70,35 C90,50 70,80 50,70 C30,60 40,60 30,50 Z' stroke='%23324b8c' fill='none' stroke-width='1'/%3E%3C/svg%3E");
+            background-size: 150px;
+        }
+        
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        header.scrolled {
+            background-color: rgba(255, 254, 247, 0.95);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            padding: 10px 0;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            height: 50px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 100%;
+            transition: all 0.3s ease;
+        }
+        
+        .logo span {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--indigo-blue);
+            margin-left: 10px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            color: var(--indigo-blue);
+            font-weight: 600;
+            position: relative;
+        }
+        
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--sunset-gold);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--indigo-blue);
+        }
+        
+        /* Hero Section */
+        #hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(255,254,247,0.9) 0%, rgba(245,245,245,0.8) 100%);
+        }
+        
+        .hero-content {
+            z-index: 2;
+            max-width: 800px;
+        }
+        
+        .hero-logo {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 30px;
+            position: relative;
+        }
+        
+        @keyframes petalFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+        
+        .hero-logo::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='100' cy='100' r='70' fill='%23324b8c'/%3E%3Ccircle cx='100' cy='100' r='40' fill='%23fffef7'/%3E%3Ccircle cx='100' cy='100' r='20' fill='%23f9b05f'/%3E%3C/svg%3E");
+            background-size: contain;
+            z-index: 1;
+            animation: pulse 2s infinite alternate;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.05); }
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: var(--indigo-blue);
+        }
+        
+        .hero-tagline {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+        
+        .hero-cta {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .vtuber-animation {
+            position: absolute;
+            bottom: 0;
+            right: 10%;
+            width: 300px;
+            height: 400px;
+            z-index: 1;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 400'%3E%3Crect width='300' height='400' fill='none'/%3E%3Cellipse cx='150' cy='320' rx='70' ry='20' fill='rgba(0,0,0,0.1)'/%3E%3Cpath d='M150,300 L150,100 Q130,110 110,100 Q100,90 110,80 Q130,70 150,80 Q170,70 190,80 Q200,90 190,100 Q170,110 150,100' fill='%23f9b05f'/%3E%3Ccircle cx='150' cy='70' r='40' fill='%23f9b05f'/%3E%3Cpath d='M130,65 Q135,60 140,65 M160,65 Q165,60 170,65' stroke='%23324b8c' stroke-width='2' fill='none'/%3E%3Cpath d='M145,85 Q150,90 155,85' stroke='%23324b8c' stroke-width='2' fill='none'/%3E%3Cpath d='M140,200 Q150,190 160,200 L160,240 Q150,250 140,240 Z' fill='%23f5f5f5'/%3E%3C/svg%3E");
+            animation: vtuberWave 3s infinite alternate ease-in-out;
+        }
+        
+        @keyframes vtuberWave {
+            0% { transform: translateY(0) rotate(-2deg); }
+            100% { transform: translateY(-15px) rotate(2deg); }
+        }
+        
+        .jeepney {
+            position: absolute;
+            bottom: 20px;
+            left: -100px;
+            width: 100px;
+            height: 50px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 50'%3E%3Crect x='10' y='20' width='80' height='20' fill='%23f9b05f'/%3E%3Crect x='0' y='30' width='100' height='10' fill='%23324b8c'/%3E%3Ccircle cx='20' cy='45' r='5' fill='%23333'/%3E%3Ccircle cx='80' cy='45' r='5' fill='%23333'/%3E%3C/svg%3E");
+            animation: driveBy 15s linear infinite;
+        }
+        
+        @keyframes driveBy {
+            0% { left: -100px; }
+            100% { left: 100%; }
+        }
+        
+        /* About Section */
+        #about {
+            background-color: #fff;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+            padding: 20px;
+        }
+        
+        .about-text p {
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        
+        .founder-message {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: rgba(249, 176, 95, 0.1);
+            border-left: 4px solid var(--sunset-gold);
+            border-radius: 0 8px 8px 0;
+            position: relative;
+        }
+        
+        .founder-signature {
+            text-align: right;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5rem;
+            color: var(--indigo-blue);
+            margin-top: 10px;
+        }
+        
+        .flower {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50'%3E%3Ccircle cx='25' cy='25' r='7' fill='%23fff'/%3E%3Cpath d='M25,10 Q30,20 40,25 Q30,30 25,40 Q20,30 10,25 Q20,20 25,10 Z' fill='%23fff'/%3E%3Ccircle cx='25' cy='25' r='7' fill='%23f9b05f'/%3E%3C/svg%3E");
+            background-size: contain;
+            animation: float 5s infinite ease-in-out;
+        }
+        
+        .flower:nth-child(1) {
+            top: -10px;
+            right: 20px;
+            animation-delay: 0s;
+        }
+        
+        .flower:nth-child(2) {
+            bottom: 10px;
+            left: 30px;
+            animation-delay: 2s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(10deg); }
+        }
+        
+        /* Talents Section */
+        #talents {
+            background-color: #f9f9f9;
+            position: relative;
+        }
+        
+        .talents-filters {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            background: none;
+            border: none;
+            padding: 8px 20px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 20px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            color: var(--dark-text);
+        }
+        
+        .filter-btn.active {
+            background-color: var(--indigo-blue);
+            color: white;
+        }
+        
+        .talents-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+        
+        .talent-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+        }
+        
+        .talent-card:hover {
+            transform: translateY(-10px) rotateY(5deg);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .talent-img {
+            height: 300px;
+            background-color: var(--indigo-blue);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .talent-img svg {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .talent-info {
+            padding: 20px;
+        }
+        
+        .talent-name {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        
+        .talent-type {
+            color: var(--sunset-gold);
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        .talent-bio {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .talent-schedule {
+            font-size: 0.8rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .talent-socials {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .social-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon.twitter {
+            background-color: #1DA1F2;
+        }
+        
+        .social-icon.youtube {
+            background-color: #FF0000;
+        }
+        
+        .social-icon.twitch {
+            background-color: #6441A4;
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-3px);
+        }
+        
+        /* Cultural Pillars */
+        #pillars {
+            background: linear-gradient(135deg, rgba(50, 75, 140, 0.05) 0%, rgba(249, 176, 95, 0.05) 100%);
+        }
+        
+        .pillars-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+        
+        .pillar-card {
+            flex: 1;
+            min-width: 250px;
+            max-width: 350px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .pillar-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .pillar-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            position: relative;
+        }
+        
+        .pillar-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .pillar-title {
+            color: var(--indigo-blue);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .pillar-subtitle {
+            color: var(--sunset-gold);
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+        
+        .pillar-description {
+            line-height: 1.6;
+        }
+        
+        /* Audition Section */
+        #audition {
+            background-color: var(--indigo-blue);
+            color: white;
+            text-align: center;
+        }
+        
+        #audition .section-title h2 {
+            color: white;
+        }
+        
+        #audition .section-title h2::after {
+            background: linear-gradient(90deg, transparent, var(--sunset-gold), transparent);
+        }
+        
+        .audition-text {
+            max-width: 700px;
+            margin: 0 auto 40px;
+            line-height: 1.8;
+        }
+        
+        .audition-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: left;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(45deg, var(--sunset-gold), #ffd280);
+            color: var(--dark-text);
+            font-weight: 600;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 30px auto 0;
+            font-size: 1rem;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Events Calendar */
+        #events {
+            background-color: #f9f9f9;
+        }
+        
+        .calendar-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .calendar-header {
+            background-color: var(--indigo-blue);
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .month-year {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .calendar-nav {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .nav-btn {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-btn:hover {
+            color: var(--sunset-gold);
+        }
+        
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            padding: 20px;
+        }
+        
+        .weekday {
+            text-align: center;
+            font-weight: 600;
+            padding: 10px;
+            color: var(--indigo-blue);
+        }
+        
+        .day {
+            height: 80px;
+            border: 1px solid #eee;
+            padding: 5px;
+            position: relative;
+        }
+        
+        .day-number {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .event-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: var(--sunset-gold);
+            display: inline-block;
+            margin-left: 5px;
+        }
+        
+        .day:hover {
+            background-color: rgba(50, 75, 140, 0.05);
+        }
+        
+        .upcoming-events {
+            margin-top: 40px;
+        }
+        
+        .event-card {
+            display: flex;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        
+        .event-date {
+            min-width: 80px;
+            background-color: var(--indigo-blue);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+        }
+        
+        .date-day {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .date-month {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+        
+        .event-details {
+            padding: 15px;
+            flex: 1;
+        }
+        
+        .event-title {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+        
+        .event-time, .event-host {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .event-type {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            margin-top: 10px;
+        }
+        
+        .event-type.stream {
+            background-color: rgba(249, 176, 95, 0.2);
+            color: #d17400;
+        }
+        
+        .event-type.collab {
+            background-color: rgba(50, 75, 140, 0.2);
+            color: var(--indigo-blue);
+        }
+        
+        /* Fan Zone */
+        #fan {
+            background: linear-gradient(135deg, rgba(50, 75, 140, 0.05) 0%, rgba(249, 176, 95, 0.05) 100%);
+        }
+        
+        .fan-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+        
+        .fan-section {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .fan-title {
+            color: var(--indigo-blue);
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .fan-title::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 50%;
+            height: 2px;
+            background-color: var(--sunset-gold);
+        }
+        
+        .downloads-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 15px;
+        }
+        
+        .download-item {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .download-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .download-preview {
+            height: 80px;
+            background-color: rgba(50, 75, 140, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .download-name {
+            padding: 10px;
+            font-size: 0.8rem;
+        }
+        
+        .download-btn {
+            display: block;
+            background-color: var(--indigo-blue);
+            color: white;
+            padding: 5px;
+            font-size: 0.7rem;
+            transition: all 0.3s ease;
+        }
+        
+        .download-btn:hover {
+            background-color: var(--sunset-gold);
+            color: var(--dark-text);
+        }
+        
+        .fan-art {
+            margin-top: 30px;
+        }
+        
+        .art-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .art-item {
+            height: 150px;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .art-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.3s ease;
+        }
+        
+        .art-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .art-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(0deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
+            padding: 10px;
+            color: white;
+            font-size: 0.8rem;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .art-item:hover .art-overlay {
+            opacity: 1;
+        }
+        
+        .submit-art {
+            display: inline-block;
+            margin-top: 20px;
+            background-color: var(--indigo-blue);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        
+        .submit-art:hover {
+            background-color: var(--sunset-gold);
+            color: var(--dark-text);
+        }
+        
+        .discord-section {
+            background-color: #5865F2;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+            text-align: center;
+        }
+        
+        .discord-title {
+            margin-bottom: 15px;
+        }
+        
+        .discord-text {
+            margin-bottom: 20px;
+        }
+        
+        .discord-btn {
+            background-color: white;
+            color: #5865F2;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        
+        .discord-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .fan-month {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+        }
+        
+        .fan-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            overflow: hidden;
+            border: 3px solid var(--sunset-gold);
+        }
+        
+        .fan-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .fan-name {
+            text-align: center;
+            margin-bottom: 10px;
+            color: var(--indigo-blue);
+        }
+        
+        .fan-contribution {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--indigo-blue);
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            flex: 1;
+            min-width: 200px;
+            max-width: 300px;
+        }
+        
+        .footer-logo img {
+            width: 150px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-address, .footer-email {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-address svg, .footer-email svg {
+            margin-right: 10px;
+            width: 16px;
+            height: 16px;
+        }
+        
+        .footer-links {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .footer-title {
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .footer-title::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--sunset-gold);
+        }
+        
+        .footer-nav {
+            list-style: none;
+        }
+        
+        .footer-nav li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-nav a {
+            color: rgba(255, 255, 255, 0.8);
+            transition: all 0.3s ease;
+        }
+        
+        .footer-nav a:hover {
+            color: var(--sunset-gold);
+        }
+        
+        .footer-socials {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-link {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background-color: var(--sunset-gold);
+            transform: translateY(-3px);
+        }
+        
+        .social-link svg {
+            width: 18px;
+            height: 18px;
+            fill: white;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .baybayin-quote {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 1.2rem;
+            color: var(--sunset-gold);
+            font-family: 'Arial', sans-serif;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 2.8rem;
+            }
+            
+            .vtuber-animation {
+                width: 250px;
+                height: 330px;
+                right: 5%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background-color: var(--sampaguita-white);
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                transform: translateY(-150%);
+                transition: transform 0.3s ease;
+                z-index: 999;
+            }
+            
+            .nav-links.active {
+                transform: translateY(0);
+            }
+            
+            .nav-links li {
+                margin: 10px 0;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .hero-tagline {
+                font-size: 1.2rem;
+            }
+            
+            .vtuber-animation {
+                width: 200px;
+                height: 260px;
+                bottom: 40px;
+                right: 50%;
+                transform: translateX(50%);
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .calendar-grid {
+                grid-template-columns: repeat(7, 1fr);
+            }
+            
+            .day {
+                height: 60px;
+                font-size: 0.8rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero-logo {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .hero-title {
+                font-size: 1.8rem;
+            }
+            
+            .hero-tagline {
+                font-size: 1rem;
+            }
+            
+            .hero-cta {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 250px;
+            }
+            
+            .vtuber-animation {
+                width: 150px;
+                height: 200px;
+                opacity: 0.8;
+            }
+            
+            .section-title h2 {
+                font-size: 1.5rem;
+            }
+            
+            .calendar-grid {
+                grid-template-columns: repeat(7, 1fr);
+                padding: 10px;
+            }
+            
+            .day {
+                height: 40px;
+                padding: 2px;
+                font-size: 0.7rem;
+            }
+            
+            .weekday {
+                font-size: 0.7rem;
+                padding: 5px;
+            }
+            
+            .event-date {
+                min-width: 60px;
+            }
+            
+            .date-day {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header id="header">
+        <div class="container nav-container">
+            <div class="logo">
+                <svg width="50" height="50" viewBox="0 0 200 200">
+                    <circle cx="100" cy="100" r="90" fill="#324b8c"/>
+                    <circle cx="100" cy="100" r="70" fill="#fffef7"/>
+                    <circle cx="100" cy="100" r="50" fill="#f9b05f"/>
+                </svg>
+                <span>Kultura Virtual</span>
+            </div>
+            
+            <div class="menu-toggle">☰</div>
+            
+            <ul class="nav-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#talents">Talents</a></li>
+                <li><a href="#pillars">Culture</a></li>
+                <li><a href="#audition">Audition</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#fan">Fan Zone</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="pattern-overlay capiz-pattern"></div>
+        
+        <div class="container hero-content">
+            <div class="hero-logo">
+                <!-- Logo animation happens via CSS -->
+            </div>
+            <h1 class="hero-title">Kultura Virtual</h1>
+            <p class="hero-tagline">Virtual Talents. Cultural Soul.</p>
+            <div class="hero-cta">
+                <a href="#talents" class="btn btn-primary">Meet the Talents</a>
+                <a href="#audition" class="btn btn-secondary">Audition</a>
+                <a href="#events" class="btn btn-outline">Watch Live</a>
+            </div>
+        </div>
+        
+        <div class="vtuber-animation"></div>
+        <div class="jeepney"></div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Us</h2>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Kultura Virtual is a homegrown Vtuber agency based in the Philippines, celebrating Filipino stories, voices, and charm in the digital realm. We uplift underrepresented voices through high-quality Vtuber training, production, and streaming support.</p>
+                    
+                    <p>Founded with a vision to blend our rich cultural heritage with cutting-edge digital entertainment, we're creating a space where Filipino creativity can flourish in the virtual world. Our talents bring authentic Filipino experiences to global audiences while staying true to our roots.</p>
+                    
+                    <div class="founder-message">
+                        <div class="flower"></div>
+                        <div class="flower"></div>
+                        <p>"We created Kultura Virtual with the dream of seeing Filipino stories take center stage in the VTuber world. Each of our talents carries a piece of our beautiful culture with them into the virtual realm, sharing our heritage, humor, and heart with the world."</p>
+                        <div class="founder-signature">- The Founder</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Talents Section -->
+    <section id="talents">
+        <div class="pattern-overlay baybayin-pattern"></div>
+        
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Talents</h2>
+            </div>
+            
+            <div class="talents-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="gaming">Gaming</button>
+                <button class="filter-btn" data-filter="singing">Singing</button>
+                <button class="filter-btn" data-filter="variety">Variety</button>
+                <button class="filter-btn" data-filter="educational">Educational</button>
+            </div>
+            
+            <div class="talents-grid">
+                <!-- Talent 1 -->
+                <div class="talent-card" data-category="gaming variety">
+                    <div class="talent-img">
+                        <svg viewBox="0 0 300 300">
+                            <rect width="300" height="300" fill="#324b8c"/>
+                            <circle cx="150" cy="100" r="60" fill="#f9b05f"/>
+                            <rect x="90" y="150" width="120" height="150" fill="#f9b05f"/>
+                        </svg>
+                    </div>
+                    <div class="talent-info">
+                        <h3 class="talent-name">Maya Diwa</h3>
+                        <span class="talent-type">Gaming & Variety</span>
+                        <p class="talent-bio">A cheerful explorer who loves adventure games and sharing Filipino folklore during her streams.</p>
+                        <p class="talent-schedule">Streams: Mon, Wed, Fri @ 8PM PHT</p>
+                        <div class="talent-socials">
+                            <a href="#" class="social-icon twitter">T</a>
+                            <a href="#" class="social-icon youtube">Y</a>
+                            <a href="#" class="social-icon twitch">T</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Talent 2 -->
+                <div class="talent-card" data-category="singing">
+                    <div class="talent-img">
+                        <svg viewBox="0 0 300 300">
+                            <rect width="300" height="300" fill="#5f74b8"/>
+                            <circle cx="150" cy="100" r="60" fill="#ffd280"/>
+                            <rect x="90" y="150" width="120" height="150" fill="#ffd280"/>
+                        </svg>
+                    </div>
+                    <div class="talent-info">
+                        <h3 class="talent-name">Awit Hari</h3>
+                        <span class="talent-type">Singing</span>
+                        <p class="talent-bio">A soulful singer who blends OPM classics with modern hits, creating unique musical experiences.</p>
+                        <p class="talent-schedule">Streams: Tue, Thu @ 9PM PHT</p>
+                        <div class="talent-socials">
+                            <a href="#" class="social-icon twitter">T</a>
+                            <a href="#" class="social-icon youtube">Y</a>
+                            <a href="#" class="social-icon twitch">T</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Talent 3 -->
+                <div class="talent-card" data-category="educational variety">
+                    <div class="talent-img">
+                        <svg viewBox="0 0 300 300">
+                            <rect width="300" height="300" fill="#177245"/>
+                            <circle cx="150" cy="100" r="60" fill="#fffef7"/>
+                            <rect x="90" y="150" width="120" height="150" fill="#fffef7"/>
+                        </svg>
+                    </div>
+                    <div class="talent-info">
+                        <h3 class="talent-name">Prof. Aral</h3>
+                        <span class="talent-type">Educational & Variety</span>
+                        <p class="talent-bio">A knowledgeable historian who makes learning about Filipino culture and history fun and engaging.</p>
+                        <p class="talent-schedule">Streams: Sat, Sun @ 4PM PHT</p>
+                        <div class="talent-socials">
+                            <a href="#" class="social-icon twitter">T</a>
+                            <a href="#" class="social-icon youtube">Y</a>
+                            <a href="#" class="social-icon twitch">T</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Talent 4 -->
+                <div class="talent-card" data-category="gaming">
+                    <div class="talent-img">
+                        <svg viewBox="0 0 300 300">
+                            <rect width="300" height="300" fill="#ffb6c1"/>
+                            <circle cx="150" cy="100" r="60" fill="#324b8c"/>
+                            <rect x="90" y="150" width="120" height="150" fill="#324b8c"/>
+                        </svg>
+                    </div>
+                    <div class="talent-info">
+                        <h3 class="talent-name">Laro Lakas</h3>
+                        <span class="talent-type">Gaming</span>
+                        <p class="talent-bio">A competitive gamer with lightning reflexes and a warm laugh, specializing in FPS and battle royales.</p>
+                        <p class="talent-schedule">Streams: Wed, Fri, Sun @ 7PM PHT</p>
+                        <div class="talent-socials">
+                            <a href="#" class="social-icon twitter">T</a>
+                            <a href="#" class="social-icon youtube">Y</a>
+                            <a href="#" class="social-icon twitch">T</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cultural Pillars Section -->
+    <section id="pillars">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Cultural Pillars</h2>
+            </div>
+            
+            <div class="pillars-container">
+                <!-- Pillar 1 -->
+                <div class="pillar-card">
+                    <div class="pillar-icon">
+                        <svg viewBox="0 0 100 100">
+                            <circle cx="50" cy="50" r="45" fill="none" stroke="#324b8c" stroke-width="2"/>
+                            <path d="M30,50 C30,30 70,30 70,50 C70,70 30,70 30,50" fill="none" stroke="#f9b05f" stroke-width="3"/>
+                            <circle cx="40" cy="50" r="5" fill="#324b8c"/>
+                            <circle cx="60" cy="50" r="5" fill="#324b8c"/>
+                        </svg>
+                    </div>
+                    <h3 class="pillar-title">Bayanihan Spirit</h3>
+                    <h4 class="pillar-subtitle">Unity through Collaboration</h4>
+                    <p class="pillar-description">We foster a community where our talents support each other, collaborate creatively, and lift each other up, just as neighbors come together to move a house in the traditional bayanihan.</p>
+                </div>
+                
+                <!-- Pillar 2 -->
+                <div class="pillar-card">
+                    <div class="pillar-icon">
+                        <svg viewBox="0 0 100 100">
+                            <path d="M50,20 C70,20 80,50 50,80 C20,50 30,20 50,20" fill="#f9b05f"/>
+                            <circle cx="50" cy="40" r="8" fill="#324b8c"/>
+                        </svg>
+                    </div>
+                    <h3 class="pillar-title">Pagmamalasakit</h3>
+                    <h4 class="pillar-subtitle">Deep Care for Fans</h4>
+                    <p class="pillar-description">We cherish genuine connections with our community, showing sincere care and consideration in every interaction, creating a supportive space where everyone feels valued.</p>
+                </div>
+                
+                <!-- Pillar 3 -->
+                <div class="pillar-card">
+                    <div class="pillar-icon">
+                        <svg viewBox="0 0 100 100">
+                            <path d="M20,80 C20,60 40,20 80,40 C60,80 20,80 20,80" fill="none" stroke="#324b8c" stroke-width="3"/>
+                            <path d="M30,70 C30,50 50,30 70,50" fill="none" stroke="#f9b05f" stroke-width="3"/>
+                        </svg>
+                    </div>
+                    <h3 class="pillar-title">Malikhaing Kaluluwa</h3>
+                    <h4 class="pillar-subtitle">Creative Soul</h4>
+                    <p class="pillar-description">We embrace the innovative spirit that flows through Filipino art, music, and storytelling, encouraging our talents to explore their creative boundaries while honoring our cultural roots.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Audition Section -->
+    <section id="audition">
+        <div class="container">
+            <div class="section-title">
+                <h2>Join Our Family</h2>
+            </div>
+            
+            <div class="audition-text">
+                <p>Got the gigil to shine? We're looking for talented individuals who are passionate about Filipino culture and ready to share their unique perspective with the world. Apply now to be part of the next generation of Kultura Stars!</p>
+            </div>
+            
+            <div class="audition-form">
+                <form id="application-form">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="concept">Your VTuber Concept</label>
+                        <textarea id="concept" name="concept" placeholder="Tell us about your character concept, personality, and cultural inspirations..." required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="experience">Content Creation Experience</label>
+                        <select id="experience" name="experience">
+                            <option value="none">No prior experience</option>
+                            <option value="beginner">Beginner (0-1 year)</option>
+                            <option value="intermediate">Intermediate (1-3 years)</option>
+                            <option value="experienced">Experienced (3+ years)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="portfolio">Portfolio Links (YouTube, Twitch, etc.)</label>
+                        <input type="text" id="portfolio" name="portfolio">
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Submit Application</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Calendar Section -->
+    <section id="events">
+        <div class="container">
+            <div class="section-title">
+                <h2>Events & Streams</h2>
+            </div>
+            
+            <div class="calendar-container">
+                <div class="calendar-header">
+                    <div class="month-year">April 2025</div>
+                    <div class="calendar-nav">
+                        <button class="nav-btn">←</button>
+                        <button class="nav-btn">→</button>
+                    </div>
+                </div>
+                
+                <div class="calendar-grid">
+                    <div class="weekday">Sun</div>
+                    <div class="weekday">Mon</div>
+                    <div class="weekday">Tue</div>
+                    <div class="weekday">Wed</div>
+                    <div class="weekday">Thu</div>
+                    <div class="weekday">Fri</div>
+                    <div class="weekday">Sat</div>
+                    
+                    <!-- Calendar days - simplified for demo -->
+                    <div class="day"><span class="day-number">30</span></div>
+                    <div class="day"><span class="day-number">31</span></div>
+                    <div class="day"><span class="day-number">1</span></div>
+                    <div class="day"><span class="day-number">2</span></div>
+                    <div class="day"><span class="day-number">3</span></div>
+                    <div class="day"><span class="day-number">4</span></div>
+                    <div class="day"><span class="day-number">5</span></div>
+                    
+                    <div class="day"><span class="day-number">6</span></div>
+                    <div class="day"><span class="day-number">7</span></div>
+                    <div class="day"><span class="day-number">8</span></div>
+                    <div class="day"><span class="day-number">9</span></div>
+                    <div class="day"><span class="day-number">10</span></div>
+                    <div class="day"><span class="day-number">11</span><span class="event-dot"></span></div>
+                    <div class="day"><span class="day-number">12</span></div>
+                    
+                    <div class="day"><span class="day-number">13</span></div>
+                    <div class="day"><span class="day-number">14</span></div>
+                    <div class="day"><span class="day-number">15</span><span class="event-dot"></span></div>
+                    <div class="day"><span class="day-number">16</span></div>
+                    <div class="day"><span class="day-number">17</span></div>
+                    <div class="day"><span class="day-number">18</span></div>
+                    <div class="day"><span class="day-number">19</span></div>
+                    
+                    <div class="day"><span class="day-number">20</span></div>
+                    <div class="day"><span class="day-number">21</span></div>
+                    <div class="day"><span class="day-number">22</span></div>
+                    <div class="day"><span class="day-number">23</span></div>
+                    <div class="day"><span class="day-number">24</span></div>
+                    <div class="day"><span class="day-number">25</span></div>
+                    <div class="day"><span class="day-number">26</span><span class="event-dot"></span></div>
+                    
+                    <div class="day"><span class="day-number">27</span></div>
+                    <div class="day"><span class="day-number">28</span></div>
+                    <div class="day"><span class="day-number">29</span></div>
+                    <div class="day"><span class="day-number">30</span></div>
+                    <div class="day"><span class="day-number">1</span></div>
+                    <div class="day"><span class="day-number">2</span></div>
+                    <div class="day"><span class="day-number">3</span></div>
+                </div>
+            </div>
+            
+            <div class="upcoming-events">
+                <h3>Upcoming Highlights</h3>
+                
+                <!-- Event 1 -->
+                <div class="event-card">
+                    <div class="event-date">
+                        <span class="date-day">11</span>
+                        <span class="date-month">Apr</span>
+                    </div>
+                    <div class="event-details">
+                        <h4 class="event-title">KULTURA FIESTA: Anniversary Stream</h4>
+                        <p class="event-time">8:00 PM - 11:00 PM PHT</p>
+                        <p class="event-host">All Talents</p>
+                        <span class="event-type collab">Special Event</span>
+                    </div>
+                </div>
+                
+                <!-- Event 2 -->
+                <div class="event-card">
+                    <div class="event-date">
+                        <span class="date-day">15</span>
+                        <span class="date-month">Apr</span>
+                    </div>
+                    <div class="event-details">
+                        <h4 class="event-title">Filipino Cooking Challenge</h4>
+                        <p class="event-time">7:00 PM - 9:00 PM PHT</p>
+                        <p class="event-host">Maya Diwa & Prof. Aral</p>
+                        <span class="event-type stream">Collab Stream</span>
+                    </div>
+                </div>
+                
+                <!-- Event 3 -->
+                <div class="event-card">
+                    <div class="event-date">
+                        <span class="date-day">26</span>
+                        <span class="date-month">Apr</span>
+                    </div>
+                    <div class="event-details">
+                        <h4 class="event-title">New Talent Debut: SURPRISE!</h4>
+                        <p class="event-time">6:00 PM - 8:00 PM PHT</p>
+                        <p class="event-host">Mystery Talent</p>
+                        <span class="event-type collab">Debut Stream</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fan Zone Section -->
+    <section id="fan">
+        <div class="container">
+            <div class="section-title">
+                <h2>Fan Zone</h2>
+            </div>
+            
+            <div class="fan-content">
+                <div class="fan-section">
+                    <h3 class="fan-title">Downloadables</h3>
+                    
+                    <div class="downloads-grid">
+                        <!-- Downloadable 1 -->
+                        <div class="download-item">
+                            <div class="download-preview">
+                                <svg width="40" height="40" viewBox="0 0 40 40">
+                                    <rect width="40" height="30" fill="#324b8c"/>
+                                    <circle cx="20" cy="15" r="8" fill="#f9b05f"/>
+                                </svg>
+                            </div>
+                            <div class="download-name">Maya Wallpaper</div>
+                            <a href="#" class="download-btn">Download</a>
+                        </div>
+                        
+                        <!-- Downloadable 2 -->
+                        <div class="download-item">
+                            <div class="download-preview">
+                                <svg width="40" height="40" viewBox="0 0 40 40">
+                                    <circle cx="20" cy="20" r="15" fill="#324b8c"/>
+                                    <text x="20" y="25" fill="#fff" text-anchor="middle" font-size="10">:D</text>
+                                </svg>
+                            </div>
+                            <div class="download-name">Emote Pack</div>
+                            <a href="#" class="download-btn">Download</a>
+                        </div>
+                        
+                        <!-- Downloadable 3 -->
+                        <div class="download-item">
+                            <div class="download-preview">
+                                <svg width="40" height="40" viewBox="0 0 40 40">
+                                    <rect width="30" height="30" x="5" y="5" fill="#f9b05f"/>
+                                    <circle cx="15" cy="15" r="5" fill="#324b8c"/>
+                                    <circle cx="25" cy="15" r="5" fill="#324b8c"/>
+                                    <path d="M15,25 C15,28 25,28 25,25" fill="none" stroke="#324b8c" stroke-width="2"/>
+                                </svg>
+                            </div>
+                            <div class="download-name">Sticker Set</div>
+                            <a href="#" class="download-btn">Download</a>
+                        </div>
+                        
+                        <!-- Downloadable 4 -->
+                        <div class="download-item">
+                            <div class="download-preview">
+                                <svg width="40" height="40" viewBox="0 0 40 40">
+                                    <path d="M10,30 C10,15 30,15 30,30" fill="none" stroke="#324b8c" stroke-width="2"/>
+                                    <circle cx="20" cy="12" r="7" fill="#f9b05f"/>
+                                </svg>
+                            </div>
+                            <div class="download-name">Voice Pack</div>
+                            <a href="#" class="download-btn">Download</a>
+                        </div>
+                    </div>
+                    
+                    <div class="fan-art">
+                        <h3 class="fan-title">Fan Art Gallery</h3>
+                        
+                        <div class="art-gallery">
+                            <!-- Art pieces represented by colored rectangles -->
+                            <div class="art-item">
+                                <svg width="100%" height="100%" viewBox="0 0 150 150">
+                                    <rect width="150" height="150" fill="#ffd280"/>
+                                    <circle cx="75" cy="50" r="30" fill="#324b8c"/>
+                                    <rect x="45" y="70" width="60" height="80" fill="#324b8c"/>
+                                </svg>
+                                <div class="art-overlay">By: ArtFan123</div>
+                            </div>
+                            
+                            <div class="art-item">
+                                <svg width="100%" height="100%" viewBox="0 0 150 150">
+                                    <rect width="150" height="150" fill="#5f74b8"/>
+                                    <circle cx="75" cy="75" r="50" fill="#f9b05f"/>
+                                </svg>
+                                <div class="art-overlay">By: DrawMaster</div>
+                            </div>
+                            
+                            <div class="art-item">
+                                <svg width="100%" height="100%" viewBox="0 0 150 150">
+                                    <rect width="150" height="150" fill="#fffef7"/>
+                                    <path d="M30,120 C30,70 120,70 120,120" fill="#f9b05f"/>
+                                    <circle cx="75" cy="50" r="30" fill="#324b8c"/>
+                                </svg>
+                                <div class="art-overlay">By: PinoyArtist</div>
+                            </div>
+                            
+                            <div class="art-item">
+                                <svg width="100%" height="100%" viewBox="0 0 150 150">
+                                    <rect width="150" height="150" fill="#177245"/>
+                                    <circle cx="50" cy="50" r="30" fill="#fffef7"/>
+                                    <circle cx="100" cy="50" r="30" fill="#fffef7"/>
+                                    <path d="M50,100 C70,120 80,120 100,100" fill="none" stroke="#fffef7" stroke-width="5"/>
+                                </svg>
+                                <div class="art-overlay">By: CreativeSoul</div>
+                            </div>
+                        </div>
+                        
+                        <a href="#" class="submit-art">Submit Your Art</a>
+                    </div>
+                </div>
+                
+                <div class="fan-section">
+                    <div class="discord-section">
+                        <h3 class="discord-title">Join Our Community</h3>
+                        <p class="discord-text">Connect with other fans, participate in exclusive events, and chat with your favorite talents!</p>
+                        <a href="#" class="discord-btn">Join Discord</a>
+                    </div>
+                    
+                    <div class="fan-month">
+                        <h3 class="fan-title">Fan of the Month</h3>
+                        <div class="fan-avatar">
+                            <svg width="100%" height="100%" viewBox="0 0 80 80">
+                                <circle cx="40" cy="40" r="40" fill="#5f74b8"/>
+                                <circle cx="30" cy="30" r="5" fill="#fffef7"/>
+                                <circle cx="50" cy="30" r="5" fill="#fffef7"/>
+                                <path d="M30,50 C30,60 50,60 50,50" fill="none" stroke="#fffef7" stroke-width="3"/>
+                            </svg>
+                        </div>
+                        <h4 class="fan-name">Juan Dela Fan</h4>
+                        <p class="fan-contribution">For amazing community support and creating beautiful fan art for all our talents!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <svg width="150" height="50" viewBox="0 0 150 50">
+                        <circle cx="25" cy="25" r="20" fill="#f9b05f"/>
+                        <text x="60" y="30" fill="#fffef7" font-size="18" font-weight="bold">Kultura Virtual</text>
+                    </svg>
+                    
+                    <div class="footer-address">
+                        <svg width="16" height="16" viewBox="0 0 16 16">
+                            <path d="M8,0 C4,0 1,3 1,7 C1,11 8,16 8,16 C8,16 15,11 15,7 C15,3 12,0 8,0 Z M8,9 C6.9,9 6,8.1 6,7 C6,5.9 6.9,5 8,5 C9.1,5 10,5.9 10,7 C10,8.1 9.1,9 8,9 Z" fill="#fffef7"/>
+                        </svg>
+                        <span>Metro Manila, Philippines</span>
+                    </div>
+                    
+                    <div class="footer-email">
+                        <svg width="16" height="16" viewBox="0 0 16 16">
+                            <path d="M14,3 L2,3 C1.4,3 1,3.4 1,4 L1,12 C1,12.6 1.4,13 2,13 L14,13 C14.6,13 15,12.6 15,12 L15,4 C15,3.4 14.6,3 14,3 Z M13,5 L8,8 L3,5 L3,4 L13,4 L13,5 Z M3,12 L3,7 L8,10 L13,7 L13,12 L3,12 Z" fill="#fffef7"/>
+                        </svg>
+                        <span>hello@kulturavirtual.ph</span>
+                    </div>
+                    
+                    <div class="footer-socials">
+                        <a href="#" class="social-link">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M22,3 L2,3 C1.4,3 1,3.4 1,4 L1,20 C1,20.6 1.4,21 2,21 L12,21 L12,14 L9,14 L9,11 L12,11 L12,9 C12,6.9 13.5,5 16,5 L18,5 L18,8 L17,8 C16.4,8 16,8.4 16,9 L16,11 L18,11 L18,14 L16,14 L16,21 L22,21 C22.6,21 23,20.6 23,20 L23,4 C23,3.4 22.6,3 22,3 Z" fill="white"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M22.46,6C21.69,6.35 20.86,6.58 20,6.69C20.88,6.16 21.56,5.32 21.88,4.31C21.05,4.81 20.13,5.16 19.16,5.36C18.37,4.5 17.26,4 16,4C13.65,4 11.73,5.92 11.73,8.29C11.73,8.63 11.77,8.96 11.84,9.27C8.28,9.09 5.11,7.38 3,4.79C2.63,5.42 2.42,6.16 2.42,6.94C2.42,8.43 3.17,9.75 4.33,10.5C3.62,10.5 2.96,10.3 2.38,10C2.38,10 2.38,10 2.38,10.03C2.38,12.11 3.86,13.85 5.82,14.24C5.46,14.34 5.08,14.39 4.69,14.39C4.42,14.39 4.15,14.36 3.89,14.31C4.43,16 6,17.26 7.89,17.29C6.43,18.45 4.58,19.13 2.56,19.13C2.22,19.13 1.88,19.11 1.54,19.07C3.44,20.29 5.7,21 8.12,21C16,21 20.33,14.46 20.33,8.79C20.33,8.6 20.33,8.42 20.32,8.23C21.16,7.63 21.88,6.87 22.46,6Z" fill="white"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M10,15L15.19,12L10,9V15M21.56,7.17C21.69,7.64 21.78,8.27 21.84,9.07C21.91,9.87 21.94,10.56 21.94,11.16L22,12C22,14.19 21.84,15.8 21.56,16.83C21.31,17.73 20.73,18.31 19.83,18.56C19.36,18.69 18.5,18.78 17.18,18.84C15.88,18.91 14.69,18.94 13.59,18.94L12,19C7.81,19 5.2,18.84 4.17,18.56C3.27,18.31 2.69,17.73 2.44,16.83C2.31,16.36 2.22,15.73 2.16,14.93C2.09,14.13 2.06,13.44 2.06,12.84L2,12C2,9.81 2.16,8.2 2.44,7.17C2.69,6.27 3.27,5.69 4.17,5.44C4.64,5.31 5.5,5.22 6.82,5.16C8.12,5.09 9.31,5.06 10.41,5.06L12,5C16.19,5 18.8,5.16 19.83,5.44C20.73,5.69 21.31,6.27 21.56,7.17Z" fill="white"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M11.64,5.93H13.07V15.21H11.64M15.57,5.93H17V15.21H15.57M7,8.07H8.43V15.21H7M18.86,9.28H20.29V15.21H18.86M3.14,9.28H4.57V15.21H3.14M3,17.79H21V19.21H3M3,4.5H21V5.93H3M4.71,0.786L12,0.15L19.29,0.786L21,4.5H3L4.71,0.786Z" fill="white"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3 class="footer-title">Sitemap</h3>
+                    <ul class="footer-nav">
+                        <li><a href="#hero">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#talents">Our Talents</a></li>
+                        <li><a href="#pillars">Culture</a></li>
+                        <li><a href="#audition">Join Us</a></li>
+                        <li><a href="#events">Events</a></li>
+                        <li><a href="#fan">Fan Zone</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3 class="footer-title">Resources</h3>
+                    <ul class="footer-nav">
+                        <li><a href="#">Press Kit</a></li>
+                        <li><a href="#">Brand Guidelines</a></li>
+                        <li><a href="#">Merchandise</a></li>
+                        <li><a href="#">Partnerships</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="copyright">© 2025 Kultura Virtual. All rights reserved.</p>
+                <p class="baybayin-quote">ᜋᜊᜓᜎ᜔ᜇᜒ ᜆᜄᜓᜎ᜔ᜆᜒ</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple JavaScript for interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Header scroll effect
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+            
+            // Mobile menu toggle
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            
+            menuToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+            });
+            
+            // Filter talents by category
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const talentCards = document.querySelectorAll('.talent-card');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const filter = this.getAttribute('data-filter');
+                    
+                    // Show/hide cards based on filter
+                    talentCards.forEach(card => {
+                        if (filter === 'all') {
+                            card.style.display = 'block';
+                        } else {
+                            if (card.getAttribute('data-category').includes(filter)) {
+                                card.style.display = 'block';
+                            } else {
+                                card.style.display = 'none';
+                            }
+                        }
+                    });
+                });
+            });
+            
+            // Form submission
+            const applicationForm = document.getElementById('application-form');
+            applicationForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for your application! We will review it and get back to you soon.');
+                applicationForm.reset();
+            });
+            
+            // Baybayin quote rotation
+            const baybayinQuotes = [
+                "ᜋᜊᜓᜎ᜔ᜇᜒ ᜆᜄᜓᜎ᜔ᜆᜒ", // Mabuti Tagumpay - Good Success
+                "ᜉᜄ᜔ᜋᜋᜑᜎ᜔", // Pagmamahal - Love
+                "ᜇᜒᜏ ᜅ᜔ ᜀᜏᜒᜆ᜔", // Diwa ng Awit - Spirit of Song
+                "ᜋᜎᜒᜃᜑᜒᜅ᜔ ᜃᜎᜓᜎᜓᜏ", // Malikhaing Kaluluwa - Creative Soul
+            ];
+            
+            const baybayinQuote = document.querySelector('.baybayin-quote');
+            let currentQuote = 0;
+            
+            setInterval(function() {
+                currentQuote = (currentQuote + 1) % baybayinQuotes.length;
+                baybayinQuote.textContent = baybayinQuotes[currentQuote];
+            }, 5000);
+        });
+    </script>
+</body>
+</html>
