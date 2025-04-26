@@ -37,8 +37,8 @@
         }
 
         .desktop-icon img {
-            width: 32px;
-            height: 32px;
+            width: 60px;
+            height: 60px;
             margin-bottom: 5px;
         }
 
@@ -79,9 +79,9 @@
         }
 
         .title-icon {
-            width: 16px;
-            height: 16px;
-            margin-right: 5px;
+            width: 32px;
+            height: 32px;
+            margin-right: 3px;
         }
 
         .window-buttons {
@@ -132,7 +132,7 @@
 
         .maintenance-text {
             margin: 15px 0;
-            font-size: 16px;
+            font-size: 24px;
             font-weight: bold;
         }
 
@@ -291,8 +291,8 @@
         }
 
         .task-item img {
-            width: 16px;
-            height: 16px;
+            width: 32px;
+            height: 32px;
             margin-right: 5px;
         }
 
@@ -319,8 +319,8 @@
         }
 
         .error-icon {
-            width: 32px;
-            height: 32px;
+            width: 50px;
+            height: 45px;
             margin-right: 15px;
         }
 
@@ -352,15 +352,15 @@
     <div class="desktop">
         <!-- Desktop Icons -->
         <div class="desktop-icon" onclick="showErrorWindow()">
-            <img src="/api/placeholder/32/32" alt="My Computer">
+            <img src="static/icons/computer-95.png" alt="My Computer">
             <span>My Computer</span>
         </div>
         <div class="desktop-icon">
-            <img src="/api/placeholder/32/32" alt="Network">
+            <img src="static/icons/network-95.png" alt="Network">
             <span>Network</span>
         </div>
         <div class="desktop-icon">
-            <img src="/api/placeholder/32/32" alt="Recycle Bin">
+            <img src="static/icons/recylebin-95.png" alt="Recycle Bin">
             <span>Recycle Bin</span>
         </div>
     </div>
@@ -369,7 +369,7 @@
     <div class="window" id="mainWindow">
         <div class="window-title" id="windowTitle">
             <div class="window-title-text">
-                <img class="title-icon" src="/api/placeholder/16/16" alt="Maintenance">
+                <img class="title-icon" src="static/icons/windows-setup-95.png" alt="Maintenance">
                 System Maintenance
             </div>
             <div class="window-buttons">
@@ -410,7 +410,7 @@
     <div class="error-window" id="errorWindow">
         <div class="window-title">
             <div class="window-title-text">
-                <img class="title-icon" src="/api/placeholder/16/16" alt="Error">
+                <img class="title-icon" src="static/icons/error-95.png" alt="Error">
                 System Error
             </div>
             <div class="window-buttons">
@@ -418,7 +418,7 @@
             </div>
         </div>
         <div class="error-content">
-            <img class="error-icon" src="/api/placeholder/32/32" alt="Error Icon">
+            <img class="error-icon" src="static/icons/error-95.png"Error Icon">
             <div class="error-message">
                 Cannot access system files. The maintenance process requires administrator privileges.
             </div>
@@ -439,7 +439,7 @@
         </div>
         <div class="taskbar-divider"></div>
         <div class="task-item active">
-            <img src="/api/placeholder/16/16" alt="Maintenance">
+            <img src="static/icons/windows-setup-95.png" alt="Maintenance">
             System Maintenance
         </div>
         <div class="taskbar-time" id="taskbarTime">12:00 PM</div>
