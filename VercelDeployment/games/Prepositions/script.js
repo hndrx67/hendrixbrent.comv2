@@ -2,6 +2,7 @@
 let currentQuestion = 0;
 let score = 0;
 let attempts = 0;
+let timer = null;
 let userInfo = {
     name: '',
     grade: '',
@@ -88,10 +89,38 @@ const questionsByDifficulty = {
             explanation: 'We use "in" for location within something and "at" for specific times.',
             multipleBlanks: true
         }
+    ],
+    veryHard: [
+        {
+            image: 'https://i.imgur.com/nPZxltN.png',
+            text: 'We have classes _____ Monday _____ Friday _____ 9 AM.',
+            answer: ['on', 'to', 'at'],
+            correctPhrase: 'Perfect! We have classes ON Monday TO Friday AT 9 AM! 📚',
+            explanation: 'We use "on" for days, "to" for ranges, and "at" for specific times.',
+            multipleBlanks: true
+        },
+        {
+            image: 'https://i.imgur.com/v9x64IV.png',
+            text: 'The meeting _____ the office _____ next week will be held _____ noon.',
+            answer: ['in', 'on', 'at'],
+            correctPhrase: 'Excellent! The meeting IN the office ON next week will be held AT noon! 🏢',
+            explanation: 'We use "in" for enclosed spaces, "on" for future dates/weeks, and "at" for specific times.',
+            multipleBlanks: true
+        },
+        {
+            image: 'https://i.imgur.com/QGDv5h7.png',
+            text: 'The birds fly _____ the sky _____ sunrise _____ spring.',
+            answer: ['in', 'at', 'in'],
+            correctPhrase: 'Great! The birds fly IN the sky AT sunrise IN spring! 🐦',
+            explanation: 'We use "in" for spaces and seasons, and "at" for specific times of day.',
+            multipleBlanks: true
+        }
+        // Add more questions to reach 20 total for Very Hard mode
     ]
 };
 
 let currentQuestions = [];
+let timeLeft = 60;
 
 // Theme toggle
 const themeToggle = document.getElementById('themeToggle');
@@ -135,7 +164,16 @@ function initGame() {
     currentQuestion = 0;
     score = 0;
     attempts = 0;
-    currentQuestions = questionsByDifficulty[userInfo.difficulty];
+    currentQuestions = [...questionsByDifficulty[userInfo.difficulty]];
+    
+    // Ensure 20 questions for Very Hard mode by duplicating existing questions
+    if (userInfo.difficulty === 'veryHard') {
+        while (currentQuestions.length < 20) {
+            currentQuestions.push(...questionsByDifficulty.veryHard);
+        }
+        currentQuestions = currentQuestions.slice(0, 20);
+        startTimer();
+    }
     
     // Create progress bar and score display if they don't exist
     if (!document.querySelector('.progress-bar')) {
@@ -152,11 +190,23 @@ function initGame() {
     showQuestion();
     updateProgress();
     updateScore();
+    
+    // Set up next question button listener
+    document.getElementById('nextQuestion').addEventListener('click', showNextQuestion);
 }
 
 function showQuestion() {
     const q = currentQuestions[currentQuestion];
     document.getElementById('question-image').src = q.image;
+    
+    // Update question number instead of creating new element
+    let questionNumberDiv = document.querySelector('.question-number');
+    if (!questionNumberDiv) {
+        questionNumberDiv = document.createElement('div');
+        questionNumberDiv.className = 'question-number';
+        document.querySelector('.question').prepend(questionNumberDiv);
+    }
+    questionNumberDiv.textContent = `Question ${currentQuestion + 1} of ${currentQuestions.length}`;
     
     // Handle text with blanks
     let questionText = q.text;
@@ -170,7 +220,7 @@ function showQuestion() {
     document.getElementById('result').innerText = '';
     document.getElementById('result').className = '';
     
-    // Clear any previous feedback
+    // Clear previous feedback
     const existingFeedback = document.querySelector('.feedback');
     if (existingFeedback) existingFeedback.remove();
     
@@ -181,24 +231,56 @@ function showQuestion() {
         choices.innerHTML = `
             <div class="blank-group">
                 <span>First blank:</span>
-                <button onclick="checkAnswer('in', 0)">IN</button>
-                <button onclick="checkAnswer('on', 0)">ON</button>
-                <button onclick="checkAnswer('at', 0)">AT</button>
+                <button onclick="selectOption(this, 'in', 0)">IN</button>
+                <button onclick="selectOption(this, 'on', 0)">ON</button>
+                <button onclick="selectOption(this, 'at', 0)">AT</button>
             </div>
             <div class="blank-group">
                 <span>Second blank:</span>
-                <button onclick="checkAnswer('in', 1)">IN</button>
-                <button onclick="checkAnswer('on', 1)">ON</button>
-                <button onclick="checkAnswer('at', 1)">AT</button>
+                <button onclick="selectOption(this, 'in', 1)">IN</button>
+                <button onclick="selectOption(this, 'on', 1)">ON</button>
+                <button onclick="selectOption(this, 'at', 1)">AT</button>
             </div>
         `;
+        if (q.answer.length > 2) {
+            choices.innerHTML += `
+                <div class="blank-group">
+                    <span>Third blank:</span>
+                    <button onclick="selectOption(this, 'in', 2)">IN</button>
+                    <button onclick="selectOption(this, 'on', 2)">ON</button>
+                    <button onclick="selectOption(this, 'at', 2)">AT</button>
+                    <button onclick="selectOption(this, 'to', 2)">TO</button>
+                </div>
+            `;
+        }
     } else {
         choices.innerHTML = `
-            <button onclick="checkAnswer('in')">IN</button>
-            <button onclick="checkAnswer('on')">ON</button>
-            <button onclick="checkAnswer('at')">AT</button>
+            <button onclick="selectOption(this, 'in')">IN</button>
+            <button onclick="selectOption(this, 'on')">ON</button>
+            <button onclick="selectOption(this, 'at')">AT</button>
         `;
     }
+}
+
+function selectOption(button, choice, blankIndex = 0) {
+    // Remove selection from other buttons in the same group
+    const buttonGroup = button.parentElement;
+    buttonGroup.querySelectorAll('button').forEach(btn => {
+        btn.classList.remove('selected');
+    });
+    
+    // Add selection to clicked button
+    button.classList.add('selected');
+    
+    // Update the blank to show it's filled
+    const blanks = document.querySelectorAll('.blank');
+    if (blanks[blankIndex]) {
+        blanks[blankIndex].classList.add('filled');
+        blanks[blankIndex].textContent = choice.toUpperCase();
+    }
+    
+    // Check the answer
+    checkAnswer(choice, blankIndex);
 }
 
 function updateProgress() {
@@ -224,61 +306,72 @@ function checkAnswer(choice, blankIndex = 0) {
     attempts++;
     
     let isCorrect = false;
+    const result = document.getElementById('result');
+    
     if (q.multipleBlanks) {
-        // For multiple blanks questions
         if (!q.userAnswers) {
             q.userAnswers = new Array(q.answer.length).fill(null);
         }
         q.userAnswers[blankIndex] = choice;
         
-        // Check if all blanks are filled and correct
-        isCorrect = q.userAnswers.every((ans, index) => ans === q.answer[index]);
-        const allFilled = q.userAnswers.every(ans => ans !== null);
+        // Check if current blank is correct
+        const isCurrentBlankCorrect = choice === q.answer[blankIndex];
+        const allAnswered = q.userAnswers.every(ans => ans !== null);
         
-        if (!allFilled) {
-            return; // Wait for all blanks to be filled
+        // Handle individual blank feedback
+        const currentButton = document.querySelector(`.choices button.selected[onclick*="${blankIndex}"]`);
+        const currentBlank = document.querySelectorAll('.blank')[blankIndex];
+        
+        if (isCurrentBlankCorrect) {
+            currentButton.classList.add('correct-pulse');
+            currentBlank.classList.add('filled', 'correct');
+            currentBlank.textContent = choice.toUpperCase();
+        } else {
+            currentButton.classList.add('wrong-pulse');
+            currentBlank.classList.add('filled', 'wrong');
+            currentBlank.textContent = choice.toUpperCase();
+            
+            setTimeout(() => {
+                currentButton.classList.remove('wrong-pulse', 'selected');
+                currentBlank.classList.remove('filled', 'wrong');
+                currentBlank.textContent = '___';
+                q.userAnswers[blankIndex] = null;
+            }, 1000);
+            
+            result.innerText = '❌ That preposition is not correct. Try again!';
+            result.className = 'wrong-answer';
+            return;
+        }
+        
+        // Check if all blanks are correctly filled
+        isCorrect = q.userAnswers.every((ans, idx) => ans === q.answer[idx]);
+        
+        if (allAnswered && !isCorrect) {
+            result.innerText = '❌ Some answers are incorrect. Check each blank carefully!';
+            result.className = 'wrong-answer';
+            return;
         }
     } else {
-        // For single blank questions
         isCorrect = choice === q.answer;
     }
     
-    const result = document.getElementById('result');
-    if (isCorrect) {
+    if (isCorrect && (!q.multipleBlanks || q.userAnswers.every((ans, idx) => ans === q.answer[idx]))) {
         result.innerText = q.correctPhrase;
         result.className = 'correct-answer';
         showFeedback(true, q.explanation);
         
-        if (attempts === 1) score++; // Only award point for first try
+        if (attempts === q.answer.length) score++;
         updateScore();
         
-        setTimeout(() => {
-            currentQuestion++;
-            attempts = 0;
-            
-            if (currentQuestion < currentQuestions.length) {
-                showQuestion();
-                updateProgress();
-            } else {
-                finishGame();
-            }
-        }, 2000);
-    } else {
-        result.innerText = '❌ Try again!';
-        result.className = 'wrong-answer';
-        
-        // Shake animation for wrong answer
-        const buttons = document.querySelectorAll('.choices button');
-        buttons.forEach(button => {
-            if (button.textContent.toLowerCase() === choice) {
-                button.style.animation = 'shake 0.5s';
-                setTimeout(() => button.style.animation = '', 500);
-            }
-        });
+        document.getElementById('nextQuestion').style.display = 'block';
+        disableChoiceButtons();
     }
 }
 
 function finishGame() {
+    if (timer) {
+        clearInterval(timer);
+    }
     const questionDiv = document.getElementById('question');
     const percentage = Math.round((score / currentQuestions.length) * 100);
     let message = `<h2>🎉 Great job, ${userInfo.name}!</h2>`;
@@ -343,3 +436,55 @@ if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').match
 
 // Initialize the game when the page loads
 window.onload = initGame;
+
+function startTimer() {
+    if (userInfo.difficulty === 'veryHard') {
+        document.getElementById('timer').style.display = 'block';
+        timeLeft = 60;
+        updateTimer();
+        timer = setInterval(() => {
+            timeLeft--;
+            updateTimer();
+            if (timeLeft <= 0) {
+                clearInterval(timer);
+                finishGame();
+            }
+        }, 1000);
+    }
+}
+
+function updateTimer() {
+    document.getElementById('time').textContent = timeLeft;
+}
+
+function showNextQuestion() {
+    // Remove animations from buttons
+    document.querySelectorAll('.choices button').forEach(button => {
+        button.classList.remove('correct-pulse', 'wrong-pulse', 'selected');
+    });
+    
+    document.getElementById('nextQuestion').style.display = 'none';
+    currentQuestion++;
+    
+    if (currentQuestion < currentQuestions.length) {
+        showQuestion();
+        updateProgress();
+        enableChoiceButtons();
+    } else {
+        finishGame();
+    }
+}
+
+function enableChoiceButtons() {
+    const buttons = document.querySelectorAll('.choices button');
+    buttons.forEach(button => {
+        button.disabled = false;
+    });
+}
+
+function disableChoiceButtons() {
+    const buttons = document.querySelectorAll('.choices button');
+    buttons.forEach(button => {
+        button.disabled = true;
+    });
+}

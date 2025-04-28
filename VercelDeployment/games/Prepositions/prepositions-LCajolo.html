@@ -29,6 +29,7 @@
         <button class="difficulty-btn easy" data-difficulty="easy">Easy 😊</button>
         <button class="difficulty-btn medium" data-difficulty="medium">Medium 🤔</button>
         <button class="difficulty-btn hard" data-difficulty="hard">Hard 🧐</button>
+        <button class="difficulty-btn very-hard" data-difficulty="veryHard">Very Hard Timed ⏱️</button>
       </div>
 
       <button class="start-btn" id="startGame">Start Game!</button>
@@ -37,6 +38,8 @@
 
   <div class="game-container" id="gameContainer">
     <h1>Fun with Prepositions! 🎮</h1>
+    
+    <div class="timer-container" id="timer">Time remaining: <span id="time">60</span>s</div>
     
     <div class="question" id="question">
       <img id="question-image" class="picture" src="" alt="Question Image">
@@ -49,6 +52,7 @@
     </div>
 
     <div id="result"></div>
+    <button id="nextQuestion" class="next-question-btn">Next Question ➡️</button>
   </div>
 
   <footer class="footer">
