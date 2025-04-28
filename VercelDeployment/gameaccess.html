@@ -2,9 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#4CAF50">
     <title>Game Access | Hendrix Brent Fortu</title>
     <link rel="stylesheet" href="static/light-dm.css">
+    <!-- Preload critical resources -->
+    <link rel="preload" href="static/games-access-mobile-dev.js" as="script">
+    <link rel="preload" href="static/mainscript.js" as="script">
 </head>
 <body>
     <!-- Header -->
@@ -150,9 +154,10 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="static/mainscript.js"></script>
-    <script src="static/projects-script.js"></script>
-    <script src="static/loadingscreen.js"></script>
+    <script src="static/mainscript.js" defer></script>
+    <script src="static/projects-script.js" defer></script>
+    <script src="static/loadingscreen.js" defer></script>
+    <script src="static/games-access-mobile-dev.js" defer></script>
     <script src="static/copyclipboard.js"></script>
     <script>
         // Adapt the existing project filters for games

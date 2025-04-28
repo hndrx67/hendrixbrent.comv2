@@ -338,3 +338,103 @@ nav a:focus {
     outline: 3px solid #4CAF50;
     outline-offset: 2px;
 }
+
+/* Mobile Optimization Styles */
+.mobile-device .game-filters {
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.mobile-filter-select {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 2px solid var(--accent-color);
+    border-radius: 8px;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23131313%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 12px;
+    cursor: pointer;
+}
+
+.mobile-device .project-card {
+    margin: 10px 0;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.mobile-device .project-card.touch-active {
+    transform: scale(0.98);
+    transition: transform 0.2s ease;
+}
+
+.mobile-device .project-links {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.mobile-device .project-link {
+    width: 100%;
+    padding: 12px;
+    text-align: center;
+    font-size: 16px;
+}
+
+@media (max-width: 768px) {
+    .mobile-device .container {
+        padding: 10px;
+    }
+
+    .mobile-device .section-title {
+        font-size: 24px;
+        margin: 15px 0;
+    }
+
+    .mobile-device .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .mobile-device .project-img img {
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .mobile-device .project-content {
+        padding: 15px;
+    }
+
+    .mobile-device .project-content h3 {
+        font-size: 18px;
+    }
+
+    .mobile-device .project-content p {
+        font-size: 14px;
+        margin: 8px 0;
+    }
+}
+
+/* Dark mode adjustments for mobile */
+[data-theme="dark"] .mobile-filter-select {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    border-color: var(--accent-dark);
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23ffffff%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+}
+
+/* Loading optimization for mobile */
+.mobile-device img[data-src] {
+    opacity: 0;
+    transition: opacity 0.3s ease-in;
+}
+
+.mobile-device img[data-src][src] {
+    opacity: 1;
+}
