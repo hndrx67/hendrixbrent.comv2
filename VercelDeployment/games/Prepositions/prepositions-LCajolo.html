@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Fun with Prepositions!</title>
+  <meta name="description" content="Learn English prepositions in, on, and at with this fun interactive game!">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <button class="theme-toggle" id="themeToggle">🌙</button>
+
+  <div class="landing-page" id="landingPage">
+    <h1>Welcome to Prepositions!</h1>
+    
+    <div class="welcome-card">
+      <div class="input-group">
+        <label for="username">What's your name?</label>
+        <input type="text" id="username" class="input-field" placeholder="Enter your name" required>
+      </div>
+      
+      <div class="input-group">
+        <label for="grade">What grade are you in?</label>
+        <input type="number" id="grade" class="input-field" min="1" max="12" placeholder="Enter your grade" required>
+      </div>
+
+      <h3>Choose your difficulty:</h3>
+      <div class="difficulty-buttons">
+        <button class="difficulty-btn easy" data-difficulty="easy">Easy 😊</button>
+        <button class="difficulty-btn medium" data-difficulty="medium">Medium 🤔</button>
+        <button class="difficulty-btn hard" data-difficulty="hard">Hard 🧐</button>
+      </div>
+
+      <button class="start-btn" id="startGame">Start Game!</button>
+    </div>
+  </div>
+
+  <div class="game-container" id="gameContainer">
+    <h1>Fun with Prepositions! 🎮</h1>
+    
+    <div class="question" id="question">
+      <img id="question-image" class="picture" src="" alt="Question Image">
+      <p id="question-text" class="question-text"></p>
+      <div class="choices">
+        <button onclick="checkAnswer('in')">IN</button>
+        <button onclick="checkAnswer('on')">ON</button>
+        <button onclick="checkAnswer('at')">AT</button>
+      </div>
+    </div>
+
+    <div id="result"></div>
+  </div>
+
+  <footer class="footer">
+    <p>&copy; 2023 Fun with Prepositions! All rights reserved.</p>
+    <p><b>Educational Game by Lovilla Cajolo</b></p>
+    <p>Icons by <a href="https://www.flaticon.com/" target="_blank">Flaticon</a></p>
+    <p>Images by <a href="https://unsplash.com/" target="_blank">Unsplash</a></p>
+    </footer>
+
+
+  <script src="script.js"></script>
+</body>
+</html>

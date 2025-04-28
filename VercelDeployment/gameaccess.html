@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Access | Hendrix Brent Fortu</title>
+    <link rel="stylesheet" href="static/light-dm.css">
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container header-content">	
+            <a href="index.html#header" class="logo">hendrixbrent.com</a>
+            <nav id="nav">
+                <ul>
+                    <li><a href="index.html">Back to Home</a></li>
+                    <li><a href="#" class="active">Games</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Games Section -->
+    <section class="projects-section">
+        <div class="container">
+            <h1 class="section-title">Game Collection</h1>
+            
+            <!-- Game Filters -->
+            <div class="game-filters">
+                <button class="filter-btn active" data-filter="all">All Games</button>
+                <button class="filter-btn" data-filter="action">Educational</button>
+                <button class="filter-btn" data-filter="puzzle">Puzzle</button>
+                <button class="filter-btn" data-filter="adventure">Adventure</button>
+                <button class="filter-btn" data-filter="strategy">Strategy</button>
+            </div>
+
+            <!-- Games Grid -->
+            <div class="projects-grid">
+                <!-- Snake Game -->
+                <div class="project-card" data-category="action">
+                    <div class="project-img">
+                        <img src="static/images/CoverCardForPrespotionss.png" alt="Snake Game" class="img-top">
+                        <img src="static/images/CoverCardForPrespotionss.png" alt="Snake Game Preview" class="img-bottom">
+                    </div>
+                    <div class="project-content">
+                        <h3>Prepositions - Educational Game</h3>
+                        <p>A 3 Stage Game about Prepostions by <b>Lovilla Cajolo</b></p>
+                        <div class="project-links">
+                            <a href="https://hndrx.org/games/Prepositions/prepositions-LCajolo.html" class="project-link">Play Now</a>
+                            <button class="project-link copy-btn" onclick="copyToClipboard('https://hndrx.org/games/Prepositions/prepositions-LCajolo.html')">Copy Link!</button>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tetris 
+                <div class="project-card" data-category="puzzle">
+                    <div class="project-img">
+                        <img src="static/images/games/tetris.jpg" alt="Tetris" class="img-top">
+                        <img src="static/images/games/tetris-hover.jpg" alt="Tetris Preview" class="img-bottom">
+                    </div>
+                    <div class="project-content">
+                        <h3>Modern Tetris</h3>
+                        <p>Stack, clear, and score! A modern take on the classic block-stacking puzzle game with smooth controls and vibrant graphics.</p>
+                        <div class="project-links">
+                            <a href="games/tetris.html" class="project-link">Play Now</a>
+                            <a href="#" class="project-link">High Scores</a>
+                        </div>
+                    </div>
+                </div>
+
+            -->
+
+                <!-- Space Shooter 
+                <div class="project-card" data-category="action">
+                    <div class="project-img">
+                        <img src="static/images/games/space-shooter.jpg" alt="Space Shooter" class="img-top">
+                        <img src="static/images/games/space-hover.jpg" alt="Space Shooter Preview" class="img-bottom">
+                    </div>
+                    <div class="project-content">
+                        <h3>Galaxy Defender</h3>
+                        <p>Defend Earth from alien invaders in this action-packed space shooter. Upgrade your ship and unlock special weapons!</p>
+                        <div class="project-links">
+                            <a href="games/space-shooter.html" class="project-link">Play Now</a>
+                            <a href="#" class="project-link">Rankings</a>
+                        </div>
+                    </div>
+                </div>
+
+            -->
+
+                <!-- Quiz Game 
+                <div class="project-card" data-category="strategy">
+                    <div class="project-img">
+                        <img src="static/images/games/quiz.jpg" alt="Quiz Game" class="img-top">
+                        <img src="static/images/games/quiz-hover.jpg" alt="Quiz Preview" class="img-bottom">
+                    </div>
+                    <div class="project-content">
+                        <h3>Anime Trivia Master</h3>
+                        <p>Test your anime knowledge with questions ranging from classics to the latest seasonal hits. Multiple difficulty levels available!</p>
+                        <div class="project-links">
+                            <a href="games/quiz.html" class="project-link">Start Quiz</a>
+                            <a href="#" class="project-link">Global Rankings</a>
+                        </div>
+                    </div>
+                </div>
+            -->
+
+
+
+                <!-- Memory Card Game 
+                <div class="project-card" data-category="puzzle">
+                    <div class="project-img">
+                        <img src="static/images/games/memory.jpg" alt="Memory Game" class="img-top">
+                        <img src="static/images/games/memory-hover.jpg" alt="Memory Game Preview" class="img-bottom">
+                    </div>
+                    <div class="project-content">
+                        <h3>Waifu Memory Match</h3>
+                        <p>Match pairs of anime character cards in this memory challenge. Features characters from popular anime series!</p>
+                        <div class="project-links">
+                            <a href="games/memory.html" class="project-link">Play Now</a>
+                            <a href="#" class="project-link">Best Times</a>
+                        </div>
+                    </div>
+                </div>
+            -->
+
+                <!-- RPG Adventure 
+                <div class="project-card" data-category="puzzle">
+                    <div class="project-content">
+                        <h3>Classic Snake</h3>
+                        <p>The timeless classic reimagined! Guide your snake, eat the apples, and try not to bite yourself. Can you beat the high score?</p>
+                        <div class="project-links">
+                            <a href="games/snake.html" class="project-link">Play Now</a>
+                            <a href="#" class="project-link">Leaderboard</a>
+                            <button onclick="copyToClipboard('games/snake.html')" class="project-link copy-btn">Copy Link</button>
+                        </div>
+                    </div>
+                </div>
+            -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p class="copy">&copy; 2025 Hendrix Brent Fortu. All rights reserved. | Under the Domain of <a href="https://hndrx.org">HNDRX.ORG</a></p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="static/mainscript.js"></script>
+    <script src="static/projects-script.js"></script>
+    <script src="static/loadingscreen.js"></script>
+    <script src="static/copyclipboard.js"></script>
+    <script>
+        // Adapt the existing project filters for games
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const gameCards = document.querySelectorAll('.project-card');
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    // Add active class to clicked button
+                    btn.classList.add('active');
+                    
+                    const filter = btn.getAttribute('data-filter');
+                    
+                    gameCards.forEach(card => {
+                        if (filter === 'all' || card.getAttribute('data-category').includes(filter)) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

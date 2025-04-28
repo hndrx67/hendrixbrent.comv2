@@ -77,6 +77,19 @@ body.light-mode .filter-btn.active {
     padding: 0;
 }
 
+.project-link.copy-btn {
+    background-color: #555;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
+    transition: background-color 0.3s ease;
+}
+
+.project-link.copy-btn:hover {
+    background-color: #666;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .projects-section {
