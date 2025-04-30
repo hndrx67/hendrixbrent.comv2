@@ -1,3 +1,4 @@
+
 // Hero Section Mobile Optimization
 document.addEventListener('DOMContentLoaded', function() {
     // Function to optimize hero for different screen sizes
