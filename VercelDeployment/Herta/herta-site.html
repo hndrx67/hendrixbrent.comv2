@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+    
+    <link rel="stylesheet" href="css/herta-styling.css">
+    <title>The Herta</title>
+    
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Charstats.gg</div>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#gallery">Gallery</a>
+                <a href="#quotes">Quotes</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>The Herta</h1>
+            <p class="tagline">"Madam Herta is a peerless gem!"<br>
+                "Madam Herta is an unrivalled genius!"<br>
+                "Madam Herta is an inimitable beauty!"</p>
+            <a href="#about" class="btn">Discover More</a>
+        </div>
+        <img src="herta-herosection-greeter3-800x400landscape.png" alt="herta her majesty" class="hero-image">
+    </section>
+
+    <section id="about" class="about-section">
+        <h2 class="section-title">Character Profile</h2>
+        <div class="about">
+            <div>
+                <img src="The.Herta.full.4333875.jpg" alt="HerMajestysAppearanceisSacred" class="about-image">
+            </div>
+            <div class="about-content">
+                <h2>The Herta</h2>
+                <p>Born in the hidden village of Kirinotani, Sakura Miyazaki discovered her extraordinary abilities at a young age. As the wielder of the legendary Crimson Blade, she protects the realm from dark forces that threaten to destroy everything she holds dear.</p>
+                <p>Despite her fierce exterior, Sakura harbors a deep compassion for those in need and will go to extraordinary lengths to help others, even at great personal cost.</p>
+                <div class="stats">
+                    <div class="stat">
+                        <div class="stat-value">97</div>
+                        <div class="stat-label">Combat</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">85</div>
+                        <div class="stat-label">Strategy</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">92</div>
+                        <div class="stat-label">Spirit</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="gallery">
+        <h2 class="section-title">Gallery</h2>
+        <div class="cards">
+            <div class="card" onclick="openModal('battleModal')">
+                <img src="/api/placeholder/400/320" alt="Battle Scene" class="card-image">
+                <div class="card-content">
+                    <h3 class="card-title">The Battle of Twilight Pass</h3>
+                    <p class="card-text">Sakura faces off against the Shadow Legion in an epic battle that defined her legacy.</p>
+                </div>
+            </div>
+            <div class="card" onclick="openModal('powerModal')">
+                <img src="/api/placeholder/400/320" alt="Special Power" class="card-image">
+                <div class="card-content">
+                    <h3 class="card-title">Crimson Fury Technique</h3>
+                    <p class="card-text">Her signature move that channels ancient energy through her blade.</p>
+                </div>
+            </div>
+            <div class="card" onclick="openModal('pastModal')">
+                <img src="/api/placeholder/400/320" alt="Past Memory" class="card-image">
+                <div class="card-content">
+                    <h3 class="card-title">Memories of Kirinotani</h3>
+                    <p class="card-text">A glimpse into Sakura's childhood and her training days.</p>
+                </div>
+            </div>
+            <div class="card" onclick="openModal('allyModal')">
+                <img src="/api/placeholder/400/320" alt="Allies" class="card-image">
+                <div class="card-content">
+                    <h3 class="card-title">Trusted Companions</h3>
+                    <p class="card-text">Meet the allies who fight alongside Sakura in her quest.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="quotes">
+        <h2 class="section-title">Memorable Quotes</h2>
+        <div class="quotes">
+            <p>"A blade without purpose is just metal. It's the heart behind it that makes it powerful."</p>
+        </div>
+        <div class="quotes">
+            <p>"I don't fight because I hate what's in front of me. I fight because I love what's behind me."</p>
+        </div>
+        <div class="quotes">
+            <p>"Sometimes the strongest warriors are the ones who know when not to draw their swords."</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <p>© 2025 Anime Character Showcase. All characters and stories are fictional.</p>
+            <p>Created with passion for anime enthusiasts</p>
+        </div>
+    </footer>
+
+    <div class="theme-toggle" id="themeToggle">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" id="moonIcon"></path>
+            <circle cx="12" cy="12" r="5" id="sunIcon" style="display:none"></circle>
+            <line x1="12" y1="1" x2="12" y2="3" id="sunLine1" style="display:none"></line>
+            <line x1="12" y1="21" x2="12" y2="23" id="sunLine2" style="display:none"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" id="sunLine3" style="display:none"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" id="sunLine4" style="display:none"></line>
+            <line x1="1" y1="12" x2="3" y2="12" id="sunLine5" style="display:none"></line>
+            <line x1="21" y1="12" x2="23" y2="12" id="sunLine6" style="display:none"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" id="sunLine7" style="display:none"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" id="sunLine8" style="display:none"></line>
+        </svg>
+    </div>
+
+    <!-- Modals -->
+    <div id="battleModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">The Battle of Twilight Pass</h2>
+                <button class="close-modal" onclick="closeModal('battleModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-image">
+                    <img src="/api/placeholder/600/400" alt="Battle Scene">
+                </div>
+                <div class="modal-description">
+                    <h3>A Defining Moment</h3>
+                    <p>The Battle of Twilight Pass marked a turning point in the Great Shadow War. Outnumbered ten to one, Sakura stood firm against the Shadow Legion, her Crimson Blade gleaming in the fading light.</p>
+                    <p>For three days and nights, she held the narrow pass, allowing countless civilians to escape to safety. Legends say that the ground itself turned crimson, not just from blood, but from the ethereal energy that emanated from her blade.</p>
+                    <div class="skills">
+                        <div class="skill">
+                            <div class="skill-name">
+                                <span>Swordsmanship</span>
+                                <span>98%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 98%"></div>
+                            </div>
+                        </div>
+                        <div class="skill">
+                            <div class="skill-name">
+                                <span>Endurance</span>
+                                <span>95%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 95%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="powerModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Crimson Fury Technique</h2>
+                <button class="close-modal" onclick="closeModal('powerModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-image">
+                    <img src="/api/placeholder/600/400" alt="Special Power">
+                </div>
+                <div class="modal-description">
+                    <h3>Ultimate Power</h3>
+                    <p>The Crimson Fury is Sakura's most devastating technique, passed down through generations of her family. By channeling her life force into her blade, she can create slashes that cut through dimensions themselves.</p>
+                    <p>This technique comes at a great cost—each use drains her vitality significantly. Legend has it that no wielder has ever used it more than seven times in their lifetime without facing dire consequences.</p>
+                    <div class="skills">
+                        <div class="skill">
+                            <div class="skill-name">
+                                <span>Power</span>
+                                <span>100%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 100%"></div>
+                            </div>
+                        </div>
+                        <div class="skill">
+                            <div class="skill-name">
+                                <span>Control</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="pastModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Memories of Kirinotani</h2>
+                <button class="close-modal" onclick="closeModal('pastModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-image">
+                    <img src="/api/placeholder/600/400" alt="Past Memory">
+                </div>
+                <div class="modal-description">
+                    <h3>Origins</h3>
+                    <p>Before becoming a legendary warrior, Sakura was merely a curious child in the mist-shrouded village of Kirinotani. Raised by Master Tanaka, the village's sword saint, she showed prodigious talent from an early age.</p>
+                    <p>At the age of just seven, she could cut falling raindrops in half with a practice sword. By twelve, she had mastered techniques that took most swordsmen decades to perfect.</p>
+                    <p>The peaceful days ended when the Shadow Legion attacked her village, forcing her to take up her master's sword and embrace her destiny.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="allyModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Trusted Companions</h2>
+                <button class="close-modal" onclick="closeModal('allyModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-image">
+                    <img src="/api/placeholder/600/400" alt="Allies">
+                </div>
+                <div class="modal-description">
+                    <h3>Friends in Battle</h3>
+                    <p>Though often portrayed as a lone warrior, Sakura has formed deep bonds with several allies throughout her journey:</p>
+                    <ul style="margin-left: 20px; margin-bottom: 15px;">
+                        <li><strong>Riku Tatsumi</strong> - A master archer with eyes that can spot a target from miles away</li>
+                        <li><strong>Mei Lin</strong> - A healer with knowledge of ancient remedies and forbidden arts</li>
+                        <li><strong>Kenji the Shadow</strong> - A former assassin who now uses his skills to protect the innocent</li>
+                    </ul>
+                    <p>Together, they form the core of the resistance against the encroaching darkness that threatens their world.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   <script src="js/herta-back.js"></script>
+    
+</body>
+</html>

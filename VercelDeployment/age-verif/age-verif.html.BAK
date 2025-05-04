@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Verification</title>
+    
+</head>
+<body>
+    <!-- This represents your existing site content (blurred in background) -->
+    <div class="site-content">
+        <!-- Your existing website content would be here -->
+    </div>
+
+    <!-- Age verification overlay -->
+    <div class="age-overlay" id="ageVerification">
+        <div class="age-dialog">
+            <div class="age-title">⚠️ AGE VERIFICATION REQUIRED ⚠️</div>
+            <div class="age-warning">
+                <p>This website contains adult content that is only suitable for individuals who are at least 18 years of age or the legal age in your jurisdiction.</p>
+                <p>By proceeding, you confirm that you are at least 18 years old and legally allowed to view adult content in your location.</p>
+            </div>
+            
+            <div class="checkbox-container">
+                <input type="checkbox" id="ageConfirmation" required>
+                <label for="ageConfirmation">I confirm I am at least 18 years old</label>
+            </div>
+            
+            <div class="age-buttons">
+                <button class="btn btn-proceed" id="proceedButton" disabled>PROCEED</button>
+                <button class="btn btn-leave" id="leaveButton">GO BACK</button>
+            </div>
+        </div>
+    </div>
+
+    
+</body>
+</html>
