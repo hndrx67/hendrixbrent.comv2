@@ -184,7 +184,7 @@
         window.history.back(); // Go back to previous page
         // Fallback if there's no history
         setTimeout(function() {
-          window.location.href = 'https://www.google.com';
+          window.location.href = 'https://hndrx.org';
         }, 100);
       });
     }
