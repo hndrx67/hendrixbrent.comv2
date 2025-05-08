@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donations & Payments</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            color: #4a6fa5;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 1.1rem;
+        }
+        
+        .payment-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            margin-top: 40px;
+        }
+        
+        .payment-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            width: 100%;
+            max-width: 400px;
+            transition: transform 0.3s ease;
+        }
+        
+        .payment-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .payment-card h2 {
+            color: #4a6fa5;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .icon {
+            font-size: 1.8rem;
+        }
+        
+        .qr-container {
+            border: 2px dashed #ccc;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: center;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        
+        .qr-placeholder {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+            background-color: #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            color: #777;
+        }
+        
+        .qr-number {
+            margin-top: 15px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: #4a6fa5;
+        }
+        
+        .contact-info {
+            background-color: #f5f8ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        
+        .contact-info p {
+            margin-bottom: 8px;
+        }
+        
+        .steps {
+            margin-top: 15px;
+        }
+        
+        .steps ol {
+            padding-left: 20px;
+        }
+        
+        .steps li {
+            margin-bottom: 8px;
+        }
+        
+        .thank-you {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #f0f7ff;
+            border-radius: 8px;
+        }
+        
+        .thank-you h2 {
+            color: #4a6fa5;
+            margin-bottom: 10px;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        .copy-btn {
+            background-color: #4a6fa5;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            margin-left: 10px;
+            transition: background-color 0.3s;
+        }
+        
+        .copy-btn:hover {
+            background-color: #3a5a80;
+        }
+        
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        @media (max-width: 768px) {
+            .payment-card {
+                max-width: 100%;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Donations & Payments</h1>
+            <p class="subtitle">Thank you for your support! Choose your preferred payment method below.</p>
+        </header>
+        
+        <div class="payment-options">
+            <!-- GCash Payment Option -->
+            <div class="payment-card">
+                <h2><span class="icon">💳</span> GCash Payment</h2>
+                <p>Scan the QR code below or use the account number to send your payment via GCash.</p>
+                
+                <div class="qr-container">
+                    <div id="qr-image" class="qr-placeholder">
+                        
+                    </div>
+                    <p class="qr-number">
+                        <span id="gcash-number">GCash Number</span>
+                        <button class="copy-btn" onclick="copyToClipboard('gcash-number')">Copy</button>
+                    </p>
+                </div>
+                
+                <div class="steps">
+                    <h3>How to pay with GCash:</h3>
+                    <ol>
+                        <li>Open your GCash app</li>
+                        <li>Tap on "Scan QR" or go to "Send Money"</li>
+                        <li>Scan the QR code above or enter the account number manually</li>
+                        <li>Enter the amount and add a note with your name</li>
+                        <li>Confirm and send your payment</li>
+                    </ol>
+                </div>
+            </div>
+            
+            <!-- Cash Payment Option -->
+            <div class="payment-card">
+                <h2><span class="icon">💵</span> Cash Payment</h2>
+                <p>For cash payments, please contact us directly using the information below.</p>
+                
+                <div class="contact-info">
+                    <h3>Contact Details:</h3>
+                    <p><strong>Phone:</strong> <span id="contact-phone">Your phone number</span> <button class="copy-btn" onclick="copyToClipboard('contact-phone')">Copy</button></p>
+                    <p><strong>Email:</strong> <span id="contact-email">your.email@example.com</span> <button class="copy-btn" onclick="copyToClipboard('contact-email')">Copy</button></p>
+                    
+                    <div class="steps">
+                        <h3>Cash payment process:</h3>
+                        <ol>
+                            <li>Contact us using the details above</li>
+                            <li>Arrange a convenient time and location for the payment</li>
+                            <li>Request a receipt for your records</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="thank-you">
+            <h2>Thank You For Your Support!</h2>
+            <p>Your contribution helps us continue our work and provide better services.</p>
+        </div>
+        
+        <footer>
+            <p>© <span id="current-year"></span> - HNDRX.ORG All Rights Reserved</p>
+        </footer>
+    </div>
+    
+    <div class="notification" id="notification">Copied to clipboard!</div>
+    
+    <script>
+        // Set current year in the footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Function to copy text to clipboard
+        function copyToClipboard(elementId) {
+            const text = document.getElementById(elementId).textContent;
+            navigator.clipboard.writeText(text).then(function() {
+                showNotification();
+            }, function(err) {
+                console.error('Could not copy text: ', err);
+            });
+        }
+        
+        // Show notification
+        function showNotification() {
+            const notification = document.getElementById('notification');
+            notification.style.opacity = '1';
+            setTimeout(function() {
+                notification.style.opacity = '0';
+            }, 2000);
+        }
+        
+        // Set content placeholder for demo
+        document.addEventListener('DOMContentLoaded', function() {
+            // Replace these with your actual details
+            document.getElementById('gcash-number').textContent = '0966 880 7138';
+
+            document.getElementById('contact-phone').textContent = '+63 966 880 7138';
+            document.getElementById('contact-email').textContent = 'brentifromph696@gmail.com';
+            
+            // Handle QR code image upload
+            const qrImage = document.getElementById('qr-image');
+            
+            // The upload functionality would be handled separately
+            // This is just a placeholder for where the image will go
+            qrImage.innerHTML = `
+                <div style="text-align: center;">
+                    <p>Scan the QR code below:</p>
+                        <img src="static/gaycash.jpg" style="max-width: 100%; height: auto; border-radius: 8px;">
+                    </p>
+                </div>
+            `;
+        });
+    </script>
+</body>
+</html>
