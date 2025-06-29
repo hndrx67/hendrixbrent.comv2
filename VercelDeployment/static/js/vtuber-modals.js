@@ -14,17 +14,33 @@ document.addEventListener('DOMContentLoaded', () => {
     const modals = document.querySelectorAll('.vtuber-modal');
     const closeButtons = document.querySelectorAll('.close-modal');
 
+    // Card click for main vtubers
     vtuberCards.forEach(card => {
         card.addEventListener('click', () => {
             const vtuberClass = Array.from(card.classList)
                 .find(className => ['gura', 'marine', 'mori', 'kronii', 'fauna', 'nerissa','rin'].includes(className));
             const modal = document.getElementById(`${vtuberClass}-modal`);
-            
             if (modal) {
                 modal.style.display = 'flex';
                 document.body.style.overflow = 'hidden';
-                
-                // Trigger animations after a small delay
+                setTimeout(() => {
+                    modal.classList.add('active');
+                    modal.querySelector('.modal-content').style.opacity = '1';
+                    modal.querySelector('.modal-content').style.transform = 'translateY(0)';
+                }, 10);
+            }
+        });
+    });
+
+    // Special handler for "open-modal-btn" buttons (for Sameko Saba and future use)
+    document.querySelectorAll('.open-modal-btn').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            var modalId = btn.getAttribute('data-modal');
+            var modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
                 setTimeout(() => {
                     modal.classList.add('active');
                     modal.querySelector('.modal-content').style.opacity = '1';
