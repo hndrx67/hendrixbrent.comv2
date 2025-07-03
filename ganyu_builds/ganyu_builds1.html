@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ganyu Stats Showcase</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #e0f2ff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .snowfall {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .snowflake {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+            }
+            100% {
+                transform: translateY(calc(100vh + 100px)) rotate(360deg);
+            }
+        }
+
+        .container {
+            display: flex;
+            width: 90%;
+            max-width: 1200px;
+            height: 90vh;
+            max-height: 800px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 50, 100, 0.15);
+            overflow: hidden;
+            z-index: 2;
+            position: relative;
+        }
+
+        .character-card {
+            width: 50%;
+            height: 100%;
+            position: relative;
+            cursor: pointer;
+            transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+        }
+
+        .character-card.active {
+            width: 35%;
+        }
+
+        .character-image {
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMzAwIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iIzc3QThEMCIvPjxwYXRoIGQ9Ik04NSAyNTBjMCAwIDIwLTUwIDMwLTkwIDEwIDE1IDI1IDMwIDQwIDQwLTQwLTQwLTQwLTEyMC00MC0xMjAgMCAwLTE1IDQwLTMwIDUwIDAgMCAwLTQwIDEwLTYwLTEwIDEwLTQwIDEwLTU1IDQwIDQwIDIwIDM1IDcwIDI1IDEwMC01IDEwLTI1IDIwLTM1IDI1IDE1IDE1IDU1IDE1IDU1IDE1eiIgZmlsbD0iI2ZmZiIvPjxjaXJjbGUgY3g9IjExMCIgY3k9IjcwIiByPSI4IiBmaWxsPSIjNzJDNEZGIi8+PGNpcmNsZSBjeD0iMTQwIiBjeT0iOTAiIHI9IjE1IiBmaWxsPSIjNzJDNEZGIi8+PGNpcmNsZSBjeD0iODAiIGN5PSIxMTAiIHI9IjEyIiBmaWxsPSIjNzJDNEZGIi8+PC9zdmc+');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            transition: transform 0.5s ease;
+        }
+
+        .character-card.active .character-image {
+            transform: scale(1.05);
+        }
+
+        .card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(72, 135, 193, 0.4), rgba(172, 209, 233, 0.3));
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2rem;
+            color: white;
+        }
+
+        .card-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.5s ease;
+        }
+
+        .card-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.5s ease 0.1s;
+        }
+
+        .card-hint {
+            font-size: 1rem;
+            opacity: 0.8;
+            margin-top: 1rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.5s ease 0.2s;
+        }
+
+        .character-card.active .card-title,
+        .character-card.active .card-subtitle,
+        .character-card.active .card-hint {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .stats-container {
+            width: 0%;
+            height: 100%;
+            padding: 0;
+            background: rgba(255, 255, 255, 0.9);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+            opacity: 0;
+        }
+
+        .stats-container.active {
+            width: 65%;
+            padding: 2rem;
+            opacity: 1;
+        }
+
+        .stats-header {
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease 0.3s;
+        }
+
+        .stats-container.active .stats-header {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stats-title {
+            color: #3171b4;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .stats-subtitle {
+            color: #5a9bd4;
+            font-size: 1.2rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .stat-box {
+            background: linear-gradient(to bottom right, #e8f4fd, #d1e6f9);
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 50, 100, 0.1);
+            transform: translateY(30px);
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+
+        .stats-container.active .stat-box {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .stats-container.active .stat-box:nth-child(1) {
+            transition-delay: 0.4s;
+        }
+
+        .stats-container.active .stat-box:nth-child(2) {
+            transition-delay: 0.5s;
+        }
+
+        .stats-container.active .stat-box:nth-child(3) {
+            transition-delay: 0.6s;
+        }
+
+        .stats-container.active .stat-box:nth-child(4) {
+            transition-delay: 0.7s;
+        }
+
+        .stat-label {
+            color: #5a9bd4;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-value {
+            color: #3171b4;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-description {
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+
+        .graph-container {
+            margin-top: 2rem;
+            transform: translateY(30px);
+            opacity: 0;
+            transition: all 0.5s ease 0.8s;
+        }
+
+        .stats-container.active .graph-container {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .stat-bars {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .stat-bar {
+            position: relative;
+        }
+
+        .bar-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.3rem;
+        }
+
+        .bar-name {
+            color: #3171b4;
+            font-weight: 600;
+        }
+
+        .bar-value {
+            color: #5a9bd4;
+        }
+
+        .bar-bg {
+            height: 10px;
+            width: 100%;
+            background-color: #e0f2ff;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .bar-fill {
+            height: 100%;
+            width: 0;
+            background: linear-gradient(to right, #5a9bd4, #3171b4);
+            border-radius: 5px;
+            transition: width 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .stats-container.active .bar-fill {
+            width: var(--fill-width);
+        }
+
+        .elemental-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(to bottom right, #72c4ff, #3171b4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-right: 1rem;
+        }
+
+        .header-flex {
+            display: flex;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                height: auto;
+            }
+            
+            .character-card {
+                width: 100%;
+                height: 50vh;
+            }
+            
+            .character-card.active {
+                width: 100%;
+                height: 30vh;
+            }
+            
+            .stats-container {
+                width: 100%;
+                height: 0;
+            }
+            
+            .stats-container.active {
+                width: 100%;
+                height: auto;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="snowfall" id="snowfall"></div>
+    
+    <div class="container">
+        <div class="character-card" id="characterCard">
+            <div class="character-image">
+                <div class="card-overlay">
+                    <h1 class="card-title">Ganyu</h1>
+                    <p class="card-subtitle">Cryo • Bow</p>
+                    <p class="card-hint">Click to view detailed stats</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="stats-container" id="statsContainer">
+            <div class="stats-header">
+                <div class="header-flex">
+                    <div class="elemental-icon">❄️</div>
+                    <div>
+                        <h2 class="stats-title">Ganyu</h2>
+                        <p class="stats-subtitle">Secretary to the Liyue Qixing</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Rank</div>
+                    <div class="stat-value" id="rankValue">S+</div>
+                    <div class="stat-description">Exceptional build quality and optimization</div>
+                </div>
+                
+                <div class="stat-box">
+                    <div class="stat-label">Total Artifact CV</div>
+                    <div class="stat-value" id="cvValue">240.8</div>
+                    <div class="stat-description">Critical Value from artifacts</div>
+                </div>
+                
+                <div class="stat-box">
+                    <div class="stat-label">RV %</div>
+                    <div class="stat-value" id="rvValue">92.4%</div>
+                    <div class="stat-description">Relative Value compared to max potential</div>
+                </div>
+                
+                <div class="stat-box">
+                    <div class="stat-label">Region</div>
+                    <div class="stat-value" id="regionValue">Liyue</div>
+                    <div class="stat-description">Half-qilin adeptus from Liyue Harbor</div>
+                </div>
+            </div>
+            
+            <div class="graph-container">
+                <h3 style="color: #3171b4; margin-bottom: 1rem;">Stat Distribution</h3>
+                <div class="stat-bars">
+                    <div class="stat-bar">
+                        <div class="bar-label">
+                            <span class="bar-name">CRIT DMG</span>
+                            <span class="bar-value">267.8%</span>
+                        </div>
+                        <div class="bar-bg">
+                            <div class="bar-fill" style="--fill-width: 90%;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-bar">
+                        <div class="bar-label">
+                            <span class="bar-name">CRIT Rate</span>
+                            <span class="bar-value">62.4%</span>
+                        </div>
+                        <div class="bar-bg">
+                            <div class="bar-fill" style="--fill-width: 78%;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-bar">
+                        <div class="bar-label">
+                            <span class="bar-name">ATK</span>
+                            <span class="bar-value">2,389</span>
+                        </div>
+                        <div class="bar-bg">
+                            <div class="bar-fill" style="--fill-width: 85%;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-bar">
+                        <div class="bar-label">
+                            <span class="bar-name">Cryo DMG</span>
+                            <span class="bar-value">61.6%</span>
+                        </div>
+                        <div class="bar-bg">
+                            <div class="bar-fill" style="--fill-width: 95%;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-bar">
+                        <div class="bar-label">
+                            <span class="bar-name">Energy Recharge</span>
+                            <span class="bar-value">128.9%</span>
+                        </div>
+                        <div class="bar-bg">
+                            <div class="bar-fill" style="--fill-width: 65%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Create snowflakes
+        const snowfall = document.getElementById('snowfall');
+        const snowflakeCount = 100;
+        
+        for (let i = 0; i < snowflakeCount; i++) {
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+            
+            // Random size
+            const size = Math.random() * 5 + 2;
+            snowflake.style.width = `${size}px`;
+            snowflake.style.height = `${size}px`;
+            
+            // Random starting position
+            const startPosX = Math.random() * 100;
+            snowflake.style.left = `${startPosX}%`;
+            
+            // Random fall duration
+            const fallDuration = Math.random() * 15 + 10;
+            snowflake.style.animationDuration = `${fallDuration}s`;
+            
+            // Random delay
+            const fallDelay = Math.random() * 15;
+            snowflake.style.animationDelay = `${fallDelay}s`;
+            
+            snowfall.appendChild(snowflake);
+        }
+        
+        // Character card click animation
+        const characterCard = document.getElementById('characterCard');
+        const statsContainer = document.getElementById('statsContainer');
+        
+        characterCard.addEventListener('click', () => {
+            characterCard.classList.toggle('active');
+            statsContainer.classList.toggle('active');
+        });
+        
+        // Animate stats value counting
+        function animateValue(element, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const value = Math.floor(progress * (end - start) + start);
+                
+                if (element.id === 'cvValue' || element.id === 'rvValue') {
+                    element.textContent = element.id === 'rvValue' ? `${value}%` : value.toFixed(1);
+                } else {
+                    element.textContent = element.id === 'rankValue' ? 'S+' : element.id === 'regionValue' ? 'Liyue' : value;
+                }
+                
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+        
+        statsContainer.addEventListener('transitionend', (e) => {
+            if (e.propertyName === 'opacity' && statsContainer.classList.contains('active')) {
+                const rankValue = document.getElementById('rankValue');
+                const cvValue = document.getElementById('cvValue');
+                const rvValue = document.getElementById('rvValue');
+                const regionValue = document.getElementById('regionValue');
+                
+                // Using placeholder values, replace these with your actual values
+                animateValue(cvValue, 0, 240.8, 1500);
+                animateValue(rvValue, 0, 92.4, 1500);
+            }
+        });
+    </script>
+</body>
+</html>
