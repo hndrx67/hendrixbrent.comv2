@@ -1,0 +1,681 @@
+/* Uma Musume Pretty Derby Styles */
+
+/* Hero Section */
+.uma-hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: var(--bg-dark);
+}
+
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    animation: fadeInImage 2s ease-out forwards;
+    animation-delay: 0.5s;
+}
+
+@keyframes fadeInImage {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        135deg,
+        rgba(14, 14, 16, 0.8) 0%,
+        rgba(14, 14, 16, 0.6) 50%,
+        rgba(14, 14, 16, 0.8) 100%
+    );
+    z-index: 2;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    color: var(--text-dark);
+    opacity: 0;
+    animation: fadeInUp 1.5s ease-out forwards;
+    animation-delay: 1s;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-title {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, var(--accent), var(--accent-alt));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 20px rgba(60, 255, 226, 0.3);
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 3rem;
+    color: var(--text-dark);
+    opacity: 0.9;
+}
+
+.hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 2rem;
+}
+
+.stat-item {
+    text-align: center;
+    opacity: 0;
+    animation: fadeInUp 1s ease-out forwards;
+}
+
+.stat-item:nth-child(1) { animation-delay: 1.5s; }
+.stat-item:nth-child(2) { animation-delay: 1.7s; }
+.stat-item:nth-child(3) { animation-delay: 1.9s; }
+
+.stat-number {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-size: 1rem;
+    color: var(--text-dark);
+    opacity: 0.8;
+}
+
+/* Uma Showcase Section */
+.uma-showcase {
+    padding: 5rem 0;
+    background: var(--bg-dark);
+}
+
+.section-subtitle {
+    text-align: center;
+    color: var(--text-dark);
+    opacity: 0.8;
+    margin-bottom: 3rem;
+    font-size: 1.1rem;
+}
+
+.uma-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.uma-card {
+    background: var(--card-dark);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+    cursor: pointer;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(60, 255, 226, 0.1);
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.uma-card:nth-child(1) { animation-delay: 0.2s; }
+.uma-card:nth-child(2) { animation-delay: 0.4s; }
+.uma-card:nth-child(3) { animation-delay: 0.6s; }
+
+.uma-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 60px rgba(60, 255, 226, 0.2);
+    border-color: var(--accent);
+}
+
+.uma-image {
+    position: relative;
+    height: 300px;
+    overflow: hidden;
+}
+
+.uma-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.uma-card:hover .uma-image img {
+    transform: scale(1.05);
+}
+
+.uma-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(0, 0, 0, 0.3) 50%,
+        rgba(0, 0, 0, 0.8) 100%
+    );
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 1.5rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.uma-card:hover .uma-overlay {
+    opacity: 1;
+}
+
+.uma-name {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.uma-rarity {
+    color: var(--accent);
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.uma-info {
+    padding: 1.5rem;
+}
+
+.uma-info h3 {
+    color: var(--text-dark);
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.uma-info p {
+    color: var(--text-dark);
+    opacity: 0.8;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.uma-stats-preview {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.stat-bar {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.9rem;
+}
+
+.stat-bar span:first-child {
+    min-width: 80px;
+    color: var(--text-dark);
+    opacity: 0.8;
+}
+
+.stat-bar span:last-child {
+    min-width: 30px;
+    text-align: right;
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.progress-bar {
+    flex: 1;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent-alt));
+    border-radius: 4px;
+    transition: width 1s ease-out;
+    width: 0;
+}
+
+/* Modal Styles */
+.uma-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    overflow-y: auto;
+    backdrop-filter: blur(10px);
+}
+
+.uma-modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: modalFadeIn 0.3s ease-out;
+}
+
+@keyframes modalFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content {
+    background: var(--card-dark);
+    max-width: 900px;
+    width: 90%;
+    max-height: 90vh;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(60, 255, 226, 0.2);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.close-modal {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: var(--text-dark);
+    font-size: 2rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-modal:hover {
+    background: var(--accent);
+    color: var(--bg-dark);
+    transform: rotate(90deg);
+}
+
+.modal-header {
+    display: flex;
+    gap: 2rem;
+    padding: 2rem;
+    background: linear-gradient(135deg, rgba(60, 255, 226, 0.1), rgba(172, 255, 61, 0.1));
+    border-bottom: 1px solid rgba(60, 255, 226, 0.2);
+}
+
+.modal-image {
+    flex-shrink: 0;
+    width: 200px;
+    height: 200px;
+    border-radius: 15px;
+    overflow: hidden;
+    border: 2px solid var(--accent);
+}
+
+.modal-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.modal-title-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.modal-title-section h2 {
+    color: var(--text-dark);
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.uma-details {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.uma-rarity-modal {
+    color: var(--accent);
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.uma-type, .uma-distance {
+    background: rgba(60, 255, 226, 0.2);
+    color: var(--accent);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.modal-body {
+    padding: 2rem;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.stats-section {
+    margin-bottom: 2rem;
+}
+
+.stats-section h3 {
+    color: var(--text-dark);
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+.stats-grid {
+    display: grid;
+    gap: 1rem;
+}
+
+.stat-item-modal {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.8rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    border: 1px solid rgba(60, 255, 226, 0.1);
+}
+
+.stat-name {
+    min-width: 100px;
+    color: var(--text-dark);
+    font-weight: 500;
+}
+
+.stat-bar-modal {
+    flex: 1;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.stat-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent-alt));
+    border-radius: 6px;
+    transition: width 1.5s ease-out;
+    width: 0;
+}
+
+.stat-value-modal {
+    min-width: 40px;
+    text-align: right;
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.uma-description {
+    color: var(--text-dark);
+}
+
+.uma-description h3 {
+    color: var(--text-dark);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.uma-description p {
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+}
+
+.uma-traits h4 {
+    color: var(--accent);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.uma-traits ul {
+    list-style: none;
+    padding: 0;
+}
+
+.uma-traits li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--text-dark);
+    opacity: 0.9;
+}
+
+.uma-traits li::before {
+    content: '▶';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 0.8rem;
+}
+
+/* Light Mode Styles */
+body.light-mode .uma-hero {
+    background: var(--bg-light);
+}
+
+body.light-mode .hero-overlay {
+    background: linear-gradient(
+        135deg,
+        rgba(245, 245, 247, 0.8) 0%,
+        rgba(245, 245, 247, 0.6) 50%,
+        rgba(245, 245, 247, 0.8) 100%
+    );
+}
+
+body.light-mode .hero-content {
+    color: var(--text-light);
+}
+
+body.light-mode .hero-subtitle {
+    color: var(--text-light);
+}
+
+body.light-mode .stat-label {
+    color: var(--text-light);
+}
+
+body.light-mode .uma-showcase {
+    background: var(--bg-light);
+}
+
+body.light-mode .section-subtitle {
+    color: var(--text-light);
+}
+
+body.light-mode .uma-card {
+    background: var(--card-light);
+    border-color: rgba(60, 255, 226, 0.2);
+}
+
+body.light-mode .uma-info h3 {
+    color: var(--text-light);
+}
+
+body.light-mode .uma-info p {
+    color: var(--text-light);
+}
+
+body.light-mode .stat-bar span:first-child {
+    color: var(--text-light);
+}
+
+body.light-mode .modal-content {
+    background: var(--card-light);
+    border-color: rgba(60, 255, 226, 0.3);
+}
+
+body.light-mode .modal-title-section h2 {
+    color: var(--text-light);
+}
+
+body.light-mode .stats-section h3 {
+    color: var(--text-light);
+}
+
+body.light-mode .stat-item-modal {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(60, 255, 226, 0.2);
+}
+
+body.light-mode .stat-name {
+    color: var(--text-light);
+}
+
+body.light-mode .uma-description h3 {
+    color: var(--text-light);
+}
+
+body.light-mode .uma-description p {
+    color: var(--text-light);
+}
+
+body.light-mode .uma-traits li {
+    color: var(--text-light);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+    
+    .hero-stats {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .uma-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 0 1rem;
+    }
+    
+    .modal-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+    
+    .modal-image {
+        width: 150px;
+        height: 150px;
+        margin: 0 auto;
+    }
+    
+    .modal-title-section h2 {
+        font-size: 2rem;
+    }
+    
+    .uma-details {
+        justify-content: center;
+    }
+    
+    .stat-item-modal {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .stat-bar-modal {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    
+    .stat-number {
+        font-size: 2rem;
+    }
+    
+    .modal-content {
+        width: 95%;
+        margin: 1rem;
+    }
+    
+    .modal-header {
+        padding: 1rem;
+    }
+    
+    .modal-body {
+        padding: 1rem;
+    }
+} 
