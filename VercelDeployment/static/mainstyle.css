@@ -105,6 +105,7 @@
             color: var(--text-dark);
             transition: var(--transition);
             overflow-x: hidden;
+			overflow-y: hidden;
         }
 
         body.light-mode {
