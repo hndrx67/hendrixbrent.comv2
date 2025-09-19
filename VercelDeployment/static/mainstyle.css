@@ -105,8 +105,11 @@
             color: var(--text-dark);
             transition: var(--transition);
             overflow-x: hidden;
-			overflow-y: hidden;
         }
+
+		body::-webkit-scrollbar {
+			display: none;
+		}
 
         body.light-mode {
             background-color: var(--bg-light);
