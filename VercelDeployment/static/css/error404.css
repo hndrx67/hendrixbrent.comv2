@@ -8,7 +8,6 @@
 
 .floating-text {
     text-align: center;
-    animation: float 3s ease-in-out infinite;
 }
 
 .floating-text h1 {
@@ -25,26 +24,9 @@
 
 .destroyed-emoji {
     font-size: 5rem;
-    animation: spin 8s linear infinite;
 }
 
-@keyframes float {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-20px);
-    }
-}
-
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
+/* Removed float and spin animations for a steady, simple 404 page */
 
 body.light-mode .floating-text h1 {
     color: var(--accent-tertiary-light);
