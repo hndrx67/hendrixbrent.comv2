@@ -49,6 +49,36 @@
             }
             .flag-figure a { color: #4f70ff; text-decoration: none; }
             .flag-figure a:hover { text-decoration: underline; }
+
+            /* Mobile fixes: ensure content isn't cut off and is readable */
+            @media (max-width: 768px) {
+                html, body { height: auto; min-height: 100%; }
+                body {
+                    display: block;      /* disable flex centering from external CSS */
+                    height: auto;        /* allow page to grow */
+                    padding: 12px;       /* breathing room */
+                }
+                .message h1 {
+                    font-size: 1.6rem;
+                    line-height: 1.2;
+                    margin: 12px 0 8px;
+                }
+                .message p { font-size: 0.95rem; margin: 6px 0; }
+                .discord-and-flag {
+                    flex-direction: column; /* stack vertically on small screens */
+                    align-items: center;
+                    gap: 12px;
+                }
+                /* Responsive widths as a CSS fallback (JS also adjusts) */
+                .discord-and-flag img.flag-img {
+                    width: min(92vw, 600px);
+                    height: auto;
+                }
+                .discord-and-flag iframe {
+                    width: min(92vw, 600px);
+                    height: min(92vw, 600px); /* keep square */
+                }
+            }
             
         </style>
        
