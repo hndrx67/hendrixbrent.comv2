@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en" class="view-content">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>News & Updates • Anonymity</title>
+		<meta name="description" content="Latest news and updates for the Anonymity project." />
+		<link rel="icon" href="./webFAVICON2.png" />
+		<link rel="preload" href="./static/anon.css" as="style" />
+		<link rel="stylesheet" href="./static/anon.css" />
+	</head>
+		<body> <!-- view-content moved to <html> to restore scrolling -->
+		<header class="header">
+			<div class="container nav">
+				<div class="brand" aria-label="Anonymity home">
+					<a href="./anonymity.html" class="link">Anonymity</a>
+				</div>
+				<div class="actions">
+					<a class="link" href="./anonymity.html">Home</a>
+					<a class="link" href="./projects.html">Projects</a>
+					<a class="btn" href="#login">Log in</a>
+					<a class="btn primary" href="#register">Register</a>
+				</div>
+			</div>
+		</header>
+
+		<main>
+			<section class="section news-cards-wrapper">
+				<div class="container">
+					<h1 style="margin:0 0 24px;font-size:34px;letter-spacing:.5px">News & Updates</h1>
+					<p style="margin:0 0 34px;color:var(--muted);max-width:640px">Release notes, minor improvements, security advisories, and community highlights. Light cards keep contrast high in the dark UI.</p>
+					<div class="news-cards" role="list">
+						<!-- Example Card 1 -->
+						<article class="news-card" role="listitem">
+							<div>
+								<span class="news-meta">2025-09-20 • Release v0.3</span>
+								<span class="card__title">Core Update</span>
+								<p class="card__content">Added toolkit sections for browsers, secure chat, and password practices. Improved hero transition performance and reduced layout shift.</p>
+							</div>
+							<a href="#release-v0-3" class="readmore" aria-label="Read more about core update">Details</a>
+						</article>
+
+						<!-- Example Card 2 -->
+						<article class="news-card" role="listitem">
+							<div>
+								<span class="news-meta">2025-09-12 • Advisory</span>
+								<span class="card__title">Security Fix</span>
+								<p class="card__content">Patched a minor DOM focus issue in the mobile navigation script. No user data impacted; update recommended for integrity.</p>
+							</div>
+							<a href="#security-fix-dom-focus" class="readmore" aria-label="Read more about security fix">Details</a>
+						</article>
+
+						<!-- Example Card 3 -->
+						<article class="news-card" role="listitem">
+							<div>
+								<span class="news-meta">2025-09-05 • Preview</span>
+								<span class="card__title">Roadmap</span>
+								<p class="card__content">Upcoming: threat modeling guide, DNS privacy walkthrough, and optional self‑host deployment instructions.</p>
+							</div>
+							<a href="#roadmap" class="readmore" aria-label="Read more about roadmap">Details</a>
+						</article>
+
+						<!-- Placeholder Card 4 -->
+						<article class="news-card" role="listitem">
+							<div>
+								<span class="news-meta">Soon</span>
+								<span class="card__title glitch">Newsletter</span>
+								<p class="card__content">Lightweight email digest (no tracking pixels) to opt‑in for release summaries. Deliverability & privacy tests underway.</p>
+							</div>
+							<a href="#newsletter" class="readmore" aria-label="Read more about newsletter">Notify</a>
+						</article>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<footer class="footer">
+			<div class="container row">
+				<span class="small">© <span data-year></span> Anonymity</span>
+				<span class="small">Updates are transparent by design.</span>
+			</div>
+		</footer>
+
+		<script defer src="./static/anon.js"></script>
+		<script>
+			// simple year update without relying on reveal system
+			document.querySelectorAll('[data-year]').forEach(el=>el.textContent=new Date().getFullYear());
+		</script>
+	</body>
+</html>
