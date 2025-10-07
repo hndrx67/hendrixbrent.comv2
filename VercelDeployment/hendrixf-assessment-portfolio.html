@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Anonymity by HNDRX.ORG</title>
+		<meta name="description" content="Anonymity: tools, tips, and ethos for protecting users online." />
+		<link rel="icon" href="./webFAVICON2.png" />
+		<link rel="preload" href="./static/anon.css" as="style" />
+		<link rel="stylesheet" href="./static/anon.css" />
+			<style>
+				/* Ensure News & Updates button fits its label */
+				#news-btn { width: 170px; }
+				@media (max-width:480px){ #news-btn { width: 100%; } }
+			</style>
+	</head>
+	<body>
+		<header class="header">
+			<div class="container nav">
+				<div class="brand" aria-label="Anonymity home">
+					<a href="./hendrixf-assessment-portfolio.html" class="link">Assessment in Learning 1 E-Portfolio</a>
+				</div>
+				<div class="actions">
+					<a class="link" href="./hendrixf-assessment-portfolio.html">Home</a>
+					<a class="link" href="./projects.html">Projects</a>
+					<a class="btn" href="#login">Log in</a>
+					<a class="btn primary" href="#register">Register</a>
+				</div>
+			</div>
+		</header>
+
+
+
+		<main>
+			<section class="hero">
+				<div class="container hero-inner">
+					<!--<span class="badge reveal" aria-live="polite"><span class="dot-sm"></span> Private by default</span>-->
+					<h1 class="title reveal">PORTFOLIO</h1>
+					<p class="slogan reveal">E Portfolio for Assessment in Learning 1
+                    <br>
+                    
+                    by Hendrix Brent Fortu | <a href="https://hndrx.org" target="_blank" rel="noopener noreferrer">hndrx.org</a>    
+                    </p>
+					<div class="hero-cta reveal" style="justify-content:center">
+						<button id="explore-btn" class="btn primary" type="button">Explore</button>
+						<a href="./anon-news.html" class="btn" id="news-btn">News &amp; Updates</a>
+					</div>
+				</div>
+			</section>
+
+			<!-- Content sections toggled by Explore/Back -->
+			<div id="content-sections" class="content-sections" aria-hidden="true">
+				<div class="container content-controls">
+					<button id="back-btn" class="btn sm" type="button">Back</button>
+				</div>
+				<section id="learn" class="section">
+					<div class="container">
+						<h2 class="reveal">Principles</h2>
+						<p class="lead reveal">Simple practices that go a long way toward keeping your identity and activity private.</p>
+						<div class="grid">
+							<article class="card reveal">
+								<h3>Minimize exposure</h3>
+								<p>Share less. Use burner emails, compartmentalize accounts, and avoid reusing identifiers.</p>
+							</article>
+							<article class="card reveal">
+								<h3>Encrypt everything</h3>
+								<p>Prefer end‑to‑end encryption for chat, storage, and backups. Use full-disk encryption on devices.</p>
+							</article>
+							<article class="card reveal">
+								<h3>Control your network</h3>
+								<p>Use trusted DNS, privacy‑respecting browsers, and consider VPN/Tor where appropriate.</p>
+							</article>
+						</div>
+					</div>
+				</section>
+
+				<section id="tools" class="section">
+					<div class="container">
+						<h2 class="reveal">Starter toolkit</h2>
+						<p class="lead reveal">A short list of categories to explore. Choose reputable, open, and audited options when possible.</p>
+						<div class="grid">
+							<article class="card reveal">
+								<h3>Browsers</h3>
+								<p>Hardened privacy browsers with tracker blocking and containerization help isolate your identities.</p>
+							</article>
+							<article class="card reveal">
+								<h3>Secure chat</h3>
+								<p>Prefer E2EE messengers with safety numbers and sealed sender to reduce metadata.</p>
+							</article>
+							<article class="card reveal">
+								<h3>Passwords</h3>
+								<p>Use a password manager with unique, long passwords and enable multi‑factor authentication.</p>
+							</article>
+						</div>
+					</div>
+				</section>
+			</div>
+		</main>
+
+		<footer class="footer">
+			<div class="container row">
+				<span class="small">© <span data-year></span> Anonymity</span>
+				<span class="small">Privacy is a right, not a feature.</span>
+			</div>
+		</footer>
+
+		<script defer src="./static/anon.js"></script>
+		<script defer src="./static/anon-mobilehandler.js"></script>
+	</body>
+	</html>
+

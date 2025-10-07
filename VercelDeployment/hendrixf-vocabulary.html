@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Vocabulary-EducationalSite</title>
+		<meta name="description" content="A colorful vocabulary playground with games, flashcards, quizzes, and videos for Elementary and High School students." />
+		<link rel="icon" href="webFAVICON2.png" />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="static/css/vocabulary.css" />
+	</head>
+	<body>
+		<div class="bubbles" aria-hidden="true"></div>
+
+		
+		<nav class="navbar" role="navigation" aria-label="Top Navigation">
+			<div class="navwrap">
+				<div class="brand">
+					
+					<span>English Vocabulary</span>
+				</div>
+
+				<div class="navlinks">
+					  <a href="hendrixf-vocabulary.html">Home</a>
+					  
+					  
+					  <a href="#games">Games</a>
+					  <a href="#videos">Videos</a>
+					  
+				</div>
+
+				<div class="level-toggle" role="tablist" aria-label="Choose Level">
+					<button class="active" data-level="elementary" role="tab" aria-selected="true">Elementary</button>
+					<button data-level="high" role="tab" aria-selected="false">High School</button>
+				</div>
+			</div>
+		</nav>
+
+	
+		<header class="hero" role="banner">
+			<div class="card">
+				<h1>Learn Words, Play and Grow</h1>
+				<p>Explore new vocabulary with colorful games, quick quizzes, and fun videos. Switch between Elementary and High School to match your level.</p>
+				<div class="stats">
+					<div class="chip">Flashcards</div>
+					<div class="chip">Quizzes</div>
+					<div class="chip">Matching</div>
+					<div class="chip">Scramble</div>
+					<div class="chip">YouTube Lessons</div>
+				</div>
+			</div>
+			<div class="card" aria-hidden="true">
+				<svg viewBox="0 0 200 200" width="100%" height="100%">
+					<defs>
+						<linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+							<stop offset="0%" stop-color="#6b5cff"/>
+							<stop offset="100%" stop-color="#00c2ff"/>
+						</linearGradient>
+					</defs>
+					<circle cx="80" cy="70" r="40" fill="url(#g)" opacity=".9"/>
+					<circle cx="135" cy="120" r="55" fill="#ffd166" opacity=".85"/>
+					<circle cx="60" cy="135" r="35" fill="#ff6bd6" opacity=".8"/>
+				</svg>
+			</div>
+		</header>
+
+		
+		<main class="section level-section" id="elementary" data-level="elementary" aria-label="Elementary Level">
+			<h2 id="games">Elementary Games</h2>
+			<div class="grid">
+				
+				<section class="tile">
+					<h3>Flip Flashcards</h3>
+					<div class="game-area flashcards" aria-label="Flashcards">
+						<div class="card" tabindex="0" aria-label="Word: Happy">
+							<div class="card-inner">
+								<div class="card-face front">Happy</div>
+								<div class="card-face back">Feeling good or joyful.</div>
+							</div>
+						</div>
+						<div class="card" tabindex="0" aria-label="Word: Rapid">
+							<div class="card-inner">
+								<div class="card-face front">Rapid</div>
+								<div class="card-face back">Very fast.</div>
+							</div>
+						</div>
+						<div class="card" tabindex="0" aria-label="Word: Ancient">
+							<div class="card-inner">
+								<div class="card-face front">Ancient</div>
+								<div class="card-face back">Very old; from long ago.</div>
+							</div>
+						</div>
+						<div class="card" tabindex="0" aria-label="Word: Enormous">
+							<div class="card-inner">
+								<div class="card-face front">Enormous</div>
+								<div class="card-face back">Very, very big.</div>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				
+				<section class="tile">
+					<h3>Quick Quiz</h3>
+					<div class="quiz" data-answer="brave" aria-label="Multiple choice question">
+						<div class="question">Which word means not afraid?</div>
+						<div class="choices">
+							<button class="choice" data-choice="timid">Timid</button>
+							<button class="choice" data-choice="brave">Brave</button>
+							<button class="choice" data-choice="sleepy">Sleepy</button>
+							<button class="choice" data-choice="messy">Messy</button>
+						</div>
+					</div>
+				</section>
+
+				
+				<section class="tile">
+					<h3>Word Match</h3>
+					<div class="match" aria-label="Drag words to the right meanings">
+						<div class="col" aria-label="Words">
+							<div class="item" draggable="true" data-word="Tiny">Tiny</div>
+							<div class="item" draggable="true" data-word="Giggle">Giggle</div>
+							<div class="item" draggable="true" data-word="Fierce">Fierce</div>
+						</div>
+						<div class="col" aria-label="Meanings">
+							<div class="target" data-accept="Giggle">A small laugh</div>
+							<div class="target" data-accept="Fierce">Very strong or wild</div>
+							<div class="target" data-accept="Tiny">Very small</div>
+						</div>
+					</div>
+				</section>
+
+				
+				<section class="tile">
+					<h3>Word Scramble</h3>
+					<div class="scramble" data-word="planet">
+						<div class="letters" aria-label="Scrambled letters"></div>
+						<div>Answer: <span class="answer"></span></div>
+						<div class="result" role="status" aria-live="polite"></div>
+						<button class="btn secondary reset" type="button">Reset</button>
+					</div>
+				</section>
+			</div>
+
+			<h2 id="videos">Watch & Learn</h2>
+			<div class="videos" aria-label="Vocabulary Videos for Kids">
+				<div class="video">
+					<iframe src="https://www.youtube.com/embed/L2hZ35P3n5E" title="Vocabulary for Kids" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				</div>
+				<div class="video">
+					<iframe src="https://www.youtube.com/embed/Zy4K7Zz6Qxs" title="Synonyms for Kids" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				</div>
+				<div class="video">
+					<iframe src="https://www.youtube.com/embed/jQ8m1yQU2fY" title="Antonyms for Kids" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				</div>
+			</div>
+		</main>
+
+		
+		<section class="section level-section" id="highschool" data-level="high" aria-label="High School Level" style="display:none">
+			<h2>High School • Practice & Games</h2>
+			<div class="grid">
+				<section class="tile">
+					<h3>Flip Flashcards (Advanced)</h3>
+					<div class="game-area flashcards">
+						<div class="card" tabindex="0" aria-label="Word: Eloquent">
+							<div class="card-inner">
+								<div class="card-face front">Eloquent</div>
+								<div class="card-face back">Fluent, persuasive in speaking or writing.</div>
+							</div>
+						</div>
+						<div class="card" tabindex="0" aria-label="Word: Ubiquitous">
+							<div class="card-inner">
+								<div class="card-face front">Ubiquitous</div>
+								<div class="card-face back">Present or found everywhere.</div>
+							</div>
+						</div>
+						<div class="card" tabindex="0" aria-label="Word: Pragmatic">
+							<div class="card-inner">
+								<div class="card-face front">Pragmatic</div>
+								<div class="card-face back">Dealing with things sensibly and realistically.</div>
+							</div>
+						</div>
+						<div class="card" tabindex="0" aria-label="Word: Ephemeral">
+							<div class="card-inner">
+								<div class="card-face front">Ephemeral</div>
+								<div class="card-face back">Lasting for a very short time.</div>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<section class="tile">
+					<h3>Quick Quiz (Advanced)</h3>
+					<div class="quiz" data-answer="candid">
+						<div class="question">Which word best matches "honest and straightforward"?</div>
+						<div class="choices">
+							<button class="choice" data-choice="obscure">Obscure</button>
+							<button class="choice" data-choice="candid">Candid</button>
+							<button class="choice" data-choice="arcane">Arcane</button>
+							<button class="choice" data-choice="melancholy">Melancholy</button>
+						</div>
+					</div>
+				</section>
+
+				<section class="tile">
+					<h3>Word Match (Advanced)</h3>
+					<div class="match">
+						<div class="col">
+							<div class="item" draggable="true" data-word="Benevolent">Benevolent</div>
+							<div class="item" draggable="true" data-word="Meticulous">Meticulous</div>
+							<div class="item" draggable="true" data-word="Ambiguous">Ambiguous</div>
+						</div>
+						<div class="col">
+							<div class="target" data-accept="Ambiguous">Open to more than one interpretation</div>
+							<div class="target" data-accept="Benevolent">Well-meaning and kindly</div>
+							<div class="target" data-accept="Meticulous">Very careful and precise</div>
+						</div>
+					</div>
+				</section>
+
+				<section class="tile">
+					<h3>Word Scramble (Advanced)</h3>
+					<div class="scramble" data-word="catalyst">
+						<div class="letters"></div>
+						<div>Answer: <span class="answer"></span></div>
+						<div class="result" role="status" aria-live="polite"></div>
+						<button class="btn secondary reset" type="button">Reset</button>
+					</div>
+				</section>
+			</div>
+
+			<h2 id="practice">Study Videos</h2>
+			<div class="videos" aria-label="Vocabulary Videos for High School">
+				<div class="video">
+					<iframe src="https://www.youtube.com/embed/GfocT3_Ap4k" title="SAT Vocabulary" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				</div>
+				<div class="video">
+					<iframe src="https://www.youtube.com/embed/GLa9s7L98qo" title="Commonly Confused Words" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				</div>
+				<div class="video">
+					<iframe src="https://www.youtube.com/embed/4b8oB757DKc" title="Prefixes and Suffixes" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				</div>
+			</div>
+		</section>
+
+		<footer class="footer">Coded by Hendrix Brent Fortu under his Domain | <a href="https://hndrx.org" target="_blank">HNDRX.ORG</a></footer>
+
+		<script src="static/js/vocabulary.js" defer></script>
+	</body>
+	</html>
