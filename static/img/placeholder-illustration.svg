@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="400" viewBox="0 0 800 400" role="img" aria-label="Placeholder illustration">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#bae6fd"/>
+      <stop offset="1" stop-color="#a7f3d0"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="800" height="400" fill="url(#g)"/>
+  <g fill="#0ea5e9" opacity="0.15">
+    <circle cx="120" cy="90" r="60"/>
+    <circle cx="280" cy="140" r="80"/>
+    <circle cx="560" cy="80" r="70"/>
+    <circle cx="660" cy="220" r="90"/>
+  </g>
+  <g stroke="#0ea5e9" stroke-width="4" fill="none" opacity="0.45">
+    <rect x="180" y="110" width="440" height="220" rx="16"/>
+    <path d="M220 160 h160" />
+    <path d="M220 200 h360" />
+    <path d="M220 240 h320" />
+  </g>
+  <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#075985" font-family="Inter,Arial" font-size="28" font-weight="700">
+    Add your illustration here
+  </text>
+</svg>

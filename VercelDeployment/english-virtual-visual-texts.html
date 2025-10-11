@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Understanding Virtual/Visual Texts</title>
+		<meta name="description" content="Introduce elementary learners to virtual/visual texts with examples, activities, tests, and videos. Track scores and print results." />
+		<link rel="icon" href="webFAVICON2.png" />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="static/css/virtual-texts.css" />
+	</head>
+	<body>
+		<nav class="navbar" role="navigation" aria-label="Top Navigation">
+			<div class="navwrap">
+				<div class="brand"><span class="dot" aria-hidden="true"></span>Understanding Virtual/Visual Texts</div>
+				<div class="tabs" role="tablist" aria-label="Sections">
+					<button class="tab active" data-tab="overview" role="tab" aria-selected="true">Overview</button>
+					<button class="tab" data-tab="activities" role="tab" aria-selected="false">Activities</button>
+					<button class="tab" data-tab="tests" role="tab" aria-selected="false">Tests</button>
+					<button class="tab" data-tab="videos" role="tab" aria-selected="false">Videos</button>
+					<button class="tab" data-tab="scores" role="tab" aria-selected="false">Scores</button>
+				</div>
+			</div>
+		</nav>
+
+		<main class="container">
+			<!-- Overview -->
+			<section class="tab-panel" id="overview">
+				<div class="card">
+					<h1 class="h">Topic: Understanding Virtual/Visual Texts</h1>
+					<p>Virtual texts are digital texts like websites, blogs, e-books, and social media posts. They can include links, images, videos, and interactive parts you can click or tap.</p>
+					<div class="section">
+						<div class="grid">
+							<div class="col-6 card">
+								<h3 class="h">Learning Outcomes</h3>
+								<ol class="list">
+									<li>Identify different types of virtual texts and their purposes.</li>
+									<li>Describe features of virtual texts (links, images, videos).</li>
+									<li>Explain main idea and supporting details in a virtual text.</li>
+								</ol>
+							</div>
+							<div class="col-6 card">
+								<h3 class="h">Media to Use</h3>
+								<ol class="list">
+									<li><span class="badge">Interactive websites</span>: National Geographic Kids, Scholastic News Online, Time for Kids.</li>
+									<li><span class="badge">Blog examples</span>: Kid-friendly travel blogs, science experiment blogs.</li>
+									<li><span class="badge">E‑book samples</span>: Epic Books, Sora.</li>
+									<li><span class="badge">Multimedia examples</span>: Articles with videos and infographics.</li>
+									<li><span class="badge">Virtual text anatomy</span>: Posters showing parts like title, menu, links, media.</li>
+									<li><span class="badge">Worksheets</span>: Identification and graphic organizers.</li>
+								</ol>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Activities -->
+			<section class="tab-panel" id="activities" style="display:none">
+				<div class="card">
+					<h2 class="h">Activities</h2>
+					<p class="k">Practice identifying types and features of virtual texts.</p>
+					<div class="section act activity" aria-label="Activity: Identify the virtual text type">
+						<h3 class="h">1) Identify the Virtual Text Type</h3>
+						<p>“A website post with pictures and a video explaining how rainbows form.” This is a …</p>
+						<button class="choice" data-correct="false">E‑book page</button>
+						<button class="choice" data-correct="true">News article on a website</button>
+						<button class="choice" data-correct="false">Printed poster</button>
+					</div>
+
+					<div class="section act" aria-label="Activity: Match features to names">
+						<h3 class="h">2) Match the Feature to Its Name</h3>
+						<div class="match">
+							<div class="col" aria-label="Features">
+								<div class="item" draggable="true" data-word="Link">A word you click to open a new page</div>
+								<div class="item" draggable="true" data-word="Caption">A short line of text under an image</div>
+								<div class="item" draggable="true" data-word="Menu">A list of buttons to navigate</div>
+							</div>
+							<div class="col" aria-label="Names">
+								<div class="target" data-accept="Menu">Menu</div>
+								<div class="target" data-accept="Link">Link</div>
+								<div class="target" data-accept="Caption">Caption</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="section act activity" aria-label="Activity: Main idea vs details">
+						<h3 class="h">3) Main Idea vs. Details</h3>
+						<p>Read this short blog snippet: “I visited the science museum. My favorite part was the space hall where I watched a rocket video. I also read facts about planets.” The main idea is …</p>
+						<button class="choice" data-correct="true">The visit to the science museum</button>
+						<button class="choice" data-correct="false">Watching a rocket video</button>
+						<button class="choice" data-correct="false">Reading planet facts</button>
+					</div>
+				</div>
+			</section>
+
+			<!-- Tests -->
+			<section class="tab-panel" id="tests" style="display:none">
+				<div class="card">
+					<h2 class="h">Quick Tests</h2>
+					<div class="section test" aria-label="Test Q1">
+						<h3 class="h">Q1) Which is a virtual text?</h3>
+						<button class="choice" data-correct="true">A website article with links and pictures</button>
+						<button class="choice" data-correct="false">A chalkboard drawing</button>
+						<button class="choice" data-correct="false">A printed calendar</button>
+					</div>
+					<div class="section test" aria-label="Test Q2">
+						<h3 class="h">Q2) What does a caption do?</h3>
+						<button class="choice" data-correct="false">Takes you to another page</button>
+						<button class="choice" data-correct="true">Explains a picture</button>
+						<button class="choice" data-correct="false">Starts a video</button>
+					</div>
+					<div class="section test" aria-label="Test Q3">
+						<h3 class="h">Q3) A menu helps you …</h3>
+						<button class="choice" data-correct="true">Find and open different pages</button>
+						<button class="choice" data-correct="false">Make the text bigger</button>
+						<button class="choice" data-correct="false">Download a book</button>
+					</div>
+				</div>
+			</section>
+
+			<!-- Videos -->
+			<section class="tab-panel" id="videos" style="display:none">
+				<div class="card">
+					<h2 class="h">Watch & Learn</h2>
+					<p>Explore videos about websites, blogs, and e‑books. If a video doesn’t load, click the YouTube logo to open results.</p>
+					<div class="videos">
+						<div class="video">
+							<iframe src="https://www.youtube.com/embed?listType=search&list=what%20is%20a%20website%20for%20kids&rel=0" allowfullscreen title="What is a website (kids) - search"></iframe>
+						</div>
+						<div class="video">
+							<iframe src="https://www.youtube.com/embed?listType=search&list=blog%20for%20kids%20explained&rel=0" allowfullscreen title="Blogs for kids - search"></iframe>
+						</div>
+						<div class="video">
+							<iframe src="https://www.youtube.com/embed?listType=search&list=ebooks%20for%20kids%20what%20is%20an%20ebook&rel=0" allowfullscreen title="What is an e‑book (kids) - search"></iframe>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Scores -->
+			<section class="tab-panel" id="scores" style="display:none">
+				<div class="card">
+					<h2 class="h">Scores & Print</h2>
+					<div class="scores">
+						<div class="score-row"><span>Activities</span><strong class="score-activities">0 / 0 (0%)</strong></div>
+						<div class="score-row"><span>Tests</span><strong class="score-tests">0 / 0 (0%)</strong></div>
+						<div class="score-row"><span>Total</span><strong class="total score-total">0%</strong></div>
+					</div>
+					<div class="actions" style="margin-top:10px">
+						<button id="printScores" class="btn">Print</button>
+						<button id="resetScores" class="btn secondary">Reset</button>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<script src="static/js/virtual-texts.js" defer></script>
+	</body>
+	</html>
