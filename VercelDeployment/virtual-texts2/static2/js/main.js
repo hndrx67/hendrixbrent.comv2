@@ -1,9 +1,10 @@
-const STORAGE_USERS_KEY = 'vt2_users';
-const STORAGE_CURRENT_KEY = 'vt2_current_user';
+const STORAGE_SCORES_KEY = 'vt2_anonymous_scores';
 
 const missions = [
     { key: 'quiz', label: 'Visual Detective Quiz' },
-    { key: 'match', label: 'Feature Finder Challenge' }
+    { key: 'match', label: 'Feature Finder Challenge' },
+    { key: 'story', label: 'Story Sequencer' },
+    { key: 'poster', label: 'Poster Painter' }
 ];
 
 const quizQuestions = [
@@ -66,6 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const matchSubmitBtn = document.getElementById('matchSubmit');
     const matchFeedbackEl = document.getElementById('matchFeedback');
     const printScoresBtn = document.getElementById('printScores');
+    const resetScoresBtn = document.getElementById('resetScores');
     const navWelcome = document.getElementById('navWelcome');
     const navLinks = document.querySelectorAll('.nav-links a[data-page]');
 
@@ -85,60 +87,50 @@ document.addEventListener('DOMContentLoaded', () => {
         yearEl.textContent = new Date().getFullYear();
     }
 
-    const savedUser = getCurrentUser();
-    updateLoginState(savedUser);
-    renderScores(savedUser);
-
+    // Define page element checks first
     const hasQuiz = Boolean(quizQuestionEl && quizOptionsEl && quizNextBtn && quizProgressEl && quizResultEl && quizCardEl && quizScoreEl);
     const hasMatch = Boolean(matchForm && matchSubmitBtn && matchFeedbackEl);
-    const hasScores = Boolean(scoresBody && scoreUsername);
+    const hasScores = Boolean(scoresBody);
+    const hasProgress = Boolean(document.getElementById('gamesCompleted'));
     const hasPrint = Boolean(printScoresBtn);
+
+    // Initialize scores
+    const scores = loadScores();
+    console.log('Loaded scores:', scores);
+    
+    updateProgressDisplay();
+    renderScores();
 
     if (hasQuiz) {
         renderQuizQuestion();
     }
 
-    loginForm?.addEventListener('submit', event => {
-        event.preventDefault();
-        const formData = new FormData(loginForm);
-        const username = sanitizeUsername(formData.get('username'));
-        if (username) {
-            completeLogin(username);
-            loginForm.reset();
-        }
-    });
+    // Set up print functionality
+    if (printScoresBtn) {
+        printScoresBtn.addEventListener('click', () => {
+            window.print();
+        });
+    }
 
-    modalLoginForm?.addEventListener('submit', event => {
-        event.preventDefault();
-        const formData = new FormData(modalLoginForm);
-        const username = sanitizeUsername(formData.get('username'));
-        if (username) {
-            completeLogin(username);
-            modalLoginForm.reset();
-        }
-    });
-
-    loginToggle?.addEventListener('click', () => {
-        if (!getCurrentUser() && loginCard) {
-            const focusTarget = loginCard.querySelector('input');
-            focusTarget?.focus();
-        }
-        showLoginModal();
-    });
-
-    modalClose?.addEventListener('click', hideLoginModal);
-
-    loginModal?.addEventListener('click', event => {
-        if (event.target === loginModal) {
-            hideLoginModal();
-        }
-    });
-
-    logoutBtn?.addEventListener('click', () => {
-        localStorage.removeItem(STORAGE_CURRENT_KEY);
-        updateLoginState(null);
-        renderScores(null);
-    });
+    // Set up reset scores functionality
+    if (resetScoresBtn) {
+        resetScoresBtn.addEventListener('click', () => {
+            const confirmation = confirm('Are you sure you want to reset all scores? This action cannot be undone.');
+            if (confirmation) {
+                // Clear scores from localStorage
+                localStorage.removeItem(STORAGE_SCORES_KEY);
+                
+                // Update display immediately
+                updateProgressDisplay();
+                renderScores();
+                
+                // Show success message
+                alert('All scores have been reset successfully! Ready for a new student to compete.');
+                
+                console.log('Scores reset by user');
+            }
+        });
+    }
 
     if (hasQuiz) {
         quizNextBtn?.addEventListener('click', () => {
@@ -205,21 +197,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 ? 'Amazing! You matched every feature perfectly.'
                 : `You matched ${detail}. Try again to beat your best!`;
 
-            if (!getCurrentUser()) {
-                matchFeedbackEl.textContent += ' Log in to save your score.';
-                return;
-            }
-
             recordMissionScore('match', percent, detail);
-            renderScores(getCurrentUser());
+            renderScores();
+            updateProgressDisplay();
         });
     }
 
-    if (hasPrint) {
-        printScoresBtn?.addEventListener('click', () => {
-            window.print();
-        });
-    }
+    // Remove duplicate print handler since we added it above
 
     function renderQuizQuestion() {
         if (!quizQuestionEl || !quizOptionsEl || !quizProgressEl || !quizNextBtn) {
@@ -255,91 +239,56 @@ document.addEventListener('DOMContentLoaded', () => {
         quizCardEl.hidden = true;
         quizResultEl.hidden = false;
 
-        if (!getCurrentUser()) {
-            quizScoreEl.textContent += '. Log in to save your score.';
-            return;
-        }
-
         recordMissionScore('quiz', percent, detail);
-        renderScores(getCurrentUser());
+        renderScores();
+        updateProgressDisplay();
     }
 
-    function showLoginModal() {
-        loginModal?.removeAttribute('hidden');
-        const input = loginModal?.querySelector('input');
-        window.setTimeout(() => input?.focus(), 100);
-    }
-
-    function hideLoginModal() {
-        loginModal?.setAttribute('hidden', '');
-    }
-
-    function completeLogin(username) {
-        const users = loadUsers();
-        if (!users[username]) {
-            users[username] = { missions: {} };
-        }
-        saveUsers(users);
-        localStorage.setItem(STORAGE_CURRENT_KEY, username);
-        hideLoginModal();
-        updateLoginState(username);
-        renderScores(username);
-    }
-
-    function updateLoginState(username) {
-        const loggedIn = Boolean(username);
-        if (navWelcome) {
-            navWelcome.textContent = loggedIn ? `Explorer ${username}` : 'Guest Explorer';
-        }
-        if (loginToggle) {
-            loginToggle.textContent = loggedIn ? 'Switch User' : 'Login';
-        }
-        if (scoreUsername) {
-            scoreUsername.textContent = loggedIn ? username : 'Guest';
-        }
-
-        if (!loginCard) {
-            return;
-        }
-
-        const form = loginCard.querySelector('form');
-
-        if (loggedIn) {
-            form?.setAttribute('hidden', '');
-            loginStatus?.removeAttribute('hidden');
-            if (welcomeMessage) {
-                welcomeMessage.textContent = `Explorer ${username}, your missions await!`;
+    function updateProgressDisplay() {
+        if (!hasProgress) return;
+        
+        const scores = loadScores();
+        const gamesCompletedEl = document.getElementById('gamesCompleted');
+        const bestScoreEl = document.getElementById('bestScore');
+        
+        let totalAttempts = 0;
+        let bestPercent = 0;
+        
+        missions.forEach(mission => {
+            const data = scores[mission.key] || createEmptyMission();
+            totalAttempts += data.attempts;
+            if (data.best > bestPercent) {
+                bestPercent = data.best;
             }
-        } else {
-            form?.removeAttribute('hidden');
-            loginStatus?.setAttribute('hidden', '');
-            if (welcomeMessage) {
-                welcomeMessage.textContent = '';
-            }
+        });
+        
+        if (gamesCompletedEl) {
+            gamesCompletedEl.textContent = totalAttempts;
+        }
+        if (bestScoreEl) {
+            bestScoreEl.textContent = bestPercent > 0 ? `${bestPercent}%` : '--';
         }
     }
 
-    function renderScores(username) {
+    function renderScores() {
+        console.log('renderScores called, hasScores:', hasScores, 'scoresBody:', scoresBody); // Debug log
         if (!hasScores || !scoresBody) {
+            console.log('No scores table found - hasScores:', hasScores, 'scoresBody element:', !!scoresBody); // Debug log
             return;
         }
 
-        if (!username) {
-            scoresBody.innerHTML = `
-                <tr>
-                    <td colspan="4">Log in to view your missions.</td>
-                </tr>
-            `;
-            return;
-        }
-
-        const users = loadUsers();
-        const userRecord = users[username] ?? { missions: {} };
-
+        const scores = loadScores();
+        console.log('Loading scores for display:', scores); // Debug log
         scoresBody.innerHTML = '';
 
+        if (missions.length === 0) {
+            console.log('No missions defined!'); // Debug log
+            return;
+        }
+
         missions.forEach(mission => {
-            const data = userRecord.missions[mission.key] ?? createEmptyMission();
+            const data = scores[mission.key] || createEmptyMission();
+            console.log(`Rendering mission ${mission.key}:`, data); // Debug log
             const row = document.createElement('tr');
             row.innerHTML = `
                 <td>${mission.label}</td>
@@ -349,17 +298,14 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
             scoresBody.appendChild(row);
         });
+        
+        console.log('Scores rendered successfully, table has', scoresBody.children.length, 'rows'); // Debug log
     }
 
     function recordMissionScore(missionKey, percent, detail) {
-        const username = getCurrentUser();
-        if (!username) {
-            return;
-        }
-
-        const users = loadUsers();
-        const userRecord = users[username] ?? { missions: {} };
-        const missionRecord = userRecord.missions[missionKey] ?? createEmptyMission();
+        console.log('Recording score:', missionKey, percent, detail); // Debug log
+        const scores = loadScores();
+        const missionRecord = scores[missionKey] || createEmptyMission();
 
         missionRecord.last = percent;
         missionRecord.lastDetail = detail;
@@ -370,36 +316,44 @@ document.addEventListener('DOMContentLoaded', () => {
             missionRecord.bestDetail = detail;
         }
 
-        userRecord.missions[missionKey] = missionRecord;
-        users[username] = userRecord;
-        saveUsers(users);
+        scores[missionKey] = missionRecord;
+        saveScores(scores);
+        console.log('Saved scores:', scores); // Debug log
+    }
+
+    // Expose helpers for other pages/scripts (e.g., games.js)
+    try {
+        window.VE = window.VE || {};
+        window.VE.recordMissionScore = recordMissionScore;
+        window.VE.loadScores = loadScores;
+        window.VE.saveScores = saveScores;
+        window.VE.createEmptyMission = createEmptyMission;
+        window.VE.testScore = () => {
+            recordMissionScore('quiz', 85, '4/5 correct');
+            updateProgressDisplay();
+            renderScores();
+        };
+        console.log('VE helpers exposed:', window.VE);
+    } catch (e) { 
+        console.error('Error exposing VE helpers:', e);
     }
 });
 
-function getCurrentUser() {
-    return localStorage.getItem(STORAGE_CURRENT_KEY);
-}
-
-function loadUsers() {
+function loadScores() {
     try {
-        const data = JSON.parse(localStorage.getItem(STORAGE_USERS_KEY) ?? '{}');
+        const data = JSON.parse(localStorage.getItem(STORAGE_SCORES_KEY) ?? '{}');
         return typeof data === 'object' && data ? data : {};
     } catch (error) {
-        console.warn('Resetting stored users', error);
+        console.warn('Resetting stored scores', error);
         return {};
     }
 }
 
-function saveUsers(users) {
-    localStorage.setItem(STORAGE_USERS_KEY, JSON.stringify(users));
+function saveScores(scores) {
+    localStorage.setItem(STORAGE_SCORES_KEY, JSON.stringify(scores));
 }
 
-function sanitizeUsername(raw) {
-    if (!raw) {
-        return '';
-    }
-    return String(raw).trim().replace(/\s+/g, ' ').slice(0, 18);
-}
+
 
 function createEmptyMission() {
     return {

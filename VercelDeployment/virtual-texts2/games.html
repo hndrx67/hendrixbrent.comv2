@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="static/css/main.css">
+    <link rel="stylesheet" href="static/css/games.css">
 </head>
 <body data-page="games">
     <header class="top-nav" id="top">
@@ -25,8 +26,8 @@
                 <a href="scores.html" data-page="scores">Scores</a>
             </nav>
             <div class="nav-actions">
-                <span class="nav-profile" id="navWelcome">Guest Explorer</span>
-                <button class="login-toggle" id="loginToggle" type="button">Login</button>
+                <span class="nav-profile" id="navWelcome">Virtual Explorer</span>
+                <a href="scores.html" class="login-toggle">View Scores</a>
             </div>
         </div>
     </header>
@@ -34,34 +35,299 @@
     <main>
         <section class="page-hero">
             <div class="container page-hero__content">
-                <h1>Game Zone</h1>
-                <p>Crack the quiz and prove your visual detective skills.</p>
+                <h1>🎮 Amazing Game Zone</h1>
+                <p>Choose your adventure and master visual & virtual texts through fun challenges!</p>
             </div>
         </section>
 
-        <section class="games">
+        <section class="games" aria-label="Learning Games">
             <div class="container">
-                <div class="game-wrapper" id="quizGame">
-                    <div class="game-header">
-                        <h3>Visual Detective Quiz</h3>
-                        <p>Dive into quick questions about posters, comics, and more.</p>
-                    </div>
-                    <div class="quiz-body" id="quizBody">
-                        <div class="quiz-card" id="quizCard">
-                            <h4 id="quizQuestion">Question text</h4>
-                            <form id="quizOptions" class="quiz-options"></form>
-                            <div class="quiz-footer">
-                                <button type="button" class="btn-primary" id="quizNextBtn">Next</button>
-                                <p class="quiz-progress" id="quizProgress"></p>
+                <!-- Game Selection Screen -->
+                <div id="gameSelection" class="games-grid">
+                    
+                    <!-- Game 1: Visual Detective Quiz -->
+                    <article class="game-card-preview" data-game="quiz">
+                        <div class="game-preview-header">
+                            <div class="game-icon">🔍</div>
+                            <h3>Visual Detective Quiz</h3>
+                            <p>Solve mysteries about posters, comics, and websites! Can you crack all the clues?</p>
+                        </div>
+                        <div class="game-stats">
+                            <div class="stat">
+                                <span class="stat-icon">❓</span>
+                                <span>8 Questions</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-icon">🖌️</span>
+                                <span>Brush + Eraser</span>
                             </div>
                         </div>
+                        <button class="play-btn">
+                            <span>Start Detective Work</span>
+                            <span class="btn-icon">🔎</span>
+                        </button>
+                    </article>
+
+                    <!-- Game 2: Feature Matcher -->
+                    <article class="game-card-preview" data-game="match">
+                        <div class="game-preview-header">
+                            <div class="game-icon">🎯</div>
+                            <h3>Feature Matcher</h3>
+                            <p>Connect visual text features with their superpowers! Match them all correctly!</p>
+                        </div>
+                        <div class="game-stats">
+                            <div class="stat">
+                                <span class="stat-icon">🔗</span>
+                                <span>Match Pairs</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-icon">🔄</span>
+                                <span>3 Rounds</span>
+                            </div>
+                        </div>
+                        <button class="play-btn">
+                            <span>Start Matching</span>
+                            <span class="btn-icon">✨</span>
+                        </button>
+                    </article>
+
+                    <!-- Game 3: Story Builder -->
+                    <article class="game-card-preview" data-game="story">
+                        <div class="game-preview-header">
+                            <div class="game-icon">📚</div>
+                            <h3>Story Sequencer</h3>
+                            <p>Put story steps in the right order to create amazing visual stories!</p>
+                        </div>
+                        <div class="game-stats">
+                            <div class="stat">
+                                <span class="stat-icon">📖</span>
+                                <span>Story Building</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-icon">🎲</span>
+                                <span>Multiple Stories</span>
+                            </div>
+                        </div>
+                        <button class="play-btn">
+                            <span>Build Stories</span>
+                            <span class="btn-icon">📖</span>
+                        </button>
+                    </article>
+
+                    <!-- Game 4: Poster Painter -->
+                    <article class="game-card-preview" data-game="design">
+                        <div class="game-preview-header">
+                            <div class="game-icon">🎨</div>
+                            <h3>Poster Painter</h3>
+                            <p>Paint your own poster! Draw with colorful pens, erase, add BIG text, and stamp emojis!</p>
+                        </div>
+                        <div class="game-stats">
+                            <div class="stat">
+                                <span class="stat-icon">�️</span>
+                                <span>Brush + Eraser</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-icon">😊</span>
+                                <span>Emoji Stamps</span>
+                            </div>
+                        </div>
+                        <button class="play-btn">
+                            <span>Start Painting</span>
+                            <span class="btn-icon">🚀</span>
+                        </button>
+                    </article>
+
+                </div>
+
+                <!-- Individual Game Containers (Initially Hidden) -->
+                
+                <!-- Quiz Game -->
+                <div id="quizGameContainer" class="game-container" style="display: none;">
+                    <div class="game-header-nav">
+                        <button class="back-btn" onclick="showGameSelection()">
+                            <span class="btn-icon">🏠</span>
+                            <span>Back to Games</span>
+                        </button>
+                        <h2>🔍 Visual Detective Quiz</h2>
+                    </div>
+                    <div class="game-content">
+                        <div class="quiz-card" id="quizCard">
+                            <div class="question-number" id="questionNumber">Question 1</div>
+                            <h4 id="quizQuestion">Loading your first mystery...</h4>
+                            <form id="quizOptions" class="quiz-options"></form>
+                            <div class="quiz-footer">
+                                <button type="button" class="btn-primary" id="quizNextBtn">
+                                    <span>Check Answer</span>
+                                    <span class="btn-icon">🔎</span>
+                                </button>
+                                <p class="quiz-progress" id="quizProgress"></p>
+                            </div>
+                            <div class="feedback-box" id="quizFeedback"></div>
+                        </div>
                         <div class="quiz-result" id="quizResult" hidden>
-                            <h4>Nice work, explorer!</h4>
+                            <div class="result-animation">
+                                <div class="trophy">🏆</div>
+                                <div class="stars">⭐⭐⭐</div>
+                            </div>
+                            <h4>Amazing Detective Work!</h4>
                             <p id="quizScore"></p>
-                            <button class="btn-primary" id="quizRetry">Play Again</button>
+                            <div class="result-buttons">
+                                <button class="btn-primary" id="quizRetry">
+                                    <span>Play Again</span>
+                                    <span class="btn-icon">🔄</span>
+                                </button>
+                                <button class="btn-secondary" onclick="showGameSelection()">
+                                    <span>Choose New Game</span>
+                                    <span class="btn-icon">🎮</span>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
+
+                <!-- Match Game -->
+                <div id="matchGameContainer" class="game-container" style="display: none;">
+                    <div class="game-header-nav">
+                        <button class="back-btn" onclick="showGameSelection()">
+                            <span class="btn-icon">🏠</span>
+                            <span>Back to Games</span>
+                        </button>
+                        <h2>🎯 Feature Matcher</h2>
+                    </div>
+                    <div class="game-content">
+                        <div class="match-container" id="matchContainer">
+                            <div class="match-terms" id="matchTerms"></div>
+                            <div class="match-definitions" id="matchDefinitions"></div>
+                        </div>
+                        <div class="match-actions">
+                            <button type="button" class="btn-primary" id="matchCheckBtn">
+                                <span>Check Matches</span>
+                                <span class="btn-icon">✨</span>
+                            </button>
+                            <button type="button" class="btn-secondary" id="matchNewBtn">
+                                <span>New Challenge</span>
+                                <span class="btn-icon">🔄</span>
+                            </button>
+                        </div>
+                        <div class="feedback-box" id="matchFeedback"></div>
+                    </div>
+                </div>
+
+                <!-- Story Game -->
+                <div id="storyGameContainer" class="game-container" style="display: none;">
+                    <div class="game-header-nav">
+                        <button class="back-btn" onclick="showGameSelection()">
+                            <span class="btn-icon">🏠</span>
+                            <span>Back to Games</span>
+                        </button>
+                        <h2>📚 Story Sequencer</h2>
+                    </div>
+                    <div class="game-content">
+                        <div class="story-prompt" id="storyPrompt">Loading your story challenge...</div>
+                        <div class="panels-container" id="panelsContainer"></div>
+                        <div class="story-actions">
+                            <button type="button" class="btn-primary" id="storyCheckBtn">
+                                <span>Check Story</span>
+                                <span class="btn-icon">📖</span>
+                            </button>
+                            <button type="button" class="btn-secondary" id="storyNewBtn">
+                                <span>New Story</span>
+                                <span class="btn-icon">🎲</span>
+                            </button>
+                        </div>
+                        <div class="feedback-box" id="storyFeedback"></div>
+                    </div>
+                </div>
+
+                <!-- Poster Painter Game (formerly Design Challenge) -->
+                <div id="designGameContainer" class="game-container" style="display: none;">
+                    <div class="game-header-nav">
+                        <button class="back-btn" onclick="showGameSelection()">
+                            <span class="btn-icon">🏠</span>
+                            <span>Back to Games</span>
+                        </button>
+                        <h2>🎨 Poster Painter</h2>
+                    </div>
+                    <div class="game-content">
+                        <div class="poster-studio" aria-label="Poster Painting Studio">
+                            <aside class="emoji-picker" id="emojiPicker" aria-label="Emoji Picker">
+                                <div class="emoji-picker__header">Emojis</div>
+                                <div class="emoji-grid" id="emojiGrid" role="listbox" aria-label="Emoji choices">
+                                    <!-- A friendly set of emojis -->
+                                    <button class="emoji-btn" role="option">😀</button>
+                                    <button class="emoji-btn" role="option">😂</button>
+                                    <button class="emoji-btn" role="option">😍</button>
+                                    <button class="emoji-btn" role="option">😎</button>
+                                    <button class="emoji-btn" role="option">🥳</button>
+                                    <button class="emoji-btn" role="option">🤩</button>
+                                    <button class="emoji-btn" role="option">👍</button>
+                                    <button class="emoji-btn" role="option">👏</button>
+                                    <button class="emoji-btn" role="option">🎉</button>
+                                    <button class="emoji-btn" role="option">✨</button>
+                                    <button class="emoji-btn" role="option">🌈</button>
+                                    <button class="emoji-btn" role="option">⭐️</button>
+                                    <button class="emoji-btn" role="option">❤️</button>
+                                    <button class="emoji-btn" role="option">🔥</button>
+                                    <button class="emoji-btn" role="option">🎨</button>
+                                    <button class="emoji-btn" role="option">🖌️</button>
+                                    <button class="emoji-btn" role="option">📢</button>
+                                    <button class="emoji-btn" role="option">🎵</button>
+                                    <button class="emoji-btn" role="option">⚽</button>
+                                    <button class="emoji-btn" role="option">🏆</button>
+                                    <button class="emoji-btn" role="option">🐶</button>
+                                    <button class="emoji-btn" role="option">🐱</button>
+                                    <button class="emoji-btn" role="option">🦄</button>
+                                    <button class="emoji-btn" role="option">🐼</button>
+                                    <button class="emoji-btn" role="option">🍎</button>
+                                    <button class="emoji-btn" role="option">🍕</button>
+                                    <button class="emoji-btn" role="option">🍰</button>
+                                    <button class="emoji-btn" role="option">🍩</button>
+                                    <button class="emoji-btn" role="option">🚀</button>
+                                    <button class="emoji-btn" role="option">🌟</button>
+                                    <button class="emoji-btn" role="option">🌸</button>
+                                    <button class="emoji-btn" role="option">☀️</button>
+                                    <button class="emoji-btn" role="option">🌙</button>
+                                </div>
+                            </aside>
+                            <div class="studio-main">
+                                <div class="toolbar" id="posterToolbar" role="toolbar" aria-label="Poster tools">
+                                    <div class="tool-group">
+                                        <button class="tool-btn active" data-tool="brush" title="Brush (B)">🖊️</button>
+                                        <button class="tool-btn" data-tool="eraser" title="Eraser (E)">🧽</button>
+                                        <button class="tool-btn" data-tool="text" title="Text (T)">✍️</button>
+                                        <button class="tool-btn" data-tool="emoji" title="Emoji (M)">😊</button>
+                                    </div>
+                                    <div class="tool-group">
+                                        <label class="tool-label">
+                                            Color
+                                            <input id="colorPicker" type="color" value="#1f2937" aria-label="Brush color" />
+                                        </label>
+                                        <label class="tool-label">
+                                            Size
+                                            <input id="sizeRange" type="range" min="4" max="72" value="16" aria-label="Brush size" />
+                                        </label>
+                                        <label class="tool-label">
+                                            Text Size
+                                            <input id="textSizeRange" type="range" min="16" max="120" value="48" aria-label="Text size" />
+                                        </label>
+                                    </div>
+                                    <div class="tool-group">
+                                        <button class="tool-btn" id="undoBtn" title="Undo (Ctrl+Z)">↩️</button>
+                                        <button class="tool-btn" id="clearBtn" title="Clear Poster">🗑️</button>
+                                        <button class="tool-btn primary" id="saveBtn" title="Save as Image">⬇️ Save</button>
+                                    </div>
+                                </div>
+
+                                <div class="poster-canvas-wrap" id="posterCanvasWrap">
+                                    <canvas id="posterCanvas" aria-label="Poster canvas"></canvas>
+                                    <input id="textOverlay" class="text-overlay" type="text" placeholder="Type and press Enter" hidden />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="feedback-box info" id="designFeedback">Tip: Choose a tool and start creating your poster. Add emojis from the left!</div>
+                    </div>
+                </div>
+
             </div>
         </section>
     </main>
@@ -73,19 +339,9 @@
         </div>
     </footer>
 
-    <div class="login-modal" id="loginModal" hidden>
-        <div class="login-modal-content" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-            <button class="modal-close" id="modalClose" type="button" aria-label="Close login">×</button>
-            <h2 id="modalTitle">Explorer Login</h2>
-            <p>Use the same codename every time to keep your scores safe on this device.</p>
-            <form id="modalLoginForm" autocomplete="off">
-                <label for="modalUsername">Username</label>
-                <input id="modalUsername" name="username" type="text" placeholder="e.g. StarPilot" required maxlength="18">
-                <button class="btn-primary" type="submit">Enter HQ</button>
-            </form>
-        </div>
-    </div>
+
 
     <script src="static2/js/main.js" defer></script>
+    <script src="static2/js/games.js" defer></script>
 </body>
 </html>

@@ -32,12 +32,7 @@
     </header>
 
     <main>
-        <section class="page-hero">
-            <div class="container page-hero__content">
-                <h1>Video Field Trips</h1>
-                <p>Watch and wonder as visual stories dance across the screen.</p>
-            </div>
-        </section>
+        
 
         <section class="video-showcase">
             <div class="container">
@@ -47,19 +42,61 @@
                     <p>Press play to see how visual stories come alive in the wild world of media.</p>
                 </header>
                 <div class="video-grid">
-                    <article class="video-card">
+                    <article class="video-card" data-video-id="RZZz4Hja2MQ">
                         <div class="video-wrapper">
-                            <iframe src="https://www.youtube.com/embed/HVLK71Yi7sk" title="Understanding Visual Texts" allowfullscreen></iframe>
+                            <div class="video-thumbnail">
+                                <img src="https://img.youtube.com/vi/RZZz4Hja2MQ/maxresdefault.jpg" 
+                                     alt="Visual Text Analysis" 
+                                     loading="lazy"
+                                     onerror="this.src='https://img.youtube.com/vi/RZZz4Hja2MQ/hqdefault.jpg'; this.onerror=null;">
+                                <div class="play-overlay">
+                                    <div class="play-button">▶</div>
+                                </div>
+                            </div>
                         </div>
-                        <h3>Reading Pictures Like a Pro</h3>
-                        <p>Learn how artists guide your eyes with colors, shapes, and patterns.</p>
+                        <h3>Visual Text Analysis Made Easy</h3>
+                        <p>Discover how to decode images, charts, and visual elements in everyday texts.</p>
+                        <button class="view-btn" onclick="openVideoModal('RZZz4Hja2MQ', 'Visual Text Analysis Made Easy')">
+                            <span>🎬 Watch Video</span>
+                        </button>
                     </article>
-                    <article class="video-card">
+                    
+                    <article class="video-card" data-video-id="a1FPxvZk8ls">
                         <div class="video-wrapper">
-                            <iframe src="https://www.youtube.com/embed/6DPi_j0R7Fg" title="Virtual Texts Basics" allowfullscreen></iframe>
+                            <div class="video-thumbnail">
+                                <img src="https://img.youtube.com/vi/a1FPxvZk8ls/maxresdefault.jpg" 
+                                     alt="Digital Literacy Skills" 
+                                     loading="lazy"
+                                     onerror="this.src='https://img.youtube.com/vi/a1FPxvZk8ls/hqdefault.jpg'; this.onerror=null;">
+                                <div class="play-overlay">
+                                    <div class="play-button">▶</div>
+                                </div>
+                            </div>
                         </div>
-                        <h3>Step Into Virtual Worlds</h3>
-                        <p>Discover how websites and games mix words, sounds, and movement to share ideas.</p>
+                        <h3>Digital Literacy for Students</h3>
+                        <p>Learn essential skills for navigating and understanding digital texts and media.</p>
+                        <button class="view-btn" onclick="openVideoModal('a1FPxvZk8ls', 'Digital Literacy for Students')">
+                            <span>🎬 Watch Video</span>
+                        </button>
+                    </article>
+                    
+                    <article class="video-card" data-video-id="ZFDHcZZnBK4">
+                        <div class="video-wrapper">
+                            <div class="video-thumbnail">
+                                <img src="https://img.youtube.com/vi/ZFDHcZZnBK4/maxresdefault.jpg" 
+                                     alt="Virtual Learning Environment" 
+                                     loading="lazy"
+                                     onerror="this.src='https://img.youtube.com/vi/ZFDHcZZnBK4/hqdefault.jpg'; this.onerror=null;">
+                                <div class="play-overlay">
+                                    <div class="play-button">▶</div>
+                                </div>
+                            </div>
+                        </div>
+                        <h3>Virtual Learning Adventures</h3>
+                        <p>Explore how virtual environments enhance learning and text comprehension.</p>
+                        <button class="view-btn" onclick="openVideoModal('ZFDHcZZnBK4', 'Virtual Learning Adventures')">
+                            <span>🎬 Watch Video</span>
+                        </button>
                     </article>
                 </div>
             </div>
@@ -72,6 +109,22 @@
             <a href="#top" class="back-to-top">Back to top ↑</a>
         </div>
     </footer>
+
+    <!-- Video Modal -->
+    <div class="video-modal" id="videoModal" hidden>
+        <div class="video-modal-overlay" onclick="closeVideoModal()"></div>
+        <div class="video-modal-content" role="dialog" aria-modal="true" aria-labelledby="videoModalTitle">
+            <div class="video-modal-header">
+                <h3 id="videoModalTitle">Video Title</h3>
+                <button class="modal-close" onclick="closeVideoModal()" type="button" aria-label="Close video">×</button>
+            </div>
+            <div class="video-modal-body">
+                <div class="video-embed-wrapper">
+                    <iframe id="videoModalFrame" src="" title="Video Player" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="login-modal" id="loginModal" hidden>
         <div class="login-modal-content" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
@@ -87,5 +140,80 @@
     </div>
 
     <script src="static2/js/main.js" defer></script>
+    <script>
+        // Video Modal Functionality
+        function openVideoModal(videoId, title) {
+            const modal = document.getElementById('videoModal');
+            const modalTitle = document.getElementById('videoModalTitle');
+            const iframe = document.getElementById('videoModalFrame');
+            
+            // Set video title
+            modalTitle.textContent = title;
+            
+            // Set video source with autoplay
+            iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
+            
+            // Show modal
+            modal.hidden = false;
+            document.body.style.overflow = 'hidden';
+            
+            // Focus management for accessibility
+            modal.focus();
+        }
+        
+        function closeVideoModal() {
+            const modal = document.getElementById('videoModal');
+            const iframe = document.getElementById('videoModalFrame');
+            
+            // Stop video by clearing src
+            iframe.src = '';
+            
+            // Hide modal
+            modal.hidden = true;
+            document.body.style.overflow = '';
+        }
+        
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && !document.getElementById('videoModal').hidden) {
+                closeVideoModal();
+            }
+        });
+        
+        // Add click-to-play functionality for thumbnails
+        document.addEventListener('DOMContentLoaded', function() {
+            const videoCards = document.querySelectorAll('.video-card');
+            
+            videoCards.forEach(card => {
+                const thumbnail = card.querySelector('.video-thumbnail');
+                const thumbnailImg = card.querySelector('.video-thumbnail img');
+                const videoId = card.dataset.videoId;
+                const title = card.querySelector('h3').textContent;
+                
+                // Handle image loading
+                if (thumbnailImg) {
+                    thumbnailImg.addEventListener('load', function() {
+                        thumbnail.classList.add('loaded');
+                    });
+                    
+                    // Fallback if maxresdefault doesn't exist
+                    thumbnailImg.addEventListener('error', function() {
+                        if (this.src.includes('maxresdefault')) {
+                            this.src = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+                        } else if (this.src.includes('hqdefault')) {
+                            // Final fallback to default thumbnail
+                            this.src = `https://img.youtube.com/vi/${videoId}/default.jpg`;
+                        }
+                    });
+                }
+                
+                if (thumbnail) {
+                    thumbnail.addEventListener('click', () => {
+                        openVideoModal(videoId, title);
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>

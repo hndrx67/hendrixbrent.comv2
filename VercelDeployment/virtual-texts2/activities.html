@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="static/css/main.css">
+    <link rel="stylesheet" href="static/css/activities.css">
 </head>
 <body data-page="activities">
     <header class="top-nav" id="top">
@@ -34,65 +35,298 @@
     <main>
         <section class="page-hero">
             <div class="container page-hero__content">
-                <h1>Skill Lab</h1>
-                <p>Match each clue to keep the mission computer running smoothly.</p>
+                <h1>🚀 Activity Lab</h1>
+                <p>Level up your visual text skills with fun challenges, word games, and power-ups!</p>
             </div>
         </section>
 
         <section class="activities">
             <div class="container">
-                <div class="activity-wrapper" id="featureMatch">
-                    <div class="activity-header">
-                        <h3>Feature Finder Challenge</h3>
-                        <p>Match each text feature with the correct description.</p>
+                
+                <!-- Activity Selection Screen -->
+                <div id="activitySelection" class="activities-grid">
+                    
+                    <!-- Activity 1: Word Block Breaker -->
+                    <article class="activity-card" data-activity="blocks">
+                        <div class="activity-preview-header">
+                            <div class="activity-icon">🧱</div>
+                            <h3>Word Block Breaker</h3>
+                            <p>Catch falling word blocks to build visual text vocabulary! Get power-ups and high scores!</p>
+                        </div>
+                        <div class="activity-stats">
+                            <div class="stat">
+                                <span class="stat-icon">🎯</span>
+                                <span>Catch Words</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-icon">⚡</span>
+                                <span>Power-ups</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-icon">🏆</span>
+                                <span>High Score</span>
+                            </div>
+                        </div>
+                        <button class="play-btn">
+                            <span>Start Catching</span>
+                            <span class="btn-icon">🎮</span>
+                        </button>
+                    </article>
+
+                    <!-- Activity 2: Feature Matcher -->
+                    <article class="activity-card" data-activity="matcher">
+                        <div class="activity-preview-header">
+                            <div class="activity-icon">🎯</div>
+                            <h3>Feature Matcher</h3>
+                            <p>Match visual text features with their meanings in this fast-paced challenge!</p>
+                        </div>
+                        <div class="activity-stats">
+                            <div class="stat">
+                                <span class="stat-icon">🔗</span>
+                                <span>Match Pairs</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-icon">⏱️</span>
+                                <span>Time Challenge</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-icon">🌟</span>
+                                <span>Streak Bonus</span>
+                            </div>
+                        </div>
+                        <button class="play-btn">
+                            <span>Start Matching</span>
+                            <span class="btn-icon">✨</span>
+                        </button>
+                    </article>
+
+                    <!-- Activity 3: Comic Panel Builder -->
+                    <article class="activity-card" data-activity="comic">
+                        <div class="activity-preview-header">
+                            <div class="activity-icon">📚</div>
+                            <h3>Comic Panel Builder</h3>
+                            <p>Create your own comic strips by arranging panels and adding speech bubbles!</p>
+                        </div>
+                        <div class="activity-stats">
+                            <div class="stat">
+                                <span class="stat-icon">🎨</span>
+                                <span>Create Comics</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-icon">💬</span>
+                                <span>Speech Bubbles</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-icon">📖</span>
+                                <span>Story Flow</span>
+                            </div>
+                        </div>
+                        <button class="play-btn">
+                            <span>Create Comics</span>
+                            <span class="btn-icon">🎨</span>
+                        </button>
+                    </article>
+
+                    <!-- Activity 4: Speed Typing Challenge -->
+                    <article class="activity-card" data-activity="typing">
+                        <div class="activity-preview-header">
+                            <div class="activity-icon">⌨️</div>
+                            <h3>Speed Typing Challenge</h3>
+                            <p>Type visual text terms as fast as you can! Race against the clock for bonus points!</p>
+                        </div>
+                        <div class="activity-stats">
+                            <div class="stat">
+                                <span class="stat-icon">🏃</span>
+                                <span>Speed Typing</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-icon">⏱️</span>
+                                <span>Time Pressure</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-icon">🎯</span>
+                                <span>Accuracy</span>
+                            </div>
+                        </div>
+                        <button class="play-btn">
+                            <span>Start Typing</span>
+                            <span class="btn-icon">⚡</span>
+                        </button>
+                    </article>
+
+                </div>
+
+                <!-- Individual Activity Containers -->
+                
+                <!-- Word Block Breaker Game -->
+                <div id="blocksActivity" class="activity-container" style="display: none;">
+                    <div class="activity-header-nav">
+                        <button class="back-btn">
+                            <span class="btn-icon">🏠</span>
+                            <span>Back to Activities</span>
+                        </button>
+                        <h2>🧱 Word Block Breaker</h2>
+                        <div class="game-stats-bar">
+                            <div class="stat-item">
+                                <span>Score: </span>
+                                <span id="blocksScore">0</span>
+                            </div>
+                            <div class="stat-item">
+                                <span>Level: </span>
+                                <span id="blocksLevel">1</span>
+                            </div>
+                            <div class="stat-item">
+                                <span>Lives: </span>
+                                <span id="blocksLives">3</span>
+                            </div>
+                        </div>
                     </div>
-                    <form class="match-grid" id="matchForm">
-                        <div class="match-card">
-                            <h4>Caption</h4>
-                            <label for="match1" class="sr-only">Caption description</label>
-                            <select id="match1" name="caption" required>
-                                <option value="">Choose the best answer</option>
-                                <option value="Explains the main idea of the graphic">Explains the main idea of the graphic</option>
-                                <option value="Gives extra details about an image">Gives extra details about an image</option>
-                                <option value="Shows different sections using color">Shows different sections using color</option>
-                            </select>
+                    <div class="game-content">
+                        <div class="blocks-game-area">
+                            <div class="blocks-canvas">
+                                <div class="blocks-paddle"></div>
+                            </div>
                         </div>
-                        <div class="match-card">
-                            <h4>Navigation Menu</h4>
-                            <label for="match2" class="sr-only">Navigation menu description</label>
-                            <select id="match2" name="navigation" required>
-                                <option value="">Choose the best answer</option>
-                                <option value="Helps readers jump to different pages">Helps readers jump to different pages</option>
-                                <option value="Adds funny sound effects">Adds funny sound effects</option>
-                                <option value="Makes text bold and bright">Makes text bold and bright</option>
-                            </select>
+                        <div class="game-controls">
+                            <div class="game-info">
+                                <p><strong>How to Play:</strong> Move your mouse to control the paddle and click falling word blocks to catch them!</p>
+                            </div>
                         </div>
-                        <div class="match-card">
-                            <h4>Callout Bubble</h4>
-                            <label for="match3" class="sr-only">Callout bubble description</label>
-                            <select id="match3" name="callout" required>
-                                <option value="">Choose the best answer</option>
-                                <option value="Shares a quick fact or fun extra">Shares a quick fact or fun extra</option>
-                                <option value="Shows a map of the setting">Shows a map of the setting</option>
-                                <option value="Lists the main characters">Lists the main characters</option>
-                            </select>
-                        </div>
-                        <div class="match-card">
-                            <h4>Virtual Button</h4>
-                            <label for="match4" class="sr-only">Virtual button description</label>
-                            <select id="match4" name="button" required>
-                                <option value="">Choose the best answer</option>
-                                <option value="Starts an interactive action">Starts an interactive action</option>
-                                <option value="Shows the author of the story">Shows the author of the story</option>
-                                <option value="Adds decorations to the border">Adds decorations to the border</option>
-                            </select>
-                        </div>
-                    </form>
-                    <div class="activity-footer">
-                        <button class="btn-primary" id="matchSubmit" type="button">Check Answers</button>
-                        <p class="activity-feedback" id="matchFeedback"></p>
+                        <div class="feedback-box"></div>
                     </div>
                 </div>
+
+                <!-- Feature Matcher Activity -->
+                <div id="matcherActivity" class="activity-container" style="display: none;">
+                    <div class="activity-header-nav">
+                        <button class="back-btn">
+                            <span class="btn-icon">🏠</span>
+                            <span>Back to Activities</span>
+                        </button>
+                        <h2>🎯 Feature Matcher</h2>
+                        <div class="game-stats-bar">
+                            <div class="stat-item">
+                                <span>Score: </span>
+                                <span id="matcherScore">0</span>
+                            </div>
+                            <div class="stat-item">
+                                <span>Matches: </span>
+                                <span id="matcherMatches">0</span>
+                            </div>
+                            <div class="stat-item">
+                                <span>Attempts: </span>
+                                <span id="matcherAttempts">0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="game-content">
+                        <div class="matcher-game-area">
+                            <div class="matcher-terms"></div>
+                            <div class="matcher-definitions"></div>
+                        </div>
+                        <div class="game-controls">
+                            <div class="game-info">
+                                <p><strong>How to Play:</strong> Click a term on the left, then click its matching definition on the right!</p>
+                            </div>
+                        </div>
+                        <div class="feedback-box"></div>
+                    </div>
+                </div>
+
+                <!-- Comic Panel Builder -->
+                <div id="comicActivity" class="activity-container" style="display: none;">
+                    <div class="activity-header-nav">
+                        <button class="back-btn">
+                            <span class="btn-icon">🏠</span>
+                            <span>Back to Activities</span>
+                        </button>
+                        <h2>📚 Comic Panel Builder</h2>
+                        <div class="game-stats-bar">
+                            <div class="stat-item">
+                                <span>Progress: </span>
+                                <span id="comicProgress">0%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="game-content">
+                        <div class="comic-canvas">
+                            <div class="comic-panels">
+                                <div class="comic-panel" data-panel="1">
+                                    <span class="panel-number">1</span>
+                                    <div class="panel-content" contenteditable="true" placeholder="Click to add story..."></div>
+                                </div>
+                                <div class="comic-panel" data-panel="2">
+                                    <span class="panel-number">2</span>
+                                    <div class="panel-content" contenteditable="true" placeholder="What happens next?"></div>
+                                </div>
+                                <div class="comic-panel" data-panel="3">
+                                    <span class="panel-number">3</span>
+                                    <div class="panel-content" contenteditable="true" placeholder="How does it end?"></div>
+                                </div>
+                                <div class="comic-panel" data-panel="4">
+                                    <span class="panel-number">4</span>
+                                    <div class="panel-content" contenteditable="true" placeholder="Final panel..."></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="comic-tools">
+                            <!-- Tools will be populated by JavaScript -->
+                        </div>
+                        <div class="game-controls">
+                            <div class="game-info">
+                                <p><strong>How to Play:</strong> Click on panels to write your story. Use the tools to add characters and dialog!</p>
+                            </div>
+                        </div>
+                        <div class="feedback-box"></div>
+                    </div>
+                </div>
+
+                <!-- Speed Typing Challenge -->
+                <div id="typingActivity" class="activity-container" style="display: none;">
+                    <div class="activity-header-nav">
+                        <button class="back-btn">
+                            <span class="btn-icon">🏠</span>
+                            <span>Back to Activities</span>
+                        </button>
+                        <h2>⌨️ Speed Typing Challenge</h2>
+                        <div class="game-stats-bar">
+                            <div class="stat-item">
+                                <span>Score: </span>
+                                <span id="typingScore">0</span>
+                            </div>
+                            <div class="stat-item">
+                                <span>WPM: </span>
+                                <span id="typingWPM">0</span>
+                            </div>
+                            <div class="stat-item">
+                                <span>Accuracy: </span>
+                                <span id="typingAccuracy">100%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="game-content">
+                        <div class="typing-game-area">
+                            <div class="typing-word-display">
+                                <h3 id="currentWord">Ready?</h3>
+                                <p id="wordDefinition">Get ready to type visual text terms!</p>
+                            </div>
+                            <input type="text" id="typingInput" placeholder="Type the word here..." autocomplete="off">
+                            <div class="typing-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill"></div>
+                                </div>
+                                <span id="typingProgress">Click start to begin!</span>
+                            </div>
+                        </div>
+                        <div class="game-controls">
+                            <div class="game-info">
+                                <p><strong>How to Play:</strong> Type the displayed word as quickly and accurately as possible!</p>
+                            </div>
+                        </div>
+                        <div class="feedback-box"></div>
+                    </div>
+                </div>
+
             </div>
         </section>
     </main>
@@ -118,5 +352,6 @@
     </div>
 
     <script src="static2/js/main.js" defer></script>
+    <script src="static2/js/activities.js" defer></script>
 </body>
 </html>
