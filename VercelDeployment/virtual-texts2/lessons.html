@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson Trail | Virtual Explorers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="static/css/main.css">
+</head>
+<body data-page="lessons">
+    <header class="top-nav" id="top">
+        <div class="container nav-content">
+            <a href="index.html" class="brand">
+                <span class="brand-icon" aria-hidden="true">🦎</span>
+                <span class="brand-text">Virtual Explorers</span>
+            </a>
+            <nav class="nav-links" aria-label="Primary">
+                <a href="index.html" data-page="home">Home</a>
+                <a href="lessons.html" data-page="lessons">Lessons</a>
+                <a href="videos.html" data-page="videos">Videos</a>
+                <a href="games.html" data-page="games">Games</a>
+                <a href="activities.html" data-page="activities">Activities</a>
+                <a href="scores.html" data-page="scores">Scores</a>
+            </nav>
+            <div class="nav-actions">
+                <span class="nav-profile" id="navWelcome">Guest Explorer</span>
+                <button class="login-toggle" id="loginToggle" type="button">Login</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container page-hero__content">
+                <h1>Lesson Trail</h1>
+                <p>Gather explorer skills to read images, posters, websites, and everything in between.</p>
+            </div>
+        </section>
+
+        <section class="highlight-grid">
+            <div class="container">
+                <header class="section-header">
+                    <p class="section-kicker">Lesson Trail</p>
+                    <h2>Learn the Secrets of Visual &amp; Virtual Texts</h2>
+                    <p>Explore bright examples, spot clues, and become a text detective.</p>
+                </header>
+                <div class="card-grid">
+                    <article class="info-card">
+                        <h3>What Are Visual Texts?</h3>
+                        <p>Visual texts are images, posters, comics, and infographics. They use color, layout, and pictures to tell stories without lots of words.</p>
+                        <ul>
+                            <li>Look for captions and labels.</li>
+                            <li>Notice colors and shapes.</li>
+                            <li>Ask: What do I feel or learn?</li>
+                        </ul>
+                    </article>
+                    <article class="info-card">
+                        <h3>What Are Virtual Texts?</h3>
+                        <p>Virtual texts live on screens! Think of websites, games, or interactive stories that let you click, watch, and explore.</p>
+                        <ul>
+                            <li>Follow buttons and links.</li>
+                            <li>Watch for animations.</li>
+                            <li>Check who made it and why.</li>
+                        </ul>
+                    </article>
+                    <article class="info-card">
+                        <h3>Explorer Skills</h3>
+                        <p>Super explorers use powerful strategies to understand any text.</p>
+                        <ul>
+                            <li>Scan the whole scene first.</li>
+                            <li>Zoom in on important clues.</li>
+                            <li>Connect it with what you already know.</li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <p>© <span id="year"></span> Virtual Explorers Club. Designed for curious minds.</p>
+            <a href="#top" class="back-to-top">Back to top ↑</a>
+        </div>
+    </footer>
+
+    <div class="login-modal" id="loginModal" hidden>
+        <div class="login-modal-content" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+            <button class="modal-close" id="modalClose" type="button" aria-label="Close login">×</button>
+            <h2 id="modalTitle">Explorer Login</h2>
+            <p>Use the same codename every time to keep your scores safe on this device.</p>
+            <form id="modalLoginForm" autocomplete="off">
+                <label for="modalUsername">Username</label>
+                <input id="modalUsername" name="username" type="text" placeholder="e.g. StarPilot" required maxlength="18">
+                <button class="btn-primary" type="submit">Enter HQ</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="static2/js/main.js" defer></script>
+</body>
+</html>

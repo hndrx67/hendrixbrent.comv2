@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Field Trips | Virtual Explorers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="static/css/main.css">
+</head>
+<body data-page="videos">
+    <header class="top-nav" id="top">
+        <div class="container nav-content">
+            <a href="index.html" class="brand">
+                <span class="brand-icon" aria-hidden="true">🦎</span>
+                <span class="brand-text">Virtual Explorers</span>
+            </a>
+            <nav class="nav-links" aria-label="Primary">
+                <a href="index.html" data-page="home">Home</a>
+                <a href="lessons.html" data-page="lessons">Lessons</a>
+                <a href="videos.html" data-page="videos">Videos</a>
+                <a href="games.html" data-page="games">Games</a>
+                <a href="activities.html" data-page="activities">Activities</a>
+                <a href="scores.html" data-page="scores">Scores</a>
+            </nav>
+            <div class="nav-actions">
+                <span class="nav-profile" id="navWelcome">Guest Explorer</span>
+                <button class="login-toggle" id="loginToggle" type="button">Login</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container page-hero__content">
+                <h1>Video Field Trips</h1>
+                <p>Watch and wonder as visual stories dance across the screen.</p>
+            </div>
+        </section>
+
+        <section class="video-showcase">
+            <div class="container">
+                <header class="section-header">
+                    <p class="section-kicker">Watch &amp; Wonder</p>
+                    <h2>Video Field Trips</h2>
+                    <p>Press play to see how visual stories come alive in the wild world of media.</p>
+                </header>
+                <div class="video-grid">
+                    <article class="video-card">
+                        <div class="video-wrapper">
+                            <iframe src="https://www.youtube.com/embed/HVLK71Yi7sk" title="Understanding Visual Texts" allowfullscreen></iframe>
+                        </div>
+                        <h3>Reading Pictures Like a Pro</h3>
+                        <p>Learn how artists guide your eyes with colors, shapes, and patterns.</p>
+                    </article>
+                    <article class="video-card">
+                        <div class="video-wrapper">
+                            <iframe src="https://www.youtube.com/embed/6DPi_j0R7Fg" title="Virtual Texts Basics" allowfullscreen></iframe>
+                        </div>
+                        <h3>Step Into Virtual Worlds</h3>
+                        <p>Discover how websites and games mix words, sounds, and movement to share ideas.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <p>© <span id="year"></span> Virtual Explorers Club. Designed for curious minds.</p>
+            <a href="#top" class="back-to-top">Back to top ↑</a>
+        </div>
+    </footer>
+
+    <div class="login-modal" id="loginModal" hidden>
+        <div class="login-modal-content" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+            <button class="modal-close" id="modalClose" type="button" aria-label="Close login">×</button>
+            <h2 id="modalTitle">Explorer Login</h2>
+            <p>Use the same codename every time to keep your scores safe on this device.</p>
+            <form id="modalLoginForm" autocomplete="off">
+                <label for="modalUsername">Username</label>
+                <input id="modalUsername" name="username" type="text" placeholder="e.g. StarPilot" required maxlength="18">
+                <button class="btn-primary" type="submit">Enter HQ</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="static2/js/main.js" defer></script>
+</body>
+</html>
