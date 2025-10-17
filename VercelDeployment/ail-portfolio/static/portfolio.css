@@ -16,6 +16,8 @@
   --hero-blur: 4px;
   --hero-saturate: 1.15;
   --hero-overlay: 0.55; /* 0-1 */
+  --hero-bg-size: cover; /* cover | contain */
+  --hero-hd-filter: contrast(1) brightness(1); /* enhanced when HD enabled */
 }
 
 * { box-sizing: border-box }
@@ -158,8 +160,11 @@ a:hover, a:focus { text-decoration: none; }
   content: "";
   position: absolute;
   inset: 0;
-  background: var(--hero-bg-url) center / cover no-repeat;
-  filter: blur(var(--hero-blur)) saturate(var(--hero-saturate));
+  background-image: var(--hero-bg-url);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: var(--hero-bg-size, cover);
+  filter: blur(var(--hero-blur)) saturate(var(--hero-saturate)) var(--hero-hd-filter);
   transform: scale(1.06); /* hide blur shrink at edges */
   z-index: -2;
   pointer-events: none;

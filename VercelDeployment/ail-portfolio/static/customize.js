@@ -9,7 +9,9 @@
     blur: '--hero-blur',
     saturate: '--hero-saturate',
     overlay: '--hero-overlay',
-    accent: '--accent'
+    accent: '--accent',
+    bgSize: '--hero-bg-size',
+    hd: '--hero-hd-filter'
   };
 
   function loadState(){
@@ -24,6 +26,10 @@
     if (state.saturate) root.style.setProperty(heroVar.saturate, state.saturate);
     if (state.overlay) root.style.setProperty(heroVar.overlay, state.overlay);
     if (state.accent) root.style.setProperty(heroVar.accent, state.accent);
+    if (state.bgContain === true) root.style.setProperty(heroVar.bgSize, 'contain');
+    else if (state.bgContain === false) root.style.setProperty(heroVar.bgSize, 'cover');
+    if (state.hdEnabled === true) root.style.setProperty(heroVar.hd, 'contrast(1.05) brightness(1.03) saturate(1.05)');
+    else if (state.hdEnabled === false) root.style.setProperty(heroVar.hd, 'contrast(1) brightness(1)');
   }
 
   // Create gear button
@@ -73,6 +79,16 @@
               <div class="thumb" style="background-image:url('./static/bg/twtw.gif')"></div>
               <div class="badge">Twin Towers</div>
             </label>
+            <label class="wall-card">
+              <input type="radio" name="wall" value="K/holo-en-council.jpg" />
+              <div class="thumb" style="background-image:url('./static/K/holo-en-council.jpg')"></div>
+              <div class="badge">Holo EN Council</div>
+            </label>
+            <label class="wall-card">
+              <input type="radio" name="wall" value="K/sakamatachloesegs.jpg" />
+              <div class="thumb" style="background-image:url('./static/K/sakamatachloesegs.jpg')"></div>
+              <div class="badge">Sakamata Chloe</div>
+            </label>
           </div>
         </div>
 
@@ -108,6 +124,22 @@
             <span class="val" id="accentVal">#7DD3FC</span>
           </div>
         </div>
+
+        <div class="field">
+          <label>Image Options</label>
+          <div class="checkbox-row">
+            <label class="checkbox">
+              <input type="checkbox" id="bgContainChk" />
+              <span>Preserve aspect ratio (contain)</span>
+            </label>
+          </div>
+          <div class="checkbox-row">
+            <label class="checkbox">
+              <input type="checkbox" id="hdEnableChk" />
+              <span>Enhance clarity (HD)</span>
+            </label>
+          </div>
+        </div>
       </div>
       <div class="customize-footer">
         <button class="btn" type="button" id="resetBtn">Reset</button>
@@ -136,6 +168,8 @@
     const ovlVal = overlay.querySelector('#ovlVal');
     const accColor = overlay.querySelector('#accentColor');
     const accVal = overlay.querySelector('#accentVal');
+  const bgContainChk = overlay.querySelector('#bgContainChk');
+  const hdEnableChk = overlay.querySelector('#hdEnableChk');
 
     // Pre-select wallpaper
     if (state.bg){
@@ -156,6 +190,10 @@
 
     accColor.value = (state.accent || '#7dd3fc');
     accVal.textContent = accColor.value.toUpperCase();
+
+  // Checkboxes
+  bgContainChk.checked = !!state.bgContain;
+  hdEnableChk.checked = !!state.hdEnabled;
 
     // Bind changes
     wallInputs.forEach(r => r.addEventListener('change', () => {
@@ -191,6 +229,19 @@
       accVal.textContent = val.toUpperCase();
       root.style.setProperty(heroVar.accent, val);
       saveState({ ...loadState(), accent: val });
+    });
+
+    bgContainChk.addEventListener('change', () => {
+      const checked = bgContainChk.checked;
+      root.style.setProperty(heroVar.bgSize, checked ? 'contain' : 'cover');
+      saveState({ ...loadState(), bgContain: checked });
+    });
+
+    hdEnableChk.addEventListener('change', () => {
+      const checked = hdEnableChk.checked;
+      const filter = checked ? 'contrast(1.05) brightness(1.03) saturate(1.05)' : 'contrast(1) brightness(1)';
+      root.style.setProperty(heroVar.hd, filter);
+      saveState({ ...loadState(), hdEnabled: checked });
     });
 
     overlay.addEventListener('click', (e) => {
