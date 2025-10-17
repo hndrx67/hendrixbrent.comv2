@@ -1,0 +1,152 @@
+/* Docuviewer Modal Styles */
+:root {
+  --dm-overlay: rgba(0, 0, 0, 0.6);
+  --dm-surface: color-mix(in oklab, #fff 10%, #111 90%);
+  --dm-border: color-mix(in oklab, #fff 18%, transparent);
+  --dm-text: #e8e8e8;
+  --dm-muted: #b9b9b9;
+  --dm-accent: #69e;
+}
+
+.docu-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--dm-overlay);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 220ms ease;
+  z-index: 10000; /* above header and other effects */
+}
+
+.docu-modal-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.docu-modal {
+  width: min(960px, 92vw);
+  max-height: 88vh;
+  background: var(--dm-surface);
+  border: 1px solid var(--dm-border);
+  border-radius: 16px;
+  color: var(--dm-text);
+  box-shadow: 0 10px 30px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.08);
+  display: grid;
+  grid-template-columns: 42% 58%;
+  overflow: hidden;
+  transform: translateY(8px) scale(.98);
+  opacity: 0;
+  transition: transform 260ms cubic-bezier(.2,.7,.25,1), opacity 260ms ease;
+}
+
+.docu-modal-overlay.open .docu-modal {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+.docu-modal-media {
+  position: relative;
+  background: #0a0a0a;
+}
+
+.docu-modal-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.docu-modal-body {
+  padding: 20px 22px 18px 22px;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  gap: 10px;
+}
+
+.docu-modal-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.docu-modal-meta {
+  color: var(--dm-muted);
+  font-size: .9rem;
+}
+
+.docu-modal-desc {
+  font-size: .98rem;
+  line-height: 1.5;
+  color: var(--dm-text);
+  opacity: .95;
+}
+
+.docu-modal-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 6px;
+}
+
+.docu-modal-download {
+  appearance: none;
+  border: 1px solid var(--dm-border);
+  background: color-mix(in oklab, #fff 8%, transparent);
+  color: var(--dm-text);
+  padding: 10px 14px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 160ms ease, transform 120ms ease, border-color 160ms ease;
+}
+
+.docu-modal-download:hover {
+  background: color-mix(in oklab, #fff 14%, transparent);
+  transform: translateY(-1px);
+}
+
+.docu-modal-download[aria-disabled="true"] {
+  opacity: .6;
+  pointer-events: none;
+}
+
+.docu-modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: inline-grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  border: 1px solid var(--dm-border);
+  background: color-mix(in oklab, #fff 8%, transparent);
+  color: var(--dm-text);
+  cursor: pointer;
+  transition: background 160ms ease, transform 120ms ease;
+}
+
+.docu-modal-close:hover {
+  background: color-mix(in oklab, #fff 14%, transparent);
+  transform: translateY(-1px);
+}
+
+/* Stack on narrow screens */
+@media (max-width: 720px) {
+  .docu-modal {
+    grid-template-columns: 1fr;
+    width: min(720px, 94vw);
+  }
+  .docu-modal-body { padding: 16px; }
+  .docu-modal-title { font-size: 1.1rem; }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .docu-modal-overlay,
+  .docu-modal { transition: none; }
+}

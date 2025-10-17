@@ -1,0 +1,151 @@
+/* From Uiverse.io by chandrasek_6406 */ 
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: #f0e4d4;
+  font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif;
+}
+
+.pixar-card {
+  --ui-blue: #5c99e2;
+  --ui-blue-shadow: #3b76c0;
+  --ui-green: #61c470;
+  --ui-green-shadow: #45a253;
+  --ui-red: #e65e5e;
+  --ui-red-shadow: #c14242;
+  --ui-cream: #f5f1e8;
+  --ui-cream-shadow: #c7c1b5;
+  --ui-dark: #4d4c4a;
+  --button-press-depth: 0.15em;
+
+  position: relative;
+  width: 19em;
+  max-width: 300px;
+  max-height: 700px;
+  background-color: var(--ui-cream);
+  border-radius: 1.5em;
+  padding: 1.2em;
+  border: 0.2em solid var(--ui-dark);
+  box-shadow: 0.6em 0.6em 0 var(--ui-dark);
+  display: flex;
+  flex-direction: column;
+  transition:
+    transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.pixar-card:hover {
+  transform: translateY(-0.5em) rotate(-2deg);
+  box-shadow: 0.8em 0.8em 0 var(--ui-dark);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1em;
+}
+
+.card-avatar {
+  width: 3.5em;
+  height: 3.5em;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #f9a86d, #f48a58);
+  border: 0.2em solid var(--ui-dark);
+  box-shadow: 0.2em 0.2em 0 var(--ui-dark);
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.pixar-card:hover .card-avatar {
+  transform: scale(1.05) rotate(5deg);
+}
+
+.card-username {
+  margin: 0 0 0 0.8em;
+  font-size: 1.2em;
+  font-weight: 700;
+  color: var(--ui-dark);
+}
+
+.card-image-area {
+  background-color: #d8d2c6;
+  border-radius: 1em;
+  padding: 0.8em;
+  border: 0.2em solid var(--ui-dark);
+  box-shadow: inset 0.2em 0.2em 0 #b3ac9f;
+}
+
+.card-image-placeholder {
+  width: 100%;
+  height: 5em;
+  border-radius: 0.6em;
+  background: linear-gradient(135deg, var(--ui-blue), #8cb9e8);
+  border: 0.2em solid var(--ui-dark);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.pixar-card:hover .card-image-placeholder {
+  transform: scale(1.03);
+}
+
+.card-caption {
+  margin: 1em 0 0 0;
+  font-size: 0.9em;
+  line-height: 1.4;
+  color: var(--ui-dark);
+  font-weight: 600;
+}
+
+.card-actions {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 1.5em;
+}
+
+.action-button {
+  background: var(--ui-green);
+  border: 0.2em solid var(--ui-dark);
+  border-radius: 1em;
+  padding: 0.5em;
+  cursor: pointer;
+  box-shadow:
+    0 var(--button-press-depth) 0 var(--ui-green-shadow),
+    0 0.4em 0 var(--ui-dark);
+  transition:
+    transform 0.1s ease,
+    box-shadow 0.1s ease;
+}
+
+.action-button:active {
+  transform: translateY(var(--button-press-depth));
+  box-shadow:
+    0 0 0 var(--ui-green-shadow),
+    0 var(--button-press-depth) 0 var(--ui-dark);
+}
+
+.like-button {
+  background: var(--ui-red);
+  box-shadow:
+    0 var(--button-press-depth) 0 var(--ui-red-shadow),
+    0 0.4em 0 var(--ui-dark);
+}
+
+.like-button:active {
+  box-shadow:
+    0 0 0 var(--ui-red-shadow),
+    0 var(--button-press-depth) 0 var(--ui-dark);
+}
+
+.action-button-icon {
+  width: 1.8em;
+  height: 1.8em;
+  stroke: var(--ui-dark);
+  stroke-width: 2.5;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  display: block;
+}

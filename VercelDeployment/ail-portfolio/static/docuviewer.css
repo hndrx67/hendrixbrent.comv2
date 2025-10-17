@@ -1,0 +1,33 @@
+/* Scoped Docu Viewer styles to avoid conflicts */
+.docuviewer { --dv-surface:#252525; --dv-fg:#fff; --dv-muted:#b1b0b0; }
+
+.docuviewer .docu-grid { display:flex; flex-wrap:wrap; gap:16px; }
+
+/* Card */
+.docuviewer .card { width: 15em; height: 10em; background-color: var(--dv-surface); border-radius: 7px; cursor: pointer; position: relative; }
+.docuviewer .fl { display: flex; justify-content: flex-end; opacity: 0; transition: .2s ease-in-out; }
+.docuviewer .fl:hover .fullscreen { scale: 1.2; }
+.docuviewer .fl:hover .fullscreen_svg { fill: white; }
+.docuviewer .fullscreen { width: 1.5em; height: 1.5em; border-radius: 5px; background-color: #727890; margin: 1em; margin-right: 0.5em; display: flex; align-items: center; justify-content: center; transition: .2s ease-in-out; box-shadow: 2px 2px 6px rgba(0,0,0,.4); }
+.docuviewer .fullscreen_svg { width: 15px; height: 15px; fill: rgb(177, 176, 176); transition: .2s ease-in-out; }
+.docuviewer .card_back { position: absolute; width: 15em; height: 13em; background-color: rgba(30, 31, 38, 0.575); border-radius: 7px; margin-top: -5em; margin-left: 0.7em; transition: .2s ease-in-out; z-index: -1; }
+.docuviewer .main:hover .card_back { margin-top: -6.25em; margin-left: 0em; scale: 1.1; height: 15.25em; cursor: pointer; }
+.docuviewer .main:hover .fl { opacity: 1; cursor: pointer; margin-right: 0.5em; }
+
+.docuviewer .data { display: flex; flex-direction: row; margin-top: 1em; }
+.docuviewer .img { width: 2.25em; height: 2.25em; background-color: var(--dv-surface); border-radius: 5px; overflow: hidden; }
+.docuviewer .text { display: flex; justify-content: center; flex-direction: column; margin-left: 0.5em; font-family: Montserrat, ui-sans-serif, system-ui; color: var(--dv-fg); }
+.docuviewer .text_m { font-weight: bold; font-size: 0.9em; }
+.docuviewer .text_s { font-size: 0.7em; color: var(--dv-muted); }
+
+.docuviewer .btns { display: flex; gap: 0.5em; transition: .2s ease-in-out; margin-top: 8px; }
+
+/* Reworked bottom actions: Download + Comments + Views */
+.docuviewer .download, .docuviewer .comments, .docuviewer .views { display:flex; align-items:center; justify-content:center; border-radius: 4px; height: 1.8em; padding: 0 .6em; background-color: #444857; color:#fff; text-decoration:none; opacity:0; transition:.24s ease-in-out; }
+.docuviewer .download:hover, .docuviewer .comments:hover, .docuviewer .views:hover { background-color:#5A5F73; cursor:pointer; }
+.docuviewer .main:hover .download, .docuviewer .main:hover .comments, .docuviewer .main:hover .views { margin-top: 0.25em; opacity: 1; }
+.docuviewer .download_svg, .docuviewer .comments_svg, .docuviewer .views_svg { width: 12px; height: 12px; fill: white; }
+.docuviewer .download_text, .docuviewer .comments_text, .docuviewer .views_text { font-family: Montserrat, ui-sans-serif, system-ui; font-size: 0.8em; margin-left: 0.25em; color: #fff; }
+
+/* Content center inside card if used */
+.docuviewer .card_content { display: flex; align-items: center; justify-content: center; }

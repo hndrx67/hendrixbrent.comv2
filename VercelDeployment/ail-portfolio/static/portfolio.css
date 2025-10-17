@@ -1,0 +1,461 @@
+/* Anonymity page styles - sleek dark aesthetic */
+
+:root {
+  --bg: #0b0d10;
+  --surface: #101317;
+  --elev: #131820;
+  --border: #1f2937;
+  --text: #e5e7eb;
+  --muted: #9ca3af;
+  --accent: #7dd3fc; /* cyan */
+  --accent-2: #a78bfa; /* violet */
+  --accent-3: #34d399; /* emerald */
+  --shadow: 0 10px 30px rgba(0,0,0,.45);
+  /* Hero customization variables */
+  --hero-bg-url: url("bg/hero-bg.jpg");
+  --hero-blur: 4px;
+  --hero-saturate: 1.15;
+  --hero-overlay: 0.55; /* 0-1 */
+}
+
+* { box-sizing: border-box }
+
+html { color-scheme: dark; }
+.btn, .btn:hover, .btn:focus { text-decoration: none; }
+
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  /* Remove decorative purple/cyan radial lights for a cleaner, flatter look */
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Hide scrollbars globally but maintain scroll functionality */
+html, body {
+  -ms-overflow-style: none; /* IE and old Edge */
+  scrollbar-width: none;    /* Firefox */
+}
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;            /* WebKit */
+}
+/* For any other scrollable containers */
+* { scrollbar-width: none; }
+*::-webkit-scrollbar { width: 0; height: 0; display: none; }
+
+.container {
+  width: min(1100px, 92vw);
+  margin: 0 auto;
+}
+
+/* Header */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  /* Glassy, translucent header */
+  background: rgba(16, 19, 23, 0.45);
+  background: color-mix(in oklab, var(--surface) 45%, transparent);
+  border-bottom: 1px solid color-mix(in oklab, var(--border) 70%, transparent);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  backdrop-filter: blur(12px) saturate(160%);
+  transition: transform .25s ease, opacity .25s ease, background-color .25s ease;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0; /* smaller top navbar */
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  letter-spacing: .4px;
+}
+
+/* removed decorative brand dot */
+
+.nav a, .nav button.link {
+  color: var(--text);
+  text-decoration: none;
+  opacity: .9;
+}
+
+/* global link utility to avoid purple visited states */
+.link { color: var(--text); text-decoration: none; }
+.link:visited { color: var(--text); }
+.link:hover { text-decoration: none; }
+
+/* remove underline from all anchors by default */
+a { text-decoration: none; }
+a:hover, a:focus { text-decoration: none; }
+
+.actions { display: flex; gap: 10px; align-items: center; }
+
+/* Uiverse-style buttons (by Mike11jr) */
+.btn {
+  width: 115px;
+  height: 38px;
+  font-size: 1.1em;
+  cursor: pointer;
+  background-color: #171717;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  transition: all .4s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+.btn:hover {
+  border-radius: 5px;
+  transform: translateY(-10px);
+  box-shadow: 0 7px 0 -2px #f85959,
+              0 15px 0 -4px #39a2db,
+              0 16px 10px -3px #39a2db;
+}
+.btn:active {
+  transition: all 0.2s;
+  transform: translateY(-5px);
+  box-shadow: 0 2px 0 -2px #f85959,
+              0 8px 0 -4px #39a2db,
+              0 12px 10px -3px #39a2db;
+}
+
+/* compact variant for small spaces (e.g., Back) */
+.btn.sm {
+  width: 110px;
+  height: 32px;
+  font-size: 0.95em;
+}
+
+/* primary variant inherits base .btn style */
+
+/* Hero */
+.hero {
+  /* Fill viewport minus header and center */
+  padding: 0;
+  min-height: calc(var(--vh, 1vh) * 100 - var(--header-h, 56px));
+  /* Use modern viewport as a stronger fallback when supported */
+  min-height: calc(100svh - var(--header-h, 56px));
+  display: grid;
+  place-items: center;
+  position: relative; /* allow absolute/fixed swap when showing content */
+  overflow: hidden; /* prevent blurred edges from showing */
+}
+
+/* Background image with gaussian blur */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--hero-bg-url) center / cover no-repeat;
+  filter: blur(var(--hero-blur)) saturate(var(--hero-saturate));
+  transform: scale(1.06); /* hide blur shrink at edges */
+  z-index: -2;
+  pointer-events: none;
+}
+
+/* Dark overlay to improve text contrast */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, var(--hero-overlay)),
+    rgba(0, 0, 0, var(--hero-overlay))
+  );
+  z-index: -1;
+  pointer-events: none;
+}
+
+.hero-inner {
+  display: grid;
+  gap: 18px;
+  justify-items: center;
+  /* Frosted glass panel */
+  background: rgba(16, 19, 23, 0.45);
+  background: color-mix(in oklab, var(--surface) 45%, transparent);
+  border: 1px solid color-mix(in oklab, var(--border) 70%, transparent);
+  -webkit-backdrop-filter: blur(10px) saturate(140%);
+  backdrop-filter: blur(10px) saturate(140%);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  padding: 24px 28px;
+  border-radius: 12px;
+}
+
+/* Two-column layout inside the hero card */
+.hero-inner.hero-inner-grid {
+  grid-template-columns: 1fr;
+  justify-items: center;
+  align-items: center;
+  gap: 22px;
+}
+
+.hero-pfp-wrap { width: 180px; height: 180px; display: grid; place-items: center; position: relative; border: 6px solid #000; box-shadow: 12px 12px 0 #000; background: #111; overflow: hidden; transition: border-color .25s ease, box-shadow .25s ease, overflow 0s; }
+.hero-pfp-wrap:hover { border-color: transparent; box-shadow: none; overflow: visible; }
+.hero-pfp { width: 100%; height: 100%; object-fit: cover; border-radius: 0; display: block; transition: opacity .35s ease; }
+/* Split hover effect using pseudo elements */
+.hero-pfp-wrap::before, .hero-pfp-wrap::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: url("./images/hero-pfpimg.png") center/cover no-repeat; opacity: 0;
+  transition: transform .5s cubic-bezier(.22,.61,.36,1), opacity .25s ease, box-shadow .25s ease;
+  will-change: transform, opacity;
+  /* Give each half its own border and a chunky drop shadow like the frame */
+  box-shadow: inset 0 0 0 6px #000, 12px 12px 0 #000;
+}
+/* Left half */
+.hero-pfp-wrap::before { clip-path: inset(0 50% 0 0); }
+/* Right half */
+.hero-pfp-wrap::after { clip-path: inset(0 0 0 50%); }
+
+.hero-pfp-wrap:hover .hero-pfp { opacity: 0; }
+.hero-pfp-wrap::before { transform-origin: left center; }
+.hero-pfp-wrap::after { transform-origin: right center; }
+.hero-pfp-wrap:hover::before { opacity: 1; transform: translate(-18px, 12px) rotate(-4deg); }
+.hero-pfp-wrap:hover::after { opacity: 1; transform: translate(18px, 12px) rotate(4deg); }
+
+.hero-content { width: 100%; text-align: center; }
+.hero-content .title { text-align: center; }
+.hero-content .slogan { text-align: center; }
+.hero-content .hero-cta { justify-content: center; }
+
+@media (max-width: 720px){
+  .hero-pfp-wrap { width: 140px; height: 140px; }
+}
+
+.title {
+  font-size: clamp(36px, 6vw, 64px);
+  line-height: 1.08;
+  margin: 0;
+  letter-spacing: .3px;
+  /* Solid text without gradient or glow */
+  color: var(--text);
+  text-align: center;
+  cursor: default;           /* show regular arrow, not text I-beam */
+  -webkit-user-select: none; /* prevent text selection */
+  user-select: none;
+}
+
+/* Dock-like hover animation for title letters */
+.title .char {
+  display: inline-block;
+  transition: transform 180ms cubic-bezier(.22,.61,.36,1),
+              filter 180ms ease;
+  transform-origin: bottom center;
+  will-change: transform, filter;
+  position: relative;
+}
+.title.dockified { white-space: nowrap; }
+.title.dockified .char-space { width: .33em; display: inline-block; }
+
+.slogan {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: clamp(16px, 2.2vw, 18px);
+  text-align: center;
+}
+
+.hero-cta { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
+
+/* View state toggling: hero vs content */
+.content-sections { opacity: 0; transform: translateY(8px); pointer-events: none; visibility: hidden; }
+.hero, .content-sections { transition: opacity 240ms ease, transform 240ms ease, visibility 0s linear 240ms; }
+
+/* Smooth fade-out when leaving content view via Back */
+.content-sections.leaving { opacity: 0; transform: translateY(8px); }
+
+/* When content is shown */
+.view-content .content-sections {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  visibility: visible;
+  transition: opacity 360ms ease, transform 360ms ease;
+  /* Start content right under sticky header */
+  margin-top: var(--header-h, 56px);
+}
+
+/* Ensure fade-out wins over visible state when leaving */
+.view-content .content-sections.leaving {
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+}
+.view-content .hero {
+  /* Remove hero from document flow so content occupies top instantly */
+  position: fixed;
+  top: var(--header-h, 56px);
+  left: 0;
+  right: 0;
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+  visibility: hidden;
+  transition: opacity 220ms ease, transform 220ms ease, visibility 0s linear 220ms;
+}
+
+.content-controls { display: flex; justify-content: flex-end; padding-top: 8px; padding-bottom: 8px; }
+
+/* Symmetric hero/content fade helpers */
+.hero, .content-sections { will-change: opacity, transform; }
+.hero.leaving { opacity: 0 !important; transform: translateY(-8px) !important; transition: opacity 360ms ease, transform 360ms ease; }
+/* Stage hero to be hidden before entering (used just before removing .view-content) */
+.hero.pre-enter { opacity: 0; transform: translateY(-8px); }
+/* Animate hero back in after content fades out */
+.hero.entering { opacity: 1; transform: translateY(0); transition: opacity 360ms ease, transform 360ms ease; }
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .hero, .content-sections { transition: none !important; }
+}
+
+/* No scrolling while in hero view */
+html:not(.view-content),
+html:not(.view-content) body { overflow: hidden; height: 100%; }
+
+/* Hide footer in hero view to avoid extra height; show only when content is visible */
+.footer { display: none; }
+.view-content .footer { display: block; }
+
+/* Sections */
+.section { padding: 26px 0 60px; }
+.section h2 { margin: 0 0 10px; font-size: 22px; letter-spacing: .2px; }
+.section p.lead { margin: 0 0 22px; color: var(--muted); }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 14px;
+}
+
+.card {
+  grid-column: span 12;
+  border: 1px solid var(--border);
+  background: linear-gradient(180deg, color-mix(in oklab, var(--surface) 88%, black 12%), var(--surface));
+  /* Square cards */
+  border-radius: 0;
+  padding: 16px;
+  box-shadow: var(--shadow);
+}
+
+.card h3 { margin: 0 0 6px; font-size: 18px; }
+.card p { margin: 0; color: var(--muted); }
+
+@media (min-width: 640px) {
+  .card { grid-column: span 6; }
+}
+@media (min-width: 960px) {
+  .card { grid-column: span 4; }
+}
+
+.footer { border-top: 1px solid var(--border); padding: 20px 0 50px; color: var(--muted); }
+.footer .row { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+
+.small { font-size: 12px; }
+
+/* Accents */
+.badge {
+  display: inline-flex; gap: 8px; align-items: center;
+  padding: 8px 12px; border-radius: 0;
+  border: 1px solid var(--border);
+  background: color-mix(in oklab, var(--surface) 94%, black 6%);
+  color: var(--text);
+}
+.dot-sm { width: 7px; height: 7px; border-radius: 0; background: var(--accent); }
+
+/* Motion */
+.reveal { opacity: 0; transform: translateY(6px); }
+.reveal.revealed { opacity: 1; transform: translateY(0); transition: opacity .6s ease, transform .6s ease; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+
+.nav-hidden .header { transform: translateY(-100%); opacity: .96; }
+/* side-nav removed */
+
+/* News & Updates page card styles (scoped) */
+.news-cards-wrapper { padding: 40px 0 80px; }
+.news-cards { display: flex; flex-wrap: wrap; gap: 32px; }
+.news-card {
+  width: 300px;
+  padding: 20px;
+  background: #fff;
+  border: 6px solid #000;
+  box-shadow: 12px 12px 0 #000;
+  transition: transform 0.3s, box-shadow 0.3s;
+  color: #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-decoration: none;
+}
+.news-card:hover { transform: translate(-5px, -5px); box-shadow: 17px 17px 0 #000; }
+.news-card .card__title {
+  font-size: 32px;
+  font-weight: 900;
+  color: #000;
+  text-transform: uppercase;
+  margin: 0 0 15px;
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+.news-card .card__title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 90%;
+  height: 3px;
+  background-color: #000;
+  transform: translateX(-100%);
+  transition: transform 0.3s;
+}
+.news-card:hover .card__title::after { transform: translateX(0); }
+.news-card .card__content { font-size: 16px; line-height: 1.4; color: #000; margin: 0 0 20px; }
+.news-meta { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; color: #222; opacity: .7; }
+.news-card .readmore {
+  border: 3px solid #000;
+  background: #000;
+  color: #fff;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s;
+  text-align: center;
+}
+.news-card .readmore::before {
+  content: "Open";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 105%;
+  background-color: #5ad641;
+  color: #000;
+  display: flex; align-items: center; justify-content: center;
+  transform: translateY(100%);
+  transition: transform 0.3s;
+}
+.news-card .readmore:hover::before { transform: translateY(0); }
+.news-card .readmore:active { transform: scale(.95); }
+
+@keyframes news-glitch { 0%{transform:translate(2px,2px);}25%{transform:translate(-2px,-2px);}50%{transform:translate(-2px,2px);}75%{transform:translate(2px,-2px);}100%{transform:translate(2px,2px);} }
+.glitch { animation: news-glitch .3s infinite; }
+
+/* Dark mode containment for light cards */
+body .news-card { isolation: isolate; }

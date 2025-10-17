@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>About — Assessment in Learning E‑Portfolio</title>
+    <meta name="description" content="About the creator of this Assessment in Learning e‑portfolio." />
+    <link rel="icon" href="./webFAVICON2.png" />
+    <link rel="stylesheet" href="./aboutviewcard.css" />
+  <link rel="stylesheet" href="./static/loader.css" />
+    <style>
+      /* Dark theme aligned with portfolio */
+      :root {
+        --page-bg: #000000;
+        --page-fg: #e6e6e6;
+      }
+      html, body { height:100%; }
+      body {
+        margin:0;
+        min-height:100svh;
+        display:grid;
+        grid-template-rows: 1fr;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        color: var(--page-fg);
+        background:
+          radial-gradient(1200px 600px at 20% -10%, rgba(78,132,255,0.12), transparent 60%),
+          radial-gradient(1200px 600px at 80% 110%, rgba(68,68,189,0.12), transparent 60%),
+          var(--page-bg);
+      }
+      main { display:grid; place-items:center; padding: 32px 16px; }
+      .card-container { background: transparent; }
+      .pixar-card {
+        width: min(92vw, 820px);
+        max-width: 820px;
+        /* Make the card colorful like the template (light card on dark page) */
+        --ui-blue: #5c99e2;
+        --ui-blue-shadow: #3b76c0;
+        --ui-green: #61c470;
+        --ui-green-shadow: #45a253;
+        --ui-red: #e65e5e;
+        --ui-red-shadow: #c14242;
+        --ui-cream: #f5f1e8; /* template card background */
+        --ui-cream-shadow: #c7c1b5;
+        --ui-dark: #4d4c4a; /* template card border/text */
+        background-color: var(--ui-cream) !important;
+        border-color: var(--ui-dark) !important;
+        box-shadow: 0.6em 0.6em 0 var(--ui-dark) !important;
+      }
+  .card-image-area { background-color: #d8d2c6 !important; border-color: var(--ui-dark) !important; box-shadow: inset 0.2em 0.2em 0 #b3ac9f !important; }
+  /* Profile avatar image: show face, preserve aspect, no stretching */
+  .card-avatar {
+  
+    background-image: url('static/images/hendrix_pfp1.jpg') !important;
+    background-repeat: no-repeat;
+    background-size: cover; /* fill circle, preserve aspect */
+    background-position: center;
+  }
+  /* Banner GIF: centered, no-repeat, preserve aspect ratio */
+  .card-image-placeholder {
+    background: none !important;
+    background-color: #0d1117 !important; /* fill letterbox area */
+    background-image: url('static/images/studyschoollappy.gif') !important;
+    background-repeat: no-repeat !important;
+    background-position: center center !important;
+    background-size: cover !important; /* fully cover area (cinematic) */
+    height: 18em; /* a bit taller for a cinematic feel */
+  }
+      .card-caption a { color:#8ab4ff; }
+
+      /* Back button inside card */
+      .back-btn {
+        align-self:flex-start;
+        margin-bottom: .8em;
+        background: transparent;
+        color: var(--ui-dark);
+        border: 0.2em solid var(--ui-dark);
+        border-radius: 0.6em; 
+        padding: 0.3em 0.7em;
+        text-decoration: none;
+        box-shadow: 0.2em 0.2em 0 rgba(255,255,255,0.08);
+        transition: transform .15s ease;
+      }
+      .back-btn:active { transform: translateY(2px); }
+
+      /* Social icons beside the name */
+      .social-links { display:flex; align-items:center; gap:8px; margin-left: 8px; }
+      .social-links a { width:28px; height:28px; border-radius:50%; display:grid; place-items:center; text-decoration:none; color: var(--ui-dark); background: var(--ui-cream); border:0.2em solid var(--ui-dark); box-shadow: 0.2em 0.2em 0 var(--ui-dark); transition: transform .15s ease; }
+      .social-links a:active { transform: translateY(2px); box-shadow: 0 0 0 var(--ui-dark); }
+      .social-links svg { width:16px; height:16px; display:block; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <!-- Using the provided about view card template -->
+      <div class="card-container">
+        <div class="pixar-card" role="article" aria-labelledby="card-username">
+          <a class="back-btn" href="./home-portfolio.html" aria-label="Back to portfolio">← Back</a>
+          <div class="card-header">
+            <div class="card-avatar" title="Profile Avatar"></div>
+            <p class="card-username" id="card-username">Hendrix Brent Fortu</p>
+            <div class="social-links" aria-label="Social links">
+                <a href="https://discord.com" target="_blank" rel="noopener noreferrer" aria-label="Discord">
+                  <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                    <path d="M13.545 2.907a13.2 13.2 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.2 12.2 0 0 0-3.658 0 8 8 0 0 0-.412-.833.05.05 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.04.04 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032q.003.022.021.037a13.3 13.3 0 0 0 3.995 2.02.05.05 0 0 0 .056-.019q.463-.63.818-1.329a.05.05 0 0 0-.01-.059l-.018-.011a9 9 0 0 1-1.248-.595.05.05 0 0 1-.02-.066l.015-.019q.127-.095.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.05.05 0 0 1 .053.007q.121.1.248.195a.05.05 0 0 1-.004.085 8 8 0 0 1-1.249.594.05.05 0 0 0-.03.03.05.05 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019 13.2 13.2 0 0 0 4.001-2.02.05.05 0 0 0 .021-.037c.334-3.451-.559-6.449-2.366-9.106a.03.03 0 0 0-.02-.019m-8.198 7.307c-.789 0-1.438-.724-1.438-1.612s.637-1.613 1.438-1.613c.807 0 1.45.73 1.438 1.613 0 .888-.637 1.612-1.438 1.612m5.316 0c-.788 0-1.438-.724-1.438-1.612s.637-1.613 1.438-1.613c.807 0 1.451.73 1.438 1.613 0 .888-.631 1.612-1.438 1.612"/>
+                  </svg>
+                </a>
+              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M23.5 6.2a4 4 0 00-2.8-2.8C18.8 3 12 3 12 3s-6.8 0-8.7.4a4 4 0 00-2.8 2.8C0 8.1 0 12 0 12s0 3.9.5 5.8a4 4 0 002.8 2.8C5.2 21 12 21 12 21s6.8 0 8.7-.4a4 4 0 002.8-2.8c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/>
+                </svg>
+              </a>
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M22 12a10 10 0 10-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.3.2 2.3.2v2.5h-1.3c-1.3 0-1.7.8-1.7 1.6V12h2.9l-.46 2.9h-2.44v7A10 10 0 0022 12z"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="card-image-area">
+            <div class="card-image-placeholder"></div>
+            <p class="card-caption">
+             <b>Uh Hello, Welcome to my E Portfolio for Assessment in Learning 1</b>
+             <br>
+             <br>
+
+             This Website is Coded in Pure HTML, CSS and JavaScript
+             <br>
+             You can Download the documents provided to help you study in Assessment in Learning 1.
+
+             <br>
+             <br>
+             This is Hosted On Vercel, Domain on Cloudflare and Repository on GitHub.
+             <br>
+             <br>
+             <i>Teacher in AIL 1: Sir. Roland V. Gadela</i>
+
+              
+              
+            </p>
+          </div>
+
+          <!-- Actions removed per request -->
+        </div>
+      </div>
+    </main>
+    <script defer src="./static/loader.js"></script>
+  </body>
+</html>
