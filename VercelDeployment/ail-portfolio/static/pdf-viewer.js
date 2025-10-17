@@ -50,8 +50,10 @@
 
   function openPdf(url, name){
     if (!url) return;
-    // show loader before changing src
-    if (loading) loading.classList.remove('hidden');
+    // If global page loader is being used, skip internal hourglass
+    if (!window.__pdfViewerUseGlobalLoader) {
+      if (loading) loading.classList.remove('hidden');
+    }
     embed.src = url;
     title.textContent = name || 'Document Viewer';
     overlay.classList.add('open');

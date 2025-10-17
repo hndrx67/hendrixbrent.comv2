@@ -66,10 +66,22 @@
       overlay.classList.remove('open');
       // Slight delay so fade-out finishes before opening viewer
       setTimeout(()=>{
-        if(window.__openPdfViewer && state.dlBtn?.href){
-          window.__openPdfViewer(state.dlBtn.href);
-        } else if(state.dlBtn?.href){
-          window.open(state.dlBtn.href, '_blank', 'noopener');
+        const href = state.dlBtn?.href;
+        const title = state.titleEl?.textContent || 'Document Viewer';
+        if(!href) return;
+        // Prefer global loader: show it, then open the PDF viewer without its internal loader
+        if (window.__showPageLoaderThen && window.__openPdfViewer) {
+          window.__showPageLoaderThen(() => {
+            window.__pdfViewerUseGlobalLoader = true;
+            try { window.__openPdfViewer(href, title); } finally {
+              // Reset the flag shortly after opening
+              setTimeout(() => { window.__pdfViewerUseGlobalLoader = false; }, 0);
+            }
+          });
+        } else if(window.__openPdfViewer){
+          window.__openPdfViewer(href, title);
+        } else {
+          window.open(href, '_blank', 'noopener');
         }
       }, 150);
     });
