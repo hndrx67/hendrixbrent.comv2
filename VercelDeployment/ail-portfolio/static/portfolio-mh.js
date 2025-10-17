@@ -7,6 +7,15 @@
   const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
   if (isTouch) {
     doc.documentElement.classList.add('touch');
+    // Disable hover-only split animation on touch devices for better UX
+    const noHoverStyle = doc.createElement('style');
+    noHoverStyle.id = 'mh-no-hover-style';
+    noHoverStyle.textContent = `
+.touch .hero-pfp-wrap:hover .hero-pfp { opacity: 1 !important; }
+.touch .hero-pfp-wrap:hover::before,
+.touch .hero-pfp-wrap:hover::after { opacity: 0 !important; transform: none !important; }
+`;
+    doc.head.appendChild(noHoverStyle);
   }
 
   // iOS/Android viewport height unit fix: set --vh to 1% of innerHeight
@@ -18,6 +27,17 @@
   window.addEventListener('resize', setVhVar);
   window.addEventListener('orientationchange', setVhVar);
 
+  // Keep a CSS var up to date for header height so layouts can align precisely
+  function setHeaderHeightVar() {
+    const header = doc.querySelector('.header');
+    const h = header ? Math.round(header.getBoundingClientRect().height) : 56;
+    root.style.setProperty('--header-h', `${h}px`);
+  }
+  setHeaderHeightVar();
+  window.addEventListener('load', setHeaderHeightVar, { passive: true });
+  window.addEventListener('resize', setHeaderHeightVar, { passive: true });
+  window.addEventListener('orientationchange', setHeaderHeightVar, { passive: true });
+
   // Smooth anchor scrolling with sticky header offset
   function getHeaderOffset() {
     const header = doc.querySelector('.header');
@@ -28,16 +48,20 @@
     return hidden ? 0 : header.getBoundingClientRect().height + parseFloat(styles.borderBottomWidth || '0');
   }
 
+  const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   function scrollToHash(hash) {
     const el = hash && doc.querySelector(hash);
     if (!el) return;
     const rect = el.getBoundingClientRect();
     const y = rect.top + window.scrollY - getHeaderOffset() - 8; // small margin
-    window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+    window.scrollTo({ top: Math.max(0, y), behavior: prefersReducedMotion ? 'auto' : 'smooth' });
   }
 
   // Intercept in-page anchor clicks
   doc.addEventListener('click', (e) => {
+    // Ignore clicks inside modals/overlays
+    if (e.target.closest('.pdfv-overlay, .docu-modal-overlay')) return;
     const a = e.target.closest('a[href^="#"]');
     if (!a) return;
     const url = new URL(a.href, location.href);
@@ -137,6 +161,23 @@
       const within = e.target === menuPanel || menuPanel.contains(e.target) || e.target === menuBtn || menuBtn.contains(e.target);
       if (!within) closeMenu();
     });
+
+    // If a modal opens, close the mobile menu to avoid layered scroll locks
+    function watchOverlays() {
+      const closeIfOpen = () => { if (menuPanel.classList.contains('open')) closeMenu(); };
+      const hook = (el) => {
+        if (!el || el.__mhObserved) return; el.__mhObserved = true;
+        new MutationObserver(() => { if (el.classList.contains('open')) closeIfOpen(); })
+          .observe(el, { attributes: true, attributeFilter: ['class'] });
+      };
+      const tryHook = () => {
+        hook(doc.getElementById('pdfv-overlay'));
+        hook(doc.querySelector('.docu-modal-overlay'));
+      };
+      tryHook();
+      new MutationObserver(tryHook).observe(doc.body, { childList: true, subtree: true });
+    }
+    watchOverlays();
 
     mobileSetup = true;
   }
