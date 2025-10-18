@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gallery — ASSURE Docs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./static/css/site.css" />
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="nav-inner container">
+        <a class="brand" href="./index.html">TTL1 - Exhibit Documentation</a>
+        <nav class="nav-links" aria-label="Primary">
+          <a class="nav-link" href="./index.html">Home</a>
+          <a class="nav-link" href="./gallery.html">Pictures/Videos Gallery</a>
+          <a class="nav-link" href="./reflections.html">Reflections</a>
+          <a class="nav-link" href="./members.html">Group Members</a>
+        </nav>
+        <label class="switch" aria-label="Toggle theme">
+          <input id="themeToggle" type="checkbox" class="toggle" />
+          <span class="slider"></span>
+        </label>
+      </div>
+    </header>
+
+    <main class="container layout">
+      <section class="box">
+        <h1>Pictures/Videos Gallery</h1>
+        <p class="muted">Hover to preview. Click to open full view. Use arrow keys to navigate, Esc to close.</p>
+      </section>
+
+      <section class="box">
+        <div id="galleryGrid" class="gallery-grid"></div>
+      </section>
+    </main>
+
+    <!-- Modal -->
+    <div id="mediaModal" class="modal" aria-hidden="true" role="dialog" aria-label="Media viewer">
+      <div class="modal-backdrop" data-close></div>
+      <div class="modal-content box">
+        <button class="btn btn-ghost modal-close" data-close aria-label="Close">✕</button>
+        <div class="modal-media">
+          <img id="modalImage" class="modal-img" alt="" />
+          <video id="modalVideo" class="modal-video" controls></video>
+        </div>
+        <div class="modal-footer">
+          <button id="prevBtn" class="btn">Prev</button>
+          <div id="modalCaption" class="muted caption"></div>
+          <button id="nextBtn" class="btn btn-primary">Next</button>
+        </div>
+      </div>
+    </div>
+
+    <footer class="container footer muted">
+      <div class="box">
+        <small>© <span id="year"></span> English Group — ASSURE Exhibit Documentation</small>
+      </div>
+    </footer>
+
+    <script src="./static/js/site.js"></script>
+    <script src="./static/js/gallery.js"></script>
+  </body>
+</html>
