@@ -3,6 +3,17 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="refresh" content="0; url=./english-ttl1.html" />
+    <script>
+      (function(){
+        try {
+          var t = localStorage.getItem('theme');
+          if (!t) {
+            t = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+          }
+          document.documentElement.setAttribute('data-theme', t);
+        } catch (e) {}
+      })();
+    </script>
     <link rel="canonical" href="./english-ttl1.html" />
     <title>Redirecting…</title>
     <script>
