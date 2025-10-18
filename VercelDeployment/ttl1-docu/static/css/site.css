@@ -31,6 +31,8 @@ body {
   color: var(--text);
   font: 400 16px/1.6 "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
+/* Use JS-calculated viewport for mobile chrome correctness */
+.full-viewport { min-height: calc(var(--vh, 1vh) * 100); }
 body.modal-open { overflow: hidden; }
 .container {
   width: min(1100px, 92%);
@@ -54,6 +56,7 @@ body.modal-open { overflow: hidden; }
   top: 0; z-index: 1000;
 }
 .nav-inner { display: flex; align-items: center; gap: 16px; padding: 10px 0; }
+.mobile-compact .nav-inner { gap: 8px; }
 .brand { font-weight: 700; color: var(--text); text-decoration: none; letter-spacing: 0.2px; }
 .nav-links { margin-left: auto; display: flex; gap: 8px; }
 .nav-link { color: var(--text); text-decoration: none; padding: 8px 10px; border: 1px solid transparent; border-radius: 6px; }
