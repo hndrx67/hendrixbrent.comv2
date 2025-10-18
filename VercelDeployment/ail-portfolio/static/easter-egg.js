@@ -3,7 +3,7 @@
   const root = doc.documentElement;
   // Avoid duplicate insertion
   if (doc.getElementById('trash-egg-btn')) return;
-
+/*
   // Create trash button
   const btn = doc.createElement('button');
   btn.id = 'trash-egg-btn';
@@ -11,11 +11,13 @@
   btn.type = 'button';
   btn.setAttribute('aria-label', 'Toggle trash mode');
   btn.innerHTML = `
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M9 3h6a1 1 0 0 1 1 1v1h4v2h-1v12a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3V7H4V5h4V4a1 1 0 0 1 1-1Zm1 3h4V5h-4v1ZM7 7v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V7H7Zm3 3h2v8h-2v-8Zm4 0h2v8h-2v-8Z"/>
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16" aria-hidden="true">
+      <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+      <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
     </svg>
+    <span>Trash</span>
   `;
-
+*/
   // Insert after DOM ready
   function ready(fn){ if (doc.readyState !== 'loading') fn(); else doc.addEventListener('DOMContentLoaded', fn); }
   ready(() => {

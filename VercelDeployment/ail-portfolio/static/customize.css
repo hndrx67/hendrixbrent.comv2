@@ -1,33 +1,39 @@
 /* Customize button and modal */
 
-.customize-btn {
-  position: fixed;
-  right: 72px; /* leave space to the right trash button (48px + 16px gap) */
-  bottom: 16px;
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
-  border: 1px solid color-mix(in oklab, var(--border, #1f2937) 70%, transparent);
-  background: color-mix(in oklab, var(--surface, #101317) 55%, transparent);
-  -webkit-backdrop-filter: blur(10px) saturate(140%);
-  backdrop-filter: blur(10px) saturate(140%);
-  color: var(--text, #e5e7eb);
+/* Revamped floating buttons (Uiverse style by Pradeepsaranbishnoi) */
+.social-links,.flex-center { display: flex; justify-content: center; align-items: center; }
+
+.social-btn {
+  cursor: pointer;
+  height: 50px;
+  width: 50px;
+  font-family: 'Titillium Web', ui-sans-serif, system-ui, Segoe UI, Roboto, Arial, sans-serif;
+  color: #e5e7eb; /* light text for dark theme */
+  border-radius: 10px;
+  box-shadow: 0px 10px 18px rgba(0,0,0,0.35);
+  background: #0b0b0b; /* black theme */
+  border: 1px solid #1f2937; /* subtle border for definition */
+  margin: 5px;
+  transition: 0.3s;
+  justify-content: center;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: 0 10px 30px rgba(0,0,0,.35);
-  z-index: 999;
-  opacity: 0;
-  transform: translateY(8px) scale(.98);
-  transition: opacity .25s ease, transform .25s ease, box-shadow .2s ease, background-color .2s ease;
+  overflow: hidden;
 }
 
-/* Appear smoothly once loaded */
-.customize-btn.ready { opacity: 1; transform: translateY(0) scale(1); }
-.customize-btn:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 14px 36px rgba(0,0,0,.4); }
-.customize-btn:active { transform: translateY(0) scale(1); }
-.customize-btn svg { width: 22px; height: 22px; fill: currentColor; opacity: .9; }
+.social-btn svg { height: 24px; width: 24px; }
+.social-btn span { width: 0px; overflow: hidden; transition: 0.3s; text-align: center; margin-left: 5px; color: #e5e7eb; }
+.social-btn:hover { width: 150px; border-radius: 5px; background: #111; z-index: 1000; }
+.social-btn:hover span { padding: 2px; width: 80px; }
+
+/* Position buttons bottom-right, vertically stacked to avoid hover collision */
+#customize-btn.social-btn { position: fixed; right: 16px; bottom: 16px; z-index: 999; opacity: 0; transform: translateY(8px); }
+#trash-egg-btn.social-btn { position: fixed; right: 16px; bottom: 16px; z-index: 999; }
+#customize-btn.social-btn.ready { opacity: 1; transform: translateY(0); }
+
+/* Neon icon colors + soft glow for clarity */
+#customize-btn.social-btn svg { fill: #00e7ff; filter: drop-shadow(0 0 4px rgba(0,231,255,0.7)); }
+#trash-egg-btn.social-btn svg { fill: #39ff14; filter: drop-shadow(0 0 4px rgba(57,255,20,0.7)); }
 
 /* Modal */
 .customize-overlay {

@@ -1,28 +1,11 @@
 /* Easter egg: trashcan suck animation */
 
-.trash-btn {
-  position: fixed;
-  right: 16px;
-  bottom: 16px;
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
-  border: 1px solid color-mix(in oklab, var(--border, #1f2937) 70%, transparent);
-  background: color-mix(in oklab, var(--surface, #101317) 55%, transparent);
-  -webkit-backdrop-filter: blur(10px) saturate(140%);
-  backdrop-filter: blur(10px) saturate(140%);
-  color: var(--text, #e5e7eb);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: 0 10px 30px rgba(0,0,0,.35);
-  z-index: 999;
-  transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease;
-}
-.trash-btn:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(0,0,0,.4); }
-.trash-btn:active { transform: translateY(0); }
-.trash-btn svg { width: 22px; height: 22px; fill: currentColor; opacity: .9; }
+.trash-btn { position: fixed; right: 16px; bottom: 16px; z-index: 999; }
+.trash-btn { cursor: pointer; height: 50px; width: 50px; color: #e5e7eb; border-radius: 10px; box-shadow: 0px 10px 18px rgba(0,0,0,0.35); background: #0b0b0b; margin: 5px; transition: 0.3s; justify-content: center; display: inline-flex; align-items: center; overflow: hidden; border: 1px solid #1f2937; }
+.trash-btn svg { height: 24px; width: 24px; fill: #39ff14; filter: drop-shadow(0 0 4px rgba(57,255,20,0.7)); }
+.trash-btn span { width: 0; overflow: hidden; transition: 0.3s; text-align: center; margin-left: 5px; color: #e5e7eb; }
+.trash-btn:hover { width: 150px; border-radius: 5px; background: #111; z-index: 1000; }
+.trash-btn:hover span { padding: 2px; width: 80px; }
 .trash-btn.active { outline: 2px solid color-mix(in oklab, var(--accent, #7dd3fc) 60%, transparent); }
 
 /* Suck animation: shrink and fade content to bottom-right (trash) */
