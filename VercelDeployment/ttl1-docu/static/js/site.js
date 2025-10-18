@@ -18,7 +18,7 @@
   });
 
   // Active nav link
-  const path = location.pathname.split('/').pop() || 'index.html';
+  const path = location.pathname.split('/').pop() || 'english-ttl1.html';
   document.querySelectorAll('.nav-link').forEach(a => {
     const href = a.getAttribute('href');
     if (href && href.endsWith(path)) a.classList.add('active');
