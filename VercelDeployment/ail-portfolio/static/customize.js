@@ -86,11 +86,13 @@
               <div class="thumb" style="background-image:url('./static/K/holo-en-council.jpg')"></div>
               <div class="badge">Holo EN Council</div>
             </label>
+            <!--
             <label class="wall-card">
               <input type="radio" name="wall" value="K/sakamatachloesegs.jpg" />
               <div class="thumb" style="background-image:url('./static/K/sakamatachloesegs.jpg')"></div>
               <div class="badge">Sakamata Chloe</div>
             </label>
+            -->
           </div>
         </div>
 
