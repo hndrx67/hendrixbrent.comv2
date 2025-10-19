@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>IFVL — Assessment in Learning E‑Portfolio</title>
+    <meta name="description" content="IFVL: In Faith, Values, and Learning — a reflection on how faith-informed values enrich the learning journey." />
+    <link rel="icon" href="./webFAVICON2.png" />
+    <link rel="stylesheet" href="./aboutviewcard.css" />
+    <link rel="stylesheet" href="./static/loader.css" />
+    <style>
+      /* Dark theme aligned with portfolio */
+      :root {
+        --page-bg: #000000;
+        --page-fg: #e6e6e6;
+      }
+      html, body { height:100%; }
+      body {
+        margin:0;
+        min-height:100svh;
+        display:grid;
+        grid-template-rows: 1fr;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        color: var(--page-fg);
+        background:
+          radial-gradient(1200px 600px at 20% -10%, rgba(78,132,255,0.12), transparent 60%),
+          radial-gradient(1200px 600px at 80% 110%, rgba(68,68,189,0.12), transparent 60%),
+          var(--page-bg);
+      }
+      main { display:grid; place-items:center; padding: 32px 16px; }
+      .card-container { background: transparent; }
+      .pixar-card {
+        width: min(92vw, 820px);
+        max-width: 820px;
+        /* Match the about card style */
+        --ui-blue: #5c99e2;
+        --ui-blue-shadow: #3b76c0;
+        --ui-green: #61c470;
+        --ui-green-shadow: #45a253;
+        --ui-red: #e65e5e;
+        --ui-red-shadow: #c14242;
+        --ui-cream: #f5f1e8;
+        --ui-cream-shadow: #c7c1b5;
+        --ui-dark: #4d4c4a;
+        background-color: var(--ui-cream) !important;
+        border-color: var(--ui-dark) !important;
+        box-shadow: 0.6em 0.6em 0 var(--ui-dark) !important;
+      }
+      .card-image-area { background-color: #d8d2c6 !important; border-color: var(--ui-dark) !important; box-shadow: inset 0.2em 0.2em 0 #b3ac9f !important; }
+      .card-avatar {
+        background-image: url('static/images/hendrix_pfp1.jpg') !important;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+      }
+      .card-image-placeholder {
+        background: none !important;
+        background-color: #0d1117 !important;
+        background-image: url('static/images/bible1.jpg') !important;
+        background-repeat: no-repeat !important;
+        background-position: center center !important;
+        background-size: cover !important;
+        height: 18em;
+      }
+      .card-caption a { color:#8ab4ff; }
+      .back-btn {
+        align-self:flex-start;
+        margin-bottom: .8em;
+        background: transparent;
+        color: var(--ui-dark);
+        border: 0.2em solid var(--ui-dark);
+        border-radius: 0.6em;
+        padding: 0.3em 0.7em;
+        text-decoration: none;
+        box-shadow: 0.2em 0.2em 0 rgba(255,255,255,0.08);
+        transition: transform .15s ease;
+      }
+      .back-btn:active { transform: translateY(2px); }
+      .social-links { display:flex; align-items:center; gap:8px; margin-left: 8px; }
+      .social-links a { width:28px; height:28px; border-radius:50%; display:grid; place-items:center; text-decoration:none; color: var(--ui-dark); background: var(--ui-cream); border:0.2em solid var(--ui-dark); box-shadow: 0.2em 0.2em 0 var(--ui-dark); transition: transform .15s ease; }
+      .social-links a:active { transform: translateY(2px); box-shadow: 0 0 0 var(--ui-dark); }
+      .social-links svg { width:16px; height:16px; display:block; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="card-container">
+        <div class="pixar-card" role="article" aria-labelledby="card-username">
+          <a class="back-btn" href="./home-portfolio.html" aria-label="Back to portfolio">← Back</a>
+          <div class="card-header">
+            <div class="card-avatar" title="Profile Avatar"></div>
+            <p class="card-username" id="card-username">IFVL — In Faith, Values, and Learning</p>
+            <div class="social-links" aria-label="Links">
+              <a href="./home-portfolio.html" aria-label="Portfolio Home">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 12l9-9 9 9-1.5 1.5L12 5.5 4.5 13.5 3 12z"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="card-image-area">
+            <div class="card-image-placeholder"></div>
+            <p class="card-caption">
+              <b>In Faith, Values, and Learning (IFVL)</b>
+              <br><br>
+              “Let the wise hear and increase in learning, and the one who understands obtain guidance.” — Proverbs 1:5 (ESV)
+              <br><br>
+              Learning is not only about information; it is also about formation. IFVL highlights how faith-informed values — diligence, humility, integrity, and compassion — shape the way we study, teach, and serve others. As we pursue knowledge, we also pursue wisdom that builds character and benefits our community.
+              <br><br>
+              May our growth be guided by understanding and aligned with what is true and good, so that learning transforms both our minds and our lives.
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script defer src="./static/loader.js"></script>
+  </body>
+</html>
