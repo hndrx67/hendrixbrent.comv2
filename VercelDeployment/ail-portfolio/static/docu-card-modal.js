@@ -8,6 +8,7 @@
     viewBtn: null,
     dlBtn: null,
     closeBtn: null,
+    currentType: 'document',
   };
 
   function ensureModal(){
@@ -67,14 +68,17 @@
       // Slight delay so fade-out finishes before opening viewer
       setTimeout(()=>{
         const href = state.dlBtn?.href;
-        const title = state.titleEl?.textContent || 'Document Viewer';
+        const title = state.titleEl?.textContent || 'Viewer';
         if(!href) return;
-        // Prefer global loader: show it, then open the PDF viewer without its internal loader
+        if (state.currentType === 'image' && window.__openImageViewer) {
+          window.__openImageViewer(href, title);
+          return;
+        }
+        // Default to PDF/doc behavior
         if (window.__showPageLoaderThen && window.__openPdfViewer) {
           window.__showPageLoaderThen(() => {
             window.__pdfViewerUseGlobalLoader = true;
             try { window.__openPdfViewer(href, title); } finally {
-              // Reset the flag shortly after opening
               setTimeout(() => { window.__pdfViewerUseGlobalLoader = false; }, 0);
             }
           });
@@ -106,6 +110,8 @@
     const preview = card.getAttribute('data-preview') || card.querySelector('img')?.src || '';
     const desc = card.getAttribute('data-desc') || card.querySelector('.description')?.textContent?.trim() || '';
     const href = card.getAttribute('data-view') || card.getAttribute('data-download') || card.querySelector('a[href$=".pdf"]')?.href || '#';
+  const type = (card.getAttribute('data-type') || '').toLowerCase();
+  state.currentType = type === 'image' ? 'image' : 'document';
 
     state.titleEl.textContent = title;
     state.mediaEl.style.backgroundImage = preview ? `url('${preview}')` : 'none';
@@ -121,6 +127,15 @@
       state.dlBtn.setAttribute('aria-disabled', 'true');
       state.dlBtn.classList.add('is-disabled');
       state.viewBtn.disabled = true;
+    }
+
+    // Update button labels depending on type
+    if (state.currentType === 'image') {
+      state.viewBtn.textContent = 'View Image';
+      state.dlBtn.textContent = 'Download Image';
+    } else {
+      state.viewBtn.textContent = 'View Document';
+      state.dlBtn.textContent = 'Download Document';
     }
 
     overlay.classList.add('open');
