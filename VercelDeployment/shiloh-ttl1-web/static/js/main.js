@@ -1,15 +1,23 @@
 // Genshin Impact Morphology Website - Main JavaScript
 
 // === LOADING ANIMATION ===
-document.addEventListener('DOMContentLoaded', function() {
-    const loadingOverlay = document.getElementById('loading-overlay');
-    
-    // Hide loading animation once page is fully loaded
+// Check if we're coming from a navigation (not a fresh page load)
+const loadingOverlay = document.getElementById('loading-overlay');
+const isNavigating = sessionStorage.getItem('isNavigating');
+
+if (isNavigating === 'true') {
+    // Coming from navigation - show loading briefly then hide
+    sessionStorage.removeItem('isNavigating');
     setTimeout(() => {
         loadingOverlay.classList.add('hidden');
     }, 700);
-    
-    // Show loading animation when navigating to another page
+} else {
+    // Fresh page load - hide loading immediately
+    loadingOverlay.classList.add('hidden');
+}
+
+// Show loading animation when navigating to another page
+document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('a.nav-link, a.btn-prev, a.btn-next').forEach(link => {
         link.addEventListener('click', function(e) {
             // Only show loading for internal navigation
@@ -18,6 +26,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 e.preventDefault(); // Prevent immediate navigation
                 const loadingOverlay = document.getElementById('loading-overlay');
                 if (loadingOverlay) {
+                    // Mark that we're navigating
+                    sessionStorage.setItem('isNavigating', 'true');
                     loadingOverlay.classList.remove('hidden');
                     // Navigate after showing the loading overlay
                     setTimeout(() => {
