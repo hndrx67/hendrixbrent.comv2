@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>OSINT: DisLoc</title>
+		<meta name="description" content="Fictional demo that pretends to locate an IP by Discord username. For educational and entertainment use only." />
+		<style>
+			:root {
+				--bg: #0b0f12;
+				--panel: #0f1419;
+				--panel-2: #11181f;
+				--text: #e6f1ff;
+				--muted: #8aa1b3;
+				--accent: #00e5a8;
+				--accent-2: #00c2ff;
+				--danger: #ff5f5f;
+				--warn: #ffb020;
+				--ok: #00d084;
+				--glow: 0 0 12px rgba(0, 229, 168, 0.25), 0 0 32px rgba(0, 194, 255, 0.15);
+			}
+
+			* { box-sizing: border-box; }
+			html, body { height: 100%; }
+			body {
+				margin: 0;
+				font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+				color: var(--text);
+				background: radial-gradient(1200px 800px at 120% -20%, rgba(0, 194, 255, 0.12), transparent 70%),
+										radial-gradient(900px 500px at -20% 120%, rgba(0, 229, 168, 0.10), transparent 60%),
+										var(--bg);
+				line-height: 1.45;
+			}
+
+			.app {
+				display: grid;
+				grid-template-columns: 1.1fr 1fr;
+				gap: 16px;
+				height: 100%;
+			}
+			@media (max-width: 980px) {
+				.app { grid-template-columns: 1fr; }
+			}
+
+			header {
+				grid-column: 1 / -1;
+				padding: 16px;
+				border-bottom: 1px solid #1b2430;
+				background: linear-gradient(180deg, rgba(0,0,0,0.3), transparent);
+			}
+			.brand {
+				display: flex; align-items: center; gap: 12px;
+				letter-spacing: 0.6px;
+			}
+			.brand .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 12px rgba(0,229,168,0.8); }
+			.brand h1 { font-size: 18px; margin: 0; font-weight: 600; }
+			.brand .fake { color: var(--warn); font-size: 12px; opacity: 0.9; padding: 2px 6px; border: 1px dashed var(--warn); border-radius: 4px; }
+
+			.left, .right { padding: 16px; }
+
+			.panel {
+				background: linear-gradient(180deg, var(--panel), var(--panel-2));
+				border: 1px solid #1a2230;
+				border-radius: 10px;
+				box-shadow: var(--glow);
+			}
+
+			.controls { padding: 16px; display: grid; gap: 12px; }
+			.row { display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: end; }
+			@media (max-width: 520px){ .row { grid-template-columns: 1fr; } }
+			label { font-size: 13px; color: var(--muted); }
+			input[type="text"] {
+				width: 100%;
+				background: #0c1116;
+				color: var(--text);
+				border: 1px solid #17202b;
+				outline: none;
+				padding: 12px 12px;
+				border-radius: 8px;
+				transition: border-color 0.2s, box-shadow 0.2s, transform 0.06s ease;
+			}
+			input[type="text"]:focus {
+				border-color: #1f9cf0;
+				box-shadow: 0 0 0 3px rgba(0, 194, 255, 0.15);
+			}
+			.btn {
+				background: linear-gradient(180deg, #00e5a8, #00c2ff);
+				color: #041016;
+				font-weight: 700;
+				border: none;
+				padding: 12px 16px;
+				border-radius: 8px;
+				cursor: pointer;
+				transition: transform 0.06s ease, filter 0.2s ease, box-shadow 0.2s ease;
+				box-shadow: 0 8px 24px rgba(0, 194, 255, 0.25);
+			}
+			.btn:active { transform: translateY(1px); }
+			.btn:disabled { filter: grayscale(0.5) brightness(0.7); cursor: not-allowed; box-shadow: none; }
+
+			.disclaimer { padding: 8px 12px; border-top: 1px solid #1a2230; background: #0c1218; border-radius: 0 0 10px 10px; color: #93a4b7; font-size: 12px; }
+			.disclaimer b { color: #ffb020; }
+
+			.split {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 16px;
+				margin-top: 16px;
+			}
+			@media (max-width: 980px) { .split { grid-template-columns: 1fr; } }
+
+			.card { background: #0d1218; border: 1px solid #1a2230; border-radius: 10px; }
+			.card h3 { margin: 0; padding: 12px 14px; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; color: #a4bed0; border-bottom: 1px solid #1a2230; background: linear-gradient(180deg, rgba(0,0,0,0.2), transparent); }
+			.card .body { padding: 12px 14px; }
+
+			.kv { display: grid; grid-template-columns: 160px 1fr auto; gap: 8px 10px; align-items: center; font-size: 14px; }
+			.k { color: #9cb3c5; opacity: 0.9; }
+			.v { color: #eaf4ff; font-weight: 600; }
+			.copy { font-size: 12px; color: var(--accent-2); background: #0d1b22; border: 1px solid #143042; padding: 6px 8px; border-radius: 6px; cursor: pointer; }
+
+			.log {
+				height: 220px;
+				overflow: auto;
+				background: #0a0f14;
+				border: 1px solid #14202b;
+				border-radius: 8px;
+				padding: 10px 12px;
+				font-size: 13px;
+			}
+			.log .line { color: #8ab4ff; }
+			.log .ok { color: var(--ok); }
+			.log .warn { color: var(--warn); }
+			.log .err { color: var(--danger); }
+
+			/* Map panel */
+			.map-panel { position: relative; height: calc(100vh - 130px); min-height: 340px; }
+			.map-frame { width: 100%; height: 100%; border: none; border-radius: 10px; outline: 1px solid #1a2230; background: #0a0e12; }
+			.map-overlay { pointer-events: none; position: absolute; inset: 0; display: grid; place-items: center; }
+			.pin {
+				position: relative; width: 14px; height: 14px; border-radius: 50%; background: #00e5a8;
+				box-shadow: 0 0 0 2px rgba(0,229,168,0.35), 0 0 24px rgba(0,229,168,0.9);
+				animation: pulse 1.4s infinite ease-out;
+			}
+			.pin::after { content: ""; position: absolute; inset: -8px; border: 2px dashed rgba(0,229,168,0.45); border-radius: 50%; animation: rotate 6s linear infinite; }
+			.crosshair { position: absolute; width: 90px; height: 90px; border: 1px dashed rgba(0,194,255,0.35); border-radius: 50%; box-shadow: inset 0 0 16px rgba(0,194,255,0.15); }
+			@keyframes pulse { 0% { transform: scale(0.9); opacity: 0.8; } 70% { transform: scale(1.25); opacity: 0.25; } 100% { transform: scale(1.4); opacity: 0.1; } }
+			@keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+			.muted { color: var(--muted); }
+			.sep { height: 10px; }
+			.footer { grid-column: 1 / -1; padding: 10px 16px; border-top: 1px solid #1b2430; color: #96a8ba; font-size: 12px; }
+
+			.shake { animation: shake 0.3s linear 1; }
+			@keyframes shake {
+				0%, 100% { transform: translateX(0); }
+				25% { transform: translateX(-5px); }
+				75% { transform: translateX(5px); }
+			}
+		</style>
+	</head>
+	<body>
+		<div class="app">
+			<header>
+				<div class="brand">
+					<span class="dot"></span>
+					<h1>OSINT-DisLoc</h1>
+					<span class="fake">VLL</span>
+				</div>
+			</header>
+
+			<section class="left">
+				<div class="panel">
+					<div class="controls">
+						<div>
+							<label for="username">Discord username (e.g. user#1234)</label>
+							<div class="row">
+								<input id="username" type="text" placeholder="Enter Discord username" />
+								<button id="scanBtn" class="btn">Scan</button>
+							</div>
+						</div>
+						<div class="log" id="log"></div>
+					</div>
+					<div class="disclaimer">
+						<!--<b>Disclaimer:</b> This is a fictional demonstration. You cannot locate IP addresses by Discord usernames. Data shown below is randomly generated for fun and educational UI purposes.-->
+					</div>
+				</div>
+
+				<div class="split">
+					<div class="card">
+						<h3>Target profile</h3>
+						<div class="body">
+							<div class="kv">
+								<div class="k">Discord</div>
+								<div class="v" id="out-user">—</div>
+								<div></div>
+
+								<div class="k">IP Address</div>
+								<div class="v" id="out-ip">—</div>
+								<button class="copy" id="copy-ip">Copy</button>
+
+								<div class="k">Reverse DNS</div>
+								<div class="v" id="out-rdns">—</div>
+								<div></div>
+
+								<div class="k">ISP</div>
+								<div class="v" id="out-isp">—</div>
+								<div></div>
+
+								<div class="k">ASN</div>
+								<div class="v" id="out-asn">—</div>
+								<div></div>
+
+								<div class="k">Organization</div>
+								<div class="v" id="out-org">—</div>
+								<div></div>
+
+								<div class="k">Country</div>
+								<div class="v" id="out-country">—</div>
+								<div></div>
+
+								<div class="k">Region</div>
+								<div class="v" id="out-region">—</div>
+								<div></div>
+
+								<div class="k">City</div>
+								<div class="v" id="out-city">—</div>
+								<div></div>
+
+								<div class="k">Coordinates</div>
+								<div class="v" id="out-coord">—</div>
+								<div></div>
+
+								<div class="k">Timezone</div>
+								<div class="v" id="out-tz">—</div>
+								<div></div>
+
+								<div class="k">Local time</div>
+								<div class="v" id="out-localtime">—</div>
+								<div></div>
+
+								<div class="k">Proxy/VPN</div>
+								<div class="v" id="out-proxy">—</div>
+								<div></div>
+
+								<div class="k">Confidence</div>
+								<div class="v" id="out-acc">—</div>
+								<div></div>
+							</div>
+						</div>
+					</div>
+
+					<div class="card">
+						<h3>Notes</h3>
+						<div class="body">
+							<p class="muted">Results are deterministic per username so you can demo repeatable outputs. Try different names: <i>shadow#0420</i>, <i>nova#7777</i>, <i>miku#3939</i>.</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="right">
+				<div class="map-panel">
+					<iframe id="mapFrame" class="map-frame" src="https://www.google.com/maps?q=40.6892,-74.0445&z=10&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+					<div class="map-overlay">
+						<div class="crosshair"></div>
+						<div class="pin" title="Target"></div>
+					</div>
+				</div>
+			</section>
+
+			<footer class="footer">
+				Built as a playful UI demo. No real lookups occur; no external APIs are called. Map is centered to the generated coordinates; the blinking pin is an overlay.
+			</footer>
+		</div>
+
+		<script>
+			// Seeded PRNG helpers (xmur3 + sfc32)
+			function xmur3(str) {
+				let h = 1779033703 ^ str.length;
+				for (let i = 0; i < str.length; i++) {
+					h = Math.imul(h ^ str.charCodeAt(i), 3432918353);
+					h = (h << 13) | (h >>> 19);
+				}
+				return function() {
+					h = Math.imul(h ^ (h >>> 16), 2246822507);
+					h = Math.imul(h ^ (h >>> 13), 3266489909);
+					return (h ^= h >>> 16) >>> 0;
+				};
+			}
+			function sfc32(a, b, c, d) {
+				return function() {
+					a >>>= 0; b >>>= 0; c >>>= 0; d >>>= 0;
+					let t = (a + b) | 0; t = (t + d) | 0; d = (d + 1) | 0;
+					a = b ^ (b >>> 9);
+					b = (c + (c << 3)) | 0;
+					c = (c << 21) | (c >>> 11);
+					c = (c + t) | 0;
+					return (t >>> 0) / 4294967296;
+				};
+			}
+
+			function rngFromSeed(seed) {
+				const seedFn = xmur3(seed);
+				return sfc32(seedFn(), seedFn(), seedFn(), seedFn());
+			}
+
+			// Data catalogs
+			const ISPs = [
+				"Cloudflare, Inc.", "Comcast Cable", "AT&T Services", "Verizon Fios", "Deutsche Telekom AG",
+				"Vodafone Group", "Orange S.A.", "NTT Communications", "China Telecom", "Telefónica S.A.",
+				"Tata Communications", "Shaw Communications", "Rogers Cable", "BT Group", "OVH SAS",
+				"DigitalOcean, LLC", "Hetzner Online GmbH", "Akamai International", "Fastly, Inc.", "GTT Communications"
+			];
+			const Orgs = [
+				"Contoso Ltd.", "Globex Corporation", "Initech", "Umbrella Research", "Wayne Enterprises",
+				"Stark Industries", "Aperture Science", "Black Mesa", "Tyrell Corporation", "Hooli",
+				"Cyberdyne Systems", "Oceanic Systems", "BlueSun Holdings", "Monarch Analytics", "NeoNet Solutions"
+			];
+			const Cities = [
+				{ city: "New York", region: "NY", country: "United States", lat: 40.7128, lon: -74.0060 },
+				{ city: "San Francisco", region: "CA", country: "United States", lat: 37.7749, lon: -122.4194 },
+				{ city: "London", region: "England", country: "United Kingdom", lat: 51.5074, lon: -0.1278 },
+				{ city: "Berlin", region: "BE", country: "Germany", lat: 52.52, lon: 13.4050 },
+				{ city: "Paris", region: "Île-de-France", country: "France", lat: 48.8566, lon: 2.3522 },
+				{ city: "Tokyo", region: "Tokyo", country: "Japan", lat: 35.6762, lon: 139.6503 },
+				{ city: "Seoul", region: "Seoul", country: "South Korea", lat: 37.5665, lon: 126.9780 },
+				{ city: "Sydney", region: "NSW", country: "Australia", lat: -33.8688, lon: 151.2093 },
+				{ city: "Singapore", region: "SG", country: "Singapore", lat: 1.3521, lon: 103.8198 },
+				{ city: "Toronto", region: "ON", country: "Canada", lat: 43.65107, lon: -79.347015 },
+				{ city: "São Paulo", region: "SP", country: "Brazil", lat: -23.5505, lon: -46.6333 },
+				{ city: "Mexico City", region: "CDMX", country: "Mexico", lat: 19.4326, lon: -99.1332 },
+				{ city: "Johannesburg", region: "GP", country: "South Africa", lat: -26.2041, lon: 28.0473 },
+				{ city: "Dubai", region: "Dubai", country: "United Arab Emirates", lat: 25.2048, lon: 55.2708 },
+				{ city: "Mumbai", region: "MH", country: "India", lat: 19.0760, lon: 72.8777 },
+				{ city: "Moscow", region: "Moscow", country: "Russia", lat: 55.7558, lon: 37.6173 },
+				{ city: "Madrid", region: "Community of Madrid", country: "Spain", lat: 40.4168, lon: -3.7038 },
+				{ city: "Rome", region: "Lazio", country: "Italy", lat: 41.9028, lon: 12.4964 },
+				{ city: "Istanbul", region: "Istanbul", country: "Türkiye", lat: 41.0082, lon: 28.9784 },
+				{ city: "Warsaw", region: "Masovian", country: "Poland", lat: 52.2297, lon: 21.0122 }
+			];
+
+			function clamp(n, min, max){ return Math.max(min, Math.min(max, n)); }
+
+			function randomIP(rand) {
+				function pickOctet() { return Math.floor(rand() * 255); }
+				function reserved(a,b,c,d){
+					const ip = [a,b,c,d];
+					// private/reserved ranges
+					if (a === 10) return true;
+					if (a === 127) return true;
+					if (a === 0) return true;
+					if (a === 100 && (b >= 64 && b <= 127)) return true; // CGNAT
+					if (a === 169 && b === 254) return true; // link-local
+					if (a === 172 && (b >= 16 && b <= 31)) return true;
+					if (a === 192 && b === 0 && (c === 0 || c === 2)) return true; // 192.0.0.0/24, 192.0.2.0/24 example
+					if (a === 192 && b === 168) return true;
+					if (a === 198 && (b === 18 || b === 19 || b === 51 || b === 51)) return true; // 198.18/15, 198.51.100/24
+					if (a === 203 && b === 0 && c === 113) return true; // 203.0.113/24
+					if (a >= 224) return true; // multicast/reserved
+					return false;
+				}
+				let a,b,c,d, tries = 0;
+				do {
+					a = clamp(Math.floor(rand()*223)+1, 1, 223);
+					b = pickOctet(); c = pickOctet(); d = clamp(pickOctet(), 1, 254);
+					tries++; if (tries > 50) break; // safety
+				} while (reserved(a,b,c,d));
+				return `${a}.${b}.${c}.${d}`;
+			}
+
+			function pick(arr, rand) { return arr[Math.floor(rand() * arr.length)]; }
+
+			function ispDomain(name){
+				return name.toLowerCase().replace(/[^a-z0-9]+/g, "").slice(0,16) + ".net";
+			}
+
+			function reverseDNS(ip, cityCode, isp) {
+				const dom = ispDomain(isp);
+				const dashed = ip.replaceAll('.', '-');
+				return `dyn-${cityCode}-${dashed}.${dom}`;
+			}
+
+			function tzFromLon(lon){
+				// crude approximation: UTC offset by longitude
+				const offset = Math.round(lon / 15);
+				const sign = offset >= 0 ? "+" : "-";
+				const abs = Math.abs(offset);
+				return `UTC${sign}${abs.toString().padStart(2,'0')}:00`;
+			}
+
+			function localTimeFromOffset(offsetStr){
+				const m = offsetStr.match(/UTC([+-])(\d{2}):(\d{2})/);
+				let minutes = 0;
+				if (m) {
+					const sign = m[1] === '-' ? -1 : 1;
+					minutes = sign * (parseInt(m[2],10)*60 + parseInt(m[3],10));
+				}
+				const now = new Date();
+				const utc = now.getTime() + now.getTimezoneOffset()*60000;
+				const local = new Date(utc + minutes*60000);
+				return local.toLocaleString();
+			}
+
+			function generateData(username){
+				const seed = (username || "anonymous").trim().toLowerCase();
+				const rand = rngFromSeed(seed || "anonymous");
+				const city = pick(Cities, rand);
+				const jitterLat = (rand()-0.5) * 0.6; // +/-0.3 deg
+				const jitterLon = (rand()-0.5) * 0.6;
+				const lat = clamp(city.lat + jitterLat, -85, 85);
+				const lon = clamp(city.lon + jitterLon, -179.9, 179.9);
+				const isp = pick(ISPs, rand);
+				const asn = `AS${Math.floor(1000 + rand() * 63000)}`;
+				const org = pick(Orgs, rand);
+				const ip = randomIP(rand);
+				const cityCode = city.city.toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 4) || "loc";
+				const rdns = reverseDNS(ip, cityCode, isp);
+				const tz = tzFromLon(lon);
+				const localtime = localTimeFromOffset(tz);
+				const proxy = rand() < 0.22 ? (rand() < 0.5 ? "Likely VPN" : "Possible Proxy") : "No";
+				const acc = `${Math.floor(70 + rand()*25)}% (±${5 + Math.floor(rand()*25)} km)`;
+				return {
+					username: username || "anonymous",
+					ip, rdns, isp, asn, org,
+					country: city.country,
+					region: city.region,
+					city: city.city,
+					lat: +lat.toFixed(5),
+					lon: +lon.toFixed(5),
+					tz, localtime, proxy, acc
+				};
+			}
+
+			function setMap(lat, lon, zoom = 10){
+				const src = `https://www.google.com/maps?q=${encodeURIComponent(lat + "," + lon)}&z=${zoom}&output=embed`;
+				const frame = document.getElementById('mapFrame');
+				frame.src = src;
+			}
+
+			function writeResults(d){
+				const $ = (id) => document.getElementById(id);
+				$("out-user").textContent = d.username;
+				$("out-ip").textContent = d.ip;
+				$("out-rdns").textContent = d.rdns;
+				$("out-isp").textContent = d.isp;
+				$("out-asn").textContent = d.asn;
+				$("out-org").textContent = d.org;
+				$("out-country").textContent = d.country;
+				$("out-region").textContent = d.region;
+				$("out-city").textContent = d.city;
+				$("out-coord").textContent = `${d.lat}, ${d.lon}`;
+				$("out-tz").textContent = d.tz;
+				$("out-localtime").textContent = d.localtime;
+				$("out-proxy").textContent = d.proxy;
+				$("out-acc").textContent = d.acc;
+			}
+
+			function simulateScanLogs(target, doneCb){
+				const log = document.getElementById('log');
+				log.innerHTML = '';
+				const lines = [
+					`[+] Initializing resolver...`,
+					`[+] Parsing handle: ${target}`,
+					`[+] Loading OSINT modules: dns, whois, geofeed, bgp`,
+					`[>] Query public datasets...`,
+					`[>] Correlate with threat intel...`,
+					`[>] Fingerprinting network edges...`,
+					`[!] Rate-limit detected, switching mirrors`,
+					`[/] Generating heuristic model...`,
+					`[+] Result synthesis complete`
+				];
+				let i = 0;
+				const timer = setInterval(() => {
+					if (i < lines.length) {
+						const el = document.createElement('div');
+						el.className = 'line';
+						el.textContent = lines[i++];
+						log.appendChild(el);
+						log.scrollTop = log.scrollHeight;
+					} else {
+						clearInterval(timer);
+						const ok = document.createElement('div');
+						ok.className = 'line ok';
+						ok.textContent = '[OK] Scan complete';
+						log.appendChild(ok);
+						log.scrollTop = log.scrollHeight;
+						doneCb();
+					}
+				}, 220);
+			}
+
+			function startScan(){
+				const input = document.getElementById('username');
+				const btn = document.getElementById('scanBtn');
+				const name = input.value.trim();
+				if (!name) {
+					input.classList.remove('shake');
+					void input.offsetWidth; // restart animation
+					input.classList.add('shake');
+					return;
+				}
+				btn.disabled = true;
+				simulateScanLogs(name, () => {
+					const data = generateData(name);
+					writeResults(data);
+					setMap(data.lat, data.lon, 11);
+					btn.disabled = false;
+				});
+			}
+
+			document.getElementById('scanBtn').addEventListener('click', startScan);
+			document.getElementById('username').addEventListener('keydown', (e) => {
+				if (e.key === 'Enter') { startScan(); }
+			});
+			document.getElementById('copy-ip').addEventListener('click', async () => {
+				const ip = document.getElementById('out-ip').textContent.trim();
+				if (!ip || ip === '—') return;
+				try { await navigator.clipboard.writeText(ip); } catch {}
+			});
+
+			// Initial demo state
+			const demo = generateData('shadow#0420');
+			writeResults(demo);
+			setMap(demo.lat, demo.lon, 11);
+		</script>
+	</body>
+</html>

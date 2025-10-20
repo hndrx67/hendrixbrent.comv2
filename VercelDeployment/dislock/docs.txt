@@ -1,0 +1,177 @@
+═══════════════════════════════════════════════════════════════════════════════
+  GEO SAT IP LOCATOR - COMMAND REFERENCE DOCUMENTATION
+═══════════════════════════════════════════════════════════════════════════════
+
+VERSION: 2.3.1
+LAST UPDATED: October 20, 2025
+CLASSIFICATION: TOP SECRET
+
+═══════════════════════════════════════════════════════════════════════════════
+  HIDDEN TERMINAL ACCESS
+═══════════════════════════════════════════════════════════════════════════════
+
+To access the hidden command terminal:
+
+1. In the Discord username input field, type: ./terminal
+2. Press ENTER or click SCAN
+3. The terminal modal will appear
+
+Note: This is a hidden feature for advanced operations.
+
+═══════════════════════════════════════════════════════════════════════════════
+  TERMINAL COMMANDS
+═══════════════════════════════════════════════════════════════════════════════
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ COMMAND: sudo identify                                                       │
+│ DESCRIPTION: Launch biometric analysis and user identification scanner      │
+│ USAGE: sudo identify                                                         │
+│ ACCESS LEVEL: Root required                                                  │
+│                                                                               │
+│ This command initiates a comprehensive biometric scanning operation that:   │
+│   • Spawns multiple terminal panels with real-time analysis                 │
+│   • Displays facial recognition, database queries, network analysis         │
+│   • Shows biometric scans, system logs, and threat assessments              │
+│   • Creates a persistent profile scanner on the right side                  │
+│   • Runs for 2 minutes or until manually aborted                            │
+│                                                                               │
+│ To abort scan: Click the red "ABORT SCAN" button at bottom center           │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ COMMAND: help                                                                │
+│ DESCRIPTION: Display available commands and usage information               │
+│ USAGE: help [command]                                                        │
+│                                                                               │
+│ Examples:                                                                    │
+│   help              - Show all available commands                            │
+│   help sudo         - Show information about sudo commands                   │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ COMMAND: clear                                                               │
+│ DESCRIPTION: Clear terminal output screen                                   │
+│ USAGE: clear                                                                 │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ COMMAND: status                                                              │
+│ DESCRIPTION: Display system status and active operations                    │
+│ USAGE: status                                                                │
+│                                                                               │
+│ Shows:                                                                       │
+│   • Active operation modes                                                   │
+│   • Network connection status                                                │
+│   • System uptime                                                            │
+│   • Current target information                                               │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ COMMAND: exit                                                                │
+│ DESCRIPTION: Close the terminal window                                       │
+│ USAGE: exit                                                                  │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ COMMAND: whoami                                                              │
+│ DESCRIPTION: Display current user information                               │
+│ USAGE: whoami                                                                │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ COMMAND: version                                                             │
+│ DESCRIPTION: Display system version information                             │
+│ USAGE: version                                                               │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+═══════════════════════════════════════════════════════════════════════════════
+  OPERATION MODES (UI BUTTONS)
+═══════════════════════════════════════════════════════════════════════════════
+
+TARGET LOCK 🎯
+  - Activates target locking system
+  - Shows "LOCATION LOCKED" notification after scan
+  - Displays threat level bars
+
+TRACE ROUTE 📡
+  - Traces network route between locations
+  - Shows multi-hop routing path
+  - Displays on interactive map with animated lines
+
+TRACK LOCATION 📍
+  - Tracks user location history
+  - Shows multiple location markers on map
+  - Displays timeline of activities
+
+CHANGE GEO SAT 🛰️
+  - Select different satellites for tracking
+  - Choose from 14 global satellites
+  - Affects positioning accuracy
+
+STEALTH MODE 👁️
+  - Enables stealth overlay
+  - Hides UI elements for 3 seconds
+  - Shows "STEALTH MODE ACTIVE" notification
+
+PACKET INTERCEPT ⚡
+  - Simulates packet interception
+  - Shows captured network traffic
+  - Displays in log format
+
+═══════════════════════════════════════════════════════════════════════════════
+  AUTHENTICATION
+═══════════════════════════════════════════════════════════════════════════════
+
+System Password: silverwolf
+  - Required on boot after satellite connection
+  - Case insensitive
+  - Wrong password triggers lockout (requires reload)
+
+Offline Mode:
+  - If network check fails, system shows "SERVER OFFLINE"
+  - After 5 seconds, "OFFLINE MODE" button appears
+  - Still requires password authentication
+  - Limited functionality without internet
+
+═══════════════════════════════════════════════════════════════════════════════
+  TIPS & TRICKS
+═══════════════════════════════════════════════════════════════════════════════
+
+• Terminals in identify scan are draggable - click and drag to reposition
+• Profile scanner appears fixed on right side but can also be dragged
+• Multiple operation modes can be active simultaneously
+• Trace Route + Track Location shows both modals side-by-side
+• Results are deterministic - same username always gives same results
+• Try usernames: shadow#0420, nova#7777, miku#3939
+
+═══════════════════════════════════════════════════════════════════════════════
+  TROUBLESHOOTING
+═══════════════════════════════════════════════════════════════════════════════
+
+Issue: Locked out after wrong password
+Solution: Reload the page (F5 or Ctrl+R)
+
+Issue: Terminal not opening
+Solution: Ensure you type exactly: ./terminal
+
+Issue: Maps not loading
+Solution: Check internet connection, maps require online access
+
+Issue: Identify scan too chaotic
+Solution: Click "ABORT SCAN" button at bottom center
+
+═══════════════════════════════════════════════════════════════════════════════
+  SECURITY NOTES
+═══════════════════════════════════════════════════════════════════════════════
+
+⚠ DISCLAIMER: This is a fictional demonstration for educational purposes.
+
+• All data is randomly generated
+• No actual IP tracking or location services
+• No real satellite connections
+• Discord usernames cannot be used to locate IP addresses
+• This is purely a UI/UX demonstration
+
+═══════════════════════════════════════════════════════════════════════════════
+  END OF DOCUMENTATION
+═══════════════════════════════════════════════════════════════════════════════

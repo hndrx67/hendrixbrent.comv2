@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>OSINT: DisLoc</title>
+		<meta name="description" content="Fictional demo that pretends to locate an IP by Discord username. For educational and entertainment use only." />
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body>
+		<!-- Boot Sequence -->
+		<div class="boot-overlay" id="bootOverlay">
+			<div class="boot-message">CONNECTING TO GEO SAT SERVERS AND SATELLITES</div>
+			<div class="boot-progress">
+				<div class="boot-progress-bar" id="bootProgressBar"></div>
+			</div>
+			<div class="boot-status" id="bootStatus">INITIALIZING...</div>
+		</div>
+
+		<!-- Login Prompt -->
+		<div class="login-prompt" id="loginPrompt">
+			<div class="login-box">
+				<div class="login-title">SYSTEM ACCESS</div>
+				<div class="login-subtitle">AUTHORIZED PERSONNEL ONLY</div>
+				<div class="login-label">[ ENTER PASSWORD ]</div>
+				<input type="password" class="login-input" id="loginPassword" placeholder="PASSWORD" autocomplete="off">
+				<button class="login-button" id="loginButton">ACCESS SYSTEM</button>
+				<div class="login-error" id="loginError">ACCESS DENIED - INVALID CREDENTIALS</div>
+			</div>
+		</div>
+
+		<!-- Lockout Notification -->
+		<div class="lockout-notification" id="lockoutNotification">
+			<div class="text">LOCKED OUT</div>
+			<div class="subtext">SECURITY PROTOCOL ACTIVATED - RELOAD REQUIRED</div>
+		</div>
+
+		<!-- Offline Notification -->
+		<div class="offline-notification" id="offlineNotification">
+			<div class="text">SERVER OFFLINE</div>
+			<div class="offline-icon">
+				<div class="bar"></div>
+				<div class="bar"></div>
+				<div class="bar"></div>
+				<div class="bar"></div>
+			</div>
+			<button class="offline-mode-button" id="offlineModeButton">OFFLINE MODE</button>
+		</div>
+
+		<div class="app" id="app">
+			<header>
+				<div class="brand">
+					<span class="dot"></span>
+					<h1>OSINT-DISLOC</h1>
+					<span class="fake">VLL</span>
+				</div>
+			</header>
+
+			<section class="left">
+				<div class="panel">
+					<div class="controls">
+						<div>
+							<label for="username">[ KEY IDENTIFIER (E.G. USER#1234) ]</label>
+							<div class="row">
+								<input id="username" type="text" placeholder="ENTER KEY IDENTIFIER" />
+								<button id="scanBtn" class="btn">SCAN</button>
+							</div>
+						</div>
+						<div class="log" id="log"></div>
+					</div>
+					<div class="disclaimer">
+						<b></b>
+					</div>
+				</div>
+
+				<div class="split">
+					<div class="card">
+						<h3>[ TARGET PROFILE ]</h3>
+						<div class="body">
+							<div class="kv">
+								<div class="k">KEY INDENT</div>
+								<div class="v" id="out-user">—</div>
+								<div></div>
+
+								<div class="k">IP Address</div>
+								<div class="v" id="out-ip">—</div>
+								<button class="copy" id="copy-ip">COPY</button>
+
+								<div class="k">Reverse DNS</div>
+								<div class="v" id="out-rdns">—</div>
+								<div></div>
+
+								<div class="k">ISP</div>
+								<div class="v" id="out-isp">—</div>
+								<div></div>
+
+								<div class="k">ASN</div>
+								<div class="v" id="out-asn">—</div>
+								<div></div>
+
+								<div class="k">Organization</div>
+								<div class="v" id="out-org">—</div>
+								<div></div>
+
+								<div class="k">Country</div>
+								<div class="v" id="out-country">—</div>
+								<div></div>
+
+								<div class="k">Region</div>
+								<div class="v" id="out-region">—</div>
+								<div></div>
+
+								<div class="k">City</div>
+								<div class="v" id="out-city">—</div>
+								<div></div>
+
+								<div class="k">Coordinates</div>
+								<div class="v" id="out-coord">—</div>
+								<div></div>
+
+								<div class="k">Timezone</div>
+								<div class="v" id="out-tz">—</div>
+								<div></div>
+
+								<div class="k">Local time</div>
+								<div class="v" id="out-localtime">—</div>
+								<div></div>
+
+								<div class="k">Proxy/VPN</div>
+								<div class="v" id="out-proxy">—</div>
+								<div></div>
+
+								<div class="k">Confidence</div>
+								<div class="v" id="out-acc">—</div>
+								<div></div>
+							</div>
+						</div>
+					</div>
+
+					<div class="card">
+						<h3>[ NOTES ]</h3>
+						<div class="body">
+							<p class="muted">RESULTS ARE DETERMINISTIC <i>shadow#0420</i>, <i>nova#7777</i>, <i>miku#3939</i>.</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="mode-controls">
+					<h3>[ OPERATION MODES ]</h3>
+					<div class="mode-grid">
+						<button class="mode-btn" id="mode-lock" data-mode="lock">
+							<span class="mode-icon">🎯</span>
+							<div>TARGET LOCK</div>
+							<div class="mode-status">STANDBY</div>
+							<div class="threat-level">
+								<div class="threat-bar"><div class="fill"></div></div>
+								<div class="threat-bar"><div class="fill"></div></div>
+								<div class="threat-bar"><div class="fill"></div></div>
+								<div class="threat-bar"><div class="fill"></div></div>
+								<div class="threat-bar"><div class="fill"></div></div>
+							</div>
+						</button>
+						<button class="mode-btn" id="mode-trace" data-mode="trace">
+							<span class="mode-icon">📡</span>
+							<div>TRACE ROUTE</div>
+							<div class="mode-status">STANDBY</div>
+						</button>
+						<button class="mode-btn" id="mode-track" data-mode="track">
+							<span class="mode-icon">📍</span>
+							<div>TRACK LOCATION</div>
+							<div class="mode-status">STANDBY</div>
+						</button>
+						<button class="mode-btn" id="mode-geosat" data-mode="geosat">
+							<span class="mode-icon">🛰️</span>
+							<div>CHANGE GEO SAT</div>
+							<div class="mode-status">STANDBY</div>
+						</button>
+						<button class="mode-btn" id="mode-stealth" data-mode="stealth">
+							<span class="mode-icon">👁️</span>
+							<div>STEALTH MODE</div>
+							<div class="mode-status">INACTIVE</div>
+						</button>
+						<button class="mode-btn" id="mode-intercept" data-mode="intercept">
+							<span class="mode-icon">⚡</span>
+							<div>PACKET INTERCEPT</div>
+							<div class="mode-status">STANDBY</div>
+						</button>
+					</div>
+				</div>
+			</section>
+
+			<section class="right">
+				<div class="map-panel">
+					<iframe id="mapFrame" class="map-frame" src="https://www.google.com/maps?q=40.6892,-74.0445&z=10&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+					<div class="map-overlay">
+						<div class="scan-lines"></div>
+						<div class="crosshair" id="crosshair"></div>
+						<div class="target-marker" id="targetMarker" title="TARGET LOCKED">
+							<div class="corner tl"></div>
+							<div class="corner tr"></div>
+							<div class="corner bl"></div>
+							<div class="corner br"></div>
+							<div class="center-dot"></div>
+						</div>
+						<div class="coord-display" id="coordDisplay">LAT: 40.6892 / LON: -74.0445</div>
+					</div>
+				</div>
+			</section>
+
+			<footer class="footer">
+				Built as a playful UI demo. No real lookups occur; no external APIs are called. Map is centered to the generated coordinates; the blinking square is an overlay.
+			</footer>
+		</div>
+
+		<!-- Lock Notification -->
+		<div class="lock-notification" id="lockNotification">
+			<div class="text">LOCATION LOCKED</div>
+			<div class="subtext">TARGET ACQUIRED</div>
+		</div>
+
+		<!-- Trace Route Modal -->
+		<div class="trace-modal" id="traceModal">
+			<div class="trace-content">
+				<div class="trace-header">
+					<h2>[ TRACE ROUTE ANALYSIS ]</h2>
+					<button class="trace-close" id="traceClose">CLOSE</button>
+				</div>
+				<div class="trace-body">
+					<div class="trace-map" id="traceMapContainer">
+						<iframe id="traceMapFrame" src="about:blank"></iframe>
+						<canvas id="traceCanvas"></canvas>
+					</div>
+					<div class="trace-info">
+						<div class="trace-route">
+							<div class="trace-point">
+								<div class="label">ORIGIN</div>
+								<div class="value" id="trace-origin">UNKNOWN</div>
+							</div>
+							<div class="trace-point">
+								<div class="label">HOPS</div>
+								<div class="value" id="trace-hops">0</div>
+							</div>
+							<div class="trace-point">
+								<div class="label">LATENCY</div>
+								<div class="value" id="trace-latency">0 MS</div>
+							</div>
+							<div class="trace-point">
+								<div class="label">DESTINATION</div>
+								<div class="value" id="trace-dest">UNKNOWN</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Track Location Modal -->
+		<div class="track-modal" id="trackModal">
+			<div class="track-content">
+				<div class="track-header">
+					<h2>[ USER LOCATION TRACKING ]</h2>
+					<button class="track-close" id="trackClose">CLOSE</button>
+				</div>
+				<div class="track-body">
+					<div class="track-map" id="trackMapContainer">
+						<iframe id="trackMapFrame" src="about:blank"></iframe>
+						<div id="locationMarkers"></div>
+					</div>
+					<div class="track-info">
+						<div class="track-timeline" id="trackTimeline"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Geo Sat Modal -->
+		<div class="geosat-modal" id="geosatModal">
+			<div class="geosat-content">
+				<div class="geosat-header">
+					<h2>[ GEOSPATIAL SATELLITE SELECTION ]</h2>
+					<button class="geosat-close" id="geosatClose">CLOSE</button>
+				</div>
+				<div class="geosat-body">
+					<div class="geosat-map" id="geosatMapContainer">
+						<iframe id="geosatMapFrame" src="about:blank"></iframe>
+						<div id="satelliteMarkers"></div>
+					</div>
+					<div class="geosat-info">
+						<div class="geosat-selected">
+							<div class="label">SELECTED SATELLITES:</div>
+							<div class="sat-list" id="selectedSatList">
+								<div style="color: var(--muted); font-size: 11px;">No satellites selected</div>
+							</div>
+						</div>
+						<button class="geosat-save" id="geosatSave" disabled>LOCK & SAVE</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Geo Sat Notification -->
+		<div class="geosat-notification" id="geosatNotification">
+			<div class="text">CHANGING GEO SAT IN PROGRESS</div>
+			<div class="subtext">Finding suitable satellites...</div>
+			<div class="progress">
+				<div class="progress-bar" id="geosatProgress"></div>
+			</div>
+		</div>
+
+		<!-- Stealth Mode Overlay -->
+		<div class="stealth-overlay" id="stealthOverlay">
+			<div class="stealth-text">STEALTH MODE ACTIVE</div>
+		</div>
+
+		<!-- Identify User Modal Container -->
+		<div class="identify-modal" id="identifyModal"></div>
+		
+		<!-- Abort Button -->
+		<div class="abort-button-container" id="abortContainer">
+			<button class="abort-button" id="abortIdentify">⚠ ABORT SCAN ⚠</button>
+		</div>
+
+		<!-- Terminal Command Modal -->
+		<div class="terminal-modal" id="terminalModal">
+			<div class="terminal-window">
+				<div class="terminal-header">
+					<div class="terminal-title">COMMAND TERMINAL v2.3.1</div>
+					<div class="terminal-close" id="terminalClose">×</div>
+				</div>
+				<div class="terminal-output" id="terminalOutput"></div>
+				<div class="terminal-input-line">
+					<span class="terminal-input-prompt">root@geosat:~$</span>
+					<input type="text" class="terminal-input" id="terminalInput" autocomplete="off" spellcheck="false">
+				</div>
+			</div>
+		</div>
+
+		<script src="script.js"></script>
+	</body>
+</html>
