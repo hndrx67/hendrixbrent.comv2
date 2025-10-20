@@ -4,23 +4,28 @@
 document.addEventListener('DOMContentLoaded', function() {
     const loadingOverlay = document.getElementById('loading-overlay');
     
-    // Show loading animation for 1.5 seconds on page load
+    // Hide loading animation once page is fully loaded
     setTimeout(() => {
         loadingOverlay.classList.add('hidden');
     }, 700);
-});
-
-// Show loading animation when navigating to another page
-document.querySelectorAll('a.nav-link, a.btn-prev, a.btn-next').forEach(link => {
-    link.addEventListener('click', function(e) {
-        // Only show loading for internal navigation
-        const href = this.getAttribute('href');
-        if (href && !href.startsWith('http') && !href.startsWith('#')) {
-            const loadingOverlay = document.getElementById('loading-overlay');
-            if (loadingOverlay) {
-                loadingOverlay.classList.remove('hidden');
+    
+    // Show loading animation when navigating to another page
+    document.querySelectorAll('a.nav-link, a.btn-prev, a.btn-next').forEach(link => {
+        link.addEventListener('click', function(e) {
+            // Only show loading for internal navigation
+            const href = this.getAttribute('href');
+            if (href && !href.startsWith('http') && !href.startsWith('#')) {
+                e.preventDefault(); // Prevent immediate navigation
+                const loadingOverlay = document.getElementById('loading-overlay');
+                if (loadingOverlay) {
+                    loadingOverlay.classList.remove('hidden');
+                    // Navigate after showing the loading overlay
+                    setTimeout(() => {
+                        window.location.href = href;
+                    }, 100);
+                }
             }
-        }
+        });
     });
 });
 
@@ -30,7 +35,7 @@ document.querySelectorAll('a.nav-link, a.btn-prev, a.btn-next').forEach(link => 
 
 // === ACTIVE NAV LINK ===
 // Highlight the current page in navigation
-const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+const currentPage = window.location.pathname.split('/').pop() || 'home-morphology.html';
 document.querySelectorAll('.nav-link').forEach(link => {
     const linkPage = link.getAttribute('href');
     if (linkPage === currentPage) {
