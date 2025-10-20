@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examples - Morphology</title>
+    <link rel="stylesheet" href="./static/css/styles.css">
+    <link rel="stylesheet" href="./static/css/loader.css">
+    <link rel="stylesheet" href="./static/css/vinyl-player.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="loading-bar">
+            <img src="https://yuanshen.site/imgs/loading-bar.png" alt="loading">
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <img src="./static/images/venti-icon.png" alt="Venti Icon" class="brand-icon" onerror="this.style.display='none'">
+                <span class="brand-title">Morphology Studies</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="learning-objectives.html" class="nav-link">Learning Objectives</a>
+                <a href="morpheme-types.html" class="nav-link">Morpheme Types</a>
+                <a href="examples.html" class="nav-link active">Examples</a>
+                <a href="activity.html" class="nav-link">Activity</a>
+                <a href="conclusion.html" class="nav-link">Conclusion</a>
+            </div>
+            <button id="music-toggle" class="music-toggle" title="Toggle Music">
+                <svg class="music-icon playing" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+                </svg>
+                <svg class="music-icon paused" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" opacity="0.3"/>
+                    <path d="M4.27 3L3 4.27l9 9v.28c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4v-1.73L19.73 21 21 19.73 4.27 3z"/>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <section class="page-header">
+            <h1 class="page-title">Morphological Examples</h1>
+        </section>
+
+        <section class="examples-section">
+            <div class="content-card">
+                <div class="card-header">
+                    <h2>Plural Formation</h2>
+                </div>
+                <div class="card-content">
+                    <div class="language-example">
+                        <h3>English:</h3>
+                        <p class="rule-text">Add <strong>-s</strong> or <strong>-es</strong> → dog → dogs.</p>
+                    </div>
+                    <div class="language-example">
+                        <h3>Filipino:</h3>
+                        <p class="rule-text">Use <strong>mga</strong> → aso → mga aso.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <div class="card-header">
+                    <h2>Tense Marker</h2>
+                </div>
+                <div class="card-content">
+                    <div class="language-example">
+                        <h3>English:</h3>
+                        <p class="rule-text">Change the verb form → walk → walked.</p>
+                    </div>
+                    <div class="language-example">
+                        <h3>Filipino:</h3>
+                        <p class="rule-text">Add an affix → lakad → naglakad.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-card highlight-card">
+                <div class="card-header">
+                    <h2>Cebuano vs. Ilocano</h2>
+                    <p class="subtitle-text">Pronoun Differences</p>
+                </div>
+                <div class="card-content">
+                    <div class="dialect-comparison">
+                        <div class="dialect-box">
+                            <h3>Cebuano:</h3>
+                            <p class="pronoun-list"><strong>ako, ikaw, siya</strong></p>
+                        </div>
+                        <div class="dialect-box">
+                            <h3>Ilocano:</h3>
+                            <p class="pronoun-list"><strong>siak, sika, isu</strong></p>
+                        </div>
+                    </div>
+                    <p class="note-text">They have the same meanings but different word forms.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="navigation-footer">
+            <a href="morpheme-types.html" class="btn-prev">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/>
+                </svg>
+                <span>Previous: Morpheme Types</span>
+            </a>
+            <a href="activity.html" class="btn-next">
+                <span>Next: Activity</span>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+                </svg>
+            </a>
+        </div>
+    </main>
+<script src="./static/js/audio-modal.js"></script>
+    <script src="./static/js/main.js"></script>
+    <script src="./static/js/music-player.js"></script>
+</body>
+</html>
+

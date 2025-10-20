@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activity - Morphology</title>
+    <link rel="stylesheet" href="./static/css/styles.css">
+    <link rel="stylesheet" href="./static/css/loader.css">
+    <link rel="stylesheet" href="./static/css/vinyl-player.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="loading-bar">
+            <img src="https://yuanshen.site/imgs/loading-bar.png" alt="loading">
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <img src="./static/images/venti-icon.png" alt="Venti Icon" class="brand-icon" onerror="this.style.display='none'">
+                <span class="brand-title">Morphology Studies</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="learning-objectives.html" class="nav-link">Learning Objectives</a>
+                <a href="morpheme-types.html" class="nav-link">Morpheme Types</a>
+                <a href="examples.html" class="nav-link">Examples</a>
+                <a href="activity.html" class="nav-link active">Activity</a>
+                <a href="conclusion.html" class="nav-link">Conclusion</a>
+            </div>
+            <button id="music-toggle" class="music-toggle" title="Toggle Music">
+                <svg class="music-icon playing" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+                </svg>
+                <svg class="music-icon paused" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" opacity="0.3"/>
+                    <path d="M4.27 3L3 4.27l9 9v.28c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4v-1.73L19.73 21 21 19.73 4.27 3z"/>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <section class="page-header">
+            <h1 class="page-title">Activity</h1>
+            <p class="page-subtitle">Morphology Table Challenge</p>
+        </section>
+
+        <section class="activity-section">
+            <div class="content-card activity-card">
+                <div class="card-header">
+                    <div class="scroll-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="6" y="4" width="12" height="16" rx="2" stroke="currentColor" stroke-width="2"/>
+                            <path d="M9 8H15M9 12H15M9 16H13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h2>Instructions:</h2>
+                </div>
+                <div class="card-content">
+                    <ol class="instruction-list">
+                        <li>
+                            <span class="step-number">1</span>
+                            <span class="step-text">Form groups.</span>
+                        </li>
+                        <li>
+                            <span class="step-number">2</span>
+                            <span class="step-text">Each group sends one member to the "Morphology Table."</span>
+                        </li>
+                        <li>
+                            <span class="step-number">3</span>
+                            <span class="step-text">The member will draw one root word and one or more affixes (prefixes or suffixes).</span>
+                        </li>
+                        <li>
+                            <span class="step-number">4</span>
+                            <span class="step-text">Work together to form a correctly spelled and meaningful word. You may rearrange the affixes but cannot change the root word.</span>
+                        </li>
+                        <li>
+                            <span class="step-number">5</span>
+                            <span class="step-text">Write the word on the board and explain its meaning in less than 30 seconds before the wind carries it away!</span>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="activity-illustration">
+                <div class="wind-swirl">
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 100 Q50 80, 80 90 T140 100 Q170 110, 180 100" stroke="currentColor" stroke-width="3" fill="none" opacity="0.4"/>
+                        <path d="M30 120 Q60 100, 90 110 T150 120 Q180 130, 190 120" stroke="currentColor" stroke-width="3" fill="none" opacity="0.3"/>
+                        <path d="M10 80 Q40 60, 70 70 T130 80 Q160 90, 170 80" stroke="currentColor" stroke-width="3" fill="none" opacity="0.2"/>
+                    </svg>
+                </div>
+                <div class="floating-morphemes">
+                    <span class="morpheme-tag">un-</span>
+                    <span class="morpheme-tag">-ness</span>
+                    <span class="morpheme-tag">-ed</span>
+                    <span class="morpheme-tag">pre-</span>
+                    <span class="morpheme-tag">-ful</span>
+                </div>
+            </div>
+        </section>
+
+        <div class="navigation-footer">
+            <a href="examples.html" class="btn-prev">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/>
+                </svg>
+                <span>Previous: Examples</span>
+            </a>
+            <a href="conclusion.html" class="btn-next">
+                <span>Next: Conclusion</span>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+                </svg>
+            </a>
+        </div>
+    </main>
+<script src="./static/js/audio-modal.js"></script>
+    <script src="./static/js/main.js"></script>
+    <script src="./static/js/music-player.js"></script>
+</body>
+</html>
+

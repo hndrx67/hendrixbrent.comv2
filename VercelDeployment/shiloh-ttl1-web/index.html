@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Morphology: Structure & Formation of Words</title>
+    <link rel="stylesheet" href="./static/css/styles.css">
+    <link rel="stylesheet" href="./static/css/loader.css">
+    <link rel="stylesheet" href="./static/css/vinyl-player.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="loading-bar">
+            <img src="https://yuanshen.site/imgs/loading-bar.png" alt="loading">
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <img src="./static/images/venti-icon.png" alt="Venti Icon" class="brand-icon" onerror="this.style.display='none'">
+                <span class="brand-title">Morphology Studies</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link active">Home</a>
+                <a href="learning-objectives.html" class="nav-link">Learning Objectives</a>
+                <a href="morpheme-types.html" class="nav-link">Morpheme Types</a>
+                <a href="examples.html" class="nav-link">Examples</a>
+                <a href="activity.html" class="nav-link">Activity</a>
+                <a href="conclusion.html" class="nav-link">Conclusion</a>
+            </div>
+            <button id="music-toggle" class="music-toggle" title="Toggle Music">
+                <svg class="music-icon playing" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+                </svg>
+                <svg class="music-icon paused" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" opacity="0.3"/>
+                    <path d="M4.27 3L3 4.27l9 9v.28c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4v-1.73L19.73 21 21 19.73 4.27 3z"/>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="hero-section">
+            <div class="decorative-element top-left"></div>
+            <div class="decorative-element top-right"></div>
+            
+            <div class="hero-content">
+                <div class="anemo-symbol">
+                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="2" opacity="0.3"/>
+                        <path d="M50 10 L60 40 L90 40 L65 60 L75 90 L50 70 L25 90 L35 60 L10 40 L40 40 Z" fill="currentColor" opacity="0.5"/>
+                    </svg>
+                </div>
+                
+                <h1 class="main-title">MORPHOLOGY</h1>
+                <p class="subtitle">Structure & Formation of Words</p>
+                <p class="author">By Shiloh Dizon</p>
+            </div>
+            
+            <div class="decorative-element bottom-left"></div>
+            <div class="decorative-element bottom-right"></div>
+        </div>
+
+        <section class="intro-section">
+            <div class="content-card">
+                <div class="card-header">
+                    <div class="feather-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 4C4 2.89543 4.89543 2 6 2H18C19.1046 2 20 2.89543 20 4V20C20 21.1046 19.1046 22 18 22H6C4.89543 22 4 21.1046 4 20V4Z" stroke="currentColor" stroke-width="2"/>
+                            <path d="M8 6H16M8 10H16M8 14H13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h2>Introduction</h2>
+                </div>
+                <div class="card-content">
+                    <p>Have you ever wondered why words like <strong>cats</strong> or <strong>unhappy</strong> look the way they do? That's because words are made up of smaller building blocks. The study of these building blocks is called <strong>morphology</strong>.</p>
+                    <p>Morphology is a branch of linguistics that focuses on how words are structured and formed. In this presentation, we'll explore what morphology is and why it's important in understanding language.</p>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <div class="card-header">
+                    <div class="key-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M12 17h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h2>What is Morphology?</h2>
+                </div>
+                <div class="card-content">
+                    <p class="definition">The branch of linguistics that studies how words are formed and the rules for building them.</p>
+                    <div class="example-box">
+                        <strong>Example:</strong> un-happy-ness → un- (not) + happy (root) + -ness (state)
+                    </div>
+                    <p>Morphology connects how a word is written and pronounced (form) to what it means and how it is used (function).</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="navigation-footer">
+            <a href="learning-objectives.html" class="btn-next">
+                <span>Next: Learning Objectives</span>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+                </svg>
+            </a>
+        </div>
+    </main>
+
+    <script src="./static/js/audio-modal.js"></script>
+    <script src="./static/js/main.js"></script>
+    <script src="./static/js/music-player.js"></script>
+</body>
+</html>

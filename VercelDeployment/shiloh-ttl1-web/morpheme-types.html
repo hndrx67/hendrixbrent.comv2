@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Morpheme Types - Morphology</title>
+    <link rel="stylesheet" href="./static/css/styles.css">
+    <link rel="stylesheet" href="./static/css/loader.css">
+    <link rel="stylesheet" href="./static/css/vinyl-player.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="loading-bar">
+            <img src="https://yuanshen.site/imgs/loading-bar.png" alt="loading">
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <img src="./static/images/venti-icon.png" alt="Venti Icon" class="brand-icon" onerror="this.style.display='none'">
+                <span class="brand-title">Morphology Studies</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="learning-objectives.html" class="nav-link">Learning Objectives</a>
+                <a href="morpheme-types.html" class="nav-link active">Morpheme Types</a>
+                <a href="examples.html" class="nav-link">Examples</a>
+                <a href="activity.html" class="nav-link">Activity</a>
+                <a href="conclusion.html" class="nav-link">Conclusion</a>
+            </div>
+            <button id="music-toggle" class="music-toggle" title="Toggle Music">
+                <svg class="music-icon playing" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+                </svg>
+                <svg class="music-icon paused" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" opacity="0.3"/>
+                    <path d="M4.27 3L3 4.27l9 9v.28c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4v-1.73L19.73 21 21 19.73 4.27 3z"/>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <section class="page-header">
+            <h1 class="page-title">Comparing Morpheme Types</h1>
+        </section>
+
+        <section class="comparison-section">
+            <div class="comparison-container">
+                <div class="comparison-card free-morpheme">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                            <path d="M8 12L11 15L16 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h2>Free Morphemes</h2>
+                    <p class="morpheme-definition">Can stand alone as complete words.</p>
+                    <div class="example-box">
+                        <strong>Example:</strong> book, run, happy.
+                    </div>
+                </div>
+
+                <div class="vs-divider">
+                    <span>VS</span>
+                </div>
+
+                <div class="comparison-card bound-morpheme">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L4 8V14C4 18.42 7.58 22 12 22C16.42 22 20 18.42 20 14V8L12 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                            <circle cx="12" cy="12" r="3" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <h2>Bound Morphemes</h2>
+                    <p class="morpheme-definition">Cannot stand alone; they must attach to a root or base.</p>
+                    <div class="example-box">
+                        <strong>Example:</strong> un-, -ness, -ed.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="navigation-footer">
+            <a href="learning-objectives.html" class="btn-prev">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/>
+                </svg>
+                <span>Previous: Learning Objectives</span>
+            </a>
+            <a href="examples.html" class="btn-next">
+                <span>Next: Examples</span>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+                </svg>
+            </a>
+        </div>
+    </main>
+<script src="./static/js/audio-modal.js"></script>
+    <script src="./static/js/main.js"></script>
+    <script src="./static/js/music-player.js"></script>
+</body>
+</html>
+

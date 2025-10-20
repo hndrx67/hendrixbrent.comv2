@@ -1,0 +1,156 @@
+/* Quick Reference: Customization Guide */
+
+/* ============================================
+   COLORS - Change these to customize the theme
+   ============================================ */
+
+:root {
+    /* Main Theme Colors */
+    --primary-green: #4a9d7e;      /* Main green color */
+    --secondary-green: #6bc49d;    /* Lighter green */
+    --dark-green: #2d6b53;         /* Dark green for text */
+    --light-green: #a8d8c3;        /* Very light green */
+    --accent-teal: #5fb9a6;        /* Teal accent */
+    
+    /* Accent Colors */
+    --gold: #d4af37;               /* Gold for highlights */
+    
+    /* Background Colors */
+    --cream: #f5f3ed;              /* Main background */
+    --light-cream: #faf8f3;        /* Lighter background */
+    
+    /* Text Colors */
+    --text-dark: #2c2416;          /* Main text color */
+    --text-medium: #5a4e3f;        /* Secondary text */
+    --text-light: #8c7e6f;         /* Light text */
+}
+
+/* ============================================
+   FONTS - Change font family here
+   ============================================ */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ============================================
+   NAVIGATION - Customize navbar
+   ============================================ */
+
+.navbar {
+    /* Change navbar gradient colors */
+    background: linear-gradient(135deg, var(--primary-green) 0%, var(--accent-teal) 100%);
+    /* Adjust padding */
+    /* padding: 1rem 0; */
+}
+
+/* ============================================
+   ANIMATIONS - Adjust animation speeds
+   ============================================ */
+
+/* Loading animation duration */
+@keyframes loading-bar {
+    /* Current: 3.5s - change in animation property */
+}
+
+/* Float animation duration */
+@keyframes float {
+    /* Current: 6s - see .decorative-element */
+}
+
+/* Rotation speed */
+@keyframes rotate {
+    /* Current: 20s - see .anemo-symbol */
+}
+
+/* ============================================
+   LAYOUT - Adjust page widths
+   ============================================ */
+
+.main-content {
+    max-width: 1200px;  /* Change max width of content */
+}
+
+.nav-container {
+    max-width: 1400px;  /* Change max width of navbar */
+}
+
+/* ============================================
+   CARD STYLES - Customize content cards
+   ============================================ */
+
+.content-card {
+    border-radius: 20px;           /* Card corner radius */
+    padding: 2rem;                 /* Internal padding */
+    border: 2px solid var(--light-green);  /* Border style */
+}
+
+/* ============================================
+   BUTTONS - Customize navigation buttons
+   ============================================ */
+
+.btn-prev, .btn-next {
+    padding: 1rem 2rem;            /* Button size */
+    border-radius: 30px;           /* Button roundness */
+    font-size: 1.1rem;             /* Button text size */
+}
+
+/* ============================================
+   MUSIC TOGGLE - Customize music button
+   ============================================ */
+
+.music-toggle {
+    width: 45px;                   /* Button size */
+    height: 45px;
+    border-radius: 50%;            /* Keep circular */
+}
+
+/* ============================================
+   LOADING SCREEN - Customize loading overlay
+   ============================================ */
+
+.loading-overlay {
+    /* Change loading screen background gradient */
+    background: linear-gradient(135deg, 
+        rgba(74, 157, 126, 0.95) 0%, 
+        rgba(95, 185, 166, 0.95) 100%);
+}
+
+/* ============================================
+   RESPONSIVE BREAKPOINTS
+   ============================================ */
+
+/* Mobile: max-width: 768px */
+/* Tablet: 769px - 1024px */
+/* Desktop: 1025px+ */
+
+/* ============================================
+   QUICK TIPS
+   ============================================ */
+
+/*
+1. To change the main color scheme:
+   - Modify the --primary-green, --secondary-green, etc.
+
+2. To add your own background image:
+   body {
+       background-image: url('path/to/image.jpg');
+       background-size: cover;
+   }
+
+3. To disable animations:
+   - Remove or comment out @keyframes sections
+   - Set animation properties to 'none'
+
+4. To change fonts:
+   - Update the font-family in the body selector
+   - Add @import for Google Fonts at top of CSS
+
+5. To adjust spacing:
+   - Modify margin and padding values
+   - Use browser dev tools to inspect elements
+
+6. To customize the loading bar:
+   - Edit loader.css file
+   - Adjust animation timing in @keyframes loading-bar
+*/

@@ -1,0 +1,89 @@
+# Update all HTML files with music player modal
+
+$htmlFiles = @(
+    "morpheme-types.html",
+    "examples.html",
+    "activity.html",
+    "conclusion.html"
+)
+
+$musicModalHTML = @"
+    <!-- Music Player Modal -->
+    <div id="music-modal" class="music-modal">
+        <div class="music-modal-overlay"></div>
+        <div class="music-modal-content">
+            <button class="close-modal" id="close-music-modal">&times;</button>
+            <div id="wrap">
+                <div id="album">
+                    <div id="cover"></div>
+                    <div id="vinyl">
+                        <div id="print"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="music-controls">
+                <h2 class="now-playing">Now Playing</h2>
+                <p class="track-title" id="track-title">Track 1</p>
+                <div class="control-buttons">
+                    <button class="control-btn" id="prev-track" title="Previous Track">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/>
+                        </svg>
+                    </button>
+                    <button class="control-btn play-pause" id="play-pause" title="Play/Pause">
+                        <svg class="play-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                        <svg class="pause-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                        </svg>
+                    </button>
+                    <button class="control-btn" id="next-track" title="Next Track">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="progress-container">
+                    <span class="time-current" id="time-current">0:00</span>
+                    <input type="range" class="progress-bar" id="progress-bar" min="0" max="100" value="0">
+                    <span class="time-total" id="time-total">0:00</span>
+                </div>
+                <div class="volume-container">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="volume-icon">
+                        <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                    </svg>
+                    <input type="range" class="volume-slider" id="volume-slider" min="0" max="100" value="70">
+                </div>
+            </div>
+        </div>
+    </div>
+
+"@
+
+foreach ($file in $htmlFiles) {
+    $content = Get-Content $file -Raw
+    
+    # Add vinyl CSS if not present
+    if ($content -notmatch 'vinyl-player\.css') {
+        $content = $content -replace '(<link rel="stylesheet" href="\.\/static\/css\/loader\.css">)', "`$1`n    <link rel=""stylesheet"" href=""./static/css/vinyl-player.css"">"
+    }
+    
+    # Add music modal after <body>
+    if ($content -notmatch 'music-modal') {
+        $content = $content -replace '(<body>\s*)', "`$1$musicModalHTML"
+    }
+    
+    # Update audio source
+    $content = $content -replace '<source src="\./static/audio/background-music\.mp3"[^>]*>', '<source src="./static/audio/track1.mp3" type="audio/mpeg">' + "`n" + '        <source src="./static/audio/track2.mp3" type="audio/mpeg">'
+    
+    # Add music-player.js if not present
+    if ($content -notmatch 'music-player\.js') {
+        $content = $content -replace '(<script src="\.\/static\/js\/main\.js"></script>)', "`$1`n    <script src=""./static/js/music-player.js""></script>"
+    }
+    
+    Set-Content $file $content
+    Write-Host "Updated $file"
+}
+
+Write-Host "`nAll files updated successfully!"

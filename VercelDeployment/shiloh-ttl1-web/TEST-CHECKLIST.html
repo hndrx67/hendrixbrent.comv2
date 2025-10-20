@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Player Test Checklist</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #faf8f3 0%, #f5f3ed 100%);
+            color: #2c2416;
+        }
+        h1 {
+            color: #4a9d7e;
+            border-bottom: 3px solid #4a9d7e;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #2d6b53;
+            margin-top: 30px;
+        }
+        .checklist {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 4px 6px rgba(74, 157, 126, 0.1);
+        }
+        .item {
+            padding: 12px;
+            margin: 8px 0;
+            background: #f5f3ed;
+            border-left: 4px solid #4a9d7e;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .item:hover {
+            background: #e8e6e1;
+            transform: translateX(5px);
+        }
+        .item.checked {
+            background: #d4f4dd;
+            border-left-color: #2d6b53;
+        }
+        .item input[type="checkbox"] {
+            margin-right: 10px;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+        .section {
+            margin: 30px 0;
+        }
+        .instruction {
+            background: #fff9e6;
+            border: 2px solid #d4af37;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .success {
+            color: #2d6b53;
+            font-weight: bold;
+        }
+        .warning {
+            color: #d4af37;
+            font-weight: bold;
+        }
+        .error {
+            color: #c44536;
+            font-weight: bold;
+        }
+        code {
+            background: #e8e6e1;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        .link-button {
+            display: inline-block;
+            background: #4a9d7e;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            margin: 10px 0;
+            transition: all 0.3s ease;
+        }
+        .link-button:hover {
+            background: #2d6b53;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(74, 157, 126, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <h1>🎵 Audio Player Test Checklist</h1>
+    
+    <div class="instruction">
+        <strong>📋 How to Use This Checklist:</strong>
+        <ol>
+            <li>Click each checkbox as you verify each feature</li>
+            <li>Items will turn green when checked</li>
+            <li>Follow the instructions for each test</li>
+            <li>Open browser console (F12) to see debug messages</li>
+        </ol>
+    </div>
+
+    <a href="index.html" class="link-button">🚀 Open Main Website</a>
+
+    <div class="section">
+        <h2>1. Scrollbar Removal Test</h2>
+        <div class="checklist">
+            <div class="item" onclick="this.querySelector('input').click()">
+                <input type="checkbox" id="test1-1">
+                <label for="test1-1">Load the website and verify NO scrollbar is visible on the right side</label>
+            </div>
+            <div class="item" onclick="this.querySelector('input').click()">
+                <input type="checkbox" id="test1-2">
+                <label for="test1-2">Scroll down the page - scrolling should work normally</label>
+            </div>
+            <div class="item" onclick="this.querySelector('input').click()">
+                <input type="checkbox" id="test1-3">
+                <label for="test1-3">Add enough content to make page scrollable - still no scrollbar visible</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>2. Layout Shift Prevention Test</h2>
+        <div class="checklist">
+            <div class="item" onclick="this.querySelector('input').click()">
+                <input type="checkbox" id="test2-1">
+                <label for="test2-1">Scroll to middle of the page</label>
+            </div>
+            <div class="item" onclick="this.querySelector('input').click()">
+                <input type="checkbox" id="test2-2">
+                <label for="test2-2">Click the music icon in navbar to open modal</label>
+            </div>
+            <div class="item" onclick="this.querySelector('input').click()">
+                <input type="checkbox" id="test2-3">
+                <label for="test2-3">Verify content DOES NOT jump or shift position</label>
+            </div>
+            <div class="item" onclick="this.querySelector('input').click()">
+                <input type="checkbox" id="test2-4">
+                <label for="test2-4">Close modal and verify content stays in same position</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>3. Auto-Play After 5 Seconds Test</h2>
+        <div class="instruction">
+            <strong class="warning">⚠️ IMPORTANT:</strong> Before testing:
+            <ol>
+                <li>Open browser console (Press F12)</li>
+                <li>Go to Application tab > Session Storage</li>
+                <li>Clear all session storage</li>
+                <li>Hard refresh the page (Ctrl + Shift + R)</li>
+            </ol>
+        </div>
+        <div class="checklist">
+            <div class="item" onclick="this.querySelector('input').click()">
+                <input type="checkbox" id="test3-1">
+                <label for="test3-1">Clear sessionStorage and hard refresh page</label>
+            </div>
+            <div class="item" onclick="this.querySelector('input').click()">
+                <input type="checkbox" id="test3-2">
+                <label for="test3-2">Immediately move mouse or scroll (trigger user interaction)</label>
+            </div>
+            <div class="item" onclick="this.querySelector('input').click()">
+                <input type="checkbox" id="test3-3">
+                <label for="test3-3">Wait 5 seconds - music should AUTO-PLAY</label>
+            </div>
+            <div class="item" onclick="this.querySelector('input').click()">
+                <input type="checkbox" id="test3-4">
+                <label for="test3-4">Check console for <code class="success">✅ Auto-play successful!</code> message</label>
+            </div>
+            <div class="item" onclick="this.querySelector('input').click()">
+                <input type="checkbox" id="test3-5">
+                <label for="test3-5">Refresh page again - music should NOT auto-play (already visited)</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>4. Modal State Synchronization Test</h2>
+        <div class="checklist">
+            <div class="item" onclick="this.querySelector('input').click()">
+                <input type="checkbox" id="test4-1">
+                <label for="test4-1">Let auto-play start music (or manually click play)</label>
+            </div>
+            <div class="item" onclick="this.querySelector('input').click()">
+                <input type="checkbox" id="test4-2">
+                <label for="test4-2">Wait a few seconds while music plays in background</label>
+            </div>
+            <div class="item" onclick="this.querySelector('input').click()">
+                <input type="checkbox" id="test4-3">
+                <label for="test4-3">Open modal - should show PAUSE icon (not play)</label>
+            </div>
+            <div class="item" onclick="this.querySelector('input').click()">
+                <input type="checkbox" id="test4-4">
+                <label for="test4-4">Vinyl record should be SPINNING</label>
+            </div>
+            <div class="item" onclick="this.querySelector('input').click()">
+                <input type="checkbox" id="test4-5">
+                <label for="test4-5">Progress bar should be moving and showing correct time</label>
+            </div>
+            <div class="item" onclick="this.querySelector('input').click()">
+                <input type="checkbox" id="test4-6">
+                <label for="test4-6">Pause music in modal</label>
+            </div>
+            <div class="item" onclick="this.querySelector('input').click()">
+                <input type="checkbox" id="test4-7">
+                <label for="test4-7">Close modal and reopen - should show PAUSED state (play icon, no spinning)</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>5. Cross-Page Navigation Test</h2>
+        <div class="checklist">
+            <div class="item" onclick="this.querySelector('input').click()">
+                <input type="checkbox" id="test5-1">
+                <label for="test5-1">Start playing music on index page</label>
+            </div>
+            <div class="item" onclick="this.querySelector('input').click()">
+                <input type="checkbox" id="test5-2">
+                <label for="test5-2">Navigate to "Learning Objectives" page</label>
+            </div>
+            <div class="item" onclick="this.querySelector('input').click()">
+                <input type="checkbox" id="test5-3">
+                <label for="test5-3">Music continues playing without interruption</label>
+            </div>
+            <div class="item" onclick="this.querySelector('input').click()">
+                <input type="checkbox" id="test5-4">
+                <label for="test5-4">Open modal on new page</label>
+            </div>
+            <div class="item" onclick="this.querySelector('input').click()">
+                <input type="checkbox" id="test5-5">
+                <label for="test5-5">Modal shows correct playing state and progress position</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>6. Console Messages Check</h2>
+        <div class="instruction">
+            <strong>Open Browser Console (F12) and verify these messages appear:</strong>
+        </div>
+        <div class="checklist">
+            <div class="item" onclick="this.querySelector('input').click()">
+                <input type="checkbox" id="test6-1">
+                <label for="test6-1"><code class="success">🎵 Music Player Ready! 🎵</code></label>
+            </div>
+            <div class="item" onclick="this.querySelector('input').click()">
+                <input type="checkbox" id="test6-2">
+                <label for="test6-2"><code>Audio tracks loaded: 2</code></label>
+            </div>
+            <div class="item" onclick="this.querySelector('input').click()">
+                <input type="checkbox" id="test6-3">
+                <label for="test6-3"><code>Audio element ready: Yes</code></label>
+            </div>
+            <div class="item" onclick="this.querySelector('input').click()">
+                <input type="checkbox" id="test6-4">
+                <label for="test6-4"><code>First visit detected - will auto-play after 5 seconds</code> (on first visit)</label>
+            </div>
+            <div class="item" onclick="this.querySelector('input').click()">
+                <input type="checkbox" id="test6-5">
+                <label for="test6-5"><code class="success">✅ Auto-play successful!</code> (if auto-play works)</label>
+            </div>
+            <div class="item" onclick="this.querySelector('input').click()">
+                <input type="checkbox" id="test6-6">
+                <label for="test6-6"><code class="success">🎵 Music playing: Track 1</code> (when music starts)</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>7. Modal Visual Check</h2>
+        <div class="checklist">
+            <div class="item" onclick="this.querySelector('input').click()">
+                <input type="checkbox" id="test7-1">
+                <label for="test7-1">Modal has glass/frosted transparent effect</label>
+            </div>
+            <div class="item" onclick="this.querySelector('input').click()">
+                <input type="checkbox" id="test7-2">
+                <label for="test7-2">Background is BLURRED but NOT darkened</label>
+            </div>
+            <div class="item" onclick="this.querySelector('input').click()">
+                <input type="checkbox" id="test7-3">
+                <label for="test7-3">Modal is smaller/more compact (600px max width)</label>
+            </div>
+            <div class="item" onclick="this.querySelector('input').click()">
+                <input type="checkbox" id="test7-4">
+                <label for="test7-4">All text is readable (dark green on light glass)</label>
+            </div>
+            <div class="item" onclick="this.querySelector('input').click()">
+                <input type="checkbox" id="test7-5">
+                <label for="test7-5">Vinyl record size is appropriate (280px)</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="section" style="background: #d4f4dd; padding: 20px; border-radius: 10px; margin-top: 40px;">
+        <h2 style="color: #2d6b53; margin-top: 0;">✅ All Tests Passed?</h2>
+        <p>If all checkboxes are green, congratulations! Your music player is working perfectly!</p>
+        <p><strong>Issues?</strong></p>
+        <ul>
+            <li>Check browser console (F12) for error messages</li>
+            <li>Verify audio files exist in <code>./static/audio/</code></li>
+            <li>Try hard refresh (Ctrl + Shift + R) to clear cache</li>
+            <li>Test in incognito/private browsing mode</li>
+        </ul>
+    </div>
+
+    <script>
+        // Add click handlers for checkbox items
+        document.querySelectorAll('.item input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function(e) {
+                e.stopPropagation();
+                if (this.checked) {
+                    this.closest('.item').classList.add('checked');
+                } else {
+                    this.closest('.item').classList.remove('checked');
+                }
+            });
+        });
+
+        // Prevent double-toggle when clicking label
+        document.querySelectorAll('.item label').forEach(label => {
+            label.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+        });
+    </script>
+</body>
+</html>

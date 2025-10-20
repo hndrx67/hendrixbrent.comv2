@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Player Features Demo</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #faf8f3 0%, #f5f3ed 100%);
+            padding: 40px;
+            color: #2c2416;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #4a9d7e;
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        .feature-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(74, 157, 126, 0.15);
+            transition: transform 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(74, 157, 126, 0.25);
+        }
+        .feature-card h2 {
+            color: #2d6b53;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        .demo-box {
+            background: #f5f3ed;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #4a9d7e;
+        }
+        .vinyl-demo {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 20px 0;
+            gap: 20px;
+        }
+        .vinyl-state {
+            text-align: center;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            flex: 1;
+        }
+        .vinyl-visual {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 15px;
+            position: relative;
+            background: #333;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .cover {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #4a9d7e 0%, #6bc49d 100%);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            position: absolute;
+            z-index: 2;
+        }
+        .disc {
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, #1a1a1a 30%, #333 60%, #1a1a1a 100%);
+            border-radius: 50%;
+            position: absolute;
+            z-index: 1;
+            transition: all 0.5s ease;
+        }
+        .disc::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: #111;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .playing .disc {
+            left: 60%;
+            animation: spin 5s linear infinite;
+        }
+        .paused .disc {
+            left: 0;
+            opacity: 0.4;
+            transform: scale(0.9);
+        }
+        .paused .cover {
+            transform: scale(1.1);
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .timeline {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+            padding: 15px;
+            background: #f5f3ed;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        .timeline-item:hover {
+            background: #e8e6e1;
+            transform: translateX(5px);
+        }
+        .timeline-number {
+            background: #4a9d7e;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        .arrow {
+            font-size: 1.5rem;
+            color: #4a9d7e;
+            margin: 10px 0;
+            text-align: center;
+        }
+        .code-block {
+            background: #2c2416;
+            color: #6bc49d;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+        .success {
+            color: #2d6b53;
+            font-weight: bold;
+        }
+        .btn-test {
+            display: inline-block;
+            background: #4a9d7e;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            margin: 10px 5px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .btn-test:hover {
+            background: #2d6b53;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(74, 157, 126, 0.4);
+        }
+        .track-loop {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+        }
+        .track-box {
+            padding: 20px;
+            background: #4a9d7e;
+            color: white;
+            border-radius: 10px;
+            font-weight: bold;
+            min-width: 150px;
+            text-align: center;
+        }
+        .track-arrow {
+            font-size: 2rem;
+            color: #2d6b53;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎵 Music Player Features Demo</h1>
+        
+        <div class="feature-grid">
+            <!-- Feature 1: Auto-Play -->
+            <div class="feature-card">
+                <h2>✅ 1. Auto-Play (2 Seconds)</h2>
+                <div class="demo-box">
+                    <strong>How it works:</strong>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-number">1</div>
+                            <div>User loads page</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-number">2</div>
+                            <div>User interacts (click, scroll, mousemove)</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-number">3</div>
+                            <div>Wait 2 seconds...</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-number">4</div>
+                            <div><span class="success">🎵 Music auto-plays!</span></div>
+                        </div>
+                    </div>
+                    <p><strong>Works on:</strong> Every page load</p>
+                    <p><strong>Skips if:</strong> Music already playing</p>
+                </div>
+            </div>
+
+            <!-- Feature 2: Vinyl Animation -->
+            <div class="feature-card">
+                <h2>✅ 2. Vinyl Hide/Show Animation</h2>
+                <div class="demo-box">
+                    <strong>Visual Demo:</strong>
+                    <div class="vinyl-demo">
+                        <div class="vinyl-state">
+                            <div class="vinyl-visual playing">
+                                <div class="cover"></div>
+                                <div class="disc"></div>
+                            </div>
+                            <div style="color: #2d6b53; font-weight: bold;">▶️ PLAYING</div>
+                            <div style="font-size: 0.9rem; color: #666;">Vinyl visible & spinning</div>
+                        </div>
+                        <div class="vinyl-state">
+                            <div class="vinyl-visual paused">
+                                <div class="cover"></div>
+                                <div class="disc"></div>
+                            </div>
+                            <div style="color: #888; font-weight: bold;">⏸️ PAUSED</div>
+                            <div style="font-size: 0.9rem; color: #666;">Vinyl hidden under cover</div>
+                        </div>
+                    </div>
+                    <p><strong>Effects:</strong></p>
+                    <ul style="margin: 10px 0; padding-left: 20px;">
+                        <li>Slides in/out smoothly (0.8s)</li>
+                        <li>Fades opacity (30% when paused)</li>
+                        <li>Scales size (95% when paused)</li>
+                        <li>Cover expands when paused</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Feature 3: Track Looping -->
+            <div class="feature-card">
+                <h2>✅ 3. All Tracks Loop</h2>
+                <div class="demo-box">
+                    <strong>Track Sequence:</strong>
+                    <div class="track-loop">
+                        <div class="track-box">Track 1<br>Twilight Serenity</div>
+                        <div class="track-arrow">→</div>
+                        <div class="track-box">Track 2<br>Legend of the Wind</div>
+                        <div class="track-arrow">→</div>
+                        <div class="track-box">Track 1<br>(Loop)</div>
+                    </div>
+                    <div class="arrow">↻ Repeats Infinitely</div>
+                    <p><strong>Behavior:</strong></p>
+                    <ul style="margin: 10px 0; padding-left: 20px;">
+                        <li>Auto-advances when track ends</li>
+                        <li>Loops back to Track 1 after Track 2</li>
+                        <li>No gaps or interruptions</li>
+                        <li>Seamless transitions</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Console Output Demo -->
+        <div class="feature-card" style="margin-top: 30px;">
+            <h2>📊 Expected Console Output</h2>
+            <div class="code-block">
+                <div>🎵 Music Player Ready! 🎵</div>
+                <div>Audio tracks loaded: 2</div>
+                <div>Audio element ready: Yes</div>
+                <div>Auto-play will start after 2 seconds (on any user interaction)</div>
+                <div style="color: #6bc49d;">✅ Auto-play successful!</div>
+                <div style="color: #6bc49d;">🎵 Music playing: Twilight Serenity</div>
+                <div style="color: #a8d8c3;">// After track 1 ends:</div>
+                <div style="color: #6bc49d;">🎵 Music playing: Legend of the Wind</div>
+                <div style="color: #a8d8c3;">// After track 2 ends:</div>
+                <div style="color: #6bc49d;">🎵 Music playing: Twilight Serenity</div>
+                <div style="color: #a8d8c3;">// ... and so on</div>
+            </div>
+        </div>
+
+        <!-- Test Instructions -->
+        <div class="feature-card" style="margin-top: 30px;">
+            <h2>🧪 Test Instructions</h2>
+            <div class="demo-box">
+                <h3 style="color: #2d6b53; margin-top: 0;">Test 1: Auto-Play</h3>
+                <ol style="line-height: 1.8;">
+                    <li>Open the main website</li>
+                    <li>Move your mouse or scroll immediately</li>
+                    <li>Wait 2 seconds</li>
+                    <li>Music should start playing automatically</li>
+                    <li>Check browser console (F12) for success message</li>
+                </ol>
+
+                <h3 style="color: #2d6b53;">Test 2: Vinyl Animation</h3>
+                <ol style="line-height: 1.8;">
+                    <li>Click music icon in navbar</li>
+                    <li>Observe vinyl spinning when music plays</li>
+                    <li>Click pause button</li>
+                    <li>Watch vinyl slide back and fade under cover</li>
+                    <li>Click play button</li>
+                    <li>Watch vinyl slide out and start spinning</li>
+                </ol>
+
+                <h3 style="color: #2d6b53;">Test 3: Track Looping</h3>
+                <ol style="line-height: 1.8;">
+                    <li>Let Track 1 play until it ends naturally</li>
+                    <li>Verify Track 2 starts automatically</li>
+                    <li>Let Track 2 play until end</li>
+                    <li>Verify Track 1 starts again (loop)</li>
+                    <li>Check track title updates in modal</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div style="text-align: center; margin: 40px 0;">
+            <a href="index.html" class="btn-test">🚀 Open Main Website</a>
+            <a href="TEST-CHECKLIST.html" class="btn-test">📋 Open Test Checklist</a>
+        </div>
+
+        <!-- Quick Reference -->
+        <div class="feature-card" style="margin-top: 30px; background: #d4f4dd;">
+            <h2 style="margin-top: 0;">⚡ Quick Reference</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                <div>
+                    <h3 style="color: #2d6b53; font-size: 1.1rem;">Auto-Play</h3>
+                    <p>✅ 2 seconds delay<br>
+                    ✅ Works every visit<br>
+                    ✅ Requires user interaction</p>
+                </div>
+                <div>
+                    <h3 style="color: #2d6b53; font-size: 1.1rem;">Vinyl Animation</h3>
+                    <p>✅ Smooth transitions<br>
+                    ✅ Hides when paused<br>
+                    ✅ 0.5-0.8s duration</p>
+                </div>
+                <div>
+                    <h3 style="color: #2d6b53; font-size: 1.1rem;">Track Loop</h3>
+                    <p>✅ All tracks play<br>
+                    ✅ Auto-advance<br>
+                    ✅ Infinite repeat</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add some interactivity to demo
+        document.querySelectorAll('.vinyl-state').forEach(state => {
+            state.addEventListener('click', function() {
+                const visual = this.querySelector('.vinyl-visual');
+                if (visual.classList.contains('playing')) {
+                    visual.classList.remove('playing');
+                    visual.classList.add('paused');
+                    this.querySelector('div:nth-child(2)').textContent = '⏸️ PAUSED';
+                } else {
+                    visual.classList.remove('paused');
+                    visual.classList.add('playing');
+                    this.querySelector('div:nth-child(2)').textContent = '▶️ PLAYING';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
