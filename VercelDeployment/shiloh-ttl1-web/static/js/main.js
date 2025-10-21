@@ -1,39 +1,33 @@
 // Genshin Impact Morphology Website - Main JavaScript
 
 // === LOADING ANIMATION ===
-// Check if we're coming from a navigation (not a fresh page load)
-const loadingOverlay = document.getElementById('loading-overlay');
-const isNavigating = sessionStorage.getItem('isNavigating');
-
-if (isNavigating === 'true') {
-    // Coming from navigation - show loading briefly then hide
-    sessionStorage.removeItem('isNavigating');
-    setTimeout(() => {
-        loadingOverlay.classList.add('hidden');
-    }, 700);
-} else {
-    // Fresh page load - hide loading immediately
-    loadingOverlay.classList.add('hidden');
-}
-
-// Show loading animation when navigating to another page
+// Hide loading on page load (either fresh or from navigation)
 document.addEventListener('DOMContentLoaded', function() {
+    const loadingOverlay = document.getElementById('loading-overlay');
+    
+    // Check if we navigated from another page
+    const isNavigating = sessionStorage.getItem('isNavigating');
+    
+    if (isNavigating === 'true') {
+        // Coming from navigation - show briefly then hide
+        sessionStorage.removeItem('isNavigating');
+        setTimeout(() => {
+            loadingOverlay.classList.add('hidden');
+        }, 700);
+    } else {
+        // Fresh page load - hide immediately
+        loadingOverlay.classList.add('hidden');
+    }
+    
+    // Setup navigation click handlers
     document.querySelectorAll('a.nav-link, a.btn-prev, a.btn-next').forEach(link => {
         link.addEventListener('click', function(e) {
-            // Only show loading for internal navigation
+            // Only handle internal navigation
             const href = this.getAttribute('href');
             if (href && !href.startsWith('http') && !href.startsWith('#')) {
-                e.preventDefault(); // Prevent immediate navigation
-                const loadingOverlay = document.getElementById('loading-overlay');
-                if (loadingOverlay) {
-                    // Mark that we're navigating
-                    sessionStorage.setItem('isNavigating', 'true');
-                    loadingOverlay.classList.remove('hidden');
-                    // Navigate after showing the loading overlay
-                    setTimeout(() => {
-                        window.location.href = href;
-                    }, 100);
-                }
+                // Mark that we're navigating so next page knows
+                sessionStorage.setItem('isNavigating', 'true');
+                // Let the default navigation happen - don't show loading here
             }
         });
     });
