@@ -66,7 +66,7 @@ html.dark body {
     background: url("https://yuanshen.site/imgs/loading-bar.png") no-repeat left 100%;
     background-size: 500px 62.5px;
     background-position-x: 0;
-    animation: loading-bar 1.5s cubic-bezier(0.28, 0.11, 0.32, 1) infinite forwards;
+    animation: loading-bar 0.8s cubic-bezier(0.28, 0.11, 0.32, 1) infinite forwards;
 }
 
 @media screen and (max-width: 719px) {
