@@ -69,16 +69,47 @@ html.dark body {
     animation: loading-bar 0.8s cubic-bezier(0.28, 0.11, 0.32, 1) infinite forwards;
 }
 
-@media screen and (max-width: 719px) {
+/* Mobile Loading Bar */
+@media screen and (max-width: 768px) {
     .loading-bar {
-        display: none;
+        width: 300px;
+        height: 37.5px;
+        transform: translate(-50%, -50%) scale(1);
+        display: block !important;
     }
     
-    @media screen and (orientation: landscape) {
-        .loading-bar {
-            display: block !important;
-            transform: translate(-50%, -50%) scale(0.7) !important;
-        }
+    .loading-bar::after {
+        width: 300px;
+        height: 37.5px;
+        background-size: 300px 37.5px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .loading-bar {
+        width: 250px;
+        height: 31.25px;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    
+    .loading-bar::after {
+        width: 250px;
+        height: 31.25px;
+        background-size: 250px 31.25px;
+    }
+}
+
+@media screen and (max-width: 768px) and (orientation: landscape) {
+    .loading-bar {
+        width: 280px;
+        height: 35px;
+        transform: translate(-50%, -50%) scale(0.9);
+    }
+    
+    .loading-bar::after {
+        width: 280px;
+        height: 35px;
+        background-size: 280px 35px;
     }
 }
 
@@ -91,7 +122,6 @@ html.dark body {
 @keyframes loading-bar {
     0% {
         width: 0;
-        background-size: 500px 62.5px;
     }
     16.6% {}
     33.2% {}
@@ -99,7 +129,7 @@ html.dark body {
     66.4% {}
     83% {}
     100% {
-        width: 500px;
+        width: 100%;
     }
 }
 

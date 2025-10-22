@@ -1,0 +1,801 @@
+/* ===========================
+   Global Styles
+   =========================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Comic Sans MS', 'Arial Rounded MT Bold', cursive, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 30px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+/* ===========================
+   Header
+   =========================== */
+
+header {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 3em;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.subtitle {
+    font-size: 1.3em;
+    opacity: 0.95;
+}
+
+/* ===========================
+   Navigation
+   =========================== */
+
+.main-nav {
+    background: #4facfe;
+    background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 10px;
+    gap: 10px;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    padding: 15px 30px;
+    border-radius: 25px;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.nav-link:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+.nav-link.active {
+    background: white;
+    color: #4facfe;
+}
+
+/* ===========================
+   Main Content
+   =========================== */
+
+main {
+    padding: 40px 20px;
+}
+
+.welcome-section {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.welcome-section h2 {
+    color: #f5576c;
+    font-size: 2.5em;
+    margin-bottom: 15px;
+}
+
+.welcome-section p {
+    font-size: 1.3em;
+    color: #666;
+}
+
+/* ===========================
+   Activity Cards
+   =========================== */
+
+.activity-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.activity-card {
+    background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.activity-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.card-icon {
+    font-size: 4em;
+    margin-bottom: 15px;
+}
+
+.activity-card h3 {
+    color: #764ba2;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+}
+
+.activity-card p {
+    color: #555;
+    font-size: 1.1em;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+/* ===========================
+   Buttons
+   =========================== */
+
+.btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 15px 35px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 1.2em;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.btn-small {
+    padding: 10px 20px;
+    font-size: 1em;
+}
+
+/* ===========================
+   Alphabet Display
+   =========================== */
+
+.alphabet-display {
+    background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+}
+
+.alphabet-display h3 {
+    color: #764ba2;
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.alphabet-letters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.letter {
+    background: white;
+    color: #667eea;
+    font-size: 2em;
+    font-weight: bold;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.letter:hover {
+    transform: scale(1.2) rotate(5deg);
+    background: #667eea;
+    color: white;
+}
+
+/* ===========================
+   Letter Grid (Identification Page)
+   =========================== */
+
+.game-section {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.game-section h2 {
+    color: #f5576c;
+    font-size: 2.3em;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.instruction {
+    text-align: center;
+    font-size: 1.2em;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.letter-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.letter-btn {
+    background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+    border: none;
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #764ba2;
+    padding: 20px;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.letter-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.letter-btn:active {
+    transform: scale(0.95);
+}
+
+/* ===========================
+   Letter Display Card
+   =========================== */
+
+.letter-display {
+    margin-bottom: 50px;
+}
+
+.display-card {
+    background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.display-card h3 {
+    color: #764ba2;
+    font-size: 1.8em;
+    margin-bottom: 20px;
+}
+
+.letter-showcase {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin: 30px 0;
+    flex-wrap: wrap;
+}
+
+.letter-box {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    min-width: 150px;
+}
+
+.letter-box p {
+    color: #666;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.letter-big {
+    font-size: 5em;
+    font-weight: bold;
+    color: #667eea;
+}
+
+/* ===========================
+   Matching Game
+   =========================== */
+
+.matching-game {
+    background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+    border-radius: 20px;
+    padding: 30px;
+    margin-top: 40px;
+}
+
+.matching-game h3 {
+    color: #764ba2;
+    font-size: 2em;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.score-board {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 15px 25px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #764ba2;
+}
+
+.match-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.match-column {
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.match-column h4 {
+    text-align: center;
+    color: #764ba2;
+    font-size: 1.5em;
+    margin-bottom: 15px;
+}
+
+.match-letters {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.match-btn {
+    background: white;
+    border: 3px solid transparent;
+    font-size: 2em;
+    font-weight: bold;
+    color: #667eea;
+    padding: 15px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+.match-btn:hover {
+    transform: translateX(5px);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+}
+
+.match-btn.selected {
+    border-color: #f5576c;
+    background: #fff5f7;
+    transform: scale(1.05);
+}
+
+.match-btn.matched {
+    background: #90EE90;
+    color: white;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+/* ===========================
+   Feedback Messages
+   =========================== */
+
+.feedback {
+    text-align: center;
+    padding: 20px;
+    border-radius: 15px;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-top: 20px;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.feedback.correct {
+    background: #90EE90;
+    color: white;
+}
+
+.feedback.incorrect {
+    background: #FFB6C1;
+    color: white;
+}
+
+/* ===========================
+   Sequence Page
+   =========================== */
+
+.sequence-section {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.sequence-section h2 {
+    color: #f5576c;
+    font-size: 2.3em;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.alphabet-reference {
+    background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+    border-radius: 20px;
+    padding: 25px;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.alphabet-reference h3 {
+    color: #764ba2;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+}
+
+.alphabet-line {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #667eea;
+    letter-spacing: 8px;
+    word-spacing: 5px;
+}
+
+.game-box {
+    background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 30px;
+}
+
+.game-box h3 {
+    color: #764ba2;
+    font-size: 2em;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.sequence-display {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.sequence-letters {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.sequence-letter {
+    background: #667eea;
+    color: white;
+    font-size: 2.5em;
+    font-weight: bold;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.sequence-blank {
+    background: white;
+    border: 3px dashed #667eea;
+    color: #667eea;
+}
+
+.answer-options {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.option-btn {
+    background: white;
+    border: 3px solid #667eea;
+    font-size: 2.2em;
+    font-weight: bold;
+    color: #667eea;
+    width: 70px;
+    height: 70px;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+.option-btn:hover {
+    transform: scale(1.1);
+    background: #667eea;
+    color: white;
+}
+
+.option-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ===========================
+   Sorting Game
+   =========================== */
+
+.sorting-area {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.sort-btn {
+    background: white;
+    border: 3px solid #667eea;
+    font-size: 2.2em;
+    font-weight: bold;
+    color: #667eea;
+    width: 70px;
+    height: 70px;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+.sort-btn:hover:not(:disabled) {
+    transform: scale(1.1);
+    background: #667eea;
+    color: white;
+}
+
+.sort-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.sorted-display {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 20px 0;
+    text-align: center;
+    font-size: 1.3em;
+    min-height: 60px;
+}
+
+.sorted-letters {
+    font-weight: bold;
+    color: #667eea;
+    font-size: 1.5em;
+    letter-spacing: 10px;
+}
+
+/* ===========================
+   Before/After Game
+   =========================== */
+
+.before-after-question {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.question-text {
+    font-size: 1.8em;
+    color: #764ba2;
+    margin-bottom: 20px;
+}
+
+.question-letter {
+    font-size: 4em;
+    font-weight: bold;
+    color: #667eea;
+    margin: 20px 0;
+}
+
+/* ===========================
+   Videos Page
+   =========================== */
+
+.videos-section {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.videos-section h2 {
+    color: #f5576c;
+    font-size: 2.5em;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.video-card {
+    background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.video-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+    border-radius: 15px;
+    margin-bottom: 15px;
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.video-card h3 {
+    color: #764ba2;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.video-card p {
+    color: #555;
+    font-size: 1.1em;
+    line-height: 1.5;
+}
+
+/* ===========================
+   Tips Box
+   =========================== */
+
+.tips-box {
+    background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+    border-radius: 20px;
+    padding: 30px;
+    margin-top: 30px;
+}
+
+.tips-box h3 {
+    color: #764ba2;
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.tips-box ul {
+    list-style: none;
+    padding: 0;
+}
+
+.tips-box li {
+    background: white;
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    border-radius: 15px;
+    font-size: 1.2em;
+    color: #555;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tips-box li:before {
+    content: "✓ ";
+    color: #90EE90;
+    font-weight: bold;
+    font-size: 1.3em;
+    margin-right: 10px;
+}
+
+/* ===========================
+   Footer
+   =========================== */
+
+footer {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-align: center;
+    padding: 25px;
+    font-size: 1.1em;
+}
+
+/* ===========================
+   Responsive Design
+   =========================== */
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2em;
+    }
+
+    .subtitle {
+        font-size: 1.1em;
+    }
+
+    .nav-link {
+        padding: 12px 20px;
+        font-size: 1em;
+    }
+
+    .activity-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .match-container {
+        grid-template-columns: 1fr;
+    }
+
+    .letter {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5em;
+    }
+
+    .alphabet-line {
+        font-size: 1.2em;
+        letter-spacing: 3px;
+    }
+
+    .video-grid {
+        grid-template-columns: 1fr;
+    }
+}
