@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Blue Archive Tier List</title>
+  <link rel="stylesheet" href="./static/ba-tierlist.css" />
+</head>
+<body>
+  <div class="scroll-root">
+    <header class="header">
+      <div class="nav container">
+        <div class="brand"><a class="link" href="/index.html">Site Home</a></div>
+        <nav class="actions" aria-label="Main navigation">
+          <a class="link" href="/anonymity.html">Anonymity</a>
+          <a class="link" href="/uma-musume-tierlist.html">Uma Tier List</a>
+          <a class="link" href="./blue-archive-tierlist.html" aria-current="page">Blue Archive</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main">
+      <section class="hero container">
+        <h1 class="title">Blue Archive List</h1>
+        <p class="slogan"><i>Sometimes students' needs correction.</i></p>
+      </section>
+
+      <section class="tierlist-section container">
+        <div class="tier-banner" style="background-image:url('./ba/KISAKI-BANNER LD2.png');"></div>
+
+        
+        <div class="table-wrapper">
+          <table class="tierlist-table" aria-describedby="tierlist-description">
+            <caption id="tierlist-description" class="visually-hidden">Interactive paginated Blue Archive tier list</caption>
+            <thead>
+              <tr>
+                <th scope="col">Rank</th>
+                <th scope="col">Student</th>
+                <th scope="col">Notes</th>
+                <th scope="col">Correction/Goon Count</th>
+                <th scope="col">Trend</th>
+              </tr>
+            </thead>
+            <tbody id="tierlist-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+            <div class="controls-row">
+          <div class="pagination" role="navigation" aria-label="Pagination">
+            <button id="prev-btn" class="btn" type="button" disabled>Previous</button>
+            <span id="page-indicator" class="page-indicator" aria-live="polite">Page 1 / 1</span>
+            <button id="next-btn" class="btn" type="button" disabled>Next</button>
+          </div>
+        </div>
+
+
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <span>&copy; <span data-year></span> Blue Archive Tier List. All names &amp; assets are property of their respective owners.</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="./static/ba-tierlist.js" defer></script>
+  <script src="./static/ba-anim.js" defer></script>
+  <script src="./static/ba-navbar-hide.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<title>Uma Musume Tier List</title>
+		<meta name="description" content="Tier list ranking (1–20) of Uma Musume characters." />
+		<link rel="icon" href="./webFAVICON2.png" />
+		<link rel="preload" href="./static/uma-tierlist.css" as="style" />
+		<link rel="stylesheet" href="./static/uma-tierlist.css" />
+	</head>
+	<body>
+		<div class="scroll-root">
+			<header class="header">
+				<div class="container nav">
+					<div class="brand"><a href="./index.html" class="link">Uma Musume Tier List</a></div>
+					<div class="actions">
+						<a class="link" href="./index.html">Home</a>
+						<a class="link" href="./projects.html">Projects</a>
+					</div>
+				</div>
+			</header>
+
+			<main class="main">
+				<section class="hero">
+					<div class="container hero-inner">
+						<h1 class="title">Uma Musume List</h1>
+						<i><p class="slogan">Sometimes I just can't help gooning to horses.</p></i>
+					</div>
+				</section>
+
+				<section class="tierlist-section container">
+					<!-- Banner area: adjust background-image URL in CSS or set inline style below -->
+					<div class="tier-banner" role="img" aria-label="Promotional banner" style="background-image:url('./umas/tmoperao-2banner.png');"></div>
+					<!-- Image placeholders: Replace blank squares by adding real image paths.
+							 OPTION 1: Update the data array in uma-tierlist.js: set image: "./static/img/uma1.png".
+							 OPTION 2: Replace the generated <div class="uma-avatar"> with <img src="PATH" alt="Uma Name" class="uma-avatar">.
+							 TODO: Provide actual Uma names & image assets. -->
+					
+
+					<div class="table-wrapper" role="region" aria-label="Uma Musume tier list">
+						<table class="tierlist-table" aria-describedby="page-indicator">
+							<thead>
+								<tr>
+									<th scope="col">Rank</th>
+									<th scope="col">Uma</th>
+									<th scope="col">Notes</th>
+									<th scope="col"># of times Gooned</th>
+									<th scope="col">Trend</th>
+								</tr>
+							</thead>
+							<tbody id="tierlist-body"><!-- Rows injected by JS --></tbody>
+						</table>
+					</div>
+				</section>
+
+                        <div class="controls-row">
+						<nav class="pagination" aria-label="Tier list pagination">
+							<button id="prev-btn" class="btn" type="button" aria-label="Previous page" disabled>Prev</button>
+							<span id="page-indicator" class="page-indicator" aria-live="polite">Page 1 / 2</span>
+							<button id="next-btn" class="btn" type="button" aria-label="Next page">Next</button>
+						</nav>
+					</div>
+
+
+			</main>
+
+			<footer class="footer">
+				<div class="container row">
+					<span class="small">© <span data-year></span> HNDRX.ORG</span>
+					<span class="small">Uma Musume Goon List by VLL and HAS.ATTR</span>
+				</div>
+			</footer>
+		</div>
+
+		<script defer src="./static/uma-tierlist.js"></script>
+		<script defer src="./static/uma-musume-anim.js"></script>
+		<script defer src="./static/uma-navbar-hide.js"></script>
+	</body>
+</html>
