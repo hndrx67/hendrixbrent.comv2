@@ -11,33 +11,35 @@
 
   // Real data list (ranks 1..25). Image paths intentionally left blank for now —
   // set each `image` to a valid path later, e.g. "./static/img/umas/maruzensky.png".
+  // Note: `gooned` supports number | string. Strings (e.g., '?', 'N/A') will be shown as-is.
 const umas = [
   // Added trend property: 'up' | 'down' | 'flat'. Adjust as needed.
   { rank: 1,  name: 'Maruzensky',           image: './umas/mommymaruzenskyyyyy.jpg', note: '', gooned: 150, trend: 'up' },
-  { rank: 2,  name: 'Daiwa Scarlet',        image: './umas/daiwa-scarlet-wife.jpg', note: '', gooned: 20, trend: 'flat' },
-  { rank: 3,  name: 'Kitasan Black',        image: './umas/KitasanBlackIcon1.jpg', note: '', gooned: 16, trend: 'flat' },
-  { rank: 4,  name: 'Satono Diamond',       image: './umas/SatonoDiamond.jpg', note: '', gooned: 16, trend: 'flat' },
-  { rank: 5,  name: 'Tokai Teio',           image: './umas/tokaiteiomybeloved1.jpg', note: '', gooned: 13, trend: 'flat' },
-  { rank: 6,  name: 'Rice Shower',          image: './umas/riceshowermydaughter.jpg', note: '', gooned: 13, trend: 'flat' },
-  { rank: 7,  name: 'Special Week',         image: './umas/specialweeksegs1.jpg', note: '', gooned: 12, trend: 'flat' },
-  { rank: 8,  name: 'Oguri Cap',            image: './umas/oguricap1.jpg', note: '', gooned: -1, trend: 'flat' },
-  { rank: 9,  name: 'Mejiro McQueen',       image: './umas/mejiromcqueensegs1.jpg', note: '', gooned: 12, trend: 'flat' },
-  { rank: 10, name: 'Symboli Rudolph',      image: './umas/SymboliRudolf.jpg', note: '', gooned: 11, trend: 'flat' },
-  { rank: 11, name: 'Tamamo Cross',         image: './umas/', note: '', gooned: 11, trend: 'flat' },
-  { rank: 12, name: 'Biwa Hayahide',        image: './umas/', note: '', gooned: 10, trend: 'flat' },
-  { rank: 13, name: 'Mayano Top Gun',       image: './umas/', note: '', gooned: 10, trend: 'flat' },
-  { rank: 14, name: 'Manhattan Café',       image: './umas/', note: '', gooned: 9, trend: 'flat' },
-  { rank: 15, name: 'Agnes Tachyon',        image: './umas/', note: '', gooned: 8, trend: 'flat' },
-  { rank: 16, name: 'Gold City',            image: './umas/', note: '', gooned: 7, trend: 'flat' },
-  { rank: 17, name: 'Sweep Tosho',          image: './umas/', note: '', gooned: 7, trend: 'flat' },
-  { rank: 18, name: 'Tosen Jordan',         image: './umas/', note: '', gooned: 7, trend: 'flat' },
-  { rank: 19, name: 'Marvelous Sunday',     image: './umas/', note: '', gooned: 7, trend: 'flat' },
-  { rank: 20, name: 'Meisho Doto',          image: './umas/', note: '', gooned: 7, trend: 'flat' },
-  { rank: 21, name: 'Nice Nature',          image: './umas/', note: '', gooned: 6, trend: 'flat' },
-  { rank: 22, name: 'Daitaku Helios',       image: './umas/', note: '', gooned: 6, trend: 'flat' },
-  { rank: 23, name: 'Twin Turbo',           image: './umas/', note: '', gooned: 6, trend: 'flat' },
-  { rank: 24, name: 'Matikanetannhauser',   image: './umas/', note: '', gooned: 6, trend: 'flat' },
-  { rank: 25, name: 'Happy Meek',           image: './umas/', note: '', gooned: 1, trend: 'flat' },
+  { rank: 2,  name: 'TM Opera O',           image: './umas/tm opera o-pfpf1.jpg', note: '', gooned: '?', trend: 'up' },
+  { rank: 3,  name: 'Daiwa Scarlet',        image: './umas/daiwa-scarlet-wife.jpg', note: '', gooned: 20, trend: 'flat' },
+  { rank: 4,  name: 'Kitasan Black',        image: './umas/KitasanBlackIcon1.jpg', note: '', gooned: 16, trend: 'flat' },
+  { rank: 5,  name: 'Satono Diamond',       image: './umas/SatonoDiamond.jpg', note: '', gooned: 16, trend: 'flat' },
+  { rank: 6,  name: 'Tokai Teio',           image: './umas/tokaiteiomybeloved1.jpg', note: '', gooned: 13, trend: 'flat' },
+  { rank: 7,  name: 'Rice Shower',          image: './umas/riceshowermydaughter.jpg', note: '', gooned: 13, trend: 'flat' },
+  { rank: 8,  name: 'Special Week',         image: './umas/specialweeksegs1.jpg', note: '', gooned: 12, trend: 'flat' },
+  { rank: 9,  name: 'Oguri Cap',            image: './umas/oguricap1.jpg', note: '', gooned: -1, trend: 'flat' },
+  { rank: 10, name: 'Mejiro McQueen',       image: './umas/mejiromcqueensegs1.jpg', note: '', gooned: 12, trend: 'flat' },
+  { rank: 11, name: 'Symboli Rudolph',      image: './umas/SymboliRudolf.jpg', note: '', gooned: 11, trend: 'flat' },
+  { rank: 12, name: 'Tamamo Cross',         image: './umas/', note: '', gooned: 11, trend: 'flat' },
+  { rank: 13, name: 'Biwa Hayahide',        image: './umas/', note: '', gooned: 10, trend: 'flat' },
+  { rank: 14, name: 'Mayano Top Gun',       image: './umas/', note: '', gooned: 10, trend: 'flat' },
+  { rank: 15, name: 'Manhattan Café',       image: './umas/', note: '', gooned: 9, trend: 'flat' },
+  { rank: 16, name: 'Agnes Tachyon',        image: './umas/', note: '', gooned: 8, trend: 'flat' },
+  { rank: 17, name: 'Gold City',            image: './umas/', note: '', gooned: 7, trend: 'flat' },
+  { rank: 18, name: 'Sweep Tosho',          image: './umas/', note: '', gooned: 7, trend: 'flat' },
+  { rank: 19, name: 'Tosen Jordan',         image: './umas/', note: '', gooned: 7, trend: 'flat' },
+  { rank: 20, name: 'Marvelous Sunday',     image: './umas/', note: '', gooned: 7, trend: 'flat' },
+  { rank: 21, name: 'Meisho Doto',          image: './umas/', note: '', gooned: 7, trend: 'flat' },
+  { rank: 22, name: 'Nice Nature',          image: './umas/', note: '', gooned: 6, trend: 'flat' },
+  { rank: 23, name: 'Daitaku Helios',       image: './umas/', note: '', gooned: 6, trend: 'flat' },
+  { rank: 24, name: 'Twin Turbo',           image: './umas/', note: '', gooned: 6, trend: 'flat' },
+  { rank: 25, name: 'Matikanetannhauser',   image: './umas/', note: '', gooned: 6, trend: 'flat' },
+  { rank: 26, name: 'Happy Meek',           image: './umas/', note: '', gooned: 1, trend: 'flat' },
 ];
 
   let page = 1;
@@ -115,9 +117,15 @@ const umas = [
   note.textContent = item.note || '—';
   tdNote.appendChild(note);
 
-  // Gooned count cell (4th column)
+  // Gooned count cell (4th column) — supports number or string
   const tdGooned = document.createElement('td');
-  tdGooned.textContent = (typeof item.gooned === 'number') ? item.gooned.toString() : '0';
+  if (typeof item.gooned === 'number') {
+    tdGooned.textContent = item.gooned.toString();
+  } else if (typeof item.gooned === 'string') {
+    tdGooned.textContent = item.gooned;
+  } else {
+    tdGooned.textContent = '—';
+  }
 
   // Trend cell (5th column)
   const tdTrend = document.createElement('td');
@@ -193,9 +201,10 @@ const umas = [
 
     // Stats
     statGrid.innerHTML = '';
+    const goonedDisplay = (typeof item.gooned === 'number') ? item.gooned : (typeof item.gooned === 'string') ? item.gooned : '—';
     const stats = [
       { label: 'Rank', value: item.rank },
-      { label: 'Gooned', value: item.gooned },
+      { label: 'Gooned', value: goonedDisplay },
       { label: 'Trend', value: item.trend },
     ];
     stats.forEach(s => {
