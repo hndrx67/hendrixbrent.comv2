@@ -14,8 +14,8 @@
   // Note: `gooned` supports number | string. Strings (e.g., '?', 'N/A') will be shown as-is.
 const umas = [
   // Added trend property: 'up' | 'down' | 'flat'. Adjust as needed.
-  { rank: 1,  name: 'Maruzensky',           image: './umas/mommymaruzenskyyyyy.jpg', note: '', gooned: 150, trend: 'up' },
-  { rank: 2,  name: 'TM Opera O',           image: './umas/tm opera o-pfpf1.jpg', note: '', gooned: '?', trend: 'up' },
+  { rank: 1,  name: 'Maruzensky',           image: './umas/mommymaruzenskyyyyy.jpg', note: '', gooned: 151, trend: 'up' },
+  { rank: 2,  name: 'TM Opera O',           image: './umas/tm opera o-pfpf1.jpg', note: '', gooned: 22, trend: 'up' },
   { rank: 3,  name: 'Daiwa Scarlet',        image: './umas/daiwa-scarlet-wife.jpg', note: '', gooned: 20, trend: 'flat' },
   { rank: 4,  name: 'Kitasan Black',        image: './umas/KitasanBlackIcon1.jpg', note: '', gooned: 16, trend: 'flat' },
   { rank: 5,  name: 'Satono Diamond',       image: './umas/SatonoDiamond.jpg', note: '', gooned: 16, trend: 'flat' },
