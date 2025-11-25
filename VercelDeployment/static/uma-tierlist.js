@@ -17,7 +17,7 @@ const umas = [
   { rank: 1,  name: 'Maruzensky',           image: './umas/mommymaruzenskyyyyy.jpg', note: '', gooned: 151, trend: 'up' },
   { rank: 2,  name: 'TM Opera O',           image: './umas/tm opera o-pfpf1.jpg', note: '', gooned: 22, trend: 'up' },
   { rank: 3,  name: 'Rice Shower',          image: './umas/riceshowermydaughter.jpg', note: '', gooned: 21, trend: 'up' },
-  { rank: 4,  name: 'Daiwa Scarlet',        image: './umas/daiwa-scarlet-wife.jpg', note: '', gooned: 20, trend: 'flat' },
+  { rank: 4,  name: 'Daiwa Scarlet',        image: './umas/daiwa-scarlet-wife.jpg', note: '', gooned: 20, trend: 'down' },
   { rank: 5,  name: 'Kitasan Black',        image: './umas/KitasanBlackIcon1.jpg', note: '', gooned: 16, trend: 'flat' },
   { rank: 6,  name: 'Satono Diamond',       image: './umas/SatonoDiamond.jpg', note: '', gooned: 16, trend: 'flat' },
   { rank: 7,  name: 'Tokai Teio',           image: './umas/tokaiteiomybeloved1.jpg', note: '', gooned: 13, trend: 'flat' },
