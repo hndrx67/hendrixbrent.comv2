@@ -14,16 +14,16 @@
   // Note: `gooned` supports number | string. Strings (e.g., '?', 'N/A') will be shown as-is.
 const umas = [
   // Added trend property: 'up' | 'down' | 'flat'. Adjust as needed.
-  { rank: 1,  name: 'Maruzensky',           image: './umas/mommymaruzenskyyyyy.jpg', note: '', gooned: 151, trend: 'up' },
+  { rank: 1,  name: 'Maruzensky',           image: './umas/mommymaruzenskyyyyy.jpg', note: '', gooned: 162, trend: 'up' },
   { rank: 2,  name: 'Rice Shower',          image: './umas/riceshowermydaughter.jpg', note: '', gooned: 23, trend: 'up' },
   { rank: 3,  name: 'TM Opera O',           image: './umas/tm opera o-pfpf1.jpg', note: '', gooned: 22, trend: 'down' },
   
-  { rank: 4,  name: 'Daiwa Scarlet',        image: './umas/daiwa-scarlet-wife.jpg', note: '', gooned: 20, trend: 'down' },
+  { rank: 4,  name: 'Daiwa Scarlet',        image: './umas/daiwa-scarlet-wife.jpg', note: '', gooned: 20, trend: 'flat' },
   { rank: 5,  name: 'Kitasan Black',        image: './umas/KitasanBlackIcon1.jpg', note: '', gooned: 16, trend: 'flat' },
   { rank: 6,  name: 'Satono Diamond',       image: './umas/SatonoDiamond.jpg', note: '', gooned: 16, trend: 'flat' },
   { rank: 7,  name: 'Tokai Teio',           image: './umas/tokaiteiomybeloved1.jpg', note: '', gooned: 13, trend: 'flat' },
   { rank: 8,  name: 'Special Week',         image: './umas/specialweeksegs1.jpg', note: '', gooned: 12, trend: 'flat' },
-  { rank: 9,  name: 'Oguri Cap',            image: './umas/oguricap1.jpg', note: '', gooned: -1, trend: 'flat' },
+  { rank: 9,  name: 'Gentildonna',            image: './umas/gentildonna_icon.png', note: '', gooned: 12, trend: 'flat' },
   { rank: 10, name: 'Mejiro McQueen',       image: './umas/mejiromcqueensegs1.jpg', note: '', gooned: 12, trend: 'flat' },
   { rank: 11, name: 'Symboli Rudolph',      image: './umas/SymboliRudolf.jpg', note: '', gooned: 11, trend: 'flat' },
   { rank: 12, name: 'Tamamo Cross',         image: './umas/', note: '', gooned: 11, trend: 'flat' },
