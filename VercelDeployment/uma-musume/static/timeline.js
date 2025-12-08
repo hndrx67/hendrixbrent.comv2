@@ -3,7 +3,7 @@
   'use strict';
   const timeline = [
     // Future Banners
-    { date: '2025-12-09', name: 'Manhattan Cafe', banner: 'https://uma.moe/assets/images/character/banner/2021_30048.png', desc: 'Character banner featuring: Manhattan Cafe', support: 'Sirius Symboli, Nakayama Festa', type: 'current' },
+    //{ date: '2025-12-09', name: 'Manhattan Cafe', banner: 'https://uma.moe/assets/images/character/banner/2021_30048.png', desc: 'Character banner featuring: Manhattan Cafe', support: 'Sirius Symboli, Nakayama Festa', type: 'current' },
     { date: '2025-12-15', name: 'Symboli Rudolf, Gold City', banner: 'https://uma.moe/assets/images/character/banner/2021_30050.png', desc: 'Character banner featuring: Symboli Rudolf, Gold City', support: 'Curren Chan, Narita Brian', type: 'current' },
     { date: '2025-12-19', name: 'Tosen Jordan', banner: 'https://uma.moe/assets/images/character/banner/2021_30052.png', desc: 'Character banner featuring: Tosen Jordan', support: 'El Condor Pasa, Kitasan Black', type: 'current' },
     { date: '2025-12-29', name: 'Mejiro Dober', banner: 'https://uma.moe/assets/images/character/banner/2021_30054.png', desc: 'Character banner featuring: Mejiro Dober', support: 'Vodka, Daitaku Helios', type: 'current' },
@@ -39,12 +39,12 @@
   ];
 
   const currentBanner = {
-    name: 'Kawakami Princess',
-    banner: 'https://uma.moe/assets/images/character/banner/2021_30046.png',
-    desc: 'Character banner featuring: Kawakami Princess. Limited-time gacha event.',
-    support: 'Seiun Sky, Yaeno Muteki',
-    startDate: '2025-12-02',
-    endDate: '2025-12-08',
+    name: 'Manhattan Cafe',
+    banner: 'https://uma.moe/assets/images/character/banner/2021_30048.png',
+    desc: 'Character banner featuring: Manhattan Cafe.',
+    support: 'Sirius Symboli, Nakayama Festa',
+    startDate: '2025-12-09',
+    endDate: '2025-12-15',
   };
 
   const listEl = document.getElementById('timeline-list');
