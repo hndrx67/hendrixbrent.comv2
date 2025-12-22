@@ -60,6 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const hero = document.getElementById('hero');
   const sitesSection = document.getElementById('sites-section');
   const sitesGrid = document.getElementById('sites-grid');
+  const titleEl = document.querySelector('.title');
 
   // Populate sites grid
   function populateSitesGrid() {
@@ -76,13 +77,15 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // Explore button click
-  exploreBtn.addEventListener('click', function() {
-    hero.style.display = 'none';
-    sitesSection.classList.add('active');
-    populateSitesGrid();
-    window.scrollTo(0, 0);
-  });
+  // Explore button click (guarded in case button is not present)
+  if (exploreBtn) {
+    exploreBtn.addEventListener('click', function() {
+      hero.style.display = 'none';
+      sitesSection.classList.add('active');
+      populateSitesGrid();
+      window.scrollTo(0, 0);
+    });
+  }
 
   // Back button click
   backBtn.addEventListener('click', function() {
@@ -92,6 +95,34 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   console.log('HNDRX.ORG loaded');
+  
+  // Title font cycler: fades out, swaps font-family, then fades in every 1.5s
+  if (titleEl) {
+    const fonts = [
+      "'Oswald', sans-serif",
+      "'Segoe UI', Tahoma, Geneva, sans-serif",
+      "Georgia, 'Times New Roman', Times, serif",
+      "'Courier New', Courier, monospace",
+      "'Trebuchet MS', Arial, sans-serif",
+      "Impact, 'Arial Black', sans-serif"
+    ];
+    let fontIndex = 0;
+
+    // Ensure initial font-family is first in the list if possible
+    titleEl.style.fontFamily = fonts[0];
+    titleEl.style.opacity = '1';
+
+    setInterval(() => {
+      // Fade out
+      titleEl.style.opacity = '0';
+      // After fade duration (~350ms) change font and fade back in
+      setTimeout(() => {
+        fontIndex = (fontIndex + 1) % fonts.length;
+        titleEl.style.fontFamily = fonts[fontIndex];
+        titleEl.style.opacity = '1';
+      }, 350);
+    }, 1500);
+  }
 });
 
 // Optional: Handle viewport height for mobile
