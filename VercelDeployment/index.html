@@ -9,6 +9,16 @@
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap" />
 		<link rel="preload" href="./static/css/index2.css" as="style" />
 		<link rel="stylesheet" href="./static/css/index2.css" />
+		<style>
+			/* Inline styles for the "Use My Domain for free" form */
+			.use-domain-btn { margin-top: 1rem; padding: 0.6rem 1rem; font-size: 1rem; cursor: pointer; }
+			.contact-form-wrapper { overflow: hidden; transition: max-height 300ms ease, opacity 300ms ease; max-height: 0; opacity: 0; }
+			.contact-form-wrapper.open { max-height: 500px; opacity: 1; }
+			.contact-form { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem; }
+			.contact-form input[type="email"], .contact-form textarea { width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px; font-size: 0.95rem; }
+			.contact-form button[type="submit"] { align-self: flex-start; padding: 0.5rem 0.9rem; border: none; background:#111; color:#fff; border-radius:4px; cursor:pointer }
+			.contact-success { color: green; margin-top: 0.5rem; font-size: 0.95rem; }
+		</style>
 	</head>
 	<body>
 		<main>
@@ -17,6 +27,19 @@
 					<h1 class="title">HNDRX.ORG</h1>
 					<p class="manifesto"><i>Independent creative platform for art, technology, and digital culture<br>by Hendrix Fortu</i></p>
 					<!--<button class="explore-btn" id="explore-btn">Explore</button>-->
+					<button id="use-domain-btn" class="use-domain-btn">Host your Web Services on my Domain</button>
+					<div class="contact-form-wrapper" id="contact-form-wrapper" aria-hidden="true">
+						<form class="contact-form" id="contact-form" action="https://formsubmit.co/brentifromph696@gmail.com" method="POST" target="_blank">
+							<input type="hidden" name="_subject" value="Use My Domain Request">
+							<!-- _next will be set by JS so user can be redirected back -->
+							<label for="message" style="font-size:0.95rem">Message</label>
+							<textarea id="message" name="message" rows="4" placeholder="What webapp or services you would like to be hosted in this free domain?" required></textarea>
+							<label for="email" style="font-size:0.95rem">Your Email</label>
+							<input id="email" name="email" type="email" placeholder="you@example.com" required />
+							<button type="submit">Send Request</button>
+						</form>
+						<div class="contact-success" id="contact-success" style="display:none">Request sent — thank you!</div>
+					</div>
 				</div>
 			</section>
 
@@ -28,5 +51,37 @@
 			</section>
 		</main>
 		<script defer src="./static/js/index2.js"></script>
+		<script>
+		document.addEventListener('DOMContentLoaded', function(){
+			var btn = document.getElementById('use-domain-btn');
+			var wrapper = document.getElementById('contact-form-wrapper');
+			var form = document.getElementById('contact-form');
+			var success = document.getElementById('contact-success');
+
+			btn.addEventListener('click', function(){
+				var open = wrapper.classList.toggle('open');
+				wrapper.setAttribute('aria-hidden', open ? 'false' : 'true');
+				if(open) wrapper.scrollIntoView({behavior:'smooth', block:'center'});
+			});
+
+			form.addEventListener('submit', function(e){
+				// ensure the form sends the user back here after FormSubmit confirmation
+				var next = form.querySelector('input[name="_next"]');
+				if(!next){
+					next = document.createElement('input');
+					next.type = 'hidden';
+					next.name = '_next';
+					next.value = window.location.href;
+					form.appendChild(next);
+				}
+				// show a friendly message after submit (form submits to FormSubmit in a new tab)
+				setTimeout(function(){
+					success.style.display = 'block';
+					form.reset();
+					wrapper.classList.remove('open');
+				}, 800);
+			});
+		});
+		</script>
 	</body>
 </html>
