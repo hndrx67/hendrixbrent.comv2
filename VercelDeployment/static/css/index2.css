@@ -88,6 +88,8 @@ main {
   letter-spacing: 0.08em;
   margin: 0;
   color: #ffffff;
+  transition: opacity 350ms ease-in-out;
+  will-change: opacity, font-family;
 }
 
 .manifesto {
