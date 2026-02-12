@@ -1,0 +1,1623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Vocabulary Lesson</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif;
+            background: #fafbfc;
+            min-height: 100vh;
+            padding: 0;
+            color: #1a1a1a;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: white;
+            min-height: 100vh;
+            animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .header {
+            background: white;
+            padding: 48px 40px 32px;
+            border-bottom: 1px solid #e8e8e8;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #1a1a1a;
+            letter-spacing: -0.5px;
+            animation: slideUpFromBottom 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .header p {
+            font-size: 0.95em;
+            color: #666;
+            font-weight: 400;
+            animation: slideUpFromBottom 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.1s backwards;
+        }
+
+        .tabs {
+            display: flex;
+            background: white;
+            border-bottom: 1px solid #e8e8e8;
+            padding: 0 40px;
+            gap: 8px;
+            animation: slideUpFromBottom 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .tab {
+            padding: 16px 20px;
+            text-align: center;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            font-size: 0.9em;
+            font-weight: 500;
+            color: #666;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            border-radius: 6px 6px 0 0;
+        }
+
+        .tab:hover {
+            color: #1a1a1a;
+            background: #f5f5f5;
+            transform: translateY(-2px);
+        }
+
+        .tab.active {
+            color: #1a1a1a;
+            background: transparent;
+        }
+
+        .tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #1a1a1a;
+            animation: slideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .content {
+            padding: 48px 40px;
+            max-width: 900px;
+            margin: 0 auto;
+            animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.2s backwards;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeInUp 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes slideIn {
+            from {
+                width: 0;
+                left: 0;
+            }
+            to {
+                width: 100%;
+                left: 0;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUpFromBottom {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-6px);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.7;
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -1000px 0;
+            }
+            100% {
+                background-position: 1000px 0;
+            }
+        }
+
+        .vocab-card {
+            background: white;
+            border: 1px solid #e8e8e8;
+            border-radius: 8px;
+            padding: 28px;
+            margin-bottom: 16px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: slideUpFromBottom 0.5s cubic-bezier(0.4, 0, 0.2, 1) backwards;
+        }
+
+        .vocab-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .vocab-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .vocab-card:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .vocab-card:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .vocab-card:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
+        .vocab-card:nth-child(6) {
+            animation-delay: 0.6s;
+        }
+
+        .vocab-card:hover {
+            border-color: #d0d0d0;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            transform: translateY(-4px);
+        }
+
+        .vocab-word {
+            font-size: 1.5em;
+            color: #1a1a1a;
+            font-weight: 600;
+            margin-bottom: 8px;
+            letter-spacing: -0.3px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .vocab-card:hover .vocab-word {
+            color: #1a1a1a;
+            transform: translateX(2px);
+        }
+
+        .vocab-pronunciation {
+            font-style: normal;
+            color: #999;
+            margin-bottom: 16px;
+            font-size: 0.9em;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .vocab-card:hover .vocab-pronunciation {
+            color: #666;
+        }
+
+        .vocab-definition {
+            color: #4a4a4a;
+            line-height: 1.7;
+            margin-bottom: 16px;
+            font-size: 0.95em;
+        }
+
+        .vocab-example {
+            background: #f9f9f9;
+            padding: 16px;
+            border-radius: 6px;
+            border-left: 2px solid #e0e0e0;
+            color: #4a4a4a;
+            margin-top: 12px;
+            font-size: 0.9em;
+            line-height: 1.6;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .vocab-card:hover .vocab-example {
+            background: #f0f0f0;
+            border-left-color: #1a1a1a;
+            transform: translateX(2px);
+        }
+
+        .quiz-question {
+            background: white;
+            border: 1px solid #e8e8e8;
+            border-radius: 8px;
+            padding: 32px;
+            margin-bottom: 24px;
+            animation: slideUpFromBottom 0.5s cubic-bezier(0.4, 0, 0.2, 1) backwards;
+        }
+
+        .quiz-question:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .quiz-question:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .quiz-question:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .quiz-question:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .quiz-question:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
+        .question-text {
+            font-size: 1.1em;
+            color: #1a1a1a;
+            margin-bottom: 24px;
+            font-weight: 500;
+            line-height: 1.5;
+            animation: slideUpFromBottom 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            animation: slideUpFromBottom 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.1s backwards;
+        }
+
+        .option {
+            background: #fafafa;
+            padding: 16px 20px;
+            border-radius: 6px;
+            border: 1.5px solid #e8e8e8;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 0.95em;
+            color: #4a4a4a;
+            animation: scaleIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) backwards;
+        }
+
+        .option:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .option:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .option:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .option:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .option:hover {
+            border-color: #1a1a1a;
+            background: white;
+            transform: translateX(4px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        .option.selected {
+            border-color: #1a1a1a;
+            background: white;
+            color: #1a1a1a;
+            transform: scale(1.02);
+        }
+
+        .option.correct {
+            border-color: #10b981;
+            background: #f0fdf4;
+            color: #059669;
+            animation: pulse 0.6s ease-in-out;
+        }
+
+        .option.incorrect {
+            border-color: #ef4444;
+            background: #fef2f2;
+            color: #dc2626;
+            animation: pulse 0.6s ease-in-out;
+        }
+
+        .submit-btn {
+            background: #1a1a1a;
+            color: white;
+            padding: 14px 32px;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.95em;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-top: 24px;
+            position: relative;
+            overflow: hidden;
+            animation: slideUpFromBottom 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: left 0.3s ease;
+        }
+
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+
+        .submit-btn:hover {
+            background: #2a2a2a;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .submit-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .result-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            margin-top: 24px;
+            flex-wrap: wrap;
+        }
+
+        .result-buttons .submit-btn {
+            margin-top: 0;
+            flex: 1;
+            min-width: 140px;
+        }
+
+        .result {
+            margin-top: 32px;
+            padding: 24px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 1em;
+            border: 1.5px solid;
+            animation: slideUpFromBottom 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .result.success {
+            background: #f0fdf4;
+            color: #059669;
+            border-color: #10b981;
+        }
+
+        .result.error {
+            background: #fef2f2;
+            color: #dc2626;
+            border-color: #ef4444;
+        }
+
+        .score-display {
+            font-size: 2.5em;
+            color: #1a1a1a;
+            text-align: center;
+            margin: 16px 0;
+            font-weight: 600;
+            letter-spacing: -1px;
+            animation: scaleIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .scores-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .score-card {
+            background: white;
+            border: 1px solid #e8e8e8;
+            border-radius: 12px;
+            padding: 32px 28px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: slideUpFromBottom 0.5s cubic-bezier(0.4, 0, 0.2, 1) backwards;
+        }
+
+        .score-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .score-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .score-card:hover {
+            border-color: #1a1a1a;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+            transform: translateY(-6px);
+        }
+
+        .score-card-title {
+            font-size: 0.95em;
+            color: #666;
+            font-weight: 500;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .score-card-status {
+            font-size: 0.85em;
+            color: #999;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .score-card-status.completed {
+            color: #10b981;
+            font-weight: 600;
+            font-style: normal;
+        }
+
+        .score-card-value {
+            font-size: 3em;
+            color: #1a1a1a;
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom: 8px;
+        }
+
+        .score-percentage {
+            font-size: 1.1em;
+            color: #666;
+            margin-top: 12px;
+            font-weight: 500;
+        }
+
+        #overall-score {
+            background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
+            border: 2px solid #10b981;
+            border-radius: 12px;
+            padding: 32px;
+            animation: slideUpFromBottom 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        #overall-score h3 {
+            color: #059669;
+            margin-bottom: 16px;
+            font-size: 1.3em;
+            font-weight: 600;
+        }
+
+        #overall-score p {
+            color: #059669;
+            font-size: 1.1em;
+            font-weight: 500;
+        }
+
+        #overall-score .overall-percentage {
+            font-size: 2.5em;
+            color: #1a1a1a;
+            margin: 16px 0;
+            font-weight: 700;
+        }
+
+        .flashcard-container {
+            perspective: 1000px;
+            margin-bottom: 32px;
+        }
+
+        .flashcard {
+            background: white;
+            border: 1px solid #e8e8e8;
+            border-radius: 12px;
+            padding: 80px 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+            min-height: 320px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            animation: slideUpFromBottom 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .flashcard:hover {
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .flashcard.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .flashcard-front, .flashcard-back {
+            backface-visibility: hidden;
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 40px;
+        }
+
+        .flashcard-back {
+            transform: translateY(-50%) rotateY(180deg);
+        }
+
+        .flashcard-word {
+            font-size: 2.5em;
+            color: #1a1a1a;
+            font-weight: 600;
+            letter-spacing: -1px;
+        }
+
+        .flashcard-definition {
+            font-size: 1.2em;
+            color: #4a4a4a;
+            line-height: 1.7;
+        }
+
+        .flashcard-controls {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 24px;
+        }
+
+        .flashcard-btn {
+            padding: 12px 28px;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.9em;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 500;
+            animation: slideUpFromBottom 0.5s cubic-bezier(0.4, 0, 0.2, 1) backwards;
+        }
+
+        .prev-btn {
+            background: #f5f5f5;
+            color: #4a4a4a;
+            border: 1px solid #e8e8e8;
+            animation-delay: 0.1s;
+        }
+
+        .prev-btn:hover {
+            background: #e8e8e8;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        .next-btn {
+            background: #1a1a1a;
+            color: white;
+            animation-delay: 0.2s;
+        }
+
+        .next-btn:hover {
+            background: #2a2a2a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-counter {
+            text-align: center;
+            color: #999;
+            margin-top: 16px;
+            font-size: 0.9em;
+        }
+
+        h2 {
+            font-size: 1.5em;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 32px;
+            letter-spacing: -0.5px;
+            animation: slideUpFromBottom 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Landing Page Styles */
+        .landing-page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #fafbfc 0%, #f5f6f7 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            overflow: hidden;
+        }
+
+        .landing-page.hidden {
+            display: none;
+        }
+
+        .landing-content {
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            max-width: 600px;
+            padding: 40px;
+        }
+
+        .landing-title {
+            font-size: 3.5em;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+            line-height: 1.2;
+            animation: slideUpFromBottom 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .landing-subtitle {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 48px;
+            font-weight: 400;
+            line-height: 1.6;
+            animation: slideUpFromBottom 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.1s backwards;
+        }
+
+        .start-button {
+            background: #1a1a1a;
+            color: white;
+            padding: 18px 48px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.05em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            letter-spacing: 0.3px;
+            animation: slideUpFromBottom 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.2s backwards;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .start-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.15);
+            transition: left 0.3s ease;
+        }
+
+        .start-button:hover::before {
+            left: 100%;
+        }
+
+        .start-button:hover {
+            background: #2a2a2a;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.2);
+        }
+
+        .start-button:active {
+            transform: translateY(-1px);
+        }
+
+        /* Geometric Shapes */
+        .shape {
+            position: absolute;
+            opacity: 0.08;
+            pointer-events: none;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .circle-1 {
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: #1a1a1a;
+            top: -150px;
+            right: -100px;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .circle-2 {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: #1a1a1a;
+            bottom: -100px;
+            left: -100px;
+            animation: float 7s ease-in-out infinite;
+            animation-delay: 1s;
+        }
+
+        .rect-1 {
+            width: 200px;
+            height: 80px;
+            background: #1a1a1a;
+            transform: rotate(25deg);
+            top: 20%;
+            left: 8%;
+            animation: float 9s ease-in-out infinite;
+            animation-delay: 0.5s;
+        }
+
+        .rect-2 {
+            width: 150px;
+            height: 150px;
+            background: #1a1a1a;
+            transform: rotate(-15deg);
+            bottom: 15%;
+            right: 10%;
+            animation: float 10s ease-in-out infinite;
+            animation-delay: 1.5s;
+        }
+
+        .accent-shapes {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        /* Enhanced shape designs for header area - subtle accent */
+        .header::before {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(26, 26, 26, 0.03) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .header {
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Landing page cards aesthetic */
+        .landing-features {
+            display: flex;
+            gap: 24px;
+            margin-top: 64px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .feature-item {
+            width: 120px;
+            height: 120px;
+            background: white;
+            border: 1px solid #e8e8e8;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 16px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: scaleIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) backwards;
+        }
+
+        .feature-item:nth-child(1) {
+            animation-delay: 0.3s;
+        }
+
+        .feature-item:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        .feature-item:nth-child(3) {
+            animation-delay: 0.5s;
+        }
+
+        .feature-item:hover {
+            border-color: #1a1a1a;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            transform: translateY(-6px);
+        }
+
+        .feature-icon {
+            font-size: 2em;
+            line-height: 1;
+        }
+
+        .feature-label {
+            font-size: 0.75em;
+            color: #666;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .landing-title {
+                font-size: 2.5em;
+            }
+
+            .landing-subtitle {
+                font-size: 1em;
+            }
+
+            .circle-1 {
+                width: 250px;
+                height: 250px;
+                top: -100px;
+                right: -80px;
+            }
+
+            .circle-2 {
+                width: 200px;
+                height: 200px;
+                bottom: -80px;
+                left: -80px;
+            }
+
+            .rect-1 {
+                width: 150px;
+                height: 60px;
+            }
+
+            .rect-2 {
+                width: 100px;
+                height: 100px;
+            }
+
+            .landing-features {
+                margin-top: 48px;
+                gap: 16px;
+            }
+
+            .feature-item {
+                width: 100px;
+                height: 100px;
+            }
+
+            .header {
+                padding: 32px 24px 24px;
+            }
+
+            .header h1 {
+                font-size: 1.6em;
+            }
+
+            .tabs {
+                padding: 0 16px;
+                overflow-x: auto;
+            }
+
+            .tab {
+                font-size: 0.85em;
+                padding: 14px 16px;
+                white-space: nowrap;
+            }
+
+            .content {
+                padding: 32px 24px;
+            }
+
+            .vocab-card {
+                padding: 24px;
+            }
+
+            .vocab-word {
+                font-size: 1.3em;
+            }
+
+            .flashcard {
+                padding: 60px 24px;
+                min-height: 280px;
+            }
+
+            .flashcard-word {
+                font-size: 2em;
+            }
+
+            .flashcard-definition {
+                font-size: 1.1em;
+            }
+
+            .quiz-question {
+                padding: 24px;
+            }
+
+            .result-buttons {
+                flex-direction: column;
+            }
+
+            .result-buttons .submit-btn {
+                width: 100%;
+                min-width: unset;
+            }
+
+            .scores-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .score-card {
+                padding: 24px 20px;
+            }
+
+            .score-card-value {
+                font-size: 2.2em;
+            }
+
+            #overall-score {
+                padding: 24px;
+            }
+
+            #overall-score .overall-percentage {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Landing Page -->
+    <div class="landing-page" id="landing-page">
+        <div class="accent-shapes">
+            <div class="shape circle-1"></div>
+            <div class="shape circle-2"></div>
+            <div class="shape rect-1"></div>
+            <div class="shape rect-2"></div>
+        </div>
+        
+        <div class="landing-content">
+            <h1 class="landing-title">Master your Vocabulary</h1>
+            <p class="landing-subtitle">Master essential SAT/ACT vocabulary words through interactive lessons, flashcards, and quizzes</p>
+            
+            <button class="start-button" onclick="startLearning()">Start Learning</button>
+            
+            <div class="landing-features">
+                <div class="feature-item">
+                    <div class="feature-icon">📚</div>
+                    <div class="feature-label">Learn</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🔄</div>
+                    <div class="feature-label">Practice</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">✓</div>
+                    <div class="feature-label">Test</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="main-content" style="display: none;">
+        <div class="header">
+            <h1>Advanced Vocabulary Lesson</h1>
+            <p>Master essential SAT/ACT vocabulary words</p>
+        </div>
+
+        <div class="tabs">
+            <button class="tab active" onclick="switchTab(0)">Vocabulary List</button>
+            <button class="tab" onclick="switchTab(1)">Flashcards</button>
+            <button class="tab" onclick="switchTab(2)">Quiz 1</button>
+            <button class="tab" onclick="switchTab(3)">Quiz 2</button>
+            <button class="tab" onclick="switchTab(4)">Scores</button>
+        </div>
+
+        <div class="content">
+            <!-- Tab 1: Vocabulary List -->
+            <div class="tab-content active" id="tab-0">
+                <h2>Vocabulary Words</h2>
+                
+                <div class="vocab-card">
+                    <div class="vocab-word">Ephemeral</div>
+                    <div class="vocab-pronunciation">/ɪˈfem.ər.əl/</div>
+                    <div class="vocab-definition"><strong>Definition:</strong> Lasting for a very short time; temporary.</div>
+                    <div class="vocab-example"><strong>Example:</strong> The beauty of cherry blossoms is ephemeral, lasting only a few weeks each spring.</div>
+                </div>
+
+                <div class="vocab-card">
+                    <div class="vocab-word">Ubiquitous</div>
+                    <div class="vocab-pronunciation">/juːˈbɪk.wɪ.təs/</div>
+                    <div class="vocab-definition"><strong>Definition:</strong> Present, appearing, or found everywhere.</div>
+                    <div class="vocab-example"><strong>Example:</strong> Smartphones have become ubiquitous in modern society, with nearly everyone owning one.</div>
+                </div>
+
+                <div class="vocab-card">
+                    <div class="vocab-word">Ambiguous</div>
+                    <div class="vocab-pronunciation">/æmˈbɪɡ.ju.əs/</div>
+                    <div class="vocab-definition"><strong>Definition:</strong> Open to more than one interpretation; not having one obvious meaning.</div>
+                    <div class="vocab-example"><strong>Example:</strong> The politician's ambiguous statement left voters uncertain about her position on the issue.</div>
+                </div>
+
+                <div class="vocab-card">
+                    <div class="vocab-word">Eloquent</div>
+                    <div class="vocab-pronunciation">/ˈel.ə.kwənt/</div>
+                    <div class="vocab-definition"><strong>Definition:</strong> Fluent or persuasive in speaking or writing.</div>
+                    <div class="vocab-example"><strong>Example:</strong> Martin Luther King Jr. was known for his eloquent speeches that inspired millions.</div>
+                </div>
+
+                <div class="vocab-card">
+                    <div class="vocab-word">Pragmatic</div>
+                    <div class="vocab-pronunciation">/præɡˈmæt.ɪk/</div>
+                    <div class="vocab-definition"><strong>Definition:</strong> Dealing with things sensibly and realistically in a way that is based on practical rather than theoretical considerations.</div>
+                    <div class="vocab-example"><strong>Example:</strong> The team took a pragmatic approach to solving the problem by focusing on what would actually work.</div>
+                </div>
+
+                <div class="vocab-card">
+                    <div class="vocab-word">Meticulous</div>
+                    <div class="vocab-pronunciation">/məˈtɪk.jə.ləs/</div>
+                    <div class="vocab-definition"><strong>Definition:</strong> Showing great attention to detail; very careful and precise.</div>
+                    <div class="vocab-example"><strong>Example:</strong> The scientist kept meticulous records of every experiment she conducted.</div>
+                </div>
+            </div>
+
+            <!-- Tab 2: Flashcards -->
+            <div class="tab-content" id="tab-1">
+                <h2>Flashcards</h2>
+                <p style="text-align: center; margin-bottom: 24px; color: #999; font-size: 0.9em;">Click the card to flip it</p>
+                
+                <div class="flashcard-container">
+                    <div class="flashcard" id="flashcard" onclick="flipCard()">
+                        <div class="flashcard-front">
+                            <div class="flashcard-word" id="flashcard-word">Ephemeral</div>
+                        </div>
+                        <div class="flashcard-back">
+                            <div class="flashcard-definition" id="flashcard-definition">Lasting for a very short time; temporary.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-counter" id="card-counter">Card 1 of 6</div>
+
+                <div class="flashcard-controls">
+                    <button class="flashcard-btn prev-btn" onclick="previousCard()">← Previous</button>
+                    <button class="flashcard-btn next-btn" onclick="nextCard()">Next →</button>
+                </div>
+            </div>
+
+            <!-- Tab 3: Quiz 1 (Matching Definitions) -->
+            <div class="tab-content" id="tab-2">
+                <h2>Quiz 1: Match the Definition</h2>
+                
+                <div id="quiz1-container"></div>
+                
+                <button class="submit-btn" onclick="submitQuiz1()" id="submit-quiz1">Submit Quiz</button>
+                
+                <div id="quiz1-result"></div>
+            </div>
+
+            <!-- Tab 4: Quiz 2 (Fill in the Blank) -->
+            <div class="tab-content" id="tab-3">
+                <h2>Quiz 2: Choose the Right Word</h2>
+                
+                <div id="quiz2-container"></div>
+                
+                <button class="submit-btn" onclick="submitQuiz2()" id="submit-quiz2">Submit Quiz</button>
+                
+                <div id="quiz2-result"></div>
+            </div>
+
+            <!-- Tab 5: Scores -->
+            <div class="tab-content" id="tab-4">
+                <h2>Your Scores</h2>
+                <div id="scores-container" class="scores-grid">
+                    <div class="score-card">
+                        <div class="score-card-title">Quiz 1: Match the Definition</div>
+                        <div class="score-card-status" id="quiz1-status">Not attempted yet</div>
+                        <div class="score-card-value" id="quiz1-score-display">-</div>
+                    </div>
+                    <div class="score-card">
+                        <div class="score-card-title">Quiz 2: Choose the Right Word</div>
+                        <div class="score-card-status" id="quiz2-status">Not attempted yet</div>
+                        <div class="score-card-value" id="quiz2-score-display">-</div>
+                    </div>
+                </div>
+                <div id="overall-score" style="margin-top: 48px; text-align: center;"></div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+    <script>
+        // Landing page function
+        function startLearning() {
+            const landingPage = document.getElementById('landing-page');
+            const mainContent = document.getElementById('main-content');
+            
+            landingPage.classList.add('hidden');
+            mainContent.style.display = 'block';
+        }
+
+        // Scores tracking
+        const quizScores = {
+            quiz1: null,
+            quiz2: null
+        };
+
+        // Vocabulary data
+        const vocabulary = [
+            {
+                word: "Ephemeral",
+                pronunciation: "/ɪˈfem.ər.əl/",
+                definition: "Lasting for a very short time; temporary."
+            },
+            {
+                word: "Ubiquitous",
+                pronunciation: "/juːˈbɪk.wɪ.təs/",
+                definition: "Present, appearing, or found everywhere."
+            },
+            {
+                word: "Ambiguous",
+                pronunciation: "/æmˈbɪɡ.ju.əs/",
+                definition: "Open to more than one interpretation; not having one obvious meaning."
+            },
+            {
+                word: "Eloquent",
+                pronunciation: "/ˈel.ə.kwənt/",
+                definition: "Fluent or persuasive in speaking or writing."
+            },
+            {
+                word: "Pragmatic",
+                pronunciation: "/præɡˈmæt.ɪk/",
+                definition: "Dealing with things sensibly and realistically based on practical considerations."
+            },
+            {
+                word: "Meticulous",
+                pronunciation: "/məˈtɪk.jə.ləs/",
+                definition: "Showing great attention to detail; very careful and precise."
+            }
+        ];
+
+        // Tab switching
+        function switchTab(tabIndex) {
+            const tabs = document.querySelectorAll('.tab');
+            const contents = document.querySelectorAll('.tab-content');
+            
+            tabs.forEach(tab => tab.classList.remove('active'));
+            contents.forEach(content => content.classList.remove('active'));
+            
+            tabs[tabIndex].classList.add('active');
+            contents[tabIndex].classList.add('active');
+        }
+
+        // Flashcard functionality
+        let currentCard = 0;
+        let isFlipped = false;
+
+        function updateFlashcard() {
+            const flashcard = document.getElementById('flashcard');
+            const word = document.getElementById('flashcard-word');
+            const definition = document.getElementById('flashcard-definition');
+            const counter = document.getElementById('card-counter');
+            
+            word.textContent = vocabulary[currentCard].word;
+            definition.textContent = vocabulary[currentCard].definition;
+            counter.textContent = `Card ${currentCard + 1} of ${vocabulary.length}`;
+            
+            if (isFlipped) {
+                flashcard.classList.remove('flipped');
+                isFlipped = false;
+            }
+        }
+
+        function flipCard() {
+            const flashcard = document.getElementById('flashcard');
+            flashcard.classList.toggle('flipped');
+            isFlipped = !isFlipped;
+        }
+
+        function nextCard() {
+            currentCard = (currentCard + 1) % vocabulary.length;
+            updateFlashcard();
+        }
+
+        function previousCard() {
+            currentCard = (currentCard - 1 + vocabulary.length) % vocabulary.length;
+            updateFlashcard();
+        }
+
+        // Quiz 1: Matching definitions
+        const quiz1Questions = [
+            {
+                question: "What does 'ephemeral' mean?",
+                options: [
+                    "Permanent and lasting",
+                    "Lasting for a very short time",
+                    "Extremely important",
+                    "Difficult to understand"
+                ],
+                correct: 1
+            },
+            {
+                question: "What does 'ubiquitous' mean?",
+                options: [
+                    "Rare and unusual",
+                    "Expensive and valuable",
+                    "Present everywhere",
+                    "Ancient and outdated"
+                ],
+                correct: 2
+            },
+            {
+                question: "What does 'ambiguous' mean?",
+                options: [
+                    "Very clear and obvious",
+                    "Extremely difficult",
+                    "Having multiple possible meanings",
+                    "Totally incorrect"
+                ],
+                correct: 2
+            },
+            {
+                question: "What does 'eloquent' mean?",
+                options: [
+                    "Silent and reserved",
+                    "Fluent and persuasive in speaking",
+                    "Confused and unclear",
+                    "Angry and hostile"
+                ],
+                correct: 1
+            }
+        ];
+
+        let quiz1Answers = [];
+
+        function initQuiz1() {
+            const container = document.getElementById('quiz1-container');
+            container.innerHTML = '';
+            quiz1Answers = [];
+            
+            quiz1Questions.forEach((q, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'quiz-question';
+                
+                let html = `<div class="question-text">Question ${index + 1}: ${q.question}</div>`;
+                html += '<div class="options">';
+                
+                q.options.forEach((option, optIndex) => {
+                    html += `<div class="option" onclick="selectOption(${index}, ${optIndex})" data-question="${index}" data-option="${optIndex}">${option}</div>`;
+                });
+                
+                html += '</div>';
+                questionDiv.innerHTML = html;
+                container.appendChild(questionDiv);
+            });
+        }
+
+        function selectOption(questionIndex, optionIndex) {
+            const options = document.querySelectorAll(`[data-question="${questionIndex}"]`);
+            options.forEach(opt => opt.classList.remove('selected'));
+            
+            const selectedOption = document.querySelector(`[data-question="${questionIndex}"][data-option="${optionIndex}"]`);
+            selectedOption.classList.add('selected');
+            
+            quiz1Answers[questionIndex] = optionIndex;
+        }
+
+        function submitQuiz1() {
+            if (quiz1Answers.length !== quiz1Questions.length) {
+                alert('Please answer all questions before submitting!');
+                return;
+            }
+            
+            let correct = 0;
+            
+            quiz1Questions.forEach((q, index) => {
+                const options = document.querySelectorAll(`[data-question="${index}"]`);
+                options.forEach((opt, optIndex) => {
+                    opt.style.pointerEvents = 'none';
+                    
+                    if (optIndex === q.correct) {
+                        opt.classList.add('correct');
+                    } else if (optIndex === quiz1Answers[index]) {
+                        opt.classList.add('incorrect');
+                    }
+                });
+                
+                if (quiz1Answers[index] === q.correct) {
+                    correct++;
+                }
+            });
+            
+            const percentage = Math.round((correct / quiz1Questions.length) * 100);
+            
+            // Save score to global object
+            quizScores.quiz1 = {
+                score: correct,
+                total: quiz1Questions.length,
+                percentage: percentage
+            };
+            
+            const resultDiv = document.getElementById('quiz1-result');
+            resultDiv.className = percentage >= 70 ? 'result success' : 'result error';
+            resultDiv.innerHTML = `
+                <div class="score-display">${correct} / ${quiz1Questions.length}</div>
+                <div>You scored ${percentage}%</div>
+                <div style="margin-top: 10px; font-weight: 500;">${percentage >= 70 ? 'Great job!' : 'Keep studying!'}</div>
+                <div class="result-buttons">
+                    <button class="submit-btn" onclick="resetQuiz1()" style="background: #666;">Try Again</button>
+                    <button class="submit-btn" onclick="switchTab(4)" style="background: #1a1a1a;">See Scores</button>
+                </div>
+            `;
+            
+            document.getElementById('submit-quiz1').disabled = true;
+            updateScoresDisplay();
+        }
+
+        function resetQuiz1() {
+            quiz1Answers = [];
+            const resultDiv = document.getElementById('quiz1-result');
+            resultDiv.className = '';
+            resultDiv.innerHTML = '';
+            document.getElementById('submit-quiz1').disabled = false;
+            
+            const options = document.querySelectorAll('[data-question]');
+            options.forEach(opt => {
+                opt.classList.remove('selected', 'correct', 'incorrect');
+                opt.style.pointerEvents = 'auto';
+            });
+            
+            initQuiz1();
+        }
+
+        // Quiz 2: Fill in the blank
+        const quiz2Questions = [
+            {
+                question: "The morning fog was _______, disappearing within an hour of sunrise.",
+                options: ["ephemeral", "ubiquitous", "meticulous", "eloquent"],
+                correct: 0
+            },
+            {
+                question: "Social media has become _______ in modern life, with platforms accessible on every device.",
+                options: ["ambiguous", "ubiquitous", "eloquent", "pragmatic"],
+                correct: 1
+            },
+            {
+                question: "The lawyer's _______ argument convinced the jury of her client's innocence.",
+                options: ["ephemeral", "ambiguous", "eloquent", "meticulous"],
+                correct: 2
+            },
+            {
+                question: "The surgeon's _______ attention to detail ensured the operation's success.",
+                options: ["ambiguous", "pragmatic", "ubiquitous", "meticulous"],
+                correct: 3
+            },
+            {
+                question: "Taking a _______ approach, the engineer chose the solution that was most cost-effective and easy to implement.",
+                options: ["pragmatic", "ephemeral", "ambiguous", "eloquent"],
+                correct: 0
+            }
+        ];
+
+        let quiz2Answers = [];
+
+        function initQuiz2() {
+            const container = document.getElementById('quiz2-container');
+            container.innerHTML = '';
+            quiz2Answers = [];
+            
+            quiz2Questions.forEach((q, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'quiz-question';
+                
+                let html = `<div class="question-text">Question ${index + 1}: ${q.question}</div>`;
+                html += '<div class="options">';
+                
+                q.options.forEach((option, optIndex) => {
+                    html += `<div class="option" onclick="selectOption2(${index}, ${optIndex})" data-question2="${index}" data-option2="${optIndex}">${option}</div>`;
+                });
+                
+                html += '</div>';
+                questionDiv.innerHTML = html;
+                container.appendChild(questionDiv);
+            });
+        }
+
+        function selectOption2(questionIndex, optionIndex) {
+            const options = document.querySelectorAll(`[data-question2="${questionIndex}"]`);
+            options.forEach(opt => opt.classList.remove('selected'));
+            
+            const selectedOption = document.querySelector(`[data-question2="${questionIndex}"][data-option2="${optionIndex}"]`);
+            selectedOption.classList.add('selected');
+            
+            quiz2Answers[questionIndex] = optionIndex;
+        }
+
+        function submitQuiz2() {
+            if (quiz2Answers.length !== quiz2Questions.length) {
+                alert('Please answer all questions before submitting!');
+                return;
+            }
+            
+            let correct = 0;
+            
+            quiz2Questions.forEach((q, index) => {
+                const options = document.querySelectorAll(`[data-question2="${index}"]`);
+                options.forEach((opt, optIndex) => {
+                    opt.style.pointerEvents = 'none';
+                    
+                    if (optIndex === q.correct) {
+                        opt.classList.add('correct');
+                    } else if (optIndex === quiz2Answers[index]) {
+                        opt.classList.add('incorrect');
+                    }
+                });
+                
+                if (quiz2Answers[index] === q.correct) {
+                    correct++;
+                }
+            });
+            
+            const percentage = Math.round((correct / quiz2Questions.length) * 100);
+            
+            // Save score to global object
+            quizScores.quiz2 = {
+                score: correct,
+                total: quiz2Questions.length,
+                percentage: percentage
+            };
+            
+            const resultDiv = document.getElementById('quiz2-result');
+            resultDiv.className = percentage >= 70 ? 'result success' : 'result error';
+            resultDiv.innerHTML = `
+                <div class="score-display">${correct} / ${quiz2Questions.length}</div>
+                <div>You scored ${percentage}%</div>
+                <div style="margin-top: 10px; font-weight: 500;">${percentage >= 70 ? 'Excellent work!' : 'Review and try again!'}</div>
+                <div class="result-buttons">
+                    <button class="submit-btn" onclick="resetQuiz2()" style="background: #666;">Try Again</button>
+                    <button class="submit-btn" onclick="switchTab(4)" style="background: #1a1a1a;">See Scores</button>
+                </div>
+            `;
+            
+            document.getElementById('submit-quiz2').disabled = true;
+            updateScoresDisplay();
+        }
+
+        function resetQuiz2() {
+            quiz2Answers = [];
+            const resultDiv = document.getElementById('quiz2-result');
+            resultDiv.className = '';
+            resultDiv.innerHTML = '';
+            document.getElementById('submit-quiz2').disabled = false;
+            
+            const options = document.querySelectorAll('[data-question2]');
+            options.forEach(opt => {
+                opt.classList.remove('selected', 'correct', 'incorrect');
+                opt.style.pointerEvents = 'auto';
+            });
+            
+            initQuiz2();
+        }
+
+        // Update scores display
+        function updateScoresDisplay() {
+            // Update Quiz 1 score card
+            if (quizScores.quiz1) {
+                document.getElementById('quiz1-status').textContent = 'Completed';
+                document.getElementById('quiz1-status').classList.add('completed');
+                document.getElementById('quiz1-score-display').innerHTML = `
+                    <div>${quizScores.quiz1.score} / ${quizScores.quiz1.total}</div>
+                    <div class="score-percentage">${quizScores.quiz1.percentage}%</div>
+                `;
+            }
+            
+            // Update Quiz 2 score card
+            if (quizScores.quiz2) {
+                document.getElementById('quiz2-status').textContent = 'Completed';
+                document.getElementById('quiz2-status').classList.add('completed');
+                document.getElementById('quiz2-score-display').innerHTML = `
+                    <div>${quizScores.quiz2.score} / ${quizScores.quiz2.total}</div>
+                    <div class="score-percentage">${quizScores.quiz2.percentage}%</div>
+                `;
+            }
+            
+            // Update overall score
+            if (quizScores.quiz1 && quizScores.quiz2) {
+                const totalScore = quizScores.quiz1.score + quizScores.quiz2.score;
+                const totalPossible = quizScores.quiz1.total + quizScores.quiz2.total;
+                const overallPercentage = Math.round((totalScore / totalPossible) * 100);
+                
+                document.getElementById('overall-score').innerHTML = `
+                    <h3>Overall Performance</h3>
+                    <div class="overall-percentage">${totalScore} / ${totalPossible}</div>
+                    <p>Combined Score: ${overallPercentage}%</p>
+                    <p style="margin-top: 16px; font-size: 0.95em;">
+                        ${overallPercentage >= 80 ? '🎉 Outstanding performance! You have mastered these vocabulary words!' : 
+                          overallPercentage >= 70 ? '👍 Great effort! Review the material and keep practicing.' :
+                          '📚 Keep studying! Review the definitions and try again.'}
+                    </p>
+                `;
+            }
+        }
+
+        // Initialize quizzes when page loads
+        window.addEventListener('DOMContentLoaded', () => {
+            initQuiz1();
+            initQuiz2();
+        });
+    </script>
+</body>
+</html>
