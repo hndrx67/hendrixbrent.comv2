@@ -1,0 +1,5 @@
+html,body,#__next{height:100%;}
+body{margin:0;font-family:system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial,sans-serif;background:#fff;color:#111}
+a{color:#0366d6}
+input,textarea{font:inherit;padding:8px;margin:6px 0;width:100%;box-sizing:border-box}
+button{padding:8px 12px}
