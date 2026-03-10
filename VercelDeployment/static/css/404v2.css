@@ -1,0 +1,32 @@
+/* 404v2 — spiral-inspired 404 page */
+:root{
+  --bg:#05060a;
+  --card-bg:rgba(255,255,255,0.04);
+  --accent:#7afcff;
+  --muted:rgba(255,255,255,0.7);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  background:var(--bg);
+  color:var(--muted);
+  overflow:hidden;
+}
+#spiral-canvas{position:fixed;inset:0;width:100%;height:100%;display:block;z-index:0}
+.content{position:relative;z-index:2;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;text-align:center}
+.card{background:var(--card-bg);backdrop-filter:blur(6px);padding:2.2rem 2.6rem;border-radius:14px;box-shadow:0 8px 30px rgba(2,6,23,0.6);max-width:520px}
+.code{font-size:6.5rem;line-height:1;color:var(--accent);text-shadow:0 8px 30px rgba(122,252,255,0.08);margin-bottom:.2rem}
+.code2{font-size:3rem;line-height:1;color:var(--accent);text-shadow:0 8px 30px rgba(122,252,255,0.08);margin-bottom:.2rem}
+.message{font-size:1.125rem;margin-bottom:1.25rem;color:rgba(255,255,255,0.9)}
+.btn{display:inline-block;padding:.65rem 1.05rem;border-radius:8px;background:transparent;border:1px solid rgba(122,252,255,0.18);color:var(--accent);text-decoration:none;font-weight:600;transition:transform .18s ease,box-shadow .18s ease}
+.btn:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(122,252,255,0.06)}
+.credit{margin-top:1rem;font-size:.875rem;color:rgba(255,255,255,0.6)}
+
+@media (max-width:520px){
+  .code{font-size:4.5rem}
+  .card{padding:1.6rem;border-radius:12px;margin:0 1rem}
+}
+
+/* subtle pulse overlay to match spiral vibe */
+.card::after{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;mix-blend-mode:screen;opacity:.06;background:radial-gradient(600px 200px at 20% 10%, rgba(122,252,255,0.25), transparent 15%)}

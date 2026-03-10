@@ -1,26 +1,24 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Error 404</title>
-    <link rel="stylesheet" href="static/mainstyle.css">
-    <link rel="stylesheet" href="static/css/error404.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>404 — Page Not Found</title>
+  <link rel="stylesheet" href="static/css/404v2.css">
 </head>
 <body>
-    <div class="error-container">
-        <div class="floating-text">
-            <h1>ERROR 404</h1>
-            <h2>Page Not Found</h2>
-            <br>
-            <br>
-            <a href="index.html" class="cta-btn">Go Back Home</a>
-            
+  <canvas id="spiral-canvas" aria-hidden="true"></canvas>
 
-            
-            
-        </div>
+  <main class="content">
+    <div class="card">
+      <h4 class="code2">Error Code</h4>
+      <h1 class="code">404</h1>
+      <p class="message">We can't find the page you're looking for.</p>
+      <a class="btn" href="index.html">Go Home</a>
     </div>
-    
+    <p class="credit">Contact Engr. Hendrix for assistance.</p>
+  </main>
+
+  <script src="static/404v2.js"></script>
 </body>
 </html>

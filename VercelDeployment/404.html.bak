@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error 404</title>
+    <link rel="stylesheet" href="static/mainstyle.css">
+    <link rel="stylesheet" href="static/css/error404.css">
+</head>
+<body>
+    <div class="error-container">
+        <div class="floating-text">
+            <h1>ERROR 404</h1>
+            <h2>Page Not Found</h2>
+            <br>
+            <br>
+            <a href="index.html" class="cta-btn">Go Back Home</a>
+            
+
+            
+            
+        </div>
+    </div>
+    
+</body>
+</html>
