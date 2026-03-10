@@ -20,7 +20,7 @@ body{
 .code2{font-size:3rem;line-height:1;color:var(--accent);text-shadow:0 8px 30px rgba(122,252,255,0.08);margin-bottom:.2rem}
 .message{font-size:1.125rem;margin-bottom:1.25rem;color:rgba(255,255,255,0.9)}
 .btn{display:inline-block;padding:.65rem 1.05rem;border-radius:8px;background:transparent;border:1px solid rgba(122,252,255,0.18);color:var(--accent);text-decoration:none;font-weight:600;transition:transform .18s ease,box-shadow .18s ease}
-.btn:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(122,252,255,0.06)}
+.btn:hover{transform:translateY(-3px)}
 .credit{margin-top:1rem;font-size:.875rem;color:rgba(255,255,255,0.6)}
 
 @media (max-width:520px){
