@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#ffffff">
+    <title>Vocabulary Master</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #fafbfc;
+            color: #1a1a1a;
+            display: flex;
+            flex-direction: column;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        .app-container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .header {
+            background: white;
+            padding: 16px 20px 12px;
+            border-bottom: 1px solid #e8e8e8;
+            flex-shrink: 0;
+            safe-area-inset-top: 16px;
+        }
+
+        .header h1 {
+            font-size: 1.6em;
+            font-weight: 600;
+            color: #1a1a1a;
+            letter-spacing: -0.3px;
+            margin-bottom: 0;
+        }
+
+        .header p {
+            font-size: 0.8em;
+            color: #999;
+            margin-top: 2px;
+        }
+
+        .content-area {
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
+            padding: 16px;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .content-area::-webkit-scrollbar {
+            display: none;
+        }
+
+        .bottom-nav {
+            display: flex;
+            gap: 0;
+            background: white;
+            border-top: 1px solid #e8e8e8;
+            padding-bottom: constant(safe-area-inset-bottom);
+            padding-bottom: env(safe-area-inset-bottom);
+            flex-shrink: 0;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .bottom-nav::-webkit-scrollbar {
+            display: none;
+        }
+
+        .nav-btn {
+            flex: 1;
+            padding: 12px 8px;
+            text-align: center;
+            border: none;
+            background: white;
+            color: #999;
+            font-size: 0.75em;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 60px;
+            white-space: nowrap;
+            border-bottom: 3px solid transparent;
+        }
+
+        .nav-btn.active {
+            color: #1a1a1a;
+            border-bottom-color: #1a1a1a;
+        }
+
+        .nav-btn:active {
+            background: #f5f5f5;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Landing Page */
+        .landing-page {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 20px;
+            height: 100%;
+        }
+
+        .landing-page.hidden {
+            display: none;
+        }
+
+        .landing-title {
+            font-size: 2.8em;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .landing-subtitle {
+            font-size: 1em;
+            color: #666;
+            margin-bottom: 36px;
+            line-height: 1.5;
+        }
+
+        .start-btn {
+            background: #1a1a1a;
+            color: white;
+            padding: 16px 40px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.05em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            max-width: 280px;
+            margin-bottom: 32px;
+        }
+
+        .start-btn:active {
+            transform: scale(0.98);
+            background: #2a2a2a;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 16px;
+            width: 100%;
+            margin-top: 32px;
+        }
+
+        .feature-box {
+            background: white;
+            border: 1px solid #e8e8e8;
+            border-radius: 8px;
+            padding: 16px 12px;
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 2em;
+            margin-bottom: 8px;
+        }
+
+        .feature-label {
+            font-size: 0.75em;
+            color: #666;
+            font-weight: 500;
+        }
+
+        /* Vocab List */
+        .vocab-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .vocab-item {
+            background: white;
+            border: 1px solid #e8e8e8;
+            border-radius: 8px;
+            padding: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: slideUp 0.4s ease backwards;
+        }
+
+        .vocab-item:active {
+            transform: scale(0.98);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .vocab-item-word {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+
+        .vocab-item-def {
+            font-size: 0.9em;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .vocab-item-example {
+            font-size: 0.8em;
+            color: #999;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid #f0f0f0;
+            font-style: italic;
+        }
+
+        /* Flashcard */
+        .flashcard-view {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .flashcard-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            perspective: 1000px;
+            margin-bottom: 16px;
+        }
+
+        .flashcard {
+            width: 100%;
+            max-width: 100%;
+            aspect-ratio: 1;
+            background: white;
+            border: 1px solid #e8e8e8;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            padding: 32px;
+            text-align: center;
+            transition: all 0.4s ease;
+            transform-style: preserve-3d;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+        }
+
+        .flashcard.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .flashcard-front, .flashcard-back {
+            backface-visibility: hidden;
+            width: 100%;
+        }
+
+        .flashcard-back {
+            transform: rotateY(180deg);
+        }
+
+        .flashcard-word {
+            font-size: 2.2em;
+            font-weight: 600;
+            color: #1a1a1a;
+            letter-spacing: -0.5px;
+        }
+
+        .flashcard-definition {
+            font-size: 1.1em;
+            color: #4a4a4a;
+            line-height: 1.6;
+        }
+
+        .flashcard-hint {
+            font-size: 0.8em;
+            color: #999;
+            margin-top: 16px;
+            font-style: italic;
+        }
+
+        .flashcard-counter {
+            text-align: center;
+            color: #999;
+            font-size: 0.9em;
+            margin-bottom: 16px;
+        }
+
+        .flashcard-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .card-btn {
+            padding: 14px 16px;
+            border: 1px solid #e8e8e8;
+            background: white;
+            color: #4a4a4a;
+            border-radius: 6px;
+            font-size: 0.9em;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .card-btn:active {
+            background: #f5f5f5;
+            transform: scale(0.95);
+        }
+
+        .card-btn.next {
+            background: #1a1a1a;
+            color: white;
+            border-color: #1a1a1a;
+        }
+
+        /* Quiz */
+        .quiz-view {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .quiz-progress {
+            font-size: 0.85em;
+            color: #999;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .question-card {
+            background: white;
+            border: 1px solid #e8e8e8;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 16px;
+        }
+
+        .question-text {
+            font-size: 1.05em;
+            color: #1a1a1a;
+            font-weight: 500;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .option-btn {
+            background: #fafafa;
+            border: 1.5px solid #e8e8e8;
+            padding: 14px 16px;
+            border-radius: 6px;
+            text-align: left;
+            font-size: 0.95em;
+            color: #4a4a4a;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .option-btn:active {
+            transform: scale(0.97);
+        }
+
+        .option-btn.selected {
+            background: white;
+            border-color: #1a1a1a;
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+
+        .option-btn.correct {
+            background: #f0fdf4;
+            border-color: #10b981;
+            color: #059669;
+            font-weight: 600;
+        }
+
+        .option-btn.incorrect {
+            background: #fef2f2;
+            border-color: #ef4444;
+            color: #dc2626;
+            font-weight: 600;
+        }
+
+        .submit-quiz-btn {
+            background: #1a1a1a;
+            color: white;
+            padding: 16px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .submit-quiz-btn:active {
+            transform: scale(0.98);
+            background: #2a2a2a;
+        }
+
+        .submit-quiz-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .result-card {
+            background: white;
+            border: 1.5px solid;
+            border-radius: 8px;
+            padding: 24px;
+            text-align: center;
+            margin-top: 16px;
+            animation: slideUp 0.4s ease;
+        }
+
+        .result-card.success {
+            border-color: #10b981;
+            background: #f0fdf4;
+        }
+
+        .result-card.failure {
+            border-color: #ef4444;
+            background: #fef2f2;
+        }
+
+        .result-score {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+
+        .result-message {
+            font-size: 0.95em;
+            color: #4a4a4a;
+            margin-bottom: 16px;
+        }
+
+        .result-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .result-btn {
+            padding: 12px 16px;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.9em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .result-btn.retry {
+            background: #e8e8e8;
+            color: #1a1a1a;
+        }
+
+        .result-btn.continue {
+            background: #1a1a1a;
+            color: white;
+        }
+
+        .result-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Scores Page */
+        .scores-view {
+            padding-bottom: 20px;
+        }
+
+        .score-summary {
+            background: white;
+            border: 1px solid #e8e8e8;
+            border-radius: 8px;
+            padding: 24px;
+            text-align: center;
+            margin-bottom: 20px;
+            animation: slideUp 0.4s ease;
+        }
+
+        .score-value {
+            font-size: 3em;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+
+        .score-label {
+            font-size: 0.95em;
+            color: #666;
+            margin-bottom: 16px;
+        }
+
+        .score-message {
+            font-size: 0.9em;
+            color: #999;
+            font-style: italic;
+        }
+
+        .score-card {
+            background: white;
+            border: 1px solid #e8e8e8;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 12px;
+        }
+
+        .score-card-title {
+            font-size: 0.9em;
+            color: #999;
+            font-weight: 500;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .score-card-value {
+            font-size: 2em;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+
+        .score-card-percentage {
+            font-size: 0.85em;
+            color: #666;
+            margin-top: 4px;
+        }
+
+        .retry-btn {
+            background: #1a1a1a;
+            color: white;
+            padding: 14px;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.95em;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .retry-btn:active {
+            transform: scale(0.97);
+            background: #2a2a2a;
+        }
+
+        /* Animations */
+        .vocab-item:nth-child(1) { animation-delay: 0.05s; }
+        .vocab-item:nth-child(2) { animation-delay: 0.1s; }
+        .vocab-item:nth-child(3) { animation-delay: 0.15s; }
+        .vocab-item:nth-child(4) { animation-delay: 0.2s; }
+        .vocab-item:nth-child(5) { animation-delay: 0.25s; }
+        .vocab-item:nth-child(6) { animation-delay: 0.3s; }
+
+        @media (max-height: 600px) {
+            .header h1 {
+                font-size: 1.3em;
+            }
+
+            .flashcard {
+                aspect-ratio: auto;
+                min-height: 200px;
+            }
+
+            .question-card {
+                padding: 16px;
+            }
+
+            .option-btn {
+                padding: 12px 14px;
+                font-size: 0.9em;
+            }
+        }
+
+        @media (orientation: landscape) {
+            .header h1 {
+                font-size: 1.3em;
+            }
+
+            .options-list {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+
+            .flashcard {
+                aspect-ratio: auto;
+                min-height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Landing Page -->
+        <div class="landing-page" id="landing">
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%;">
+                <h1 class="landing-title">Vocabularily</h1>
+                <p class="landing-subtitle">Master vocabulary through interactive learning</p>
+                <button class="start-btn" onclick="startApp()">Start Now</button>
+                <div class="feature-grid">
+                    <div class="feature-box">
+                        <div class="feature-icon">📚</div>
+                        <div class="feature-label">Learn</div>
+                    </div>
+                    <div class="feature-box">
+                        <div class="feature-icon">🎯</div>
+                        <div class="feature-label">Practice</div>
+                    </div>
+                    <div class="feature-box">
+                        <div class="feature-icon">✓</div>
+                        <div class="feature-label">Test</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main App -->
+        <div id="main-app" style="display: none; flex: 1; overflow: hidden; display: flex; flex-direction: column;">
+            <div class="header">
+                <h1>Vocabularily</h1>
+                <p id="subtitle">Learn and practice vocabulary words</p>
+            </div>
+
+            <div class="content-area" id="content-area">
+                <!-- Page 1: Vocabulary List -->
+                <div class="page active" id="page-vocab">
+                    <h2 style="font-size: 1.3em; margin-bottom: 16px; color: #1a1a1a;">Vocabulary List</h2>
+                    <div class="vocab-list" id="vocab-list"></div>
+                </div>
+
+                <!-- Page 2: Flashcards -->
+                <div class="page" id="page-flashcard">
+                    <div class="flashcard-view">
+                        <div class="flashcard-counter" id="flashcard-counter">Card 1 of 6</div>
+                        <div class="flashcard-container">
+                            <div class="flashcard" id="flashcard" onclick="flipCard()">
+                                <div class="flashcard-front">
+                                    <div class="flashcard-word" id="flashcard-word">Ephemeral</div>
+                                    <div class="flashcard-hint">Click to reveal definition</div>
+                                </div>
+                                <div class="flashcard-back">
+                                    <div class="flashcard-definition" id="flashcard-definition">Lasting for a very short time</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flashcard-buttons">
+                            <button class="card-btn" onclick="prevCard()">← Previous</button>
+                            <button class="card-btn next" onclick="nextCard()">Next →</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Page 3: Quiz 1 -->
+                <div class="page" id="page-quiz1">
+                    <h2 style="font-size: 1.3em; margin-bottom: 16px; color: #1a1a1a;">Quiz 1: Match Definitions</h2>
+                    <div class="quiz-view" id="quiz1-container"></div>
+                    <button class="submit-quiz-btn" onclick="submitQuiz1()" id="quiz1-btn">Submit Quiz</button>
+                    <div id="quiz1-result"></div>
+                </div>
+
+                <!-- Page 4: Quiz 2 -->
+                <div class="page" id="page-quiz2">
+                    <h2 style="font-size: 1.3em; margin-bottom: 16px; color: #1a1a1a;">Quiz 2: Fill in the Blank</h2>
+                    <div class="quiz-view" id="quiz2-container"></div>
+                    <button class="submit-quiz-btn" onclick="submitQuiz2()" id="quiz2-btn">Submit Quiz</button>
+                    <div id="quiz2-result"></div>
+                </div>
+
+                <!-- Page 5: Scores -->
+                <div class="page" id="page-scores">
+                    <h2 style="font-size: 1.3em; margin-bottom: 16px; color: #1a1a1a;">Your Progress</h2>
+                    <div class="scores-view" id="scores-container"></div>
+                </div>
+            </div>
+
+            <!-- Bottom Navigation -->
+            <div class="bottom-nav">
+                <button class="nav-btn active" onclick="goToPage(0)">📚 Words</button>
+                <button class="nav-btn" onclick="goToPage(1)">🎴 Cards</button>
+                <button class="nav-btn" onclick="goToPage(2)">❓ Quiz 1</button>
+                <button class="nav-btn" onclick="goToPage(3)">❓ Quiz 2</button>
+                <button class="nav-btn" onclick="goToPage(4)">📊 Scores</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Vocabulary Data
+        const vocabulary = [
+            {
+                word: "Ephemeral",
+                definition: "Lasting for a very short time; temporary.",
+                example: "The beauty of cherry blossoms is ephemeral, lasting only a few weeks each spring."
+            },
+            {
+                word: "Ubiquitous",
+                definition: "Present, appearing, or found everywhere.",
+                example: "Smartphones have become ubiquitous in modern society."
+            },
+            {
+                word: "Ambiguous",
+                definition: "Open to more than one interpretation; unclear.",
+                example: "The politician's statement left voters uncertain about her position."
+            },
+            {
+                word: "Eloquent",
+                definition: "Fluent or persuasive in speaking or writing.",
+                example: "MLK Jr. was known for his eloquent speeches."
+            },
+            {
+                word: "Pragmatic",
+                definition: "Dealing with things sensibly and realistically based on practical considerations.",
+                example: "The team took a pragmatic approach to solving the problem."
+            },
+            {
+                word: "Meticulous",
+                definition: "Showing great attention to detail; very careful and precise.",
+                example: "The scientist kept meticulous records of every experiment."
+            }
+        ];
+
+        // Quiz Data
+        const quiz1Data = [
+            {
+                question: "What does 'ephemeral' mean?",
+                options: ["Permanent and lasting", "Lasting for a very short time", "Extremely important", "Difficult to understand"],
+                correct: 1
+            },
+            {
+                question: "What does 'ubiquitous' mean?",
+                options: ["Rare and unusual", "Expensive and valuable", "Present everywhere", "Ancient and outdated"],
+                correct: 2
+            },
+            {
+                question: "What does 'ambiguous' mean?",
+                options: ["Very clear", "Extremely difficult", "Multiple possible meanings", "Totally incorrect"],
+                correct: 2
+            },
+            {
+                question: "What does 'eloquent' mean?",
+                options: ["Silent", "Fluent and persuasive", "Confused", "Angry"],
+                correct: 1
+            }
+        ];
+
+        const quiz2Data = [
+            {
+                question: "The morning fog was _______, disappearing within an hour.",
+                options: ["ephemeral", "ubiquitous", "meticulous", "eloquent"],
+                correct: 0
+            },
+            {
+                question: "Social media has become _______ in modern life.",
+                options: ["ambiguous", "ubiquitous", "eloquent", "pragmatic"],
+                correct: 1
+            },
+            {
+                question: "The lawyer's _______ argument convinced the jury.",
+                options: ["ephemeral", "ambiguous", "eloquent", "meticulous"],
+                correct: 2
+            },
+            {
+                question: "The surgeon's _______ attention to detail ensured success.",
+                options: ["ambiguous", "pragmatic", "ubiquitous", "meticulous"],
+                correct: 3
+            },
+            {
+                question: "Taking a _______ approach, the engineer chose the most effective solution.",
+                options: ["pragmatic", "ephemeral", "ambiguous", "eloquent"],
+                correct: 0
+            }
+        ];
+
+        // State
+        let currentPage = 0;
+        let currentFlashcard = 0;
+        let isFlipped = false;
+        let quiz1Answers = [];
+        let quiz2Answers = [];
+        let scores = {
+            quiz1: null,
+            quiz2: null
+        };
+
+        // App Functions
+        function startApp() {
+            document.getElementById('landing').style.display = 'none';
+            document.getElementById('main-app').style.display = 'flex';
+            initApp();
+        }
+
+        function initApp() {
+            initVocabList();
+            initQuiz1();
+            initQuiz2();
+            updateScores();
+        }
+
+        // Navigation
+        function goToPage(pageIndex) {
+            currentPage = pageIndex;
+            const pages = document.querySelectorAll('.page');
+            const navBtns = document.querySelectorAll('.nav-btn');
+
+            pages.forEach(p => p.classList.remove('active'));
+            navBtns.forEach(b => b.classList.remove('active'));
+
+            pages[pageIndex].classList.add('active');
+            navBtns[pageIndex].classList.add('active');
+
+            // Reset flashcard when leaving
+            if (pageIndex !== 1 && isFlipped) {
+                document.getElementById('flashcard').classList.remove('flipped');
+                isFlipped = false;
+            }
+
+            // Scroll content to top
+            document.getElementById('content-area').scrollTop = 0;
+        }
+
+        // Vocabulary List
+        function initVocabList() {
+            const vocabList = document.getElementById('vocab-list');
+            vocabList.innerHTML = '';
+            vocabulary.forEach((word, index) => {
+                const item = document.createElement('div');
+                item.className = 'vocab-item';
+                item.innerHTML = `
+                    <div class="vocab-item-word">${word.word}</div>
+                    <div class="vocab-item-def">${word.definition}</div>
+                    <div class="vocab-item-example">${word.example}</div>
+                `;
+                vocabList.appendChild(item);
+            });
+        }
+
+        // Flashcards
+        function updateFlashcard() {
+            const card = vocabulary[currentFlashcard];
+            document.getElementById('flashcard-word').textContent = card.word;
+            document.getElementById('flashcard-definition').textContent = card.definition;
+            document.getElementById('flashcard-counter').textContent = `Card ${currentFlashcard + 1} of ${vocabulary.length}`;
+            
+            if (isFlipped) {
+                document.getElementById('flashcard').classList.remove('flipped');
+                isFlipped = false;
+            }
+        }
+
+        function flipCard() {
+            const flashcard = document.getElementById('flashcard');
+            flashcard.classList.toggle('flipped');
+            isFlipped = !isFlipped;
+        }
+
+        function nextCard() {
+            currentFlashcard = (currentFlashcard + 1) % vocabulary.length;
+            updateFlashcard();
+        }
+
+        function prevCard() {
+            currentFlashcard = (currentFlashcard - 1 + vocabulary.length) % vocabulary.length;
+            updateFlashcard();
+        }
+
+        // Quiz 1
+        function initQuiz1() {
+            const container = document.getElementById('quiz1-container');
+            container.innerHTML = '';
+            quiz1Answers = [];
+
+            quiz1Data.forEach((q, qIndex) => {
+                const progress = document.createElement('div');
+                progress.className = 'quiz-progress';
+                progress.textContent = `Question ${qIndex + 1} of ${quiz1Data.length}`;
+
+                const card = document.createElement('div');
+                card.className = 'question-card';
+                card.innerHTML = `<div class="question-text">${q.question}</div>`;
+
+                const optionsList = document.createElement('div');
+                optionsList.className = 'options-list';
+
+                q.options.forEach((opt, oIndex) => {
+                    const btn = document.createElement('button');
+                    btn.className = 'option-btn';
+                    btn.textContent = opt;
+                    btn.onclick = () => selectQuiz1(qIndex, oIndex);
+                    btn.dataset.question = qIndex;
+                    btn.dataset.option = oIndex;
+                    optionsList.appendChild(btn);
+                });
+
+                card.appendChild(optionsList);
+                container.appendChild(progress);
+                container.appendChild(card);
+            });
+        }
+
+        function selectQuiz1(qIndex, oIndex) {
+            const btns = document.querySelectorAll(`[data-question="${qIndex}"]`);
+            btns.forEach(b => b.classList.remove('selected'));
+            document.querySelector(`[data-question="${qIndex}"][data-option="${oIndex}"]`).classList.add('selected');
+            quiz1Answers[qIndex] = oIndex;
+        }
+
+        function submitQuiz1() {
+            if (quiz1Answers.length !== quiz1Data.length) {
+                alert('Answer all questions first!');
+                return;
+            }
+
+            let correct = 0;
+            quiz1Data.forEach((q, qIndex) => {
+                const btns = document.querySelectorAll(`[data-question="${qIndex}"]`);
+                btns.forEach((btn, oIndex) => {
+                    btn.disabled = true;
+                    if (oIndex === q.correct) {
+                        btn.classList.add('correct');
+                    } else if (oIndex === quiz1Answers[qIndex]) {
+                        btn.classList.add('incorrect');
+                    }
+                });
+                if (quiz1Answers[qIndex] === q.correct) correct++;
+            });
+
+            const percent = Math.round((correct / quiz1Data.length) * 100);
+            scores.quiz1 = { score: correct, total: quiz1Data.length, percent };
+
+            const result = document.getElementById('quiz1-result');
+            result.className = `result-card ${percent >= 70 ? 'success' : 'failure'}`;
+            result.innerHTML = `
+                <div class="result-score">${correct}/${quiz1Data.length}</div>
+                <div class="result-message">${percent}% Correct</div>
+                <div class="result-buttons">
+                    <button class="result-btn retry" onclick="resetQuiz1()">Try Again</button>
+                    <button class="result-btn continue" onclick="goToPage(4)">Scores</button>
+                </div>
+            `;
+
+            document.getElementById('quiz1-btn').style.display = 'none';
+            updateScores();
+        }
+
+        function resetQuiz1() {
+            const resultDiv = document.getElementById('quiz1-result');
+            resultDiv.innerHTML = '';
+            resultDiv.className = '';
+            document.getElementById('quiz1-btn').style.display = 'block';
+            const btns = document.querySelectorAll('[data-question]');
+            btns.forEach(b => {
+                b.disabled = false;
+                b.classList.remove('selected', 'correct', 'incorrect');
+            });
+            initQuiz1();
+        }
+
+        // Quiz 2
+        function initQuiz2() {
+            const container = document.getElementById('quiz2-container');
+            container.innerHTML = '';
+            quiz2Answers = [];
+
+            quiz2Data.forEach((q, qIndex) => {
+                const progress = document.createElement('div');
+                progress.className = 'quiz-progress';
+                progress.textContent = `Question ${qIndex + 1} of ${quiz2Data.length}`;
+
+                const card = document.createElement('div');
+                card.className = 'question-card';
+                card.innerHTML = `<div class="question-text">${q.question}</div>`;
+
+                const optionsList = document.createElement('div');
+                optionsList.className = 'options-list';
+
+                q.options.forEach((opt, oIndex) => {
+                    const btn = document.createElement('button');
+                    btn.className = 'option-btn';
+                    btn.textContent = opt;
+                    btn.onclick = () => selectQuiz2(qIndex, oIndex);
+                    btn.dataset.question2 = qIndex;
+                    btn.dataset.option2 = oIndex;
+                    optionsList.appendChild(btn);
+                });
+
+                card.appendChild(optionsList);
+                container.appendChild(progress);
+                container.appendChild(card);
+            });
+        }
+
+        function selectQuiz2(qIndex, oIndex) {
+            const btns = document.querySelectorAll(`[data-question2="${qIndex}"]`);
+            btns.forEach(b => b.classList.remove('selected'));
+            document.querySelector(`[data-question2="${qIndex}"][data-option2="${oIndex}"]`).classList.add('selected');
+            quiz2Answers[qIndex] = oIndex;
+        }
+
+        function submitQuiz2() {
+            if (quiz2Answers.length !== quiz2Data.length) {
+                alert('Answer all questions first!');
+                return;
+            }
+
+            let correct = 0;
+            quiz2Data.forEach((q, qIndex) => {
+                const btns = document.querySelectorAll(`[data-question2="${qIndex}"]`);
+                btns.forEach((btn, oIndex) => {
+                    btn.disabled = true;
+                    if (oIndex === q.correct) {
+                        btn.classList.add('correct');
+                    } else if (oIndex === quiz2Answers[qIndex]) {
+                        btn.classList.add('incorrect');
+                    }
+                });
+                if (quiz2Answers[qIndex] === q.correct) correct++;
+            });
+
+            const percent = Math.round((correct / quiz2Data.length) * 100);
+            scores.quiz2 = { score: correct, total: quiz2Data.length, percent };
+
+            const result = document.getElementById('quiz2-result');
+            result.className = `result-card ${percent >= 70 ? 'success' : 'failure'}`;
+            result.innerHTML = `
+                <div class="result-score">${correct}/${quiz2Data.length}</div>
+                <div class="result-message">${percent}% Correct</div>
+                <div class="result-buttons">
+                    <button class="result-btn retry" onclick="resetQuiz2()">Try Again</button>
+                    <button class="result-btn continue" onclick="goToPage(4)">Scores</button>
+                </div>
+            `;
+
+            document.getElementById('quiz2-btn').style.display = 'none';
+            updateScores();
+        }
+
+        function resetQuiz2() {
+            const resultDiv = document.getElementById('quiz2-result');
+            resultDiv.innerHTML = '';
+            resultDiv.className = '';
+            document.getElementById('quiz2-btn').style.display = 'block';
+            const btns = document.querySelectorAll('[data-question2]');
+            btns.forEach(b => {
+                b.disabled = false;
+                b.classList.remove('selected', 'correct', 'incorrect');
+            });
+            initQuiz2();
+        }
+
+        // Scores
+        function updateScores() {
+            const container = document.getElementById('scores-container');
+            container.innerHTML = '';
+
+            if (!scores.quiz1 && !scores.quiz2) {
+                container.innerHTML = '<p style="text-align: center; color: #999; padding: 32px 0;">Take a quiz to see your scores</p>';
+                return;
+            }
+
+            if (scores.quiz1 && scores.quiz2) {
+                const total = scores.quiz1.score + scores.quiz2.score;
+                const max = scores.quiz1.total + scores.quiz2.total;
+                const overall = Math.round((total / max) * 100);
+
+                const summary = document.createElement('div');
+                summary.className = 'score-summary';
+                summary.innerHTML = `
+                    <div class="score-value">${total}/${max}</div>
+                    <div class="score-label">Overall Score: ${overall}%</div>
+                    <div class="score-message">
+                        ${overall >= 80 ? '🎉 Excellent! You\'ve mastered these words!' :
+                          overall >= 70 ? '👍 Great job! Keep practicing!' :
+                          '📚 Keep learning! Review and try again.'}
+                    </div>
+                `;
+                container.appendChild(summary);
+            }
+
+            if (scores.quiz1) {
+                const card = document.createElement('div');
+                card.className = 'score-card';
+                card.innerHTML = `
+                    <div class="score-card-title">Quiz 1: Definitions</div>
+                    <div class="score-card-value">${scores.quiz1.score}/${scores.quiz1.total}</div>
+                    <div class="score-card-percentage">${scores.quiz1.percent}%</div>
+                `;
+                container.appendChild(card);
+            }
+
+            if (scores.quiz2) {
+                const card = document.createElement('div');
+                card.className = 'score-card';
+                card.innerHTML = `
+                    <div class="score-card-title">Quiz 2: Fill in Blank</div>
+                    <div class="score-card-value">${scores.quiz2.score}/${scores.quiz2.total}</div>
+                    <div class="score-card-percentage">${scores.quiz2.percent}%</div>
+                `;
+                container.appendChild(card);
+            }
+
+            if (scores.quiz1 || scores.quiz2) {
+                const resetBtn = document.createElement('button');
+                resetBtn.className = 'retry-btn';
+                resetBtn.textContent = 'Reset All Scores';
+                resetBtn.onclick = resetAllScores;
+                container.appendChild(resetBtn);
+            }
+        }
+
+        function resetAllScores() {
+            if (confirm('Reset all scores? This cannot be undone.')) {
+                scores = { quiz1: null, quiz2: null };
+                resetQuiz1();
+                resetQuiz2();
+                updateScores();
+            }
+        }
+
+        // Initialize
+        window.addEventListener('DOMContentLoaded', updateFlashcard);
+    </script>
+</body>
+</html>
